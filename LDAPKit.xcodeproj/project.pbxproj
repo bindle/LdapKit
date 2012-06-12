@@ -7,16 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A00161B61586C45A00134A6C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00161B51586C45A00134A6C /* Cocoa.framework */; };
 		A00161C01586C45A00134A6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00161BE1586C45A00134A6C /* InfoPlist.strings */; };
 		A001DE451586C7AE004A4BA7 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A001DE441586C7AE004A4BA7 /* COPYING */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A00161B21586C45A00134A6C /* LDAPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LDAPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A00161B51586C45A00134A6C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		A00161B81586C45A00134A6C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		A00161B91586C45A00134A6C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A00161BA1586C45A00134A6C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A00161BD1586C45A00134A6C /* LDAPKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LDAPKit-Info.plist"; sourceTree = "<group>"; };
 		A00161BF1586C45A00134A6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -30,7 +26,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A00161B61586C45A00134A6C /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,20 +53,17 @@
 		A00161B41586C45A00134A6C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A00161B51586C45A00134A6C /* Cocoa.framework */,
-				A00161B71586C45A00134A6C /* Other Frameworks */,
+				A00161B71586C45A00134A6C /* MacOSX Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A00161B71586C45A00134A6C /* Other Frameworks */ = {
+		A00161B71586C45A00134A6C /* MacOSX Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A00161B81586C45A00134A6C /* AppKit.framework */,
-				A00161B91586C45A00134A6C /* CoreData.framework */,
 				A00161BA1586C45A00134A6C /* Foundation.framework */,
 			);
-			name = "Other Frameworks";
+			name = "MacOSX Frameworks";
 			sourceTree = "<group>";
 		};
 		A00161BB1586C45A00134A6C /* LDAPKit */ = {
