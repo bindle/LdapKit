@@ -11,6 +11,7 @@
 		A001DE451586C7AE004A4BA7 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A001DE441586C7AE004A4BA7 /* COPYING */; };
 		A08863091586CB93009EF0BB /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = A08863071586CB93009EF0BB /* LKSession.h */; };
 		A088630A1586CB93009EF0BB /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A08863081586CB93009EF0BB /* LKSession.m */; };
+		A088630B1586CDDB009EF0BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00161BA1586C45A00134A6C /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A088630B1586CDDB009EF0BB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
