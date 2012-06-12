@@ -38,6 +38,7 @@
 #import <Foundation/Foundation.h>
 #import <LDAPKit/LKEnumerations.h>
 
+@class LKResult;
 
 @interface LKSession : NSObject
 {
@@ -74,6 +75,7 @@
 
 /// @name server state
 @property (nonatomic, readonly) BOOL                     isConnected;
+@property (nonatomic, readonly) NSOperationQueue       * queue;
 @property (nonatomic, readonly) NSString               * configHash;
 
 /// @name server information

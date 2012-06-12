@@ -41,6 +41,7 @@
 
 // server state
 @synthesize isConnected;
+@synthesize queue;
 @synthesize configHash;
 
 // server information
