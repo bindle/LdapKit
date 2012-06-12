@@ -29,6 +29,15 @@
 		A0103DCF1587849500183DC9 /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC91587849500183DC9 /* LKSession.m */; };
 		A0103DD2158784A100183DC9 /* LdapKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A0103DD0158784A100183DC9 /* LdapKit.h */; };
 		A0103DD3158784A100183DC9 /* LKEnumerations.h in Headers */ = {isa = PBXBuildFile; fileRef = A0103DD1158784A100183DC9 /* LKEnumerations.h */; };
+		A0103E231587878900183DC9 /* LKError.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC51587849500183DC9 /* LKError.m */; };
+		A0103E241587878900183DC9 /* LKResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC71587849500183DC9 /* LKResult.m */; };
+		A0103E251587878900183DC9 /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC91587849500183DC9 /* LKSession.m */; };
+		A0103E281587880900183DC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103E271587880900183DC9 /* Foundation.framework */; };
+		A0103E291587882C00183DC9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DF4158784D300183DC9 /* libcrypto.a */; };
+		A0103E2A1587882C00183DC9 /* liblber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DE8158784C200183DC9 /* liblber.a */; };
+		A0103E2B1587882C00183DC9 /* libldap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DE6158784C200183DC9 /* libldap.a */; };
+		A0103E2C1587882C00183DC9 /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DFB158784E100183DC9 /* libsasl2.a */; };
+		A0103E2D1587882C00183DC9 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DF2158784D300183DC9 /* libssl.a */; };
 		A0CFA8121587829400EBEB32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CFA8111587829400EBEB32 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +91,13 @@
 			remoteGlobalIDString = A03ADDBD11D14F1200F5A51F;
 			remoteInfo = ldap;
 		};
+		A0103E211587878000183DC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A0CFA8051587829400EBEB32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A0103DFF1587854400183DC9;
+			remoteInfo = "Git Package Version LdapKit";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -99,16 +115,34 @@
 		A0103DD4158784C100183DC9 /* openldap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openldap.xcodeproj; path = ../iOSPorts/ports/database/openldap/openldap.xcodeproj; sourceTree = "<group>"; };
 		A0103DEB158784D300183DC9 /* openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openssl.xcodeproj; path = ../iOSPorts/ports/security/openssl/openssl.xcodeproj; sourceTree = "<group>"; };
 		A0103DF5158784E100183DC9 /* Cyrus SASL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Cyrus SASL.xcodeproj"; path = "../iOSPorts/ports/security/cyrus-sasl/Cyrus SASL.xcodeproj"; sourceTree = "<group>"; };
+		A0103E111587874800183DC9 /* libLdapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLdapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0103E151587874800183DC9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A0103E161587874800183DC9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A0103E171587874800183DC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A0103E271587880900183DC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A0CFA80E1587829400EBEB32 /* libiLdapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiLdapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0CFA8111587829400EBEB32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0CFA8151587829500EBEB32 /* LdapKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LdapKit-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A0103E0E1587874800183DC9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0103E281587880900183DC9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0CFA80B1587829400EBEB32 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0103E291587882C00183DC9 /* libcrypto.a in Frameworks */,
+				A0103E2A1587882C00183DC9 /* liblber.a in Frameworks */,
+				A0103E2B1587882C00183DC9 /* libldap.a in Frameworks */,
+				A0103E2C1587882C00183DC9 /* libsasl2.a in Frameworks */,
+				A0103E2D1587882C00183DC9 /* libssl.a in Frameworks */,
 				A0CFA8121587829400EBEB32 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,6 +200,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A0103E141587874800183DC9 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A0103E151587874800183DC9 /* AppKit.framework */,
+				A0103E161587874800183DC9 /* CoreData.framework */,
+				A0103E171587874800183DC9 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		A0103E26158787EB00183DC9 /* MacOSX */ = {
+			isa = PBXGroup;
+			children = (
+				A0103E271587880900183DC9 /* Foundation.framework */,
+			);
+			name = MacOSX;
+			sourceTree = "<group>";
+		};
 		A0CFA8031587829400EBEB32 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				A0CFA80E1587829400EBEB32 /* libiLdapKit.a */,
+				A0103E111587874800183DC9 /* libLdapKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,7 +242,9 @@
 		A0CFA8101587829400EBEB32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0103E26158787EB00183DC9 /* MacOSX */,
 				A0103DC2158783B100183DC9 /* iPhoneOS */,
+				A0103E141587874800183DC9 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,6 +272,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		A0103E0F1587874800183DC9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0CFA80C1587829400EBEB32 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -248,6 +310,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		A0103E101587874800183DC9 /* LdapKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0103E1E1587874800183DC9 /* Build configuration list for PBXNativeTarget "LdapKit" */;
+			buildPhases = (
+				A0103E0D1587874800183DC9 /* Sources */,
+				A0103E0E1587874800183DC9 /* Frameworks */,
+				A0103E0F1587874800183DC9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0103E221587878000183DC9 /* PBXTargetDependency */,
+			);
+			name = LdapKit;
+			productName = LdapKit;
+			productReference = A0103E111587874800183DC9 /* libLdapKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		A0CFA80D1587829400EBEB32 /* iLdapKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0CFA81B1587829500EBEB32 /* Build configuration list for PBXNativeTarget "iLdapKit" */;
@@ -304,6 +384,7 @@
 				A0CFA80D1587829400EBEB32 /* iLdapKit */,
 				A0103DFF1587854400183DC9 /* Git Package Version LdapKit */,
 				A0103E041587858D00183DC9 /* LdapKit Docset */,
+				A0103E101587874800183DC9 /* LdapKit */,
 			);
 		};
 /* End PBXProject section */
@@ -364,6 +445,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A0103E0D1587874800183DC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0103E231587878900183DC9 /* LKError.m in Sources */,
+				A0103E241587878900183DC9 /* LKResult.m in Sources */,
+				A0103E251587878900183DC9 /* LKSession.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0CFA80A1587829400EBEB32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -386,6 +477,11 @@
 			isa = PBXTargetDependency;
 			name = ldap;
 			targetProxy = A0103E0A1587860300183DC9 /* PBXContainerItemProxy */;
+		};
+		A0103E221587878000183DC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A0103DFF1587854400183DC9 /* Git Package Version LdapKit */;
+			targetProxy = A0103E211587878000183DC9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -437,6 +533,44 @@
 			};
 			name = Release;
 		};
+		A0103E1F1587874800183DC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LdapKit/support/LdapKit-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A0103E201587874800183DC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LdapKit/support/LdapKit-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		A0CFA8191587829500EBEB32 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -455,6 +589,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = .;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
@@ -471,6 +606,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = .;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -488,8 +624,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LdapKit/support/LdapKit-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					../iOSPorts/include,
 					.,
+					../iOSPorts/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_LDFLAGS = "-ObjC";
@@ -509,8 +645,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LdapKit/support/LdapKit-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					../iOSPorts/include,
 					.,
+					../iOSPorts/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				OTHER_LDFLAGS = "-ObjC";
@@ -535,6 +671,14 @@
 			buildConfigurations = (
 				A0103E061587858D00183DC9 /* Debug */,
 				A0103E071587858D00183DC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A0103E1E1587874800183DC9 /* Build configuration list for PBXNativeTarget "LdapKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0103E1F1587874800183DC9 /* Debug */,
+				A0103E201587874800183DC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
