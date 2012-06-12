@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>GIT_APPLICATION_VERSION</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>GIT_APPLICATION_VERSION</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2012 Bindle Binaries. All rights reserved.</string>
 	<key>NSPrincipalClass</key>

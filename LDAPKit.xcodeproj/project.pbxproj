@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A08862FF1586CAF7009EF0BB /* Git Package Version (LDAPKit) */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A08863001586CAF7009EF0BB /* Build configuration list for PBXAggregateTarget "Git Package Version (LDAPKit)" */;
+			buildPhases = (
+				A08863031586CB0C009EF0BB /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Git Package Version (LDAPKit)";
+			productName = "Git Package Version (LDAPKit)";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		A00161C01586C45A00134A6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00161BE1586C45A00134A6C /* InfoPlist.strings */; };
 		A001DE451586C7AE004A4BA7 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A001DE441586C7AE004A4BA7 /* COPYING */; };
@@ -13,6 +27,16 @@
 		A088630A1586CB93009EF0BB /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A08863081586CB93009EF0BB /* LKSession.m */; };
 		A088630B1586CDDB009EF0BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00161BA1586C45A00134A6C /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A08863041586CB36009EF0BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A00161A81586C45A00134A6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A08862FF1586CAF7009EF0BB;
+			remoteInfo = "Git Package Version (LDAPKit)";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A00161B21586C45A00134A6C /* LDAPKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LDAPKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +48,7 @@
 		A001DE441586C7AE004A4BA7 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		A08863071586CB93009EF0BB /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
 		A08863081586CB93009EF0BB /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
+		A088630D1586CE70009EF0BB /* git-package-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "git-package-version.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +68,7 @@
 			children = (
 				A001DE441586C7AE004A4BA7 /* COPYING */,
 				A00161BB1586C45A00134A6C /* LDAPKit */,
+				A088630C1586CE40009EF0BB /* build-aux */,
 				A00161B41586C45A00134A6C /* Frameworks */,
 				A00161B31586C45A00134A6C /* Products */,
 			);
@@ -103,6 +129,14 @@
 			path = models;
 			sourceTree = "<group>";
 		};
+		A088630C1586CE40009EF0BB /* build-aux */ = {
+			isa = PBXGroup;
+			children = (
+				A088630D1586CE70009EF0BB /* git-package-version.sh */,
+			);
+			path = "build-aux";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -129,6 +163,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A08863051586CB36009EF0BB /* PBXTargetDependency */,
 			);
 			name = LDAPKit;
 			productName = LDAPKit;
@@ -156,6 +191,7 @@
 			projectRoot = "";
 			targets = (
 				A00161B11586C45A00134A6C /* LDAPKit */,
+				A08862FF1586CAF7009EF0BB /* Git Package Version (LDAPKit) */,
 			);
 		};
 /* End PBXProject section */
@@ -172,6 +208,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A08863031586CB0C009EF0BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "touch LDAPKit/support/LDAPKit-Info.plist\nbuild-aux/git-package-version.sh ${PROJECT_DIR}\ncp build-aux/git-package-version.h LDAPKit/git-package-version.h";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A00161AD1586C45A00134A6C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -182,6 +235,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A08863051586CB36009EF0BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A08862FF1586CAF7009EF0BB /* Git Package Version (LDAPKit) */;
+			targetProxy = A08863041586CB36009EF0BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A00161BE1586C45A00134A6C /* InfoPlist.strings */ = {
@@ -247,6 +308,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LDAPKit/support/LDAPKit-Prefix.pch";
 				INFOPLIST_FILE = "LDAPKit/support/LDAPKit-Info.plist";
+				INFOPLIST_PREFIX_HEADER = "build-aux/git-package-version-prefix.h";
+				INFOPLIST_PREPROCESS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -261,8 +324,24 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LDAPKit/support/LDAPKit-Prefix.pch";
 				INFOPLIST_FILE = "LDAPKit/support/LDAPKit-Info.plist";
+				INFOPLIST_PREFIX_HEADER = "build-aux/git-package-version-prefix.h";
+				INFOPLIST_PREPROCESS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		A08863011586CAF7009EF0BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A08863021586CAF7009EF0BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -286,6 +365,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A08863001586CAF7009EF0BB /* Build configuration list for PBXAggregateTarget "Git Package Version (LDAPKit)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A08863011586CAF7009EF0BB /* Debug */,
+				A08863021586CAF7009EF0BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
