@@ -91,6 +91,7 @@
 				A00161C11586C45A00134A6C /* LDAPKit-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
