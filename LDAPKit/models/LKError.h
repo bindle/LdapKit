@@ -38,14 +38,34 @@
 #import <Foundation/Foundation.h>
 #import <LDAPKit/LKEnumerations.h>
 
+
+#pragma mark LDAP error type
+enum ldap_kit_ldap_error_type
+{
+   LKLdapErrorTypeInternal           = 0x01,
+   LKLdapErrorTypeLDAP               = 0x02
+};
+typedef enum ldap_kit_ldap_error_type LKLdapErrorType;
+
+enum ldap_kit_ldap_error_code
+{
+   LKErrorCodeSuccess        =   0,   // operation was successful
+   LKErrorCodeUnknown        =  -1,   // unknown error code
+   LKErrorCodeCancelled      =  -2,   // operation was cancelled
+   LKErrorCodeNotConnected   =  -3,   // not connected to server
+   LKErrorCodeMemory         =  -4,   // out of memory
+};
+typedef enum ldap_kit_ldap_error_code LKErrorCode;
+
+
 @interface LKError : NSObject
 {
    // error information
-   LKLdapErrorType    errorType;
-   NSInteger          errorCode;
-   NSString         * errorTitle;
-   NSString         * errorMessage;
-   NSString         * diagnosticMessage;
+   LKLdapErrorType    _errorType;
+   NSInteger          _errorCode;
+   NSString         * _errorTitle;
+   NSString         * _errorMessage;
+   NSString         * _diagnosticMessage;
 };
 
 /// @name error information
@@ -54,5 +74,40 @@
 @property (nonatomic, readonly) NSString         * errorTitle;
 @property (nonatomic, readonly) NSString         * errorMessage;
 @property (nonatomic, readonly) NSString         * diagnosticMessage;
+
+/// @name derived results
+@property (nonatomic, readonly) BOOL               isSuccessful;
+
+/// @name Object Management Methods
+- (id) errorWithTitle:(NSString *)errorTitle;
+- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode;
+- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
+       message:(NSString *)errorMessage;
+- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
+       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
+- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       ldap:(LDAP *)ld;
+- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       message:(NSString *)errorMessage;
+- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
+- (id) initLdapErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
+- (id) initWithError:(LKError *)error andTitle:(NSString *)errorTitle;
++ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode;
++ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
+       message:(NSString *)errorMessage;
++ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
+       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
++ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       ldap:(LDAP *)ld;
++ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       message:(NSString *)errorMessage;
++ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
++ (id) ldapErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
+
+/// @name Error strings
+- (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode;
++ (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode;
 
 @end
