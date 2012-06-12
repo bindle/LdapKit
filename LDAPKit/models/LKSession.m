@@ -37,23 +37,27 @@
 #import "LKSession.h"
 
 
+@interface LKSession ()
+
+/// @name Manages internal state
+- (void) calculateLdapURL;
+
+@end
+
+
 @implementation LKSession
 
 // server state
+@synthesize ld;
 @synthesize isConnected;
+@synthesize ldLock;
 @synthesize queue;
-@synthesize configHash;
 
 // server information
-@synthesize ldapURI;
-@synthesize ldapScheme;
-@synthesize ldapHost;
-@synthesize ldapPort;
 @synthesize ldapProtocolVersion;
 
 // encryption information
 @synthesize ldapEncryptionScheme;
-@synthesize ldapCACertificateFile;
 
 // timeout information
 @synthesize ldapSearchTimeout;
@@ -61,11 +65,6 @@
 
 // authentication information
 @synthesize ldapBindMethod;
-@synthesize ldapBindWho;
-@synthesize ldapBindCredentials;
-@synthesize ldapBindCredentialsString;
-@synthesize ldapBindSaslMechanism;
-@synthesize ldapBindSaslRealm;
 
 
 #pragma mark - Object Management Methods
@@ -82,7 +81,6 @@
    // server state
    [ldLock     release];
    [queue      release];
-   [configHash release];
 
    // server information
    [ldapURI  release];
@@ -119,8 +117,296 @@
 
 #pragma mark - Getter/Setter methods
 
+- (NSString *) ldapBindWho
+{
+   @synchronized(self)
+   {
+      return([[ldapBindWho retain] autorelease]);
+   }
+}
+- (void) setLdapBindWho:(NSString *)aString
+{
+   @synchronized(self)
+   {
+      [ldapBindWho release];
+      ldapBindWho = nil;
+      if ((aString))
+         ldapBindWho = [[NSString alloc] initWithString:aString];
+   }
+   return;
+}
+
+
+- (NSString *) ldapCACertificateFile
+{
+   @synchronized(self)
+   {
+      return([[ldapCACertificateFile retain] autorelease]);
+   }
+}
+- (void) setLdapCACertificateFile:(NSString *)aString
+{
+   @synchronized(self)
+   {
+      [ldapCACertificateFile release];
+      ldapCACertificateFile = nil;
+      if ((aString))
+         ldapCACertificateFile = [[NSString alloc] initWithString:aString];
+   }
+   return;
+}
+
+
+- (NSData *) ldapBindCredentials
+{
+   @synchronized(self)
+   {
+      return([[ldapBindCredentials retain] autorelease]);
+   }
+}
+- (void) setLdapBindCredentials:(NSData *)data
+{
+   @synchronized(self)
+   {
+      [ldapBindCredentials       release];
+      [ldapBindCredentialsString release];
+      ldapBindCredentials       = nil;
+      ldapBindCredentialsString = nil;
+      if ((data))
+         ldapBindCredentials = [[NSData alloc] initWithData:data];
+   }
+   return;
+}
+
+
+- (NSString *) ldapBindCredentialsString
+{
+   @synchronized(self)
+   {
+      return([[ldapBindWho retain] autorelease]);
+   }
+}
+- (void) setLdapBindCredentialsString:(NSString *)aString
+{
+   NSAutoreleasePool * pool;
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   @synchronized(self)
+   {
+      [ldapBindCredentialsString release];
+      [ldapBindCredentials       release];
+      ldapBindCredentialsString = nil;
+      ldapBindCredentials       = nil;
+      if ((aString))
+      {
+         ldapBindCredentialsString = [[NSString alloc] initWithString:aString];
+         ldapBindCredentials = [[aString dataUsingEncoding:NSUTF8StringEncoding] retain];
+      };
+   }
+
+   [pool release];
+
+   return;
+}
+
+
+- (NSString *) ldapBindSaslMechanism
+{
+   @synchronized(self)
+   {
+      return([[ldapBindSaslMechanism retain] autorelease]);
+   }
+}
+- (void) setLdapBindSaslMechanism:(NSString *)aString
+{
+   @synchronized(self)
+   {
+      [ldapBindSaslMechanism release];
+      ldapBindSaslMechanism = nil;
+      if ((aString))
+         ldapBindSaslMechanism= [[NSString alloc] initWithString:aString];
+   }
+   return;
+}
+
+
+- (NSString *) ldapBindSaslRealm
+{
+   @synchronized(self)
+   {
+      return([[ldapBindSaslRealm retain] autorelease]);
+   }
+}
+- (void) setLdapBindSaslRealm:(NSString *)aString
+{
+   @synchronized(self)
+   {
+      [ldapBindSaslRealm release];
+      ldapBindSaslRealm = nil;
+      if ((aString))
+         ldapBindSaslRealm = [[NSString alloc] initWithString:aString];
+   }
+   return;
+}
+
+
+- (NSString *) ldapHost
+{
+   @synchronized(self)
+   {
+      return([[ldapHost retain] autorelease]);
+   }
+}
+- (void) setLdapHost:(NSString *)aString
+{
+   NSAssert((aString != nil), @"LDAP Host cannot be nil");
+   @synchronized(self)
+   {
+      if ([aString localizedCaseInsensitiveCompare:ldapHost] == NSOrderedSame)
+         return;
+      [ldapHost release];
+      ldapHost = [[NSString alloc] initWithString:aString];
+      [self calculateLdapURL];
+   }
+   return;
+}
+
+
+- (NSInteger) ldapPort
+{
+   @synchronized(self)
+   {
+      return(ldapPort);
+   }
+}
+- (void) setLdapPort:(NSInteger)port
+{
+   NSAssert((port > 0), @"LDAP Port must be greater than zero");
+   @synchronized(self)
+   {
+      if (ldapPort == port)
+         return;
+      ldapPort = port;
+      [self calculateLdapURL];
+   }
+   return;
+}
+
+
+- (LKLdapProtocolScheme) ldapScheme
+{
+   @synchronized(self)
+   {
+      return(ldapScheme);
+   }
+}
+- (void) setLdapScheme:(LKLdapProtocolScheme)scheme
+{
+   @synchronized(self)
+   {
+      if (ldapScheme == scheme)
+         return;
+      ldapScheme = scheme;
+      [self calculateLdapURL];
+   }
+   return;
+}
+
+
+- (NSString *) ldapURI
+{
+   @synchronized(self)
+   {
+      return([[ldapURI retain] autorelease]);
+   }
+}
+- (void) setLdapURI:(NSString *)uri
+{
+   NSAutoreleasePool    * pool;
+   LDAPURLDesc          * ludp;
+   NSString             * newHost;
+   LKLdapProtocolScheme   newScheme;
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   // applies default if URI is nil
+   if (uri == nil)
+      uri = @"ldap://localhost:389/";
+
+   // determines if "uri" is a valid LDAP URL
+   if ((ldap_url_parse([uri UTF8String], &ludp)))
+   {
+      NSLog(@"Invalid LDAP URL: %@", uri);
+      [pool release];
+      return;
+   };
+
+   // determines new scheme
+   if (!(strcasecmp(ludp->lud_scheme, "ldapi")))
+      newScheme = LKLdapProtocolSchemeLDAPI;
+   else if (!(strcasecmp(ludp->lud_scheme, "ldaps")))
+      newScheme = LKLdapProtocolSchemeLDAPS;
+   else
+      newScheme = LKLdapProtocolSchemeLDAP;
+
+   // generates new host
+   newHost = [NSString stringWithUTF8String:ludp->lud_host];
+
+   @synchronized(self)
+   {
+      // verifies update is required
+      if ([uri localizedCaseInsensitiveCompare:ldapHost] == NSOrderedSame)
+         return;
+
+      // sets LDAP scheme
+      ldapScheme = newScheme;
+
+      // sets LDAP hostname
+      [ldapHost release];
+      ldapHost = [newHost retain];
+
+      // sets LDAP port number
+      ldapPort = ludp->lud_port;
+
+      // calculates LDAP URL from parts
+      [self calculateLdapURL];
+   }
+
+   ldap_free_urldesc(ludp);
+
+   [pool release];
+
+   return;
+}
+
 
 #pragma mark - Manages internal state
 
+- (void) calculateLdapURL
+{
+   NSString * scheme;
+
+   // determines string representation of scheme
+   switch(ldapScheme)
+   {
+      case LKLdapProtocolSchemeLDAPI:
+      scheme = @"ldapi";
+      break;
+
+      case LKLdapProtocolSchemeLDAPS:
+      scheme = @"ldaps";
+      break;
+
+      default:
+      scheme = @"ldap";
+      break;
+   };
+
+   [ldapURI release];
+   ldapURI = [[NSString alloc] initWithFormat:@"%@://%@:%i", scheme, ldapHost, ldapPort];
+
+   return;
+}
 
 @end

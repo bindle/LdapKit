@@ -47,7 +47,6 @@
    NSLock                 * ldLock;
    NSOperationQueue       * queue;
    BOOL                     isConnected;
-   NSString               * configHash;
 
    // server information
    NSString               * ldapURI;
@@ -74,9 +73,10 @@
 }
 
 /// @name server state
-@property (nonatomic, readonly) BOOL                     isConnected;
+@property (nonatomic, assign)   LDAP                   * ld;
+@property (nonatomic, assign)   BOOL                     isConnected;
+@property (nonatomic, readonly) NSLock                 * ldLock;
 @property (nonatomic, readonly) NSOperationQueue       * queue;
-@property (nonatomic, readonly) NSString               * configHash;
 
 /// @name server information
 @property (nonatomic, copy)     NSString               * ldapURI;
