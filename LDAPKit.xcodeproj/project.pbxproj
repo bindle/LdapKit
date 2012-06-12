@@ -24,6 +24,8 @@
 		A00161C01586C45A00134A6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00161BE1586C45A00134A6C /* InfoPlist.strings */; };
 		A001DE451586C7AE004A4BA7 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A001DE441586C7AE004A4BA7 /* COPYING */; };
 		A06DE79B1586E4320009F87D /* LKEnumerations.h in Headers */ = {isa = PBXBuildFile; fileRef = A06DE79A1586E4320009F87D /* LKEnumerations.h */; };
+		A06DE79E1586EDED0009F87D /* libldap.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A06DE79D1586EDED0009F87D /* libldap.dylib */; };
+		A06DE7A01586EE000009F87D /* liblber.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A06DE79F1586EE000009F87D /* liblber.dylib */; };
 		A08863091586CB93009EF0BB /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = A08863071586CB93009EF0BB /* LKSession.h */; };
 		A088630A1586CB93009EF0BB /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A08863081586CB93009EF0BB /* LKSession.m */; };
 		A088630B1586CDDB009EF0BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00161BA1586C45A00134A6C /* Foundation.framework */; };
@@ -48,6 +50,8 @@
 		A00161C21586C45A00134A6C /* LDAPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPKit.h; sourceTree = "<group>"; };
 		A001DE441586C7AE004A4BA7 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		A06DE79A1586E4320009F87D /* LKEnumerations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKEnumerations.h; path = LDAPKit/LKEnumerations.h; sourceTree = SOURCE_ROOT; };
+		A06DE79D1586EDED0009F87D /* libldap.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libldap.dylib; path = usr/local/lib/libldap.dylib; sourceTree = SDKROOT; };
+		A06DE79F1586EE000009F87D /* liblber.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblber.dylib; path = usr/local/lib/liblber.dylib; sourceTree = SDKROOT; };
 		A08863071586CB93009EF0BB /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
 		A08863081586CB93009EF0BB /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
 		A088630D1586CE70009EF0BB /* git-package-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "git-package-version.sh"; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A06DE7A01586EE000009F87D /* liblber.dylib in Frameworks */,
+				A06DE79E1586EDED0009F87D /* libldap.dylib in Frameworks */,
 				A088630B1586CDDB009EF0BB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,6 +101,8 @@
 		A00161B71586C45A00134A6C /* MacOSX Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A06DE79F1586EE000009F87D /* liblber.dylib */,
+				A06DE79D1586EDED0009F87D /* libldap.dylib */,
 				A00161BA1586C45A00134A6C /* Foundation.framework */,
 			);
 			name = "MacOSX Frameworks";
