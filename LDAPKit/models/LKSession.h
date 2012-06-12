@@ -36,10 +36,67 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <ldap.h>
+#import <LDAPKit/LKEnumerations.h>
+
 
 @interface LKSession : NSObject
 {
+   // server state
+   LDAP                   * ld;
+   NSLock                 * ldLock;
+   NSOperationQueue       * queue;
+   BOOL                     isConnected;
+   NSString               * configHash;
+
+   // server information
+   NSString               * ldapURI;
+   LKLdapProtocolScheme     ldapScheme;
+   NSString               * ldapHost;
+   NSInteger                ldapPort;
+   LKLdapProtocolVersion    ldapProtocolVersion;
+
+   // encryption information
+   LKLdapEncryptionScheme   ldapEncryptionScheme;
+   NSString               * ldapCACertificateFile;
+
+   // timeout information
+   NSInteger                ldapSearchTimeout;
+   NSInteger                ldapNetworkTimeout;
+
+   // authentication information
+   LKLdapBindMethod         ldapBindMethod;
+   NSString               * ldapBindWho;
+   NSData                 * ldapBindCredentials;
+   NSString               * ldapBindCredentialsString;
+   NSString               * ldapBindSaslMechanism;
+   NSString               * ldapBindSaslRealm;
 }
+
+/// @name server state
+@property (nonatomic, readonly) BOOL                     isConnected;
+@property (nonatomic, readonly) NSString               * configHash;
+
+/// @name server information
+@property (nonatomic, copy)     NSString               * ldapURI;
+@property (nonatomic, assign)   LKLdapProtocolScheme     ldapScheme;
+@property (nonatomic, copy)     NSString               * ldapHost;
+@property (nonatomic, assign)   NSInteger                ldapPort;
+@property (nonatomic, assign)   LKLdapProtocolVersion    ldapProtocolVersion;
+
+/// @name encryption information
+@property (nonatomic, assign)   LKLdapEncryptionScheme   ldapEncryptionScheme;
+@property (nonatomic, copy)     NSString               * ldapCACertificateFile;
+
+/// @name timeout information
+@property (nonatomic, assign)   NSInteger                ldapSearchTimeout;
+@property (nonatomic, assign)   NSInteger                ldapNetworkTimeout;
+
+/// @name authentication information
+@property (nonatomic, assign)   LKLdapBindMethod         ldapBindMethod;
+@property (nonatomic, copy)     NSString               * ldapBindWho;
+@property (nonatomic, copy)     NSData                 * ldapBindCredentials;
+@property (nonatomic, copy)     NSString               * ldapBindCredentialsString;
+@property (nonatomic, copy)     NSString               * ldapBindSaslMechanism;
+@property (nonatomic, copy)     NSString               * ldapBindSaslRealm;
 
 @end

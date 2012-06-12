@@ -39,10 +39,64 @@
 
 @implementation LKSession
 
+// server state
+@synthesize isConnected;
+@synthesize configHash;
+
+// server information
+@synthesize ldapURI;
+@synthesize ldapScheme;
+@synthesize ldapHost;
+@synthesize ldapPort;
+@synthesize ldapProtocolVersion;
+
+// encryption information
+@synthesize ldapEncryptionScheme;
+@synthesize ldapCACertificateFile;
+
+// timeout information
+@synthesize ldapSearchTimeout;
+@synthesize ldapNetworkTimeout;
+
+// authentication information
+@synthesize ldapBindMethod;
+@synthesize ldapBindWho;
+@synthesize ldapBindCredentials;
+@synthesize ldapBindCredentialsString;
+@synthesize ldapBindSaslMechanism;
+@synthesize ldapBindSaslRealm;
+
+
 #pragma mark - Object Management Methods
 
 - (void) dealloc
 {
+   // unbind from LDAP server
+   [ldLock lock];
+   if ((ld))
+      ldap_unbind_ext(ld, NULL, NULL);
+   ld = NULL;
+   [ldLock unlock];
+
+   // server state
+   [ldLock     release];
+   [queue      release];
+   [configHash release];
+
+   // server information
+   [ldapURI  release];
+   [ldapHost release];
+
+   // encryption information
+   [ldapCACertificateFile release];
+
+   // authentication information
+   [ldapBindWho               release];
+   [ldapBindCredentials       release];
+   [ldapBindCredentialsString release];
+   [ldapBindSaslMechanism     release];
+   [ldapBindSaslRealm         release];
+
    [super dealloc];
 
    return;
@@ -51,8 +105,13 @@
 
 - (id) init
 {
+   // initialize super
    if ((self = [super init]) == nil)
       return(self);
+
+   // server state
+   ldLock  = [[NSLock alloc] init];
+
    return(self);
 }
 
