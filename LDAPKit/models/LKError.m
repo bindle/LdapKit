@@ -39,11 +39,7 @@
 @implementation LKError
 
 // error information
-@synthesize errorType         = _errorType;
-@synthesize errorCode         = _errorCode;
-@synthesize errorTitle        = _errorTitle;
-@synthesize errorMessage      = _errorMessage;
-@synthesize diagnosticMessage = _diagnosticMessage;
+@synthesize errorType;
 
 
 #pragma mark - Object Management Methods
@@ -234,6 +230,15 @@
 
 
 + (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+{
+   LKError * error;
+   error = [LKError ldapErrorWithTitle:errorTitle code:errorCode
+                message:[LKError errorMessageForCode:errorCode] diagnostics:nil];
+   return(error);
+}
+
+
++ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
        message:(NSString *)errorMessage
 {
    LKError * error;
@@ -270,6 +275,93 @@
 
 #pragma mark - Getter/Setter methods
 
+- (NSString *) diagnosticMessage
+{
+   @synchronized(self)
+   {
+      return([[_diagnosticMessage retain] autorelease]);
+   };
+}
+- (void) setDiagnosticMessage:(NSString *)diagnosticMessage
+{
+   @synchronized(self)
+   {
+      [_diagnosticMessage release];
+      _diagnosticMessage = nil;
+      if ((diagnosticMessage))
+         _diagnosticMessage = [[NSString alloc] initWithString:diagnosticMessage];
+   };
+   return;
+}
+
+
+- (NSInteger) errorCode
+{
+   @synchronized(self)
+   {
+      return(_errorCode);
+   };
+}
+- (void) setErrorCode:(NSInteger)errorCode
+{
+   NSAutoreleasePool * pool;
+   pool = [[NSAutoreleasePool alloc] init];
+   @synchronized(self)
+   {
+      _errorCode = errorCode;
+
+      _errorType = LKLdapErrorTypeInternal;
+      if (_errorCode > 0)
+         _errorType = LKLdapErrorTypeLDAP;
+
+      [_errorMessage release];
+      _errorMessage = [[self errorMessageForCode:errorCode] retain];
+   };
+   [pool release];
+   return;
+}
+
+
+- (NSString *) errorMessage
+{
+   @synchronized(self)
+   {
+      return([[_errorMessage retain] autorelease]);
+   };
+}
+- (void) setErrorMessage:(NSString *)errorMessage
+{
+   @synchronized(self)
+   {
+      [_errorMessage release];
+      _errorMessage = nil;
+      if ((errorMessage))
+         _errorMessage = [[NSString alloc] initWithString:errorMessage];
+   };
+   return;
+}
+
+
+- (NSString *) errorTitle
+{
+   @synchronized(self)
+   {
+      return([[_errorTitle retain] autorelease]);
+   };
+}
+- (void) setErrorTitle:(NSString *)errorTitle
+{
+   @synchronized(self)
+   {
+      [_errorTitle release];
+      _errorTitle = nil;
+      if ((errorTitle))
+         _errorTitle = [[NSString alloc] initWithString:errorTitle];
+   };
+   return;
+}
+
+
 - (BOOL) isSuccessful
 {
    switch(_errorType)
@@ -288,6 +380,22 @@
 
 
 #pragma mark - Error strings
+
+- (NSString *) errorMessageForCode:(NSInteger)errorCode
+{
+   if (errorCode < 0)
+      return([self internalErrorMessageForCode:errorCode]);
+   return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
+}
+
+
++ (NSString *) errorMessageForCode:(NSInteger)errorCode
+{
+   if (errorCode < 0)
+      return([LKError internalErrorMessageForCode:errorCode]);
+   return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
+}
+
 
 - (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode
 {
@@ -317,5 +425,24 @@
    };
    return(@"unknown internal error");
 }
+
+
+#pragma mark - Error operations
+
+- (void) resetError
+{
+   self.diagnosticMessage = nil;
+   self.errorCode = 0;
+   return;
+}
+
+
+- (void) resetErrorWithTitle:(NSString *)errorTitle
+{
+   [self resetError];
+   self.errorTitle = errorTitle;
+   return;
+}
+
 
 @end

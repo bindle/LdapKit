@@ -69,11 +69,11 @@ typedef enum ldap_kit_ldap_error_code LKErrorCode;
 };
 
 /// @name error information
-@property (nonatomic, readonly) LKLdapErrorType    errorType;
-@property (nonatomic, readonly) NSInteger          errorCode;
-@property (nonatomic, readonly) NSString         * errorTitle;
-@property (nonatomic, readonly) NSString         * errorMessage;
-@property (nonatomic, readonly) NSString         * diagnosticMessage;
+@property (atomic, assign)    LKLdapErrorType    errorType;
+@property (atomic, assign)    NSInteger          errorCode;
+@property (nonatomic, copy)   NSString         * errorTitle;
+@property (nonatomic, copy)   NSString         * errorMessage;
+@property (nonatomic, copy)   NSString         * diagnosticMessage;
 
 /// @name derived results
 @property (nonatomic, readonly) BOOL               isSuccessful;
@@ -98,16 +98,23 @@ typedef enum ldap_kit_ldap_error_code LKErrorCode;
        message:(NSString *)errorMessage;
 + (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
        message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       ldap:(LDAP *)ld;
++ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode;
 + (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
        message:(NSString *)errorMessage;
 + (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
        message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
++ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       ldap:(LDAP *)ld;
 + (id) ldapErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
 
 /// @name Error strings
+- (NSString *) errorMessageForCode:(NSInteger)errorCode;
++ (NSString *) errorMessageForCode:(NSInteger)errorCode;
 - (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode;
 + (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode;
+
+/// @name Error operations
+- (void) resetError;
+- (void) resetErrorWithTitle:(NSString *)errorTitle;
 
 @end
