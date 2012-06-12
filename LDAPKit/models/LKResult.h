@@ -39,6 +39,18 @@
 #import <LDAPKit/LKEnumerations.h>
 
 
+#pragma mark LDAP result type
+enum ldap_kit_ldap_result_type
+{
+   LKLdapResultTypeConnect           = 0x01,
+   LKLdapResultTypeUnbind            = 0x02,
+   LKLdapResultTypeSearch            = 0x03,
+   LKLdapResultTypeUnknown           = 0x00
+};
+typedef enum ldap_kit_ldap_result_type LKLdapResultType;
+
+
+@class LKError;
 @class LKSession;
 
 
@@ -46,6 +58,8 @@
 {
    // state information
    LKSession              * session;
+   LKError                * error;
+   LKLdapResultType         resultType;
 
    // server information
    NSString               * ldapURI;
@@ -72,8 +86,27 @@
    id                       object;
 }
 
+/// @name state information
+@property (nonatomic, readonly) LKError                * error;
+@property (nonatomic, readonly) LKLdapResultType         resultType;
+
 /// @name client information
 @property (nonatomic, assign)   NSInteger                tag;
 @property (nonatomic, retain)   id                       object;
+
+/// @name Object Management Methods
+- (id) initLdapInitialzieWithSession:(LKSession *)session;
+
+/// @name LDAP tasks
+- (BOOL) connect;
+//- (BOOL) search;
+- (BOOL) testConnection;
+- (BOOL) unbind;
+
+/// @name LDAP subtasks
+- (LDAP *) connectBind:(LDAP *)ld;
+- (LDAP *) connectFinish:(LDAP *)ld;
+- (LDAP *) connectInitialize;
+- (LDAP *) connectStartTLS:(LDAP *)ld;
 
 @end
