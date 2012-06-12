@@ -10,6 +10,7 @@
 		A00161B61586C45A00134A6C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00161B51586C45A00134A6C /* Cocoa.framework */; };
 		A00161C01586C45A00134A6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00161BE1586C45A00134A6C /* InfoPlist.strings */; };
 		A00161C41586C45A00134A6C /* LDAPKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A00161C31586C45A00134A6C /* LDAPKit.m */; };
+		A001DE451586C7AE004A4BA7 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A001DE441586C7AE004A4BA7 /* COPYING */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		A00161C11586C45A00134A6C /* LDAPKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LDAPKit-Prefix.pch"; sourceTree = "<group>"; };
 		A00161C21586C45A00134A6C /* LDAPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPKit.h; sourceTree = "<group>"; };
 		A00161C31586C45A00134A6C /* LDAPKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAPKit.m; sourceTree = "<group>"; };
+		A001DE441586C7AE004A4BA7 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		A00161A61586C45A00134A6C = {
 			isa = PBXGroup;
 			children = (
+				A001DE441586C7AE004A4BA7 /* COPYING */,
 				A00161BB1586C45A00134A6C /* LDAPKit */,
 				A00161B41586C45A00134A6C /* Frameworks */,
 				A00161B31586C45A00134A6C /* Products */,
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A00161C01586C45A00134A6C /* InfoPlist.strings in Resources */,
+				A001DE451586C7AE004A4BA7 /* COPYING in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +277,7 @@
 				A00161C91586C45A00134A6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
