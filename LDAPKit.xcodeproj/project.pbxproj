@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A00161B61586C45A00134A6C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00161B51586C45A00134A6C /* Cocoa.framework */; };
 		A00161C01586C45A00134A6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00161BE1586C45A00134A6C /* InfoPlist.strings */; };
-		A00161C41586C45A00134A6C /* LDAPKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A00161C31586C45A00134A6C /* LDAPKit.m */; };
 		A001DE451586C7AE004A4BA7 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A001DE441586C7AE004A4BA7 /* COPYING */; };
 /* End PBXBuildFile section */
 
@@ -23,7 +22,6 @@
 		A00161BF1586C45A00134A6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A00161C11586C45A00134A6C /* LDAPKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LDAPKit-Prefix.pch"; sourceTree = "<group>"; };
 		A00161C21586C45A00134A6C /* LDAPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPKit.h; sourceTree = "<group>"; };
-		A00161C31586C45A00134A6C /* LDAPKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LDAPKit.m; sourceTree = "<group>"; };
 		A001DE441586C7AE004A4BA7 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				A00161C21586C45A00134A6C /* LDAPKit.h */,
-				A00161C31586C45A00134A6C /* LDAPKit.m */,
 				A00161BC1586C45A00134A6C /* Supporting Files */,
 			);
 			path = LDAPKit;
@@ -169,7 +166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A00161C41586C45A00134A6C /* LDAPKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
