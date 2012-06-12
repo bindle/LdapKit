@@ -176,6 +176,23 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		A06DE7AD158736830009F87D /* LDAP Kit Docset */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = A06DE7AE158736830009F87D /* Build configuration list for PBXLegacyTarget "LDAP Kit Docset" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = "LDAP Kit Docset";
+			passBuildSettingsInEnvironment = 1;
+			productName = "LDAP Kit Docset";
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		A00161B11586C45A00134A6C /* LDAPKit */ = {
 			isa = PBXNativeTarget;
@@ -218,6 +235,7 @@
 			targets = (
 				A00161B11586C45A00134A6C /* LDAPKit */,
 				A08862FF1586CAF7009EF0BB /* Git Package Version (LDAPKit) */,
+				A06DE7AD158736830009F87D /* LDAP Kit Docset */,
 			);
 		};
 /* End PBXProject section */
@@ -361,6 +379,33 @@
 			};
 			name = Release;
 		};
+		A06DE7AF158736830009F87D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A06DE7B0158736830009F87D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A08863011586CAF7009EF0BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -395,6 +440,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A06DE7AE158736830009F87D /* Build configuration list for PBXLegacyTarget "LDAP Kit Docset" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06DE7AF158736830009F87D /* Debug */,
+				A06DE7B0158736830009F87D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		A08863001586CAF7009EF0BB /* Build configuration list for PBXAggregateTarget "Git Package Version (LDAPKit)" */ = {
 			isa = XCConfigurationList;
