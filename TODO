@@ -1,0 +1,12 @@
+
+LDAP Kit
+Copyright (C) 2012 Bindle Binaries
+
+Priority
+========
+
+   General:
+   * IPv6 Support: LKSession and LKResult needs to be updated to properly
+     process IPv6 addresses if an IPv6 address is specified as the host or
+     in the LDAP URL.
+     

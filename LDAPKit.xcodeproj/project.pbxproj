@@ -63,6 +63,7 @@
 		A08863071586CB93009EF0BB /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
 		A08863081586CB93009EF0BB /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
 		A088630D1586CE70009EF0BB /* git-package-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "git-package-version.sh"; sourceTree = "<group>"; };
+		A0C8F6981587438400D75AAC /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 		A00161A61586C45A00134A6C = {
 			isa = PBXGroup;
 			children = (
+				A0C8F6981587438400D75AAC /* TODO */,
 				A001DE441586C7AE004A4BA7 /* COPYING */,
 				A00161BB1586C45A00134A6C /* LDAPKit */,
 				A088630C1586CE40009EF0BB /* build-aux */,
@@ -448,6 +450,7 @@
 				A06DE7B0158736830009F87D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A08863001586CAF7009EF0BB /* Build configuration list for PBXAggregateTarget "Git Package Version (LDAPKit)" */ = {
 			isa = XCConfigurationList;
