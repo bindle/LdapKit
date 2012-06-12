@@ -48,10 +48,10 @@
 - (void) dealloc
 {
    // server state
-   [session    release];
+   [session release];
 
    // server information
-   [ldapURI  release];
+   [ldapURI release];
 
    // encryption information
    [ldapCACertificateFile release];
