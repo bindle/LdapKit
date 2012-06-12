@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A00161C01586C45A00134A6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00161BE1586C45A00134A6C /* InfoPlist.strings */; };
 		A001DE451586C7AE004A4BA7 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = A001DE441586C7AE004A4BA7 /* COPYING */; };
+		A08863091586CB93009EF0BB /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = A08863071586CB93009EF0BB /* LKSession.h */; };
+		A088630A1586CB93009EF0BB /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A08863081586CB93009EF0BB /* LKSession.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		A00161C11586C45A00134A6C /* LDAPKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LDAPKit-Prefix.pch"; sourceTree = "<group>"; };
 		A00161C21586C45A00134A6C /* LDAPKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LDAPKit.h; sourceTree = "<group>"; };
 		A001DE441586C7AE004A4BA7 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		A08863071586CB93009EF0BB /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
+		A08863081586CB93009EF0BB /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A00161C21586C45A00134A6C /* LDAPKit.h */,
+				A08863061586CB3D009EF0BB /* Models */,
 				A00161BC1586C45A00134A6C /* Supporting Files */,
 			);
 			path = LDAPKit;
@@ -86,6 +91,16 @@
 			path = support;
 			sourceTree = "<group>";
 		};
+		A08863061586CB3D009EF0BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A08863071586CB93009EF0BB /* LKSession.h */,
+				A08863081586CB93009EF0BB /* LKSession.m */,
+			);
+			name = Models;
+			path = models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -93,6 +108,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A08863091586CB93009EF0BB /* LKSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A088630A1586CB93009EF0BB /* LKSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
