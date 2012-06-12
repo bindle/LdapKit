@@ -59,7 +59,8 @@
    LKLdapEncryptionScheme   ldapEncryptionScheme;
    NSString               * ldapCACertificateFile;
 
-   // timeout information
+   // timeout & limit information
+   NSInteger                ldapSizeLimit;
    NSInteger                ldapSearchTimeout;
    NSInteger                ldapNetworkTimeout;
 
@@ -89,7 +90,8 @@
 @property (nonatomic, assign)   LKLdapEncryptionScheme   ldapEncryptionScheme;
 @property (nonatomic, copy)     NSString               * ldapCACertificateFile;
 
-/// @name timeout information
+/// @name timeout & limit information
+@property (nonatomic, assign)   NSInteger                ldapSizeLimit;
 @property (nonatomic, assign)   NSInteger                ldapSearchTimeout;
 @property (nonatomic, assign)   NSInteger                ldapNetworkTimeout;
 
