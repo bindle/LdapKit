@@ -79,39 +79,20 @@ typedef enum ldap_kit_ldap_error_code LKErrorCode;
 @property (nonatomic, readonly) BOOL               isSuccessful;
 
 /// @name Object Management Methods
-- (id) errorWithTitle:(NSString *)errorTitle;
-- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode;
-- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage;
-- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       ldap:(LDAP *)ld;
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage;
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
-- (id) initWithError:(LKError *)error andTitle:(NSString *)errorTitle;
-+ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode;
-+ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage;
-+ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode;
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage;
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage;
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       ldap:(LDAP *)ld;
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
+- (id) initErrorWithTitle:(NSString *)errorTitle;
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode;
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode diagnostics:(NSString *)diagnosticMessage;
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode ldap:(LDAP *)ld;
+- (id) initErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
++ (id) errorWithTitle:(NSString *)errorTitle;
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode;
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode diagnostics:(NSString *)diagnosticMessage;
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode ldap:(LDAP *)ld;
++ (id) errorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
 
 /// @name Error strings
-- (NSString *) errorMessageForCode:(NSInteger)errorCode;
-+ (NSString *) errorMessageForCode:(NSInteger)errorCode;
-- (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode;
-+ (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode;
+- (NSString *) messageForCode:(NSInteger)errorCode;
++ (NSString *) messageForCode:(NSInteger)errorCode;
 
 /// @name Error operations
 - (void) resetError;

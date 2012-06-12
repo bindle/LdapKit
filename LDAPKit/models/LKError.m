@@ -57,219 +57,160 @@
 }
 
 
-/// Creates and returns an LKError object initialized with the values of the
-/// current error and assigns the title as the error's title.
-/// @param  errorTitle   the title of the created error
-- (id) errorWithTitle:(NSString *)errorTitle
+- (id) initErrorWithTitle:(NSString *)errorTitle
 {
-   return([[[LKError alloc] initWithError:self andTitle:errorTitle] autorelease]);
-}
+   NSAutoreleasePool * pool;
 
-
-- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-{
-   NSString * errorMessage = [LKError internalErrorMessageForCode:errorCode];
-   self = [self initInternalErrorWithTitle:errorTitle code:errorCode
-      message:errorMessage diagnostics:nil];
-   return(self);
-}
-
-
-- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage
-{
-   self = [self initInternalErrorWithTitle:errorTitle code:errorCode
-                message:errorMessage diagnostics:nil];
-   return(self);
-}
-
-
-- (id) initInternalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage
-{
    if ((self = [super init]) == nil)
-      return(self);
+      return(nil);
 
-   _errorType  = LKLdapErrorTypeInternal;
-   _errorCode  = errorCode;
-   if ((errorTitle))
-      _errorTitle = [[NSString alloc] initWithString:errorTitle];
-   if ((errorMessage))
-      _errorMessage = [[NSString alloc] initWithString:errorMessage];
-   if ((diagnosticMessage))
-      _diagnosticMessage = [[NSString alloc] initWithString:diagnosticMessage];
+   pool = [[NSAutoreleasePool alloc] init];
+
+   self.errorTitle        = errorTitle;
+   self.errorCode         = LKErrorCodeSuccess;
+   self.errorMessage      = [LKError messageForCode:LKErrorCodeSuccess];
+   self.diagnosticMessage = nil;
+
+   [pool release];
 
    return(self);
 }
 
 
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
 {
-   self = [self initLdapErrorWithTitle:errorTitle code:errorCode
-                message:errorMessage diagnostics:nil];
+   NSAutoreleasePool * pool;
+
+   if ((self = [super init]) == nil)
+      return(nil);
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   self.errorTitle   = errorTitle;
+   self.errorCode    = errorCode;
+   self.errorMessage = [LKError messageForCode:errorCode];
+   self.diagnosticMessage = nil;
+
+   [pool release];
+
    return(self);
 }
 
 
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
+       diagnostics:(NSString *)diagnosticMessage
+{
+   NSAutoreleasePool * pool;
+
+   if ((self = [super init]) == nil)
+      return(nil);
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   self.errorTitle        = errorTitle;
+   self.errorCode         = errorCode;
+   self.errorMessage      = [LKError messageForCode:errorCode];
+   self.diagnosticMessage = diagnosticMessage;
+
+   [pool release];
+
+   return(self);
+}
+
+
+
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
        ldap:(LDAP *)ld
 {
-   int    rc;
-   char * sval;
+   NSAutoreleasePool * pool;
+   int                 rc;
+   char              * sval;
 
    NSAssert((ld != NULL), @"LDAP handle cannot be NULL");
 
    if ((self = [super init]) == nil)
       return(self);
 
-   // error type
-   _errorType  = LKLdapErrorTypeLDAP;
+   pool = [[NSAutoreleasePool alloc] init];
 
-   // error code
-   _errorCode  = errorCode;
-
-   // error title
-   if ((errorTitle))
-      _errorTitle = [[NSString alloc] initWithString:errorTitle];
-
-   // error message
-   sval = ldap_err2string(_errorCode);
-   if ((sval))
-      _errorMessage = [[NSString alloc] initWithUTF8String:sval];
+   self.errorTitle        = errorTitle;
+   self.errorCode         = errorCode;
+   self.errorMessage      = [LKError messageForCode:errorCode];
 
    // diagnostic message
    rc = ldap_get_option(ld, LDAP_OPT_DIAGNOSTIC_MESSAGE, &sval);
    if (rc == LDAP_OPT_SUCCESS)
    {
-      _diagnosticMessage = [[NSString alloc] initWithUTF8String:sval];
+      self.diagnosticMessage = [NSString stringWithUTF8String:sval];
       ldap_memfree(sval);
    };
 
-   return(self);
-}
-
-
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage
-{
-   if ((self = [super init]) == nil)
-      return(self);
-
-   _errorType  = LKLdapErrorTypeLDAP;
-   _errorCode  = errorCode;
-   if ((errorTitle))
-      _errorTitle = [[NSString alloc] initWithString:errorTitle];
-   if ((errorMessage))
-      _errorMessage = [[NSString alloc] initWithString:errorMessage];
-   if ((diagnosticMessage))
-      _diagnosticMessage = [[NSString alloc] initWithString:diagnosticMessage];
+   [pool release];
 
    return(self);
 }
 
 
-- (id) initLdapErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld
+- (id) initErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld
 {
-   int ival;
+   NSAutoreleasePool * pool;
+   int                 rc;
+   int                 ival;
+   char              * sval;
+
    NSAssert((ld != NULL), @"LDAP handle cannot be NULL");
-   ldap_get_option(ld, LDAP_OPT_RESULT_CODE, &ival);
-   return([self initLdapErrorWithTitle:errorTitle code:ival ldap:ld]);
-}
-
-
-/// Returns an error initialized with the values of error and assigns title as
-/// the initialized error's title.
-/// @param error        an error
-/// @param errorTitle   the title of the initialized error
-- (id) initWithError:(LKError *)error andTitle:(NSString *)errorTitle
-{
-   NSAssert((errorTitle != nil), @"new title cannot be nil");
 
    if ((self = [super init]) == nil)
       return(self);
 
-   _errorType         = error.errorType;
-   _errorCode         = error.errorCode;
-   _errorTitle        = [[NSString alloc] initWithString:errorTitle];
-   _errorMessage      = error.errorMessage;
-   _diagnosticMessage = error.diagnosticMessage;
+   pool = [[NSAutoreleasePool alloc] init];
+
+   // diagnostic message
+   rc = ldap_get_option(ld, LDAP_OPT_DIAGNOSTIC_MESSAGE, &sval);
+   if (rc == LDAP_OPT_SUCCESS)
+   {
+      self.diagnosticMessage = [NSString stringWithUTF8String:sval];
+      ldap_memfree(sval);
+   };
+   ldap_get_option(ld, LDAP_OPT_RESULT_CODE, &ival);
+
+   self.errorTitle        = errorTitle;
+   self.errorCode         = ival;
+   self.errorMessage      = [LKError messageForCode:ival];
+
+   [pool release];
 
    return(self);
 }
 
 
-+ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
++ (id) errorWithTitle:(NSString *)errorTitle
 {
-   LKError * error;
-   error = [[LKError alloc] initInternalErrorWithTitle:errorTitle code:errorCode];
-   return([error autorelease]);
+   return([[[LKError alloc] initErrorWithTitle:errorTitle] autorelease]);
 }
 
 
-+ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
 {
-   LKError * error;
-   error = [LKError internalErrorWithTitle:errorTitle code:errorCode
-                message:errorMessage diagnostics:nil];
-   return(error);
+   return([[[LKError alloc] initErrorWithTitle:errorTitle code:errorCode] autorelease]);
 }
 
 
-+ (id) internalErrorWithTitle:(NSString *)errorTitle code:(LKErrorCode)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode diagnostics:(NSString *)diagnosticMessage
 {
-   LKError * error;
-   error = [[LKError alloc] initInternalErrorWithTitle:errorTitle
-               code:errorCode
-               message:errorMessage
-               diagnostics:diagnosticMessage];
-   return([error autorelease]);
+   return([[[LKError alloc] initErrorWithTitle:errorTitle code:errorCode diagnostics:diagnosticMessage] autorelease]);
 }
 
 
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode ldap:(LDAP *)ld
 {
-   LKError * error;
-   error = [LKError ldapErrorWithTitle:errorTitle code:errorCode
-                message:[LKError errorMessageForCode:errorCode] diagnostics:nil];
-   return(error);
+   return([[[LKError alloc] initErrorWithTitle:errorTitle code:errorCode ldap:ld] autorelease]);
 }
 
 
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage
++ (id) errorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld
 {
-   LKError * error;
-   error = [LKError ldapErrorWithTitle:errorTitle code:errorCode
-                message:errorMessage diagnostics:nil];
-   return(error);
-}
-
-
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       ldap:(LDAP *)ld
-{
-   return([[[LKError alloc] initLdapErrorWithTitle:errorTitle code:errorCode ldap:ld] autorelease]);
-}
-
-
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode
-       message:(NSString *)errorMessage diagnostics:(NSString *)diagnosticMessage
-{
-   LKError * error;
-   error = [[LKError alloc] initLdapErrorWithTitle:errorTitle
-               code:errorCode
-               message:errorMessage
-               diagnostics:diagnosticMessage];
-   return([error autorelease]);
-}
-
-
-+ (id) ldapErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld
-{
-   return([[[LKError alloc] initLdapErrorWithTitle:errorTitle ldap:ld] autorelease]);
+   return([[[LKError alloc] initErrorWithTitle:errorTitle ldap:ld] autorelease]);
 }
 
 
@@ -315,7 +256,7 @@
          _errorType = LKLdapErrorTypeLDAP;
 
       [_errorMessage release];
-      _errorMessage = [[self errorMessageForCode:errorCode] retain];
+      _errorMessage = [[self messageForCode:errorCode] retain];
    };
    [pool release];
    return;
@@ -381,30 +322,16 @@
 
 #pragma mark - Error strings
 
-- (NSString *) errorMessageForCode:(NSInteger)errorCode
+- (NSString *) messageForCode:(NSInteger)errorCode
 {
-   if (errorCode < 0)
-      return([self internalErrorMessageForCode:errorCode]);
-   return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
+   return([LKError messageForCode:errorCode]);
 }
 
 
-+ (NSString *) errorMessageForCode:(NSInteger)errorCode
++ (NSString *) messageForCode:(NSInteger)errorCode
 {
-   if (errorCode < 0)
-      return([LKError internalErrorMessageForCode:errorCode]);
-   return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
-}
-
-
-- (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode
-{
-   return([LKError internalErrorMessageForCode:errorCode]);
-}
-
-
-+ (NSString *) internalErrorMessageForCode:(LKErrorCode)errorCode
-{
+   if (errorCode >= 0)
+      return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
    switch (errorCode)
    {
       case LKErrorCodeSuccess:
