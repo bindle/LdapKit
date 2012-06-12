@@ -26,6 +26,8 @@
 		A06DE79B1586E4320009F87D /* LKEnumerations.h in Headers */ = {isa = PBXBuildFile; fileRef = A06DE79A1586E4320009F87D /* LKEnumerations.h */; };
 		A06DE79E1586EDED0009F87D /* libldap.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A06DE79D1586EDED0009F87D /* libldap.dylib */; };
 		A06DE7A01586EE000009F87D /* liblber.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A06DE79F1586EE000009F87D /* liblber.dylib */; };
+		A06DE7A31586EFFC0009F87D /* LKResult.h in Headers */ = {isa = PBXBuildFile; fileRef = A06DE7A11586EFFC0009F87D /* LKResult.h */; };
+		A06DE7A41586EFFC0009F87D /* LKResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A06DE7A21586EFFC0009F87D /* LKResult.m */; };
 		A08863091586CB93009EF0BB /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = A08863071586CB93009EF0BB /* LKSession.h */; };
 		A088630A1586CB93009EF0BB /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A08863081586CB93009EF0BB /* LKSession.m */; };
 		A088630B1586CDDB009EF0BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00161BA1586C45A00134A6C /* Foundation.framework */; };
@@ -52,6 +54,8 @@
 		A06DE79A1586E4320009F87D /* LKEnumerations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKEnumerations.h; path = LDAPKit/LKEnumerations.h; sourceTree = SOURCE_ROOT; };
 		A06DE79D1586EDED0009F87D /* libldap.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libldap.dylib; path = usr/local/lib/libldap.dylib; sourceTree = SDKROOT; };
 		A06DE79F1586EE000009F87D /* liblber.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblber.dylib; path = usr/local/lib/liblber.dylib; sourceTree = SDKROOT; };
+		A06DE7A11586EFFC0009F87D /* LKResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKResult.h; sourceTree = "<group>"; };
+		A06DE7A21586EFFC0009F87D /* LKResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKResult.m; sourceTree = "<group>"; };
 		A08863071586CB93009EF0BB /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
 		A08863081586CB93009EF0BB /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
 		A088630D1586CE70009EF0BB /* git-package-version.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "git-package-version.sh"; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		A08863061586CB3D009EF0BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A06DE7A11586EFFC0009F87D /* LKResult.h */,
+				A06DE7A21586EFFC0009F87D /* LKResult.m */,
 				A08863071586CB93009EF0BB /* LKSession.h */,
 				A08863081586CB93009EF0BB /* LKSession.m */,
 			);
@@ -157,6 +163,7 @@
 			files = (
 				A08863091586CB93009EF0BB /* LKSession.h in Headers */,
 				A06DE79B1586E4320009F87D /* LKEnumerations.h in Headers */,
+				A06DE7A31586EFFC0009F87D /* LKResult.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A088630A1586CB93009EF0BB /* LKSession.m in Sources */,
+				A06DE7A41586EFFC0009F87D /* LKResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
