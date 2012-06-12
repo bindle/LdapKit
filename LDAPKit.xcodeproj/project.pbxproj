@@ -243,8 +243,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LDAPKit/LDAPKit-Prefix.pch";
-				INFOPLIST_FILE = "LDAPKit/LDAPKit-Info.plist";
+				GCC_PREFIX_HEADER = "LDAPKit/support/LDAPKit-Prefix.pch";
+				INFOPLIST_FILE = "LDAPKit/support/LDAPKit-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -257,8 +257,8 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LDAPKit/LDAPKit-Prefix.pch";
-				INFOPLIST_FILE = "LDAPKit/LDAPKit-Info.plist";
+				GCC_PREFIX_HEADER = "LDAPKit/support/LDAPKit-Prefix.pch";
+				INFOPLIST_FILE = "LDAPKit/support/LDAPKit-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
