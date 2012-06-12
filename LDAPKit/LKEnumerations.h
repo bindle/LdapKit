@@ -31,17 +31,64 @@
  *
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
-/*
- *  LDAPKit/LDAPKit.h - loads API for classes in LDAPKit
+/**
+ *  LDAPKit/LKEnumerations.h - defines public enumerations used by LDAP Kit.
  */
-
-#import <Foundation/Foundation.h>
-
-#import <LDAPKit/LKEnumerations.h>
-
-#if TARGET_OS_IPHONE
-#endif
+#ifndef _LDAPKIT_LDAPKIT_LKENUMERATIONS_H
+#define _LDAPKIT_LDAPKIT_LKENUMERATIONS_H 1
 
 
-#ifdef TARGET_OS_MAC
+#import <ldap.h>
+
+
+#pragma mark LDAP bind method
+enum ldap_kit_ldap_bind_method
+{
+   LKLdapBindMethodAnonymous = 0x01,
+   LKLdapBindMethodSimple    = 0x02,
+   LKLdapBindMethodSASL      = 0x04
+};
+typedef enum ldap_kit_ldap_bind_method LKLdapBindMethod;
+
+
+#pragma mark LDAP encryption schemes
+enum ldap_kit_ldap_encryption_scheme
+{
+   LKLdapEncryptionSchemeNone        = 0x01,
+   LKLdapEncryptionSchemeAttemptTLS  = 0x02,
+   LKLdapEncryptionSchemeTLS         = 0x04,
+   LKLdapEncryptionSchemeSSL         = 0x08
+};
+typedef enum ldap_kit_ldap_encryption_scheme LKLdapEncryptionScheme;
+
+
+#pragma mark LDAP protocol scheme
+enum ldap_kit_ldap_protocol_scheme
+{
+   LKLdapProtocolSchemeLDAP     = 0x01,
+   LKLdapProtocolSchemeLDAPS    = 0x02,
+   LKLdapProtocolSchemeLDAPI    = 0x04
+};
+typedef enum ldap_kit_ldap_protocol_scheme LKLdapProtocolScheme;
+
+
+#pragma mark LDAP protocol version
+enum ldap_kit_ldap_protocol_version
+{
+   LKLdapProtocolVersion2    = LDAP_VERSION2,
+   LKLdapProtocolVersion3    = LDAP_VERSION3
+};
+typedef enum ldap_kit_ldap_protocol_version LKLdapProtocolVersion;
+
+
+#pragma mark LDAP search scopes
+enum ldap_kit_ldap_search_scope
+{
+   LKLdapSearchScopeBase        = LDAP_SCOPE_BASE,
+   LKLdapSearchScopeOneLevel    = LDAP_SCOPE_ONELEVEL,
+   LKLdapSearchScopeSubTree     = LDAP_SCOPE_SUBTREE,
+   LKLdapSearchScopeChildren    = LDAP_SCOPE_CHILDREN
+};
+typedef enum ldap_kit_ldap_search_scope LKLdapSearchScope;
+
 #endif
