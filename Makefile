@@ -44,7 +44,7 @@ run_appledoc =	appledoc \
 	--verbose 6 \
 	--keep-intermediate-files \
 	--docset-platform-family iphoneos \
-	LDAPKit
+	LdapKit
 
 all:
 	mkdir -p docs

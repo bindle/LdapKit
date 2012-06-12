@@ -40,8 +40,8 @@
 #import <sasl/sasl.h>
 #include <sys/socket.h>
 
-#import <LDAPKit/models/LKError.h>
-#import <LDAPKit/models/LKSession.h>
+#import <LdapKit/models/LKError.h>
+#import <LdapKit/models/LKSession.h>
 
 
 #pragma mark - Data Types

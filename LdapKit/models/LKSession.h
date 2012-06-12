@@ -36,7 +36,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <LDAPKit/LKEnumerations.h>
+#import <LdapKit/LKEnumerations.h>
 
 @class LKResult;
 
