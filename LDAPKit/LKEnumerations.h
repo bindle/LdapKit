@@ -62,6 +62,15 @@ enum ldap_kit_ldap_encryption_scheme
 typedef enum ldap_kit_ldap_encryption_scheme LKLdapEncryptionScheme;
 
 
+#pragma mark LDAP error type
+enum ldap_kit_ldap_error_type
+{
+   LKLdapErrorTypeInternal           = 0x01,
+   LKLdapErrorTypeLDAP               = 0x01
+};
+typedef enum ldap_kit_ldap_error_type LKLdapErrorType;
+
+
 #pragma mark LDAP protocol scheme
 enum ldap_kit_ldap_protocol_scheme
 {
