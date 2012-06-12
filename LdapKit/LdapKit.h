@@ -37,7 +37,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import <LDAPKit/LKEnumerations.h>
+#import <LdapKit/LKEnumerations.h>
+#import <LdapKit/models/LKError.h>
+#import <LdapKit/models/LKResult.h>
+#import <LdapKit/models/LKSession.h>
 
 #if TARGET_OS_IPHONE
 #endif
