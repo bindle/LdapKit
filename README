@@ -1,0 +1,72 @@
+
+LDAP Kit
+========
+
+   LDAP framework for iOS and OS X using NSOperation and NSOperationQueue to
+   manage LDAP tasks.
+
+
+Contents
+--------
+
+   1. Disclaimer
+   2. Software Requirements
+   3. Source Code
+
+
+Disclaimer
+----------
+
+   This software is provided by the copyright holders and contributors "as
+   is" and any express or implied warranties, including, but not limited to,
+   the implied warranties of merchantability and fitness for a particular
+   purpose are disclaimed. In no event shall Bindle Binaries be liable for
+   any direct, indirect, incidental, special, exemplary, or consequential
+   damages (including, but not limited to, procurement of substitute goods or
+   services; loss of use, data, or profits; or business interruption) however
+   caused and on any theory of liability, whether in contract, strict
+   liability, or tort (including negligence or otherwise) arising in any way
+   out of the use of this software, even if advised of the possibility of
+   such damage.
+
+
+Software Requirements
+---------------------
+
+   Mac OS X
+   * Git 1.7
+   * Mac OS X 10.7
+   * Xcode 4.3
+   * Xcode Command Line Tools
+
+   iOS
+   * Git 1.7
+   * Mac OS X 10.7
+   * Xcode 4.3
+   * Xcode Command Line Tools
+   * iOS SDK 5.1
+   * iOS Ports 0.6 (https://github.com/bindle/iOSPorts)
+   * Internet Access (for downloading packages)
+
+
+Source Code
+-----------
+
+The source code for this project is maintained using git (http://git-scm.com).
+The following contains information to checkout the source code from the git
+repository.
+
+   Git URLs:
+      git://github.com/bindle/LdapKit.git
+
+   Downloading Source:
+
+      $ git clone git://github.com/bindle/iOSPorts.git
+      $ git clone git://github.com/bindle/LdapKit.git
+
+   Git Branches:
+      master - Current release of packages.
+      next   - changes staged for next release
+      pu     - proposed updates for next release
+      xx/yy+ - branch for testing new changes before merging to 'pu' branch
+
