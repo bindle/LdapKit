@@ -38,6 +38,10 @@
 		A0103E2B1587882C00183DC9 /* libldap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DE6158784C200183DC9 /* libldap.a */; };
 		A0103E2C1587882C00183DC9 /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DFB158784E100183DC9 /* libsasl2.a */; };
 		A0103E2D1587882C00183DC9 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DF2158784D300183DC9 /* libssl.a */; };
+		A011F65C1587ED76003BFEC5 /* LKBerValue.h in Headers */ = {isa = PBXBuildFile; fileRef = A011F65A1587ED76003BFEC5 /* LKBerValue.h */; };
+		A011F65D1587ED76003BFEC5 /* LKBerValue.h in Headers */ = {isa = PBXBuildFile; fileRef = A011F65A1587ED76003BFEC5 /* LKBerValue.h */; };
+		A011F65E1587ED76003BFEC5 /* LKBerValue.m in Sources */ = {isa = PBXBuildFile; fileRef = A011F65B1587ED76003BFEC5 /* LKBerValue.m */; };
+		A011F65F1587ED76003BFEC5 /* LKBerValue.m in Sources */ = {isa = PBXBuildFile; fileRef = A011F65B1587ED76003BFEC5 /* LKBerValue.m */; };
 		A0CFA8121587829400EBEB32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CFA8111587829400EBEB32 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +124,8 @@
 		A0103E161587874800183DC9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A0103E171587874800183DC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0103E271587880900183DC9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A011F65A1587ED76003BFEC5 /* LKBerValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBerValue.h; sourceTree = "<group>"; };
+		A011F65B1587ED76003BFEC5 /* LKBerValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBerValue.m; sourceTree = "<group>"; };
 		A0CFA80E1587829400EBEB32 /* libiLdapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiLdapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0CFA8111587829400EBEB32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0CFA8151587829500EBEB32 /* LdapKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LdapKit-Prefix.pch"; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 		A0103DC31587849500183DC9 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				A011F65A1587ED76003BFEC5 /* LKBerValue.h */,
+				A011F65B1587ED76003BFEC5 /* LKBerValue.m */,
 				A0103DC41587849500183DC9 /* LKError.h */,
 				A0103DC51587849500183DC9 /* LKError.m */,
 				A0103DC61587849500183DC9 /* LKResult.h */,
@@ -276,6 +284,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A011F65D1587ED76003BFEC5 /* LKBerValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +297,7 @@
 				A0103DCE1587849500183DC9 /* LKSession.h in Headers */,
 				A0103DD2158784A100183DC9 /* LdapKit.h in Headers */,
 				A0103DD3158784A100183DC9 /* LKEnumerations.h in Headers */,
+				A011F65C1587ED76003BFEC5 /* LKBerValue.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +462,7 @@
 				A0103E231587878900183DC9 /* LKError.m in Sources */,
 				A0103E241587878900183DC9 /* LKResult.m in Sources */,
 				A0103E251587878900183DC9 /* LKSession.m in Sources */,
+				A011F65F1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +473,7 @@
 				A0103DCB1587849500183DC9 /* LKError.m in Sources */,
 				A0103DCD1587849500183DC9 /* LKResult.m in Sources */,
 				A0103DCF1587849500183DC9 /* LKSession.m in Sources */,
+				A011F65E1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +677,7 @@
 				A0103E021587854400183DC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0103E051587858D00183DC9 /* Build configuration list for PBXLegacyTarget "LdapKit Docset" */ = {
 			isa = XCConfigurationList;
@@ -673,6 +686,7 @@
 				A0103E071587858D00183DC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0103E1E1587874800183DC9 /* Build configuration list for PBXNativeTarget "LdapKit" */ = {
 			isa = XCConfigurationList;
@@ -681,6 +695,7 @@
 				A0103E201587874800183DC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0CFA8081587829400EBEB32 /* Build configuration list for PBXProject "LdapKit" */ = {
 			isa = XCConfigurationList;
