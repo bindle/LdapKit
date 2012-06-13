@@ -32,7 +32,7 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /*
- *  LDAPKit/LKResult.m returns results from LDAP operations.
+ *  LdapKit/LKResult.m returns results from LDAP operations.
  */
 #import "LKResult.h"
 

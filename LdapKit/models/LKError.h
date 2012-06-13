@@ -32,7 +32,7 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LDAPKit/LKError.h manages error information.
+ *  LdapKit/LKError.h manages error information.
  */
 
 #import <Foundation/Foundation.h>

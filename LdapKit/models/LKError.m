@@ -32,7 +32,7 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /*
- *  LDAPKit/LKError.m manages error information.
+ *  LdapKit/LKError.m manages error information.
  */
 #import "LKError.h"
 

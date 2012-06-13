@@ -31,8 +31,8 @@
  *
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
-/**
- *  LDAPKit/LKBerValue.m convenience class for BerValue.
+/*
+ *  LdapKit/LKBerValue.m convenience class for BerValue.
  */
 #import "LKBerValue.h"
 

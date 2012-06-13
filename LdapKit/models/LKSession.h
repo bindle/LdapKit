@@ -32,7 +32,7 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LKSession/LKSession.h - manges a connection to a remote directory server
+ *  LdapKit/LKResult.h - manges a connection to a remote directory server
  */
 
 #import <Foundation/Foundation.h>

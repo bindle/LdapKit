@@ -32,7 +32,7 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LDAPKit/LKBerValue.h  convenience class for BerValue.
+ *  LdapKit/LKBerValue.h  convenience class for BerValue.
  */
 
 #if TARGET_OS_IPHONE
