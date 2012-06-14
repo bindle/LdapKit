@@ -111,6 +111,20 @@
 
    // server state
    ldLock  = [[NSLock alloc] init];
+   queue   = [[NSOperationQueue alloc] init];
+
+   return(self);
+}
+
+
+- (id) initWithQueue:(NSOperationQueue *)newQueue
+{
+   if ((self = [self init]) == nil)
+      return(self);
+
+   // retains queue
+   [queue release];
+   queue = [newQueue retain];
 
    return(self);
 }

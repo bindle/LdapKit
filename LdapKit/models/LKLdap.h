@@ -100,4 +100,7 @@
 @property (nonatomic, copy)     NSString               * ldapBindSaslMechanism;
 @property (nonatomic, copy)     NSString               * ldapBindSaslRealm;
 
+/// @name Object Management Methods
+- (id) initWithQueue:(NSOperationQueue *)queue;
+
 @end
