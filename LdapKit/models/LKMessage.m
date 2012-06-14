@@ -62,16 +62,16 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (void) setError:(LKError *)anError;
 
 /// @name LDAP tasks
-- (BOOL) connect;
+- (BOOL) bind;
 //- (BOOL) search;
 - (BOOL) testConnection;
 - (BOOL) unbind;
 
 /// @name LDAP subtasks
-- (LDAP *) connectBind:(LDAP *)ld;
-- (LDAP *) connectFinish:(LDAP *)ld;
-- (LDAP *) connectInitialize;
-- (LDAP *) connectStartTLS:(LDAP *)ld;
+- (LDAP *) bindAuthenticate:(LDAP *)ld;
+- (LDAP *) bindFinish:(LDAP *)ld;
+- (LDAP *) bindInitialize;
+- (LDAP *) bindStartTLS:(LDAP *)ld;
 
 @end
 
@@ -124,7 +124,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
-- (id) initConnectWithSession:(LKLdap *)data
+- (id) initBindWithSession:(LKLdap *)data
 {
    NSAutoreleasePool * pool;
 
@@ -137,7 +137,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    // state information
    ldap        = [data retain];
    error       = [[LKError alloc] init];
-   messageType = LKLdapMessageTypeConnect;
+   messageType = LKLdapMessageTypeBind;
 
    // server information
    ldapURI             = [ldap.ldapURI retain];
@@ -201,8 +201,8 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
    switch(messageType)
    {
-      case LKLdapMessageTypeConnect:
-      [self connect];
+      case LKLdapMessageTypeBind:
+      [self bind];
       break;
 
       case LKLdapMessageTypeUnbind:
@@ -222,7 +222,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 #pragma mark - LDAP tasks
 
-- (BOOL) connect
+- (BOOL) bind
 {
    BOOL                isConnected;
    LDAP              * ld;
@@ -244,28 +244,28 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    [ldap.ldLock lock];
 
    // initialize LDAP handle
-   if ((ld = [self connectInitialize]) == NULL)
+   if ((ld = [self bindInitialize]) == NULL)
    {
       [ldap.ldLock unlock];
       return(error.isSuccessful);
    };
 
    // starts TLS session
-   if ((ld = [self connectStartTLS:ld]) == NULL)
+   if ((ld = [self bindStartTLS:ld]) == NULL)
    {
       [ldap.ldLock unlock];
       return(error.isSuccessful);
    };
 
    // binds to LDAP
-   if ((ld = [self connectBind:ld]) == NULL)
+   if ((ld = [self bindAuthenticate:ld]) == NULL)
    {
       [ldap.ldLock unlock];
       return(error.isSuccessful);
    };
 
    // finish configuring connection
-   if ((ld = [self connectFinish:ld]) == NULL)
+   if ((ld = [self bindFinish:ld]) == NULL)
    {
       [ldap.ldLock unlock];
       return(error.isSuccessful);
@@ -402,7 +402,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 #pragma mark - LDAP subtasks
 
-- (LDAP *) connectBind:(LDAP *)ld
+- (LDAP *) bindAuthenticate:(LDAP *)ld
 {
    int                 err;
    LKLdapAuthData      auth;
@@ -494,7 +494,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
-- (LDAP *) connectFinish:(LDAP *)ld
+- (LDAP *) bindFinish:(LDAP *)ld
 {
    int err;
    int opt;
@@ -527,7 +527,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
-- (LDAP *) connectInitialize
+- (LDAP *) bindInitialize
 {
    LDAP              * ld;
    int                 err;
@@ -619,7 +619,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
-- (LDAP *) connectStartTLS:(LDAP *)ld
+- (LDAP *) bindStartTLS:(LDAP *)ld
 {
    int    err;
    int    opt;

@@ -40,6 +40,6 @@
 @interface LKMessage ()
 
 /// @name Object Management Methods
-- (id) initConnectWithSession:(LKLdap *)session;
+- (id) initBindWithSession:(LKLdap *)session;
 
 @end

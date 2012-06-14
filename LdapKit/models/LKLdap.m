@@ -436,12 +436,12 @@
 
 #pragma mark - LDAP operations
 
-- (LKMessage *) connect
+- (LKMessage *) bind
 {
    LKMessage * message;
    @synchronized(self)
    {
-      message = [[LKMessage alloc] initLdapInitialzieWithSession:self];
+      message = [[LKMessage alloc] initBindWithSession:self];
       message.queuePriority = NSOperationQueuePriorityHigh;
       [queue addOperation:message];
       return([message autorelease]);

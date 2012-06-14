@@ -104,6 +104,6 @@
 - (id) initWithQueue:(NSOperationQueue *)queue;
 
 /// @name LDAP operations
-- (LKMessage *) connect;
+- (LKMessage *) bind;
 
 @end

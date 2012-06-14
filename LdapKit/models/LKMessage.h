@@ -42,7 +42,7 @@
 #pragma mark LDAP message type
 enum ldap_kit_ldap_message_type
 {
-   LKLdapMessageTypeConnect           = 0x01,
+   LKLdapMessageTypeBind              = 0x01,
    LKLdapMessageTypeUnbind            = 0x02,
    LKLdapMessageTypeSearch            = 0x03,
    LKLdapMessageTypeUnknown           = 0x00
