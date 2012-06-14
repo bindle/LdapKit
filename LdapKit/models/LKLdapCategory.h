@@ -40,7 +40,7 @@
 
 /// @name server state
 @property (nonatomic, assign)   LDAP                   * ld;
-@property (nonatomic, assign)   BOOL                     isConnected;
 @property (nonatomic, readonly) NSLock                 * ldLock;
+- (void) setIsConnected:(BOOL)connected;
 
 @end

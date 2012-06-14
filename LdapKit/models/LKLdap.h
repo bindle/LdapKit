@@ -75,6 +75,7 @@
 
 /// @name server state
 @property (nonatomic, readonly) NSOperationQueue       * queue;
+@property (nonatomic, readonly) BOOL                     isConnected;
 
 /// @name server information
 @property (nonatomic, copy)     NSString               * ldapURI;

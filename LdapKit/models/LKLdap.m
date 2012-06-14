@@ -145,6 +145,22 @@
 
 #pragma mark - Getter/Setter methods
 
+- (BOOL) isConnected
+{
+   @synchronized(self)
+   {
+      return(isConnected);
+   }
+}
+- (void) setIsConnected:(BOOL)connected
+{
+   @synchronized(self)
+   {
+      isConnected = connected;
+   }
+   return;
+}
+
 - (NSString *) ldapBindWho
 {
    @synchronized(self)
