@@ -113,6 +113,16 @@
    ldLock  = [[NSLock alloc] init];
    queue   = [[NSOperationQueue alloc] init];
 
+   // server information
+   self.ldapURI        = @"ldap://localhost/";
+   ldapProtocolVersion = LKLdapProtocolVersion3;
+
+   // encryption information
+   ldapEncryptionScheme = LKLdapEncryptionSchemeAttemptTLS;
+
+   // authentication information
+   ldapBindMethod = LKLdapBindMethodAnonymous;
+
    return(self);
 }
 

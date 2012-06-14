@@ -553,56 +553,58 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    };
 
    // set network timout
-   timeout.tv_usec = 0;
-   timeout.tv_sec  = ldapNetworkTimeout;
-   if (timeout.tv_sec < 1)
-      timeout.tv_sec = -1;
-   err = ldap_set_option(ld, LDAP_OPT_NETWORK_TIMEOUT, &timeout);
-   if (err != LDAP_SUCCESS)
+   if ((ldapNetworkTimeout))
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
-      ldap_unbind_ext_s(ld, NULL, NULL);
-      return(NULL);
+      timeout.tv_usec = 0;
+      timeout.tv_sec  = ldapNetworkTimeout;
+      if (timeout.tv_sec < 1)
+         timeout.tv_sec = -1;
+      err = ldap_set_option(ld, LDAP_OPT_NETWORK_TIMEOUT, &timeout);
+      if (err != LDAP_SUCCESS)
+      {
+         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         ldap_unbind_ext_s(ld, NULL, NULL);
+         return(NULL);
+      };
    };
 
    // set LDAP search timout
-   opt = ldapSearchTimeout;
-   err = ldap_set_option(ld, LDAP_OPT_TIMELIMIT, &opt);
-   if (err != LDAP_SUCCESS)
+   if ((ldapSearchTimeout))
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
-      ldap_unbind_ext_s(ld, NULL, NULL);
-      return(NULL);
+      opt = ldapSearchTimeout;
+      err = ldap_set_option(ld, LDAP_OPT_TIMELIMIT, &opt);
+      if (err != LDAP_SUCCESS)
+      {
+         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         ldap_unbind_ext_s(ld, NULL, NULL);
+         return(NULL);
+      };
    };
 
    // set LDAP search size limit
-   opt = ldapSizeLimit;
-   err = ldap_set_option(ld, LDAP_OPT_SIZELIMIT, &opt);
-   if (err != LDAP_SUCCESS)
+   if ((ldapSizeLimit))
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
-      ldap_unbind_ext_s(ld, NULL, NULL);
-      return(NULL);
+      opt = ldapSizeLimit;
+      err = ldap_set_option(ld, LDAP_OPT_SIZELIMIT, &opt);
+      if (err != LDAP_SUCCESS)
+      {
+         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         ldap_unbind_ext_s(ld, NULL, NULL);
+         return(NULL);
+      };
    };
 
    // set SSL/TLS CA cert file
-   str = [ldapCACertificateFile UTF8String];
-   err = ldap_set_option(NULL, LDAP_OPT_X_TLS_CACERTFILE, (void *)str);
-   if (err != LDAP_SUCCESS)
+   if ((ldapCACertificateFile))
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
-      ldap_unbind_ext_s(ld, NULL, NULL);
-      return(NULL);
-   };
-
-   // set LDAP instance to require SSL cert
-   opt = 1;
-   err = ldap_set_option(ld, LDAP_OPT_X_TLS_REQUIRE_CERT, &opt);
-   if (err != LDAP_SUCCESS)
-   {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
-      ldap_unbind_ext_s(ld, NULL, NULL);
-      return(NULL);
+      str = [ldapCACertificateFile UTF8String];
+      err = ldap_set_option(NULL, LDAP_OPT_X_TLS_CACERTFILE, (void *)str);
+      if (err != LDAP_SUCCESS)
+      {
+         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         ldap_unbind_ext_s(ld, NULL, NULL);
+         return(NULL);
+      };
    };
 
    // check for cancelled operation
