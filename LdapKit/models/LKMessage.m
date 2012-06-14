@@ -107,6 +107,9 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    [ldapBindSaslMechanism     release];
    [ldapBindSaslRealm         release];
 
+   // client information
+   [object release];
+
    [super dealloc];
 
    return;
