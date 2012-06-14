@@ -73,8 +73,9 @@
 }
 
 /// @name server state
+@property (nonatomic, assign)   LDAP                   * ld;
 @property (nonatomic, readonly) NSOperationQueue       * queue;
-@property (nonatomic, readonly) BOOL                     isConnected;
+@property (nonatomic, assign)   BOOL                     isConnected;
 
 /// @name server information
 @property (nonatomic, copy)     NSString               * ldapURI;

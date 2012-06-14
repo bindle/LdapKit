@@ -34,7 +34,7 @@
 /*
  *  LdapKit/LKLdap.m - manges a connection to a remote directory server
  */
-#import "LKLdapCategory.h"
+#import "LKLdap.h"
 
 
 #import "LKMessageCategory.h"

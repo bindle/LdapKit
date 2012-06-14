@@ -42,7 +42,7 @@
 
 #import "LKEntry.h"
 #import "LKError.h"
-#import "LKLdapCategory.h"
+#import "LKLdap.h"
 
 
 #pragma mark - Data Types
