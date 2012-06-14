@@ -57,7 +57,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 @interface LKMessage : NSOperation
 {
    // state information
-   LKLdap                 * ldap;
+   LKLdap                 * session;
    LKError                * error;
    LKLdapMessageType        messageType;
 
