@@ -42,6 +42,5 @@
 @property (nonatomic, assign)   LDAP                   * ld;
 @property (nonatomic, assign)   BOOL                     isConnected;
 @property (nonatomic, readonly) NSLock                 * ldLock;
-@property (nonatomic, readonly) NSOperationQueue       * queue;
 
 @end

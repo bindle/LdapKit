@@ -73,6 +73,9 @@
    NSString               * ldapBindSaslRealm;
 }
 
+/// @name server state
+@property (nonatomic, readonly) NSOperationQueue       * queue;
+
 /// @name server information
 @property (nonatomic, copy)     NSString               * ldapURI;
 @property (nonatomic, assign)   LKLdapProtocolScheme     ldapScheme;
