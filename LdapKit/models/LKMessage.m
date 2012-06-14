@@ -40,7 +40,7 @@
 #import <sasl/sasl.h>
 #include <sys/socket.h>
 
-#import <LdapKit/models/LKError.h>
+#import "LKError.h"
 #import "LKLdapCategory.h"
 
 
