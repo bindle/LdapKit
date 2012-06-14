@@ -95,7 +95,4 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 @property (nonatomic, assign)   NSInteger                tag;
 @property (nonatomic, retain)   id                       object;
 
-/// @name Object Management Methods
-- (id) initLdapInitialzieWithSession:(LKLdap *)session;
-
 @end
