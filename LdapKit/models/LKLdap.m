@@ -115,6 +115,7 @@
    // server state
    ldLock  = [[NSLock alloc] init];
    queue   = [[NSOperationQueue alloc] init];
+   queue.maxConcurrentOperationCount = 1;
 
    // server information
    self.ldapURI        = @"ldap://localhost/";
