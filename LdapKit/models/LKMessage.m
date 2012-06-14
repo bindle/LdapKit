@@ -61,6 +61,9 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 // Getter/Setter methods
 - (void) setError:(LKError *)anError;
 
+/// @name copies LDAP information
+- (void) copySessionInformation;
+
 /// @name LDAP tasks
 - (BOOL) bind;
 //- (BOOL) search;
@@ -129,41 +132,17 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 - (id) initBindWithSession:(LKLdap *)data
 {
-   NSAutoreleasePool * pool;
-
    // initialize super
    if ((self = [super init]) == nil)
       return(self);
-
-   pool = [[NSAutoreleasePool alloc] init];
 
    // state information
    session     = [data retain];
    error       = [[LKError alloc] init];
    messageType = LKLdapMessageTypeBind;
 
-   // server information
-   ldapURI             = [session.ldapURI retain];
-   ldapScheme          = session.ldapScheme;
-   ldapProtocolVersion = session.ldapProtocolVersion;
-
-   // encryption information
-   ldapEncryptionScheme  = session.ldapEncryptionScheme;
-   ldapCACertificateFile = [session.ldapCACertificateFile retain];
-
-   // timeout information
-   ldapSizeLimit      = session.ldapSizeLimit;
-   ldapSearchTimeout  = session.ldapSearchTimeout;
-   ldapNetworkTimeout = session.ldapNetworkTimeout;
-
-   // authentication information
-   ldapBindMethod        = session.ldapBindMethod;
-   ldapBindWho           = [session.ldapBindWho retain];
-   ldapBindCredentials   = [session.ldapBindCredentials retain];
-   ldapBindSaslMechanism = [session.ldapBindSaslMechanism retain];;
-   ldapBindSaslRealm     = [session.ldapBindSaslRealm retain];
-
-   [pool release];
+   // copies session data to local ivars
+   [self copySessionInformation];
 
    return(self);
 }
@@ -202,6 +181,47 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
       [error release];
       error = [anError retain];
    };
+   return;
+}
+
+
+#pragma mark - copies LDAP information
+
+- (void) copySessionInformation
+{
+   NSAutoreleasePool * pool;
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   // server information
+   [ldapURI release];
+   ldapURI             = [session.ldapURI retain];
+   ldapScheme          = session.ldapScheme;
+   ldapProtocolVersion = session.ldapProtocolVersion;
+
+   // encryption information
+   [ldapCACertificateFile release];
+   ldapEncryptionScheme  = session.ldapEncryptionScheme;
+   ldapCACertificateFile = [session.ldapCACertificateFile retain];
+
+   // timeout information
+   ldapSizeLimit      = session.ldapSizeLimit;
+   ldapSearchTimeout  = session.ldapSearchTimeout;
+   ldapNetworkTimeout = session.ldapNetworkTimeout;
+
+   // authentication information
+   [ldapBindWho           release];
+   [ldapBindCredentials   release];
+   [ldapBindSaslMechanism release];
+   [ldapBindSaslRealm     release];
+   ldapBindMethod        = session.ldapBindMethod;
+   ldapBindWho           = [session.ldapBindWho           retain];
+   ldapBindCredentials   = [session.ldapBindCredentials   retain];
+   ldapBindSaslMechanism = [session.ldapBindSaslMechanism retain];;
+   ldapBindSaslRealm     = [session.ldapBindSaslRealm     retain];
+
+   [pool release];
+
    return;
 }
 
@@ -257,6 +277,9 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
       self.error = [LKError errorWithTitle:@"LDAP Error" code:LKErrorCodeCancelled];
       return(error.isSuccessful);
    };
+
+   // copies data required to BIND to LDAP
+   [self copySessionInformation];
 
    // obtain the lock for LDAP handle
    [session.ldLock lock];
