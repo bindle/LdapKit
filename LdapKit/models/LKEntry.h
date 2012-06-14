@@ -36,15 +36,16 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <ldap.h>
 
 @interface LKEntry : NSObject
 {
    // entry information
-   NSString     * dn;
-   NSDictionary * entry;
+   NSString            * dn;
+   NSMutableDictionary * entry;
 
    // derived data
-   NSArray      * attributes;
+   NSArray             * attributes;
 }
 
 /// @name entry information
@@ -58,6 +59,6 @@
 
 /// @name queries
 - (NSArray *) valuesForAttribute:(NSString *)attribute;
-- (void) setValues:(NSArray *)values forKey:(NSString *)attribute;
+- (void) setBerValues:(BerValue **)vals forAttribute:(const char *)attribute;
 
 @end

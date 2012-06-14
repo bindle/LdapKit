@@ -36,6 +36,8 @@
  */
 #import "LKEntry.h"
 
+#import "LKBerValue.h"
+
 @implementation LKEntry
 
 // entry information
@@ -94,17 +96,43 @@
 }
 
 
-- (void) setValues:(NSArray *)values forKey:(NSString *)attribute
+- (void) setBerValues:(BerValue **)vals forAttribute:(const char *)attr
 {
+   int              len;
+   int              pos;
+   NSString       * attribute;
+   NSMutableArray * data;
+   NSArray        * values;
+   LKBerValue     * value;
+
+   len       = ldap_count_values_len(vals);
+   attribute = [[NSString alloc] initWithUTF8String:attr];
+   data      = [[NSMutableArray alloc] initWithCapacity:len];
+
+   for(pos = 0; pos < len; pos++)
+   {
+      value = [[LKBerValue alloc] initWithBerValue:vals[pos]];
+      [data addObject:value];
+      [value release];
+   };
+
+   values = [[NSArray alloc] initWithArray:data];
+
    @synchronized(self)
    {
-      [attributes release];
+      if (!(entry))
+         entry = [[NSMutableDictionary alloc] initWithCapacity:1];
+      [entry setValue:values forKey:attribute];
+      if ((attributes))
+         [attributes release];
       attributes = nil;
-      [entry setValue:[NSArray arrayWithArray:values] forKey:attribute];
    };
+
+   [attribute release];
+   [values    release];
+   [data      release];
+
    return;
 }
-
-
 
 @end
