@@ -44,6 +44,8 @@
 		A011F65F1587ED76003BFEC5 /* LKBerValue.m in Sources */ = {isa = PBXBuildFile; fileRef = A011F65B1587ED76003BFEC5 /* LKBerValue.m */; };
 		A050B54B1589E911004C32EE /* LKMessageCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A050B54A1589E911004C32EE /* LKMessageCategory.h */; };
 		A050B54C1589E911004C32EE /* LKMessageCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A050B54A1589E911004C32EE /* LKMessageCategory.h */; };
+		A050B54E1589EACC004C32EE /* LKLdapCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A050B54D1589EACC004C32EE /* LKLdapCategory.h */; };
+		A050B54F1589EACC004C32EE /* LKLdapCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A050B54D1589EACC004C32EE /* LKLdapCategory.h */; };
 		A0CFA8121587829400EBEB32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CFA8111587829400EBEB32 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +133,7 @@
 		A011F69515881428003BFEC5 /* ChangeLog */ = {isa = PBXFileReference; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
 		A011F69615881428003BFEC5 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		A050B54A1589E911004C32EE /* LKMessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMessageCategory.h; sourceTree = "<group>"; };
+		A050B54D1589EACC004C32EE /* LKLdapCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLdapCategory.h; sourceTree = "<group>"; };
 		A0CFA80E1587829400EBEB32 /* libiLdapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiLdapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0CFA8111587829400EBEB32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0CFA8151587829500EBEB32 /* LdapKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LdapKit-Prefix.pch"; sourceTree = "<group>"; };
@@ -181,6 +184,7 @@
 				A0103DC51587849500183DC9 /* LKError.m */,
 				A0103DC81587849500183DC9 /* LKLdap.h */,
 				A0103DC91587849500183DC9 /* LKLdap.m */,
+				A050B54D1589EACC004C32EE /* LKLdapCategory.h */,
 				A0103DC61587849500183DC9 /* LKMessage.h */,
 				A0103DC71587849500183DC9 /* LKMessage.m */,
 				A050B54A1589E911004C32EE /* LKMessageCategory.h */,
@@ -294,6 +298,7 @@
 			files = (
 				A011F65D1587ED76003BFEC5 /* LKBerValue.h in Headers */,
 				A050B54C1589E911004C32EE /* LKMessageCategory.h in Headers */,
+				A050B54F1589EACC004C32EE /* LKLdapCategory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +313,7 @@
 				A0103DD3158784A100183DC9 /* LKEnumerations.h in Headers */,
 				A011F65C1587ED76003BFEC5 /* LKBerValue.h in Headers */,
 				A050B54B1589E911004C32EE /* LKMessageCategory.h in Headers */,
+				A050B54E1589EACC004C32EE /* LKLdapCategory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

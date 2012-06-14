@@ -41,7 +41,7 @@
 #include <sys/socket.h>
 
 #import <LdapKit/models/LKError.h>
-#import <LdapKit/models/LKLdap.h>
+#import "LKLdapCategory.h"
 
 
 #pragma mark - Data Types

@@ -73,12 +73,6 @@
    NSString               * ldapBindSaslRealm;
 }
 
-/// @name server state
-@property (nonatomic, assign)   LDAP                   * ld;
-@property (nonatomic, assign)   BOOL                     isConnected;
-@property (nonatomic, readonly) NSLock                 * ldLock;
-@property (nonatomic, readonly) NSOperationQueue       * queue;
-
 /// @name server information
 @property (nonatomic, copy)     NSString               * ldapURI;
 @property (nonatomic, assign)   LKLdapProtocolScheme     ldapScheme;
