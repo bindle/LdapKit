@@ -278,7 +278,7 @@
 				A0CFA8141587829500EBEB32 /* Supporting Files */,
 			);
 			path = LdapKit;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		A0CFA8141587829500EBEB32 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -651,6 +651,7 @@
 				DSTROOT = /tmp/iLdapKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LdapKit/support/LdapKit-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					.,
 					../iOSPorts/include,
@@ -672,6 +673,7 @@
 				DSTROOT = /tmp/iLdapKit.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LdapKit/support/LdapKit-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = (
 					.,
 					../iOSPorts/include,
