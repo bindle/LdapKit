@@ -38,7 +38,7 @@
 #import <Foundation/Foundation.h>
 #import <LdapKit/LKEnumerations.h>
 
-@class LKResult;
+@class LKMessage;
 
 @interface LKLdap : NSObject
 {

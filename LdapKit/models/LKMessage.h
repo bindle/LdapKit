@@ -32,34 +32,34 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LdapKit/LKResult.h returns results from LDAP operations.
+ *  LdapKit/LKMessage.h returns results from LDAP operations.
  */
 
 #import <Foundation/Foundation.h>
 #import <LdapKit/LKEnumerations.h>
 
 
-#pragma mark LDAP result type
-enum ldap_kit_ldap_result_type
+#pragma mark LDAP message type
+enum ldap_kit_ldap_message_type
 {
-   LKLdapResultTypeConnect           = 0x01,
-   LKLdapResultTypeUnbind            = 0x02,
-   LKLdapResultTypeSearch            = 0x03,
-   LKLdapResultTypeUnknown           = 0x00
+   LKLdapMessageTypeConnect           = 0x01,
+   LKLdapMessageTypeUnbind            = 0x02,
+   LKLdapMessageTypeSearch            = 0x03,
+   LKLdapMessageTypeUnknown           = 0x00
 };
-typedef enum ldap_kit_ldap_result_type LKLdapResultType;
+typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 
 
 @class LKError;
 @class LKLdap;
 
 
-@interface LKResult : NSOperation
+@interface LKMessage : NSOperation
 {
    // state information
    LKLdap                 * ldap;
    LKError                * error;
-   LKLdapResultType         resultType;
+   LKLdapMessageType        messageType;
 
    // server information
    NSString               * ldapURI;
@@ -89,7 +89,7 @@ typedef enum ldap_kit_ldap_result_type LKLdapResultType;
 
 /// @name state information
 @property (nonatomic, readonly) LKError                * error;
-@property (nonatomic, readonly) LKLdapResultType         resultType;
+@property (nonatomic, readonly) LKLdapMessageType        messageType;
 
 /// @name client information
 @property (nonatomic, assign)   NSInteger                tag;

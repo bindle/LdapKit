@@ -32,9 +32,9 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /*
- *  LdapKit/LKResult.m returns results from LDAP operations.
+ *  LdapKit/LKMessage.m returns results from LDAP operations.
  */
-#import "LKResult.h"
+#import "LKMessage.h"
 
 #import <signal.h>
 #import <sasl/sasl.h>
@@ -56,7 +56,7 @@ struct ldap_kit_ldap_auth_data
 typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 
-@interface LKResult ()
+@interface LKMessage ()
 
 // Getter/Setter methods
 - (void) setError:(LKError *)anError;
@@ -76,11 +76,11 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 @end
 
 
-@implementation LKResult
+@implementation LKMessage
 
 // state information
 @synthesize error;
-@synthesize resultType;
+@synthesize messageType;
 
 // client information
 @synthesize tag;
@@ -135,9 +135,9 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    pool = [[NSAutoreleasePool alloc] init];
 
    // state information
-   ldap       = [data retain];
-   error      = [[LKError alloc] init];
-   resultType = LKLdapResultTypeConnect;
+   ldap        = [data retain];
+   error       = [[LKError alloc] init];
+   messageType = LKLdapMessageTypeConnect;
 
    // server information
    ldapURI             = [ldap.ldapURI retain];
@@ -199,13 +199,13 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
    pool = [[NSAutoreleasePool alloc] init];
 
-   switch(resultType)
+   switch(messageType)
    {
-      case LKLdapResultTypeConnect:
+      case LKLdapMessageTypeConnect:
       [self connect];
       break;
 
-      case LKLdapResultTypeUnbind:
+      case LKLdapMessageTypeUnbind:
       [self unbind];
       self.error.errorTitle = @"LDAP unbind";
       break;
@@ -328,7 +328,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
       if (!(timeout.tv_sec))
          timeoutp = NULL;
 
-      // performs search against known result
+      // performs search against known entry
       err = ldap_search_ext_s(
          ldap.ld,                    // LDAP            * ld
          "",                         // char            * base

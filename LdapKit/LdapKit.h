@@ -39,8 +39,8 @@
 
 #import <LdapKit/LKEnumerations.h>
 #import <LdapKit/models/LKError.h>
-#import <LdapKit/models/LKResult.h>
 #import <LdapKit/models/LKLdap.h>
+#import <LdapKit/models/LKMessage.h>
 
 #if TARGET_OS_IPHONE
 #endif
