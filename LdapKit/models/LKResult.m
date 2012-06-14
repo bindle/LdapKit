@@ -41,7 +41,7 @@
 #include <sys/socket.h>
 
 #import <LdapKit/models/LKError.h>
-#import <LdapKit/models/LKSession.h>
+#import <LdapKit/models/LKLdap.h>
 
 
 #pragma mark - Data Types
@@ -92,7 +92,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (void) dealloc
 {
    // server state
-   [session release];
+   [ldap    release];
    [error   release];
 
    // server information
@@ -124,7 +124,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
-- (id) initLdapInitialzieWithSession:(LKSession *)data
+- (id) initLdapInitialzieWithSession:(LKLdap *)data
 {
    NSAutoreleasePool * pool;
 
@@ -135,29 +135,30 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    pool = [[NSAutoreleasePool alloc] init];
 
    // state information
-   session    = [data retain];
+   ldap       = [data retain];
    error      = [[LKError alloc] init];
    resultType = LKLdapResultTypeConnect;
 
    // server information
-   ldapURI             = [session.ldapURI retain];
-   ldapScheme          = session.ldapScheme;
-   ldapProtocolVersion = session.ldapProtocolVersion;
+   ldapURI             = [ldap.ldapURI retain];
+   ldapScheme          = ldap.ldapScheme;
+   ldapProtocolVersion = ldap.ldapProtocolVersion;
 
    // encryption information
-   ldapEncryptionScheme  = session.ldapEncryptionScheme;
-   ldapCACertificateFile = [session.ldapCACertificateFile retain];
+   ldapEncryptionScheme  = ldap.ldapEncryptionScheme;
+   ldapCACertificateFile = [ldap.ldapCACertificateFile retain];
 
    // timeout information
-   ldapSearchTimeout  = session.ldapSearchTimeout;
-   ldapNetworkTimeout = session.ldapNetworkTimeout;
+   ldapSizeLimit      = ldap.ldapSizeLimit;
+   ldapSearchTimeout  = ldap.ldapSearchTimeout;
+   ldapNetworkTimeout = ldap.ldapNetworkTimeout;
 
    // authentication information
-   ldapBindMethod        = session.ldapBindMethod;
-   ldapBindWho           = [session.ldapBindWho retain];
-   ldapBindCredentials   = [session.ldapBindCredentials retain];
-   ldapBindSaslMechanism = [session.ldapBindSaslMechanism retain];;
-   ldapBindSaslRealm     = [session.ldapBindSaslRealm retain];
+   ldapBindMethod        = ldap.ldapBindMethod;
+   ldapBindWho           = [ldap.ldapBindWho retain];
+   ldapBindCredentials   = [ldap.ldapBindCredentials retain];
+   ldapBindSaslMechanism = [ldap.ldapBindSaslMechanism retain];;
+   ldapBindSaslRealm     = [ldap.ldapBindSaslRealm retain];
 
    [pool release];
 
@@ -240,42 +241,42 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    };
 
    // obtain the lock for LDAP handle
-   [session.ldLock lock];
+   [ldap.ldLock lock];
 
    // initialize LDAP handle
    if ((ld = [self connectInitialize]) == NULL)
    {
-      [session.ldLock unlock];
+      [ldap.ldLock unlock];
       return(error.isSuccessful);
    };
 
    // starts TLS session
    if ((ld = [self connectStartTLS:ld]) == NULL)
    {
-      [session.ldLock unlock];
+      [ldap.ldLock unlock];
       return(error.isSuccessful);
    };
 
    // binds to LDAP
    if ((ld = [self connectBind:ld]) == NULL)
    {
-      [session.ldLock unlock];
+      [ldap.ldLock unlock];
       return(error.isSuccessful);
    };
 
    // finish configuring connection
    if ((ld = [self connectFinish:ld]) == NULL)
    {
-      [session.ldLock unlock];
+      [ldap.ldLock unlock];
       return(error.isSuccessful);
    };
 
    // saves LDAP handle
-   session.ld          = ld;
-   session.isConnected = YES;
+   ldap.ld          = ld;
+   ldap.isConnected = YES;
 
    // unlocks LDAP handle
-   [session.ldLock unlock];
+   [ldap.ldLock unlock];
 
    return(error.isSuccessful);
 }
@@ -302,19 +303,19 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    isConnected = YES;
 
    // obtain the lock for LDAP handle
-   [session.ldLock lock];
+   [ldap.ldLock lock];
 
    // assume session is correct if reporting not connected
-   if (!(session.isConnected))
+   if (!(ldap.isConnected))
    {
       isConnected = NO;
-      if ((session.ld))
-         ldap_unbind_ext_s(session.ld, NULL, NULL);
-      session.ld  = NULL;
+      if ((ldap.ld))
+         ldap_unbind_ext_s(ldap.ld, NULL, NULL);
+      ldap.ld  = NULL;
    }
 
    // verify LDAP handle exists
-   else if (!(session.ld))
+   else if (!(ldap.ld))
       isConnected = NO;
 
    // test connection with simple LDAP query
@@ -322,14 +323,14 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    {
       // calculates search timeout
       memset(&timeout, 0, sizeof(struct timeval));
-      timeout.tv_sec  = session.ldapSearchTimeout;
+      timeout.tv_sec  = ldapSearchTimeout;
       timeoutp        = &timeout;
       if (!(timeout.tv_sec))
          timeoutp = NULL;
 
       // performs search against known result
       err = ldap_search_ext_s(
-         session.ld,                 // LDAP            * ld
+         ldap.ld,                    // LDAP            * ld
          "",                         // char            * base
          LDAP_SCOPE_BASE,            // int               scope
          "(objectclass=*)",          // char            * filter
@@ -361,7 +362,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    };
 
    // release lock for LDAP handle
-   [session.ldLock unlock];
+   [ldap.ldLock unlock];
 
    if (!(isConnected))
    {
@@ -381,19 +382,19 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    error.errorTitle = @"LDAP Unbind";
 
    // locks LDAP handle
-   [session.ldLock lock];
+   [ldap.ldLock lock];
 
    // clears LDAP information
-   @synchronized(session)
+   @synchronized(ldap)
    {
-      if ((session.ld))
-         ldap_unbind_ext(session.ld, NULL, NULL);
-      session.ld          = NULL;
-      session.isConnected = NO;
+      if ((ldap.ld))
+         ldap_unbind_ext(ldap.ld, NULL, NULL);
+      ldap.ld          = NULL;
+      ldap.isConnected = NO;
    };
 
    // unlocks LDAP handle
-   [session.ldLock unlock];
+   [ldap.ldLock unlock];
 
    return(self.error.isSuccessful);
 }
@@ -538,11 +539,11 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    [error resetErrorWithTitle:@"LDAP initialize"];
 
    // initialize LDAP handle
-   err = ldap_initialize(&ld, [session.ldapURI UTF8String]);
+   err = ldap_initialize(&ld, [ldapURI UTF8String]);
    NSAssert((err == LDAP_SUCCESS), @"ldap_initialize(): %s", ldap_err2string(err));
 
    // set LDAP protocol version
-   opt = session.ldapProtocolVersion;
+   opt = ldapProtocolVersion;
    err = ldap_set_option(ld, LDAP_OPT_PROTOCOL_VERSION, &opt);
    if (err != LDAP_SUCCESS)
    {
@@ -553,7 +554,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
    // set network timout
    timeout.tv_usec = 0;
-   timeout.tv_sec  = session.ldapNetworkTimeout;
+   timeout.tv_sec  = ldapNetworkTimeout;
    if (timeout.tv_sec < 1)
       timeout.tv_sec = -1;
    err = ldap_set_option(ld, LDAP_OPT_NETWORK_TIMEOUT, &timeout);
@@ -565,7 +566,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    };
 
    // set LDAP search timout
-   opt = session.ldapSearchTimeout;
+   opt = ldapSearchTimeout;
    err = ldap_set_option(ld, LDAP_OPT_TIMELIMIT, &opt);
    if (err != LDAP_SUCCESS)
    {
@@ -575,7 +576,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    };
 
    // set LDAP search size limit
-   opt = session.ldapSizeLimit;
+   opt = ldapSizeLimit;
    err = ldap_set_option(ld, LDAP_OPT_SIZELIMIT, &opt);
    if (err != LDAP_SUCCESS)
    {
@@ -585,7 +586,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    };
 
    // set SSL/TLS CA cert file
-   str = [session.ldapCACertificateFile UTF8String];
+   str = [ldapCACertificateFile UTF8String];
    err = ldap_set_option(NULL, LDAP_OPT_X_TLS_CACERTFILE, (void *)str);
    if (err != LDAP_SUCCESS)
    {
@@ -626,14 +627,14 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    [error resetErrorWithTitle:@"LDAP Start TLS"];
 
    // checks scheme
-   if (session.ldapScheme == LKLdapProtocolSchemeLDAPS)
+   if (ldapScheme == LKLdapProtocolSchemeLDAPS)
       return(ld);
 
-   if ( (session.ldapEncryptionScheme != LKLdapEncryptionSchemeAttemptTLS ) &&
-        (session.ldapEncryptionScheme != LKLdapEncryptionSchemeTLS) )
+   if ( (ldapEncryptionScheme != LKLdapEncryptionSchemeAttemptTLS ) &&
+        (ldapEncryptionScheme != LKLdapEncryptionSchemeTLS) )
       return(ld);
 
-   switch(session.ldapEncryptionScheme)
+   switch(ldapEncryptionScheme)
    {
       case LKLdapEncryptionSchemeSSL:
          opt = LDAP_OPT_X_TLS_HARD;
@@ -649,7 +650,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
       case LKLdapEncryptionSchemeAttemptTLS:
       case LKLdapEncryptionSchemeTLS:
          err = ldap_start_tls_s(ld, NULL, NULL);
-         if ((err != LDAP_SUCCESS) && (session.ldapEncryptionScheme != LKLdapEncryptionSchemeAttemptTLS))
+         if ((err != LDAP_SUCCESS) && (ldapEncryptionScheme != LKLdapEncryptionSchemeAttemptTLS))
          {
             ldap_get_option(ld, LDAP_OPT_DIAGNOSTIC_MESSAGE, (void*)&errmsg);
             self.error = [LKError errorWithTitle:@"LDAP TLS" code:err diagnostics:[NSString stringWithUTF8String:errmsg]];

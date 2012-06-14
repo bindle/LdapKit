@@ -32,7 +32,7 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LdapKit/LKResult.h - manges a connection to a remote directory server
+ *  LdapKit/LKLdap.h - manges a connection to a remote directory server
  */
 
 #import <Foundation/Foundation.h>
@@ -40,7 +40,7 @@
 
 @class LKResult;
 
-@interface LKSession : NSObject
+@interface LKLdap : NSObject
 {
    // server state
    LDAP                   * ld;

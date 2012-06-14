@@ -51,13 +51,13 @@ typedef enum ldap_kit_ldap_result_type LKLdapResultType;
 
 
 @class LKError;
-@class LKSession;
+@class LKLdap;
 
 
 @interface LKResult : NSOperation
 {
    // state information
-   LKSession              * session;
+   LKLdap                 * ldap;
    LKError                * error;
    LKLdapResultType         resultType;
 
@@ -71,6 +71,7 @@ typedef enum ldap_kit_ldap_result_type LKLdapResultType;
    NSString               * ldapCACertificateFile;
 
    // timeout information
+   NSInteger                ldapSizeLimit;
    NSInteger                ldapSearchTimeout;
    NSInteger                ldapNetworkTimeout;
 
@@ -95,6 +96,6 @@ typedef enum ldap_kit_ldap_result_type LKLdapResultType;
 @property (nonatomic, retain)   id                       object;
 
 /// @name Object Management Methods
-- (id) initLdapInitialzieWithSession:(LKSession *)session;
+- (id) initLdapInitialzieWithSession:(LKLdap *)session;
 
 @end

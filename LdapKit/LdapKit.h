@@ -40,7 +40,7 @@
 #import <LdapKit/LKEnumerations.h>
 #import <LdapKit/models/LKError.h>
 #import <LdapKit/models/LKResult.h>
-#import <LdapKit/models/LKSession.h>
+#import <LdapKit/models/LKLdap.h>
 
 #if TARGET_OS_IPHONE
 #endif

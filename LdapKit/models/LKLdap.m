@@ -32,12 +32,12 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /*
- *  LdapKit/LKResult.m - manges a connection to a remote directory server
+ *  LdapKit/LKLdap.m - manges a connection to a remote directory server
  */
-#import "LKSession.h"
+#import "LKLdap.h"
 
 
-@interface LKSession ()
+@interface LKLdap ()
 
 /// @name Manages internal state
 - (void) calculateLdapURL;
@@ -45,7 +45,7 @@
 @end
 
 
-@implementation LKSession
+@implementation LKLdap
 
 // server state
 @synthesize ld;

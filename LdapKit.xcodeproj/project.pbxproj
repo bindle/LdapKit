@@ -25,13 +25,13 @@
 		A0103DCB1587849500183DC9 /* LKError.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC51587849500183DC9 /* LKError.m */; };
 		A0103DCC1587849500183DC9 /* LKResult.h in Headers */ = {isa = PBXBuildFile; fileRef = A0103DC61587849500183DC9 /* LKResult.h */; };
 		A0103DCD1587849500183DC9 /* LKResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC71587849500183DC9 /* LKResult.m */; };
-		A0103DCE1587849500183DC9 /* LKSession.h in Headers */ = {isa = PBXBuildFile; fileRef = A0103DC81587849500183DC9 /* LKSession.h */; };
-		A0103DCF1587849500183DC9 /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC91587849500183DC9 /* LKSession.m */; };
+		A0103DCE1587849500183DC9 /* LKLdap.h in Headers */ = {isa = PBXBuildFile; fileRef = A0103DC81587849500183DC9 /* LKLdap.h */; };
+		A0103DCF1587849500183DC9 /* LKLdap.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC91587849500183DC9 /* LKLdap.m */; };
 		A0103DD2158784A100183DC9 /* LdapKit.h in Headers */ = {isa = PBXBuildFile; fileRef = A0103DD0158784A100183DC9 /* LdapKit.h */; };
 		A0103DD3158784A100183DC9 /* LKEnumerations.h in Headers */ = {isa = PBXBuildFile; fileRef = A0103DD1158784A100183DC9 /* LKEnumerations.h */; };
 		A0103E231587878900183DC9 /* LKError.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC51587849500183DC9 /* LKError.m */; };
 		A0103E241587878900183DC9 /* LKResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC71587849500183DC9 /* LKResult.m */; };
-		A0103E251587878900183DC9 /* LKSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC91587849500183DC9 /* LKSession.m */; };
+		A0103E251587878900183DC9 /* LKLdap.m in Sources */ = {isa = PBXBuildFile; fileRef = A0103DC91587849500183DC9 /* LKLdap.m */; };
 		A0103E281587880900183DC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103E271587880900183DC9 /* Foundation.framework */; };
 		A0103E291587882C00183DC9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DF4158784D300183DC9 /* libcrypto.a */; };
 		A0103E2A1587882C00183DC9 /* liblber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0103DE8158784C200183DC9 /* liblber.a */; };
@@ -112,8 +112,8 @@
 		A0103DC51587849500183DC9 /* LKError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKError.m; sourceTree = "<group>"; };
 		A0103DC61587849500183DC9 /* LKResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKResult.h; sourceTree = "<group>"; };
 		A0103DC71587849500183DC9 /* LKResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKResult.m; sourceTree = "<group>"; };
-		A0103DC81587849500183DC9 /* LKSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSession.h; sourceTree = "<group>"; };
-		A0103DC91587849500183DC9 /* LKSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSession.m; sourceTree = "<group>"; };
+		A0103DC81587849500183DC9 /* LKLdap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLdap.h; sourceTree = "<group>"; };
+		A0103DC91587849500183DC9 /* LKLdap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLdap.m; sourceTree = "<group>"; };
 		A0103DD0158784A100183DC9 /* LdapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LdapKit.h; sourceTree = "<group>"; };
 		A0103DD1158784A100183DC9 /* LKEnumerations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEnumerations.h; sourceTree = "<group>"; };
 		A0103DD4158784C100183DC9 /* openldap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openldap.xcodeproj; path = ../iOSPorts/ports/database/openldap/openldap.xcodeproj; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 				A0103DC51587849500183DC9 /* LKError.m */,
 				A0103DC61587849500183DC9 /* LKResult.h */,
 				A0103DC71587849500183DC9 /* LKResult.m */,
-				A0103DC81587849500183DC9 /* LKSession.h */,
-				A0103DC91587849500183DC9 /* LKSession.m */,
+				A0103DC81587849500183DC9 /* LKLdap.h */,
+				A0103DC91587849500183DC9 /* LKLdap.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -298,7 +298,7 @@
 			files = (
 				A0103DCA1587849500183DC9 /* LKError.h in Headers */,
 				A0103DCC1587849500183DC9 /* LKResult.h in Headers */,
-				A0103DCE1587849500183DC9 /* LKSession.h in Headers */,
+				A0103DCE1587849500183DC9 /* LKLdap.h in Headers */,
 				A0103DD2158784A100183DC9 /* LdapKit.h in Headers */,
 				A0103DD3158784A100183DC9 /* LKEnumerations.h in Headers */,
 				A011F65C1587ED76003BFEC5 /* LKBerValue.h in Headers */,
@@ -465,7 +465,7 @@
 			files = (
 				A0103E231587878900183DC9 /* LKError.m in Sources */,
 				A0103E241587878900183DC9 /* LKResult.m in Sources */,
-				A0103E251587878900183DC9 /* LKSession.m in Sources */,
+				A0103E251587878900183DC9 /* LKLdap.m in Sources */,
 				A011F65F1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,7 +476,7 @@
 			files = (
 				A0103DCB1587849500183DC9 /* LKError.m in Sources */,
 				A0103DCD1587849500183DC9 /* LKResult.m in Sources */,
-				A0103DCF1587849500183DC9 /* LKSession.m in Sources */,
+				A0103DCF1587849500183DC9 /* LKLdap.m in Sources */,
 				A011F65E1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
