@@ -82,6 +82,17 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
    NSString               * ldapBindSaslMechanism;
    NSString               * ldapBindSaslRealm;
 
+   // search information
+   NSArray                * searchDnList;
+   NSString               * searchFilter;
+   NSArray                * searchAttributes;
+   BOOL                     searchAttributesOnly;
+   LKLdapSearchScope        searchScope;
+
+   // results
+   NSMutableArray         * referrals;
+   NSMutableArray         * entries;
+
    // client information
    NSInteger                tag;
    id                       object;
@@ -90,6 +101,9 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 /// @name state information
 @property (nonatomic, readonly) LKError                * error;
 @property (nonatomic, readonly) LKLdapMessageType        messageType;
+
+/// @name results
+@property (nonatomic, readonly) NSArray                * referrals;
 
 /// @name client information
 @property (nonatomic, assign)   NSInteger                tag;

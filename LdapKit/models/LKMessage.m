@@ -40,6 +40,7 @@
 #import <sasl/sasl.h>
 #include <sys/socket.h>
 
+#import "LKEntry.h"
 #import "LKError.h"
 #import "LKLdapCategory.h"
 
@@ -66,7 +67,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 /// @name LDAP tasks
 - (BOOL) bind;
-//- (BOOL) search;
+- (BOOL) search;
 - (BOOL) testConnection;
 - (BOOL) unbind;
 
@@ -75,6 +76,10 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (LDAP *) bindFinish:(LDAP *)ld;
 - (LDAP *) bindInitialize;
 - (LDAP *) bindStartTLS:(LDAP *)ld;
+
+/// @name C functions
+int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * sin);
+void free_attribute_list(char *** attributesp);
 
 @end
 
@@ -109,6 +114,14 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    [ldapBindCredentials       release];
    [ldapBindSaslMechanism     release];
    [ldapBindSaslRealm         release];
+
+   // search information
+   [searchDnList     release];
+   [searchFilter     release];
+   [searchAttributes release];
+
+   // results
+   [referrals release];
 
    // client information
    [object release];
@@ -148,6 +161,42 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
+- (id) initSearchWithSession:(LKLdap *)data baseDN:(NSString *)dn
+       scope:(LKLdapSearchScope)scope filter:(NSString *)filter
+       attributes:(NSArray *)attributes attributesOnly:(BOOL)attributesOnly
+{
+   NSArray * dnList;
+   dnList = [[NSArray alloc] initWithObjects:dn, nil];
+   self = [self initSearchWithSession:data baseDnList:dnList scope:scope
+      filter:filter attributes:attributes attributesOnly:attributesOnly];
+   [dnList release];
+   return(self);
+}
+
+- (id) initSearchWithSession:(LKLdap *)data baseDnList:(NSArray *)dnList
+       scope:(LKLdapSearchScope)scope filter:(NSString *)filter
+       attributes:(NSArray *)attributes attributesOnly:(BOOL)attributesOnly
+{
+   // initialize super
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // state information
+   session     = [data retain];
+   error       = [[LKError alloc] init];
+   messageType = LKLdapMessageTypeSearch;
+
+   // search information
+   searchDnList         = [[NSArray alloc]  initWithArray:dnList copyItems:YES];
+   searchFilter         = [[NSString alloc] initWithString:filter];
+   searchAttributes     = [[NSArray alloc]  initWithArray:attributes copyItems:YES];
+   searchAttributesOnly = attributesOnly;
+   searchScope          = scope;
+
+   return(self);
+}
+
+
 - (id) initUnbindWithSession:(LKLdap *)data
 {
    // initialize super
@@ -182,6 +231,17 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
       error = [anError retain];
    };
    return;
+}
+
+
+- (NSArray *) referrals
+{
+   @synchronized(self)
+   {
+      if (!(referrals))
+         return(nil);
+      return([NSArray arrayWithArray:referrals]);
+   };
 }
 
 
@@ -243,6 +303,11 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
       [self bind];
       break;
 
+      case LKLdapMessageTypeSearch:
+      [self search];
+      self.error.errorTitle = @"LDAP Search";
+      break;
+
       case LKLdapMessageTypeUnbind:
       [self unbind];
       self.error.errorTitle = @"LDAP unbind";
@@ -282,42 +347,236 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    [self copySessionInformation];
 
    // obtain the lock for LDAP handle
-   [session.ldLock lock];
-
-   // initialize LDAP handle
-   if ((ld = [self bindInitialize]) == NULL)
+   @synchronized(session)
    {
-      [session.ldLock unlock];
+      // initialize LDAP handle
+      if ((ld = [self bindInitialize]) == NULL)
+         return(error.isSuccessful);
+
+      // starts TLS session
+      if ((ld = [self bindStartTLS:ld]) == NULL)
+         return(error.isSuccessful);
+
+      // binds to LDAP
+      if ((ld = [self bindAuthenticate:ld]) == NULL)
+         return(error.isSuccessful);
+
+      // finish configuring connection
+      if ((ld = [self bindFinish:ld]) == NULL)
+         return(error.isSuccessful);
+
+      // saves LDAP handle
+      session.ld          = ld;
+      session.isConnected = YES;
+   };
+
+   return(error.isSuccessful);
+}
+
+
+- (BOOL) search
+{
+   NSString        * baseDN;
+   size_t            len;
+   size_t            x;
+   size_t            y;
+   char           ** attrs;
+   int               msgtype;
+   int               msgid;
+   int               err;
+   char            * errmsg;
+   BOOL              isConnected;
+   struct timeval    timeout;
+   struct timeval    timelimit;
+   struct timeval  * timelimitp;
+   NSString        * attribute;
+   char           ** refs;
+   LDAPMessage     * res;
+   LDAPMessage     * res_next;
+   LKEntry         * entry;
+   char            * dn;
+
+   // reset errors
+   [error resetErrorWithTitle:@"LDAP Search"];
+
+   // verifies session is connected to LDAP
+   isConnected = [self bind];
+   if (!(isConnected))
+      return(error.isSuccessful);
+   if ((self.isCancelled))
+   {
+      error.errorCode = LKErrorCodeCancelled;
       return(error.isSuccessful);
    };
 
-   // starts TLS session
-   if ((ld = [self bindStartTLS:ld]) == NULL)
+   // sets limits
+   ldapSizeLimit     = session.ldapSizeLimit;
+   timelimit.tv_sec  = session.ldapSearchTimeout;
+   timelimit.tv_usec = 0;
+   timelimitp        = &timelimit;
+   if (!(timelimit.tv_sec))
+      timelimitp = NULL;
+   timeout.tv_sec    = 0;
+   timeout.tv_usec   = 250000; // 0.25 seconds
+
+   // allocates an array to copy UTF8 strings from searchAttributes
+   attrs = NULL;
+   if (([searchAttributes count]))
    {
-      [session.ldLock unlock];
-      return(error.isSuccessful);
+      len = [searchAttributes count];
+      if (!(attrs = malloc(sizeof(char *)*(len+1))))
+      {
+         error.errorCode = LKErrorCodeMemory;
+         return(error.isSuccessful);
+      };
+      y = 0;
+      for(x = 0; x < len; x++)
+      {
+         attribute = [searchAttributes objectAtIndex:x];
+         if (([attribute isKindOfClass:[NSString class]]))
+         {
+            attrs[y] = strdup([attribute UTF8String]);
+            y++;
+         };
+      };
+      attrs[y] = NULL;
    };
 
-   // binds to LDAP
-   if ((ld = [self bindAuthenticate:ld]) == NULL)
+   // loops through DN list
+   for(baseDN in searchDnList)
    {
-      [session.ldLock unlock];
-      return(error.isSuccessful);
+      // initiates search
+      @synchronized(session)
+      {
+         err = ldap_search_ext(
+            session.ld,                      // LDAP            * ld
+            [baseDN UTF8String],             // char            * base
+            searchScope,                     // int               scope
+            [searchFilter UTF8String],       // char            * filter
+            attrs,                           // char            * attrs[]
+            (int)searchAttributesOnly,       // int               attrsonly
+            NULL,                            // LDAPControl    ** serverctrls
+            NULL,                            // LDAPControl    ** clientctrls
+            timelimitp,                      // struct timeval  * timeout
+            ldapSizeLimit,                   // int               sizelimit
+            &msgid                           // int             * msgidp
+         );
+      };
+
+      // checks for error
+      if (err != LDAP_SUCCESS)
+      {
+         free_attribute_list(&attrs);
+         error.errorCode = err;
+         return(error.isSuccessful);
+      };
+
+      // loops while waiting for results
+      msgtype = 0;
+      while(msgtype < 1)
+      {
+         // verifies operation has not been cancelled
+         if ((self.isCancelled))
+         {
+            @synchronized(session)
+            {
+               ldap_abandon_ext(session.ld, msgid, NULL, NULL);
+            };
+            error.errorCode = LKErrorCodeCancelled;
+            free_attribute_list(&attrs);
+            return(error.isSuccessful);
+         };
+
+         // checks for result
+         @synchronized(session)
+         {
+            msgtype = ldap_result(session.ld, msgid, 1, &timeout, &res);
+            switch(msgtype)
+            {
+               // encountered an error
+               case -1:
+               ldap_get_option(session.ld, LDAP_OPT_RESULT_CODE, &err);
+               error.errorTitle       = @"LDAP Result";
+               error.errorCode        = err;
+               free_attribute_list(&attrs);
+               return(error.isSuccessful);
+
+               // timeout was exceeded
+               case 0:
+               break;
+
+               // result was returned
+               default:
+               break;
+            };
+         };
+         usleep(250000); // 0.25 seconds
+      };
+
+      // checks for error
+      @synchronized(session)
+      {
+         ldap_parse_result(session.ld, res, &err, NULL, &errmsg, &refs, NULL, 0);
+      };
+
+      // checks for referrals
+      if ((refs))
+      {
+         @synchronized(self)
+         {
+            if (!(referrals))
+               referrals = [[NSMutableArray alloc] initWithCapacity:1];
+            for(x = 0; refs[x]; x++)
+               [referrals addObject:[NSString stringWithUTF8String:refs[x]]];
+         };
+         ldap_memvfree((void **)refs);
+      };
+
+      // checks for error from results
+      if (err != LDAP_SUCCESS)
+      {
+         error.errorTitle       = @"LDAP Result";
+         error.errorCode        = err;
+         if ((errmsg))
+            error.errorMessage = [NSString stringWithUTF8String:errmsg];
+         ldap_memfree(errmsg);
+         ldap_memfree(res);
+         free_attribute_list(&attrs);
+         return(error.isSuccessful);
+      };
+
+      // allocates memory for entries
+      @synchronized(self)
+      {
+         if (!(entries))
+            entries = [[NSMutableArray alloc] initWithCapacity:1];
+      };
+
+      // verify an entry was found
+      @synchronized(session)
+      {
+         // verify an entry was found
+         if (!(ldap_count_entries(session.ld, res)))
+            continue;
+
+         // loops through entries
+         res_next = ldap_first_entry(session.ld, res);
+         while((res_next))
+         {
+            // retrieves DN and creates record
+            dn = ldap_get_dn(session.ld, res_next);
+            entry = [[[LKEntry alloc] initWithDn:dn] autorelease];
+            ldap_memfree(dn);
+
+            // loops through attributes and adds to record
+#warning finish the LDAP search
+#warning Recommend splitting this method into multiple sub tasks
+         };
+      };
    };
 
-   // finish configuring connection
-   if ((ld = [self bindFinish:ld]) == NULL)
-   {
-      [session.ldLock unlock];
-      return(error.isSuccessful);
-   };
-
-   // saves LDAP handle
-   session.ld          = ld;
-   session.isConnected = YES;
-
-   // unlocks LDAP handle
-   [session.ldLock unlock];
+   // frees memory
+   free_attribute_list(&attrs);
 
    return(error.isSuccessful);
 }
@@ -344,66 +603,64 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    isConnected = YES;
 
    // obtain the lock for LDAP handle
-   [session.ldLock lock];
-
-   // assume session is correct if reporting not connected
-   if (!(session.isConnected))
+   @synchronized(session)
    {
-      isConnected = NO;
-      if ((session.ld))
-         ldap_unbind_ext_s(session.ld, NULL, NULL);
-      session.ld  = NULL;
-   }
-
-   // verify LDAP handle exists
-   else if (!(session.ld))
-      isConnected = NO;
-
-   // test connection with simple LDAP query
-   else
-   {
-      // calculates search timeout
-      memset(&timeout, 0, sizeof(struct timeval));
-      timeout.tv_sec  = ldapSearchTimeout;
-      timeoutp        = &timeout;
-      if (!(timeout.tv_sec))
-         timeoutp = NULL;
-
-      // performs search against known entry
-      err = ldap_search_ext_s(
-         session.ld,                 // LDAP            * ld
-         "",                         // char            * base
-         LDAP_SCOPE_BASE,            // int               scope
-         "(objectclass=*)",          // char            * filter
-         attrs,                      // char            * attrs[]
-         1,                          // int               attrsonly
-         NULL,                       // LDAPControl    ** serverctrls
-         NULL,                       // LDAPControl    ** clientctrls
-         timeoutp,                   // struct timeval  * timeout
-         2,                          // int               sizelimit
-         &res                        // LDAPMessage    ** res
-      );
-
-      // frees result if one was returned (result is not needed)
-      if (err == LDAP_SUCCESS)
-         ldap_msgfree(res);
-
-      // interpret error code
-      switch(err)
+      // assume session is correct if reporting not connected
+      if (!(session.isConnected))
       {
-         case LDAP_SERVER_DOWN:
-         case LDAP_TIMEOUT:
-         case LDAP_CONNECT_ERROR:
-         isConnected = NO;
-         break;
+      isConnected = NO;
+         if ((session.ld))
+            ldap_unbind_ext_s(session.ld, NULL, NULL);
+         session.ld  = NULL;
+      }
 
-         default:
-         break;
+      // verify LDAP handle exists
+      else if (!(session.ld))
+         isConnected = NO;
+
+      // test connection with simple LDAP query
+      else
+      {
+         // calculates search timeout
+         memset(&timeout, 0, sizeof(struct timeval));
+         timeout.tv_sec  = ldapSearchTimeout;
+         timeoutp        = &timeout;
+         if (!(timeout.tv_sec))
+            timeoutp = NULL;
+
+         // performs search against known entry
+         err = ldap_search_ext_s(
+            session.ld,                 // LDAP            * ld
+            "",                         // char            * base
+            LDAP_SCOPE_BASE,            // int               scope
+            "(objectclass=*)",          // char            * filter
+            attrs,                      // char            * attrs[]
+            1,                          // int               attrsonly
+            NULL,                       // LDAPControl    ** serverctrls
+            NULL,                       // LDAPControl    ** clientctrls
+            timeoutp,                   // struct timeval  * timeout
+            2,                          // int               sizelimit
+            &res                        // LDAPMessage    ** res
+         );
+
+         // frees result if one was returned (result is not needed)
+         if (err == LDAP_SUCCESS)
+            ldap_msgfree(res);
+
+         // interpret error code
+         switch(err)
+         {
+            case LDAP_SERVER_DOWN:
+            case LDAP_TIMEOUT:
+            case LDAP_CONNECT_ERROR:
+            isConnected = NO;
+            break;
+
+            default:
+            break;
+         };
       };
    };
-
-   // release lock for LDAP handle
-   [session.ldLock unlock];
 
    if (!(isConnected))
    {
@@ -422,9 +679,6 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
    [error resetError];
    error.errorTitle = @"LDAP Unbind";
 
-   // locks LDAP handle
-   [session.ldLock lock];
-
    // clears LDAP information
    @synchronized(session)
    {
@@ -433,9 +687,6 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
       session.ld          = NULL;
       session.isConnected = NO;
    };
-
-   // unlocks LDAP handle
-   [session.ldLock unlock];
 
    return(self.error.isSuccessful);
 }
@@ -777,6 +1028,19 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    return(LDAP_SUCCESS);
+}
+
+
+void free_attribute_list(char *** attributesp)
+{
+   size_t x;
+   if (!(*attributesp))
+      return;
+   for(x = 0; (*attributesp)[x]; x++)
+      free((*attributesp)[x]);
+   free(*attributesp);
+   *attributesp = NULL;
+   return;
 }
 
 @end

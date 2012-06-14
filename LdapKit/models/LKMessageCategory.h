@@ -41,6 +41,12 @@
 
 /// @name Object Management Methods
 - (id) initBindWithSession:(LKLdap *)session;
+- (id) initSearchWithSession:(LKLdap *)session baseDN:(NSString *)dn
+       scope:(LKLdapSearchScope)scope filter:(NSString *)filter
+       attributes:(NSArray *)attributes attributesOnly:(BOOL)attributesOnly;
+- (id) initSearchWithSession:(LKLdap *)session baseDnList:(NSArray *)dnList
+       scope:(LKLdapSearchScope)scope filter:(NSString *)filter
+       attributes:(NSArray *)attributes attributesOnly:(BOOL)attributesOnly;
 - (id) initUnbindWithSession:(LKLdap *)session;
 
 @end

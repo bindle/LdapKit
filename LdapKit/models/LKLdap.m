@@ -53,7 +53,6 @@
 // server state
 @synthesize ld;
 @synthesize isConnected;
-@synthesize ldLock;
 @synthesize queue;
 
 // server information
@@ -76,14 +75,11 @@
 - (void) dealloc
 {
    // unbind from LDAP server
-   [ldLock lock];
    if ((ld))
       ldap_unbind_ext(ld, NULL, NULL);
    ld = NULL;
-   [ldLock unlock];
 
    // server state
-   [ldLock     release];
    [queue      release];
 
    // server information
@@ -113,7 +109,6 @@
       return(self);
 
    // server state
-   ldLock  = [[NSLock alloc] init];
    queue   = [[NSOperationQueue alloc] init];
    queue.maxConcurrentOperationCount = 1;
 
@@ -460,6 +455,38 @@
    {
       message = [[LKMessage alloc] initBindWithSession:self];
       message.queuePriority = NSOperationQueuePriorityHigh;
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
+- (LKMessage *) searchBaseDN:(NSString *)dn scope:(LKLdapSearchScope)scope
+                filter:(NSString *)filter attributes:(NSArray *)attributes
+                attributesOnly:(BOOL)attributesOnly
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initSearchWithSession:self baseDN:dn
+                  scope:scope filter:filter attributes:attributes
+                  attributesOnly:attributesOnly];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
+- (LKMessage *) searchBaseDNList:(NSArray *)dnList scope:(LKLdapSearchScope)scope
+                filter:(NSString *)filter attributes:(NSArray *)attributes
+                attributesOnly:(BOOL)attributesOnly
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initSearchWithSession:self baseDnList:dnList
+                  scope:scope filter:filter attributes:attributes
+                  attributesOnly:attributesOnly];
       [queue addOperation:message];
       return([message autorelease]);
    };

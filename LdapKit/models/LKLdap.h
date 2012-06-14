@@ -44,7 +44,6 @@
 {
    // server state
    LDAP                   * ld;
-   NSLock                 * ldLock;
    NSOperationQueue       * queue;
    BOOL                     isConnected;
 
@@ -106,6 +105,12 @@
 
 /// @name LDAP operations
 - (LKMessage *) bind;
+- (LKMessage *) searchBaseDN:(NSString *)dn scope:(LKLdapSearchScope)scope
+                filter:(NSString *)filter attributes:(NSArray *)attributes
+                attributesOnly:(BOOL)attributesOnly;
+- (LKMessage *) searchBaseDNList:(NSArray *)dnList scope:(LKLdapSearchScope)scope
+                filter:(NSString *)filter attributes:(NSArray *)attributes
+                attributesOnly:(BOOL)attributesOnly;
 - (LKMessage *) unbind;
 
 @end

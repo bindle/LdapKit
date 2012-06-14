@@ -54,7 +54,7 @@
 @property (nonatomic, readonly) NSArray  * attributes;
 
 /// @name Object Management Methods
-- (id) initWithDn:(NSString *)entryDN;
+- (id) initWithDn:(const char *)entryDN;
 
 /// @name queries
 - (NSArray *) valuesForAttribute:(NSString *)attribute;

@@ -59,12 +59,12 @@
 }
 
 
-- (id) initWithDn:(NSString *)entryDN
+- (id) initWithDn:(const char *)entryDN
 {
    if ((self = [super init]) == nil)
       return(self);
 
-   dn = [[NSString alloc] initWithString:entryDN];
+   dn = [[NSString alloc] initWithUTF8String:entryDN];
 
    return(self);
 }
