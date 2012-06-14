@@ -370,10 +370,6 @@
 
    @synchronized(self)
    {
-      // verifies update is required
-      if ([uri localizedCaseInsensitiveCompare:ldapHost] == NSOrderedSame)
-         return;
-
       // sets LDAP scheme
       ldapScheme = newScheme;
 
