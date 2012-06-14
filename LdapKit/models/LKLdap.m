@@ -37,6 +37,9 @@
 #import "LKLdapCategory.h"
 
 
+#import "LKMessageCategory.h"
+
+
 @interface LKLdap ()
 
 /// @name Manages internal state
@@ -429,5 +432,21 @@
 
    return;
 }
+
+
+#pragma mark - LDAP operations
+
+- (LKMessage *) connect
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initLdapInitialzieWithSession:self];
+      message.queuePriority = NSOperationQueuePriorityHigh;
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
 
 @end

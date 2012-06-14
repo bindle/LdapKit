@@ -124,7 +124,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
-- (id) initLdapInitialzieWithSession:(LKLdap *)data
+- (id) initConnectWithSession:(LKLdap *)data
 {
    NSAutoreleasePool * pool;
 

@@ -103,4 +103,7 @@
 /// @name Object Management Methods
 - (id) initWithQueue:(NSOperationQueue *)queue;
 
+/// @name LDAP operations
+- (LKMessage *) connect;
+
 @end
