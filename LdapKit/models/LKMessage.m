@@ -34,7 +34,7 @@
 /*
  *  LdapKit/LKMessage.m returns results from LDAP operations.
  */
-#import "LKMessageCategory.h"
+#import "LKMessage.h"
 
 #import <signal.h>
 #import <sasl/sasl.h>
