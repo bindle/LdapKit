@@ -97,16 +97,4 @@ typedef enum ldap_kit_ldap_result_type LKLdapResultType;
 /// @name Object Management Methods
 - (id) initLdapInitialzieWithSession:(LKSession *)session;
 
-/// @name LDAP tasks
-- (BOOL) connect;
-//- (BOOL) search;
-- (BOOL) testConnection;
-- (BOOL) unbind;
-
-/// @name LDAP subtasks
-- (LDAP *) connectBind:(LDAP *)ld;
-- (LDAP *) connectFinish:(LDAP *)ld;
-- (LDAP *) connectInitialize;
-- (LDAP *) connectStartTLS:(LDAP *)ld;
-
 @end

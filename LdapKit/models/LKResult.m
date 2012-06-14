@@ -58,8 +58,20 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 @interface LKResult ()
 
-// state information
+// Getter/Setter methods
 - (void) setError:(LKError *)anError;
+
+/// @name LDAP tasks
+- (BOOL) connect;
+//- (BOOL) search;
+- (BOOL) testConnection;
+- (BOOL) unbind;
+
+/// @name LDAP subtasks
+- (LDAP *) connectBind:(LDAP *)ld;
+- (LDAP *) connectFinish:(LDAP *)ld;
+- (LDAP *) connectInitialize;
+- (LDAP *) connectStartTLS:(LDAP *)ld;
 
 @end
 
