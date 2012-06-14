@@ -41,5 +41,6 @@
 
 /// @name Object Management Methods
 - (id) initBindWithSession:(LKLdap *)session;
+- (id) initUnbindWithSession:(LKLdap *)session;
 
 @end

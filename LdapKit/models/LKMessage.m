@@ -166,6 +166,21 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 }
 
 
+- (id) initUnbindWithSession:(LKLdap *)data
+{
+   // initialize super
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // state information
+   ldap        = [data retain];
+   error       = [[LKError alloc] init];
+   messageType = LKLdapMessageTypeUnbind;
+
+   return(self);
+}
+
+
 #pragma mark - Getter/Setter methods
 
 - (LKError *) error

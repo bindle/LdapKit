@@ -449,4 +449,15 @@
 }
 
 
+- (LKMessage *) unbind
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initUnbindWithSession:self];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
 @end

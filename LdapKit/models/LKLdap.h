@@ -105,5 +105,6 @@
 
 /// @name LDAP operations
 - (LKMessage *) bind;
+- (LKMessage *) unbind;
 
 @end
