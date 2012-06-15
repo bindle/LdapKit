@@ -92,6 +92,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
    // results
    NSMutableArray         * referrals;
    NSMutableArray         * entries;
+   NSMutableArray         * matchedDNs;
 
    // client information
    NSInteger                tag;
@@ -103,7 +104,9 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 @property (nonatomic, readonly) LKLdapMessageType        messageType;
 
 /// @name results
+@property (nonatomic, readonly) NSArray                * entries;
 @property (nonatomic, readonly) NSArray                * referrals;
+@property (nonatomic, readonly) NSArray                * matchedDNs;
 
 /// @name client information
 @property (nonatomic, assign)   NSInteger                tag;
