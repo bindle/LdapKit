@@ -6,12 +6,13 @@ Priority
 ========
 
    General:
-   * IPv6 Support: LKSession and LKResult needs to be updated to properly
+   * IPv6 Support: LKLdap and LKMessage needs to be updated to properly
      process IPv6 addresses if an IPv6 address is specified as the host or
      in the LDAP URL.
+   * Add ability to retrieve search results are they are received from the
+     server.
 
    Documentation:
    * Finish README.
    * Finish documenting source code with appledoc tags.
    * Publish LDAP Kit docsets to github webpage.
-     
