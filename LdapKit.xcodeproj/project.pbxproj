@@ -175,7 +175,7 @@
 			name = iPhoneOS;
 			sourceTree = "<group>";
 		};
-		A0103DC31587849500183DC9 /* models */ = {
+		A0103DC31587849500183DC9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A011F65A1587ED76003BFEC5 /* LKBerValue.h */,
@@ -189,6 +189,7 @@
 				A0103DC61587849500183DC9 /* LKMessage.h */,
 				A0103DC71587849500183DC9 /* LKMessage.m */,
 			);
+			name = Models;
 			path = models;
 			sourceTree = "<group>";
 		};
@@ -236,6 +237,14 @@
 			name = MacOSX;
 			sourceTree = "<group>";
 		};
+		A086FA65158B29BF00EA0E6B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Categories;
+			path = categories;
+			sourceTree = "<group>";
+		};
 		A0CFA8031587829400EBEB32 = {
 			isa = PBXGroup;
 			children = (
@@ -274,7 +283,8 @@
 			children = (
 				A0103DD0158784A100183DC9 /* LdapKit.h */,
 				A0103DD1158784A100183DC9 /* LKEnumerations.h */,
-				A0103DC31587849500183DC9 /* models */,
+				A0103DC31587849500183DC9 /* Models */,
+				A086FA65158B29BF00EA0E6B /* Categories */,
 				A0CFA8141587829500EBEB32 /* Supporting Files */,
 			);
 			path = LdapKit;
