@@ -31,7 +31,7 @@
  *
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
-/**
+/*
  *  LdapKit/LKEntry.m  contains LDAP entry information
  */
 #import "LKEntry.h"
