@@ -42,6 +42,7 @@
 #include <sys/socket.h>
 
 #import "LKEntry.h"
+#import "LKEntryCategory.h"
 #import "LKError.h"
 #import "LKErrorCategory.h"
 #import "LKLdap.h"

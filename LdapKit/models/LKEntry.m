@@ -35,6 +35,7 @@
  *  LdapKit/LKEntry.m  contains LDAP entry information
  */
 #import "LKEntry.h"
+#import "LKEntryCategory.h"
 
 #import "LKBerValue.h"
 

@@ -52,6 +52,8 @@
 		A086FA6B158B307500EA0E6B /* LKLdapCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA69158B307500EA0E6B /* LKLdapCategory.h */; };
 		A086FA6D158B338400EA0E6B /* LKMessageCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6C158B338400EA0E6B /* LKMessageCategory.h */; };
 		A086FA6E158B338400EA0E6B /* LKMessageCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6C158B338400EA0E6B /* LKMessageCategory.h */; };
+		A086FA70158B356300EA0E6B /* LKEntryCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6F158B356300EA0E6B /* LKEntryCategory.h */; };
+		A086FA71158B356300EA0E6B /* LKEntryCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6F158B356300EA0E6B /* LKEntryCategory.h */; };
 		A0CFA8121587829400EBEB32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CFA8111587829400EBEB32 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,6 +145,7 @@
 		A086FA66158B2C9100EA0E6B /* LKErrorCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKErrorCategory.h; sourceTree = "<group>"; };
 		A086FA69158B307500EA0E6B /* LKLdapCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLdapCategory.h; sourceTree = "<group>"; };
 		A086FA6C158B338400EA0E6B /* LKMessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMessageCategory.h; sourceTree = "<group>"; };
+		A086FA6F158B356300EA0E6B /* LKEntryCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEntryCategory.h; sourceTree = "<group>"; };
 		A0CFA80E1587829400EBEB32 /* libiLdapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiLdapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0CFA8111587829400EBEB32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0CFA8151587829500EBEB32 /* LdapKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LdapKit-Prefix.pch"; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 		A086FA65158B29BF00EA0E6B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				A086FA6F158B356300EA0E6B /* LKEntryCategory.h */,
 				A086FA66158B2C9100EA0E6B /* LKErrorCategory.h */,
 				A086FA69158B307500EA0E6B /* LKLdapCategory.h */,
 				A086FA6C158B338400EA0E6B /* LKMessageCategory.h */,
@@ -323,6 +327,7 @@
 				A086FA68158B2C9100EA0E6B /* LKErrorCategory.h in Headers */,
 				A086FA6B158B307500EA0E6B /* LKLdapCategory.h in Headers */,
 				A086FA6E158B338400EA0E6B /* LKMessageCategory.h in Headers */,
+				A086FA71158B356300EA0E6B /* LKEntryCategory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +345,7 @@
 				A086FA67158B2C9100EA0E6B /* LKErrorCategory.h in Headers */,
 				A086FA6A158B307500EA0E6B /* LKLdapCategory.h in Headers */,
 				A086FA6D158B338400EA0E6B /* LKMessageCategory.h in Headers */,
+				A086FA70158B356300EA0E6B /* LKEntryCategory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,30 +31,17 @@
  *
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
-/**
- *  LdapKit/LKEntry.h  contains LDAP entry information
+/*
+ *  LdapKit/LKEntryCategory.h private/hidden interface for LKEntry
  */
+#import "LKEntry.h"
 
-#import <Foundation/Foundation.h>
-#import <ldap.h>
+@interface LKEntry ()
 
-@interface LKEntry : NSObject
-{
-   // entry information
-   NSString            * dn;
-   NSMutableDictionary * entry;
-
-   // derived data
-   NSArray             * attributes;
-}
-
-/// @name entry information
-@property (nonatomic, readonly) NSString * dn;
-
-/// @name derived data
-@property (nonatomic, readonly) NSArray  * attributes;
+/// @name Object Management Methods
+- (id) initWithDn:(const char *)entryDN;
 
 /// @name queries
-- (NSArray *) valuesForAttribute:(NSString *)attribute;
+- (void) setBerValues:(BerValue **)vals forAttribute:(const char *)attribute;
 
 @end
