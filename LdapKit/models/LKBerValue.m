@@ -101,7 +101,7 @@
 
 - (NSData *) berData
 {
-   return([NSData dataWithData:berData]);
+   return([[berData retain] autorelease]);
 }
 
 
