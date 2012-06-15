@@ -91,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				A081E127158AB7BC00B6A775 /* PhoneDAP */,
+				A086FAB9158B41F800EA0E6B /* Dependencies */,
 				A081E120158AB7BC00B6A775 /* Frameworks */,
 				A081E11E158AB7BC00B6A775 /* Products */,
 			);
@@ -107,7 +108,6 @@
 		A081E120158AB7BC00B6A775 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */,
 				A081E15F158AB81500B6A775 /* libcrypto.a */,
 				A081E160158AB81500B6A775 /* liblber.a */,
 				A081E161158AB81500B6A775 /* libldap.a */,
@@ -158,6 +158,14 @@
 				A081E12F158AB7BC00B6A775 /* PhoneDAP-Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		A086FAB9158B41F800EA0E6B /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */,
+			);
+			name = Dependencies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
