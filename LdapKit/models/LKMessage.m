@@ -44,6 +44,7 @@
 #import "LKError.h"
 #import "LKErrorCategory.h"
 #import "LKLdap.h"
+#import "LKLdapCategory.h"
 
 
 #pragma mark - Data Types
