@@ -38,7 +38,7 @@
 #import "LKLdapCategory.h"
 
 #import "LKMessage.h"
-
+#import "LKMessageCategory.h"
 
 @interface LKLdap ()
 
