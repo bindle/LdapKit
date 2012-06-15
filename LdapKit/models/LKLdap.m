@@ -150,10 +150,12 @@
 }
 - (void) setIsConnected:(BOOL)connected
 {
+   [self willChangeValueForKey:@"isConnected"];
    @synchronized(self)
    {
       isConnected = connected;
    }
+   [self willChangeValueForKey:@"isConnected"];
    return;
 }
 
