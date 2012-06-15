@@ -80,7 +80,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (LDAP *) bindFinish:(LDAP *)ld;
 - (LDAP *) bindInitialize;
 - (LDAP *) bindStartTLS:(LDAP *)ld;
-- (BOOL)   parseResult:(LDAPMessage *)res;
+- (BOOL)   parseResult:(LDAPMessage *)res referrals:(NSMutableArray *)referrals;
 - (LDAPMessage *) resultWithMessageID:(int)msgid
                   resultEntries:(NSMutableArray *)resultEntries;
 - (int)  searchBaseDN:(NSString *)dn scope:(LKLdapSearchScope)scope
@@ -472,7 +472,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       };
 
       // parses result
-      if (!([self parseResult:res]))
+      if (!([self parseResult:res referrals:nil]))
       {
          [self freeAttributeList:(&attrs)];
          return(error.isSuccessful);
@@ -872,7 +872,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 }
 
 
-- (BOOL) parseResult:(LDAPMessage *)res
+- (BOOL) parseResult:(LDAPMessage *)res referrals:(NSMutableArray *)localReferrals
 {
    int    err;
    char            * dn;
@@ -901,12 +901,18 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // retrieves referrals
    if ((refs))
    {
-      @synchronized(self)
+      if ((localReferrals))
       {
-         if (!(referrals))
-            referrals = [[NSMutableArray alloc] initWithCapacity:1];
          for(x = 0; refs[x]; x++)
-            [referrals addObject:[NSString stringWithUTF8String:refs[x]]];
+            [localReferrals addObject:[NSString stringWithUTF8String:refs[x]]];
+      } else {
+         @synchronized(self)
+         {
+            if (!(referrals))
+               referrals = [[NSMutableArray alloc] initWithCapacity:1];
+            for(x = 0; refs[x]; x++)
+               [referrals addObject:[NSString stringWithUTF8String:refs[x]]];
+         };
       };
       ldap_memvfree((void **)refs);
    };
