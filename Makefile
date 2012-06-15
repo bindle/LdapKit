@@ -47,6 +47,12 @@ run_appledoc =	appledoc \
 	LdapKit
 
 all:
+	@PATH=${PATH}:/usr/local/bin which appledoc > /dev/null 2>&1 || \
+	{ \
+	   MSG="Appledoc (https://github.com/tomaz/appledoc) must"; \
+	   echo "$${MSG} be installed before the LdapKit docset can be built."; \
+	   exit 1; \
+	}
 	mkdir -p docs
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
 

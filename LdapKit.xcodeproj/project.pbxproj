@@ -120,7 +120,7 @@
 
 /* Begin PBXFileReference section */
 		A0103DBE1587839B00183DC9 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		A0103DBF1587839B00183DC9 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		A0103DBF1587839B00183DC9 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 8; path = Makefile; sourceTree = "<group>"; tabWidth = 8; usesTabs = 1; };
 		A0103DC01587839B00183DC9 /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		A0103DC41587849500183DC9 /* LKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKError.h; sourceTree = "<group>"; };
 		A0103DC51587849500183DC9 /* LKError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKError.m; sourceTree = "<group>"; };
