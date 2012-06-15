@@ -1014,12 +1014,15 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
          // stores entry for later use
          if ((results))
-            [results addObject:entry];
-         @synchronized(self)
          {
-            if (!(entries))
-               entries = [[NSMutableArray alloc] initWithCapacity:1];
-            [entries addObject:entry];
+            [results addObject:entry];
+         } else {
+            @synchronized(self)
+            {
+               if (!(entries))
+                  entries = [[NSMutableArray alloc] initWithCapacity:1];
+               [entries addObject:entry];
+            };
          };
       };
 
