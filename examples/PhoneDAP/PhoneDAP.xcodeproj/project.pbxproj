@@ -1,0 +1,378 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A081E122158AB7BC00B6A775 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E121158AB7BC00B6A775 /* UIKit.framework */; };
+		A081E124158AB7BC00B6A775 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E123158AB7BC00B6A775 /* Foundation.framework */; };
+		A081E126158AB7BC00B6A775 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E125158AB7BC00B6A775 /* CoreGraphics.framework */; };
+		A081E12C158AB7BC00B6A775 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A081E12A158AB7BC00B6A775 /* InfoPlist.strings */; };
+		A081E12E158AB7BC00B6A775 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A081E12D158AB7BC00B6A775 /* main.m */; };
+		A081E132158AB7BC00B6A775 /* PDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A081E131158AB7BC00B6A775 /* PDAppDelegate.m */; };
+		A081E15E158AB81500B6A775 /* libiLdapKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E151158AB7ED00B6A775 /* libiLdapKit.a */; };
+		A081E164158AB81500B6A775 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E15F158AB81500B6A775 /* libcrypto.a */; };
+		A081E165158AB81500B6A775 /* liblber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E160158AB81500B6A775 /* liblber.a */; };
+		A081E166158AB81500B6A775 /* libldap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E161158AB81500B6A775 /* libldap.a */; };
+		A081E167158AB81500B6A775 /* libsasl2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E162158AB81500B6A775 /* libsasl2.a */; };
+		A081E168158AB81500B6A775 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A081E163158AB81500B6A775 /* libssl.a */; };
+		A081E16C158ABA6100B6A775 /* PDLdapTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A081E16B158ABA6100B6A775 /* PDLdapTest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A081E150158AB7ED00B6A775 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A0CFA80E1587829400EBEB32;
+			remoteInfo = iLdapKit;
+		};
+		A081E152158AB7ED00B6A775 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A0103E111587874800183DC9;
+			remoteInfo = LdapKit;
+		};
+		A081E15C158AB7FB00B6A775 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A0CFA80D1587829400EBEB32;
+			remoteInfo = iLdapKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A081E11D158AB7BC00B6A775 /* PhoneDAP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhoneDAP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A081E121158AB7BC00B6A775 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A081E123158AB7BC00B6A775 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A081E125158AB7BC00B6A775 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A081E129158AB7BC00B6A775 /* PhoneDAP-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhoneDAP-Info.plist"; sourceTree = "<group>"; };
+		A081E12B158AB7BC00B6A775 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A081E12D158AB7BC00B6A775 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A081E12F158AB7BC00B6A775 /* PhoneDAP-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhoneDAP-Prefix.pch"; sourceTree = "<group>"; };
+		A081E130158AB7BC00B6A775 /* PDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDAppDelegate.h; sourceTree = "<group>"; };
+		A081E131158AB7BC00B6A775 /* PDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDAppDelegate.m; sourceTree = "<group>"; };
+		A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LdapKit.xcodeproj; path = ../../LdapKit.xcodeproj; sourceTree = "<group>"; };
+		A081E15F158AB81500B6A775 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../iOSPorts/ports/security/openssl/build/Release-iphoneos/libcrypto.a"; sourceTree = "<group>"; };
+		A081E160158AB81500B6A775 /* liblber.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblber.a; path = "../../../iOSPorts/ports/database/openldap/build/Release-iphoneos/liblber.a"; sourceTree = "<group>"; };
+		A081E161158AB81500B6A775 /* libldap.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libldap.a; path = "../../../iOSPorts/ports/database/openldap/build/Release-iphoneos/libldap.a"; sourceTree = "<group>"; };
+		A081E162158AB81500B6A775 /* libsasl2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libsasl2.a; path = "../../../iOSPorts/ports/security/cyrus-sasl/build/Release-iphoneos/libsasl2.a"; sourceTree = "<group>"; };
+		A081E163158AB81500B6A775 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../iOSPorts/ports/security/openssl/build/Release-iphoneos/libssl.a"; sourceTree = "<group>"; };
+		A081E16A158ABA6100B6A775 /* PDLdapTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLdapTest.h; sourceTree = "<group>"; };
+		A081E16B158ABA6100B6A775 /* PDLdapTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLdapTest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A081E11A158AB7BC00B6A775 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A081E164158AB81500B6A775 /* libcrypto.a in Frameworks */,
+				A081E165158AB81500B6A775 /* liblber.a in Frameworks */,
+				A081E166158AB81500B6A775 /* libldap.a in Frameworks */,
+				A081E167158AB81500B6A775 /* libsasl2.a in Frameworks */,
+				A081E168158AB81500B6A775 /* libssl.a in Frameworks */,
+				A081E15E158AB81500B6A775 /* libiLdapKit.a in Frameworks */,
+				A081E122158AB7BC00B6A775 /* UIKit.framework in Frameworks */,
+				A081E124158AB7BC00B6A775 /* Foundation.framework in Frameworks */,
+				A081E126158AB7BC00B6A775 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A081E112158AB7BB00B6A775 = {
+			isa = PBXGroup;
+			children = (
+				A081E127158AB7BC00B6A775 /* PhoneDAP */,
+				A081E120158AB7BC00B6A775 /* Frameworks */,
+				A081E11E158AB7BC00B6A775 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A081E11E158AB7BC00B6A775 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A081E11D158AB7BC00B6A775 /* PhoneDAP.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A081E120158AB7BC00B6A775 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */,
+				A081E15F158AB81500B6A775 /* libcrypto.a */,
+				A081E160158AB81500B6A775 /* liblber.a */,
+				A081E161158AB81500B6A775 /* libldap.a */,
+				A081E162158AB81500B6A775 /* libsasl2.a */,
+				A081E163158AB81500B6A775 /* libssl.a */,
+				A081E121158AB7BC00B6A775 /* UIKit.framework */,
+				A081E123158AB7BC00B6A775 /* Foundation.framework */,
+				A081E125158AB7BC00B6A775 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A081E127158AB7BC00B6A775 /* PhoneDAP */ = {
+			isa = PBXGroup;
+			children = (
+				A081E130158AB7BC00B6A775 /* PDAppDelegate.h */,
+				A081E131158AB7BC00B6A775 /* PDAppDelegate.m */,
+				A081E16A158ABA6100B6A775 /* PDLdapTest.h */,
+				A081E16B158ABA6100B6A775 /* PDLdapTest.m */,
+				A081E169158AB9E500B6A775 /* Other Sources */,
+				A081E128158AB7BC00B6A775 /* Supporting Files */,
+			);
+			path = PhoneDAP;
+			sourceTree = "<group>";
+		};
+		A081E128158AB7BC00B6A775 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A081E129158AB7BC00B6A775 /* PhoneDAP-Info.plist */,
+				A081E12A158AB7BC00B6A775 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A081E139158AB7EC00B6A775 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A081E151158AB7ED00B6A775 /* libiLdapKit.a */,
+				A081E153158AB7ED00B6A775 /* libLdapKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A081E169158AB9E500B6A775 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A081E12D158AB7BC00B6A775 /* main.m */,
+				A081E12F158AB7BC00B6A775 /* PhoneDAP-Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A081E11C158AB7BC00B6A775 /* PhoneDAP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A081E135158AB7BC00B6A775 /* Build configuration list for PBXNativeTarget "PhoneDAP" */;
+			buildPhases = (
+				A081E119158AB7BC00B6A775 /* Sources */,
+				A081E11A158AB7BC00B6A775 /* Frameworks */,
+				A081E11B158AB7BC00B6A775 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A081E15D158AB7FB00B6A775 /* PBXTargetDependency */,
+			);
+			name = PhoneDAP;
+			productName = PhoneDAP;
+			productReference = A081E11D158AB7BC00B6A775 /* PhoneDAP.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A081E114158AB7BB00B6A775 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PD;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = A081E117158AB7BB00B6A775 /* Build configuration list for PBXProject "PhoneDAP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A081E112158AB7BB00B6A775;
+			productRefGroup = A081E11E158AB7BC00B6A775 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A081E139158AB7EC00B6A775 /* Products */;
+					ProjectRef = A081E138158AB7EC00B6A775 /* LdapKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				A081E11C158AB7BC00B6A775 /* PhoneDAP */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A081E151158AB7ED00B6A775 /* libiLdapKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libiLdapKit.a;
+			remoteRef = A081E150158AB7ED00B6A775 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A081E153158AB7ED00B6A775 /* libLdapKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLdapKit.a;
+			remoteRef = A081E152158AB7ED00B6A775 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A081E11B158AB7BC00B6A775 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A081E12C158AB7BC00B6A775 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A081E119158AB7BC00B6A775 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A081E12E158AB7BC00B6A775 /* main.m in Sources */,
+				A081E132158AB7BC00B6A775 /* PDAppDelegate.m in Sources */,
+				A081E16C158ABA6100B6A775 /* PDLdapTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A081E15D158AB7FB00B6A775 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = iLdapKit;
+			targetProxy = A081E15C158AB7FB00B6A775 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A081E12A158AB7BC00B6A775 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A081E12B158AB7BC00B6A775 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A081E133158AB7BC00B6A775 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../..,
+					../../../iOSPorts/include,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A081E134158AB7BC00B6A775 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../..,
+					../../../iOSPorts/include,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A081E136158AB7BC00B6A775 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhoneDAP/PhoneDAP-Prefix.pch";
+				INFOPLIST_FILE = "PhoneDAP/PhoneDAP-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A081E137158AB7BC00B6A775 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PhoneDAP/PhoneDAP-Prefix.pch";
+				INFOPLIST_FILE = "PhoneDAP/PhoneDAP-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A081E117158AB7BB00B6A775 /* Build configuration list for PBXProject "PhoneDAP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A081E133158AB7BC00B6A775 /* Debug */,
+				A081E134158AB7BC00B6A775 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A081E135158AB7BC00B6A775 /* Build configuration list for PBXNativeTarget "PhoneDAP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A081E136158AB7BC00B6A775 /* Debug */,
+				A081E137158AB7BC00B6A775 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A081E114158AB7BB00B6A775 /* Project object */;
+}
