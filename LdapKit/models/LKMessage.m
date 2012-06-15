@@ -889,12 +889,14 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // retrieves matched DN
    if ((dn))
    {
+      [self willChangeValueForKey:@"matchedDNs"];
       @synchronized(self)
       {
          if (!(matchedDNs))
             matchedDNs = [[NSMutableArray alloc] initWithCapacity:1];
          [matchedDNs addObject:[NSString stringWithUTF8String:dn]];
       };
+      [self didChangeValueForKey:@"matchedDNs"];
       ldap_memfree(dn);
    };
 
@@ -906,6 +908,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
          for(x = 0; refs[x]; x++)
             [localReferrals addObject:[NSString stringWithUTF8String:refs[x]]];
       } else {
+         [self willChangeValueForKey:@"referrals"];
          @synchronized(self)
          {
             if (!(referrals))
@@ -913,6 +916,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
             for(x = 0; refs[x]; x++)
                [referrals addObject:[NSString stringWithUTF8String:refs[x]]];
          };
+         [self didChangeValueForKey:@"referrals"];
       };
       ldap_memvfree((void **)refs);
    };
@@ -1023,12 +1027,14 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
          {
             [results addObject:entry];
          } else {
+            [self willChangeValueForKey:@"entries"];
             @synchronized(self)
             {
                if (!(entries))
                   entries = [[NSMutableArray alloc] initWithCapacity:1];
                [entries addObject:entry];
             };
+            [self didChangeValueForKey:@"entries"];
          };
       };
 

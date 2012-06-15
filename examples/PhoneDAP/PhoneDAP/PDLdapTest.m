@@ -72,6 +72,9 @@
                       filter:@"(objectclass=*)" attributes:nil attributesOnly:0] retain];
    [currentOperation addObserver:self forKeyPath:@"isFinished"
       options:NSKeyValueObservingOptionNew context:nil];
+   [currentOperation addObserver:self forKeyPath:@"entries"
+      options:NSKeyValueObservingOptionNew context:nil];
+   entriesPos = 0;
 
    [pool release];
 
@@ -79,12 +82,49 @@
 }
 
 
-- (void) processOperationResults:(LKMessage *)ldapOperation
+- (void) processEntries:(LKMessage *)ldapOperation
 {
    LKEntry           * entry;
    NSString          * attribute;
    LKBerValue        * berValue;
    NSAutoreleasePool * pool;
+   NSArray           * entries;
+   int                 pos;
+
+   if (!([ldapOperation isKindOfClass:[LKMessage class]]))
+      return;
+
+   if (ldapOperation != currentOperation)
+      return;
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   entries = ldapOperation.entries;
+   for(pos = entriesPos; pos < [entries count]; pos++)
+   {
+      entry = [entries objectAtIndex:pos];
+      NSLog(@"dn: %@", entry.dn);
+      for(attribute in entry.attributes)
+      {
+         for(berValue in [entry valuesForAttribute:attribute])
+         {
+            NSLog(@"%@: %@", attribute, [berValue berString]);
+         };
+      };
+      NSLog(@" ");
+   };
+   entriesPos = pos;
+
+   [pool release];
+
+   return;
+}
+
+
+- (void) processResult:(LKMessage *)ldapOperation
+{
+   NSAutoreleasePool * pool;
+   NSArray           * entries;
 
    if (!([ldapOperation isKindOfClass:[LKMessage class]]))
       return;
@@ -93,6 +133,9 @@
       return;
    if (!(currentOperation.isFinished))
       return;
+
+   entries = currentOperation.entries;
+   NSLog(@"%i entries found", [entries count]);
 
    if ((currentOperation.isCancelled))
    {
@@ -108,27 +151,6 @@
       return;
    };
 
-   pool = [[NSAutoreleasePool alloc] init];
-
-   for(entry in ldapOperation.entries)
-   {
-      NSLog(@"dn: %@", entry.dn);
-      for(attribute in entry.attributes)
-      {
-         for(berValue in [entry valuesForAttribute:attribute])
-         {
-            NSLog(@"%@: %@", attribute, [berValue berString]);
-         };
-      };
-      NSLog(@" ");
-      NSLog(@" ");
-      NSLog(@" ");
-   };
-
-   NSLog(@"%i entries found", [ldapOperation.entries count]);
-
-   [pool release];
-
    return;
 }
 
@@ -137,8 +159,12 @@
    ofObject:(id)object change:(NSDictionary *)change
    context:(void *)context
 {
-   [self performSelectorOnMainThread:@selector(processOperationResults:)
-      withObject:object waitUntilDone:YES];
+   if ([keyPath isEqualToString:@"entries"])
+      [self performSelectorOnMainThread:@selector(processEntries:)
+         withObject:object waitUntilDone:YES];
+   else
+      [self performSelectorOnMainThread:@selector(processResult:)
+         withObject:object waitUntilDone:YES];
    return;
 }
 

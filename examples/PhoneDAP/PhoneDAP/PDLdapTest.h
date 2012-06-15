@@ -36,6 +36,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <ldap.h>
 #import <LdapKit/LdapKit.h>
 
 @interface PDLdapTest : NSObject
@@ -43,6 +44,7 @@
    // state information
    LKLdap    * session;
    LKMessage * currentOperation;
+   int         entriesPos;
 }
 
 @end
