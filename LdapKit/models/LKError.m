@@ -35,12 +35,9 @@
  *  LdapKit/LKError.m manages error information.
  */
 #import "LKError.h"
+#import "LKErrorCategory.h"
 
 @implementation LKError
-
-// error information
-@synthesize errorType;
-
 
 #pragma mark - Object Management Methods
 
@@ -298,6 +295,23 @@
       _errorTitle = nil;
       if ((errorTitle))
          _errorTitle = [[NSString alloc] initWithString:errorTitle];
+   };
+   return;
+}
+
+
+- (LKLdapErrorType) errorType
+{
+   @synchronized(self)
+   {
+      return(_errorType);
+   };
+}
+- (void) setErrorType:(LKLdapErrorType)errorType
+{
+   @synchronized(self)
+   {
+      _errorType = errorType;
    };
    return;
 }

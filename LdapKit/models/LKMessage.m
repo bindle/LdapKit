@@ -42,6 +42,7 @@
 
 #import "LKEntry.h"
 #import "LKError.h"
+#import "LKErrorCategory.h"
 #import "LKLdap.h"
 
 

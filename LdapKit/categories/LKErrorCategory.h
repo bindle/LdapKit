@@ -31,55 +31,34 @@
  *
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
-/**
- *  LdapKit/LKError.h manages error information.
+/*
+ *  LdapKit/LKErrorCategory.h private/hidden interface for LKError
  */
+#import "LKError.h"
 
-#import <Foundation/Foundation.h>
-#import <LdapKit/LKEnumerations.h>
+@interface LKError()
 
+/// @name Object Management Methods
+- (id) initErrorWithTitle:(NSString *)errorTitle;
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode;
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode diagnostics:(NSString *)diagnosticMessage;
+- (id) initErrorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode ldap:(LDAP *)ld;
+- (id) initErrorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
++ (id) errorWithTitle:(NSString *)errorTitle;
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode;
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode diagnostics:(NSString *)diagnosticMessage;
++ (id) errorWithTitle:(NSString *)errorTitle code:(NSInteger)errorCode ldap:(LDAP *)ld;
++ (id) errorWithTitle:(NSString *)errorTitle ldap:(LDAP *)ld;
 
-#pragma mark LDAP error type
-enum ldap_kit_ldap_error_type
-{
-   LKLdapErrorTypeInternal           = 0x01,
-   LKLdapErrorTypeLDAP               = 0x02
-};
-typedef enum ldap_kit_ldap_error_type LKLdapErrorType;
-
-enum ldap_kit_ldap_error_code
-{
-   LKErrorCodeSuccess        =   0,   // operation was successful
-   LKErrorCodeUnknown        =  -1,   // unknown error code
-   LKErrorCodeCancelled      =  -2,   // operation was cancelled
-   LKErrorCodeNotConnected   =  -3,   // not connected to server
-   LKErrorCodeMemory         =  -4,   // out of memory
-};
-typedef enum ldap_kit_ldap_error_code LKErrorCode;
-
-
-@interface LKError : NSObject
-{
-   // error information
-   LKLdapErrorType    _errorType;
-   NSInteger          _errorCode;
-   NSString         * _errorTitle;
-   NSString         * _errorMessage;
-   NSString         * _diagnosticMessage;
-};
+/// @name Error operations
+- (void) resetError;
+- (void) resetErrorWithTitle:(NSString *)errorTitle;
 
 /// @name error information
-@property (atomic, readonly)    LKLdapErrorType    errorType;
-@property (atomic, readonly)    NSInteger          errorCode;
-@property (nonatomic, readonly) NSString         * errorTitle;
-@property (nonatomic, readonly) NSString         * errorMessage;
-@property (nonatomic, readonly) NSString         * diagnosticMessage;
-
-/// @name derived results
-@property (nonatomic, readonly) BOOL               isSuccessful;
-
-/// @name Error strings
-- (NSString *) messageForCode:(NSInteger)errorCode;
-+ (NSString *) messageForCode:(NSInteger)errorCode;
+- (void) setErrorType:(LKLdapErrorType)errorType;
+- (void) setErrorCode:(NSInteger)code;
+- (void) setErrorTitle:(NSString *)title;
+- (void) setErrorMessage:(NSString *)message;
+- (void) setDiagnosticMessage:(NSString *)message;
 
 @end
