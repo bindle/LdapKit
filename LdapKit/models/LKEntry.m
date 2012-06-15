@@ -76,10 +76,15 @@
 
 - (NSArray *) attributes
 {
+   NSAutoreleasePool * pool;
    @synchronized(self)
    {
       if (!(attributes))
-         attributes = [entry allKeys];
+      {
+         pool = [[NSAutoreleasePool alloc] init];
+         attributes = [[entry allKeys] retain];
+         [pool release];
+      };
       return([[attributes retain] autorelease]);
    };
 };
