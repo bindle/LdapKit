@@ -38,6 +38,8 @@
 #import <Foundation/Foundation.h>
 
 #import <LdapKit/LKEnumerations.h>
+#import <LdapKit/models/LKBerValue.h>
+#import <LdapKit/models/LKEntry.h>
 #import <LdapKit/models/LKError.h>
 #import <LdapKit/models/LKLdap.h>
 #import <LdapKit/models/LKMessage.h>
