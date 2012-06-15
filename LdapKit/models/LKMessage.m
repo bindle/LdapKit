@@ -229,6 +229,8 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    {
       if (!(entries))
          return(nil);
+      if (([self isFinished]))
+         return([[entries retain] autorelease]);
       return([NSArray arrayWithArray:entries]);
    };
 }
@@ -260,6 +262,8 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    {
       if (!(matchedDNs))
          return(nil);
+      if (([self isFinished]))
+         return([[matchedDNs retain] autorelease]);
       return([NSArray arrayWithArray:matchedDNs]);
    };
 }
@@ -271,6 +275,8 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    {
       if (!(referrals))
          return(nil);
+      if (([self isFinished]))
+         return([[referrals retain] autorelease]);
       return([NSArray arrayWithArray:referrals]);
    };
 }
