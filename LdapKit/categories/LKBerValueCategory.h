@@ -31,46 +31,15 @@
  *
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
-/**
- *  LdapKit/LKBerValue.h  convenience class for BerValue.
+/*
+ *  LdapKit/LKBerValueCategory.h private/hidden interface for LKBerValue
  */
+#import "LKBerValue.h"
 
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <AppKit/AppKit.h>
-#endif
-#import <Foundation/Foundation.h>
-#import <ldap.h>
+@interface LKBerValue ()
 
-@interface LKBerValue : NSObject
-{
-   // BerValue data
-   NSData        * berData;
-
-   // derived data
-   id <NSObject>   berImage;
-   NSString      * berString;
-   NSString      * berStringBase64;
-
-   // data attempts
-   BOOL            attemptedImage;
-   BOOL            attemptedString;
-}
-
-/// @name BerValue data
-@property (nonatomic, readonly) NSData     * berData;
-@property (nonatomic, readonly) ber_len_t    bv_len;
-@property (nonatomic, readonly) const char * bv_val;
-
-/// @name derived data
-#if TARGET_OS_IPHONE
-@property (nonatomic, readonly) UIImage    * berImage;
-#else
-@property (nonatomic, readonly) NSImage    * berImage;
-#endif
-@property (nonatomic, readonly) NSString   * berString;
-@property (nonatomic, readonly) NSString   * berStringBase64;
-@property (nonatomic, readonly) BerValue   * berValue;
+/// @name Object Management Methods
+- (id) initWithBerValue:(BerValue *)value;
++ (id) valueWithBerValue:(BerValue *)value;
 
 @end

@@ -35,6 +35,15 @@
  *  LdapKit/LKBerValue.m convenience class for BerValue.
  */
 #import "LKBerValue.h"
+#import "LKBerValueCategory.h"
+
+
+@interface LKBerValue ()
+
+/// @name calculations
+- (NSString *) convertToBase64:(NSData *)value;
+
+@end
 
 
 @implementation LKBerValue

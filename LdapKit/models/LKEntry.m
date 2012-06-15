@@ -38,6 +38,7 @@
 #import "LKEntryCategory.h"
 
 #import "LKBerValue.h"
+#import "LKBerValueCategory.h"
 
 @implementation LKEntry
 
