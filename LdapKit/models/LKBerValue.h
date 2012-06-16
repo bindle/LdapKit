@@ -32,7 +32,9 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LdapKit/LKBerValue.h  convenience class for BerValue.
+ *  LKBerValue stores the inidividual attribute values returned as results from
+ *  LDAP queries.  The information stored by an instance LKBerValue can be
+ *  accessed as a string, an image, or binary data.
  */
 
 #if TARGET_OS_IPHONE

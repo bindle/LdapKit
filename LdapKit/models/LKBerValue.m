@@ -87,24 +87,30 @@
 
 #pragma mark - Getter/Setter methods
 
+/// The number of bytes required to store the object's value.
 - (ber_len_t) bv_len
 {
    return(berData.length);
 }
 
 
+/// C pointer to the memory allocation of object's value.
 - (const char *) bv_val
 {
    return([[NSData dataWithData:berData] bytes]);
 }
 
 
+/// The NSData object which contains the object's value.
 - (NSData *) berData
 {
    return([[berData retain] autorelease]);
 }
 
 
+/// Attempts to interpret the object's value as an image.
+/// @return This property returns an UIImage on iOS and NSImage on OS X. If
+/// the data is not a valid image, nil is returned.
 - (id) berImage
 {
    @synchronized(self)
@@ -122,6 +128,9 @@
 }
 
 
+/// Attempts to interpret the object's value as an UTF8 string.
+/// @return If the Ber value is a valid UTF8 string, this property returns
+/// an NSString.  Otherwise nil is returned.
 - (NSString *) berString
 {
    @synchronized(self)
@@ -135,6 +144,7 @@
 }
 
 
+/// Returns the object's value as a base64 encoded string.
 - (NSString *) berStringBase64
 {
    NSAutoreleasePool * pool;
@@ -149,6 +159,7 @@
 }
 
 
+/// Returns a C pointer to a BerValue struct populated with the object's value.
 - (BerValue *) berValue
 {
    BerValue      * bv;
