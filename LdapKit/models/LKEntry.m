@@ -42,10 +42,6 @@
 
 @implementation LKEntry
 
-// entry information
-@synthesize dn;
-
-
 #pragma mark - Object Management Methods
 
 - (void) dealloc
@@ -76,6 +72,7 @@
 
 #pragma mark - Getter/Setter methods
 
+/// An array containing names of the LDAP entry's attributes.
 - (NSArray *) attributes
 {
    NSAutoreleasePool * pool;
@@ -92,8 +89,18 @@
 };
 
 
+/// The distinguished name of the LDAP entry.
+- (NSString *) dn
+{
+   return([[dn retain] autorelease]);
+}
+
+
 #pragma mark - queries
 
+/// Retrieves the values of an attribute.
+/// @param attribute  The name of the requested attribute.
+/// @return Returns an array containing LKBerValue objects.
 - (NSArray *) valuesForAttribute:(NSString *)attribute
 {
    @synchronized(self)

@@ -32,7 +32,8 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LdapKit/LKEntry.h  contains LDAP entry information
+ *  LKEntry objects contain the distinguished name, attributes, and values of
+ *  an LDAP entry.
  */
 
 #import <Foundation/Foundation.h>
@@ -50,11 +51,7 @@
 
 /// @name entry information
 @property (nonatomic, readonly) NSString * dn;
-
-/// @name derived data
 @property (nonatomic, readonly) NSArray  * attributes;
-
-/// @name queries
 - (NSArray *) valuesForAttribute:(NSString *)attribute;
 
 @end
