@@ -9,10 +9,16 @@ Priority
    * IPv6 Support: LKLdap and LKMessage needs to be updated to properly
      process IPv6 addresses if an IPv6 address is specified as the host or
      in the LDAP URL.
-   * Add ability to retrieve search results are they are received from the
-     server.
+
+   LDAP Opeartions:
+   * LDAP Delete
+   * LDAP Modify
+   * LDAP Rename
+   * LDAP URL Parse
+   * LDAP Whoami
 
    Documentation:
    * Finish README.
    * Finish documenting source code with appledoc tags.
    * Publish LDAP Kit docsets to github webpage.
+
