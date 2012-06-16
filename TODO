@@ -9,6 +9,8 @@ Priority
    * IPv6 Support: LKLdap and LKMessage needs to be updated to properly
      process IPv6 addresses if an IPv6 address is specified as the host or
      in the LDAP URL.
+   * Remove custom error codes from LKError and replace with equivalent internal
+     LDAP error codes.
 
    LDAP Opeartions:
    * LDAP Delete
