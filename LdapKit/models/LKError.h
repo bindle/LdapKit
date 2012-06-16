@@ -32,7 +32,7 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LdapKit/LKError.h manages error information.
+ *  LKError contains status information about LDAP operations and tasks.
  */
 
 #import <Foundation/Foundation.h>
