@@ -35,7 +35,7 @@
 #
 
 run_appledoc =	appledoc \
-	--output docs/ \
+	--output docs/appledoc/ \
 	--project-name "LDAP Kit" \
 	--project-version "`git describe  --abbrev=7 |sed -e 's/v//g' -e 's/-/./g'`" \
 	--project-company "Bindle Binaries" \
@@ -53,9 +53,8 @@ all:
 	   echo "$${MSG} be installed before the LdapKit docset can be built."; \
 	   exit 1; \
 	}
-	mkdir -p docs
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
 
 clean:
-	rm -Rf docs/
+	rm -Rf ./docs/appledoc/*
 

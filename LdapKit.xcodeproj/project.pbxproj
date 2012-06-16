@@ -252,6 +252,14 @@
 			name = MacOSX;
 			sourceTree = "<group>";
 		};
+		A0680FA0158D4AF500527DDC /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Documentation;
+			path = docs;
+			sourceTree = SOURCE_ROOT;
+		};
 		A086FA65158B29BF00EA0E6B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +282,7 @@
 				A011F69615881428003BFEC5 /* README */,
 				A0103DC01587839B00183DC9 /* TODO */,
 				A0CFA8131587829400EBEB32 /* LdapKit */,
+				A0680FA0158D4AF500527DDC /* Documentation */,
 				A0CFA8101587829400EBEB32 /* Frameworks */,
 				A0CFA80F1587829400EBEB32 /* Products */,
 			);
