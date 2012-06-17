@@ -57,7 +57,7 @@ all:
 	}
 	@rm -f ./docs/appledoc/tmp/project/*
 	@mkdir -p ./docs/appledoc/tmp/project/
-	@for FILE in README LICENSE TODO ChangeLog;do \
+	@for FILE in README LICENSE;do \
 	   test -f ./docs/appledoc/tmp/project/$${FILE}-template.txt || \
 	      ln ./$${FILE} ./docs/appledoc/tmp/project/$${FILE}-template.txt; \
 	done
