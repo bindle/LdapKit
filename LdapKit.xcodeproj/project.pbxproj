@@ -119,7 +119,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A0103DBE1587839B00183DC9 /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		A0103DBF1587839B00183DC9 /* Makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 8; path = Makefile; sourceTree = "<group>"; tabWidth = 8; usesTabs = 1; };
 		A0103DC01587839B00183DC9 /* TODO */ = {isa = PBXFileReference; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		A0103DC41587849500183DC9 /* LKError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKError.h; sourceTree = "<group>"; };
@@ -144,6 +143,7 @@
 		A011F69615881428003BFEC5 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		A050B56C158A1379004C32EE /* LKEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEntry.h; sourceTree = "<group>"; };
 		A050B56D158A137A004C32EE /* LKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEntry.m; sourceTree = "<group>"; };
+		A0680FA3158D95C200527DDC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A086FA66158B2C9100EA0E6B /* LKErrorCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKErrorCategory.h; sourceTree = "<group>"; };
 		A086FA69158B307500EA0E6B /* LKLdapCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLdapCategory.h; sourceTree = "<group>"; };
 		A086FA6C158B338400EA0E6B /* LKMessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMessageCategory.h; sourceTree = "<group>"; };
@@ -277,7 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				A011F69515881428003BFEC5 /* ChangeLog */,
-				A0103DBE1587839B00183DC9 /* COPYING */,
+				A0680FA3158D95C200527DDC /* LICENSE */,
 				A0103DBF1587839B00183DC9 /* Makefile */,
 				A011F69615881428003BFEC5 /* README */,
 				A0103DC01587839B00183DC9 /* TODO */,
