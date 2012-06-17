@@ -48,6 +48,7 @@ run_appledoc =	appledoc \
 	--docset-platform-family iphoneos \
 	--include "./docs/appledoc/tmp/LDAP Kit License-template.txt" \
 	--include "./docs/appledoc/tmp/LDAP Kit Project Information-template.txt" \
+	--include "./docs/appledoc/tmp/LDAP Kit To Do List-template.txt" \
 	LdapKit
 
 all:
@@ -63,6 +64,8 @@ all:
 	    > "./docs/appledoc/tmp/LDAP Kit License-template.txt"
 	cp README \
 	    "./docs/appledoc/tmp/LDAP Kit Project Information-template.txt"
+	cp TODO \
+	    "./docs/appledoc/tmp/LDAP Kit To Do List-template.txt"
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
 
 clean:
