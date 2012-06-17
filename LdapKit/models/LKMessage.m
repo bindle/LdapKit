@@ -52,11 +52,11 @@
 #pragma mark - Data Types
 struct ldap_kit_ldap_auth_data
 {
-   const char     * saslmech;  ///< SASL mechanism to use for authentication
-   const char     * authuser;  ///< user to authenticate
-   const char     * user;      ///< pre-authenticated user
-   const char     * realm;     ///< SASL realm used for authentication
-   BerValue         cred;      ///< the credentials of "user" (i.e. password)
+   const char     * saslmech;  // SASL mechanism to use for authentication
+   const char     * authuser;  // user to authenticate
+   const char     * user;      // pre-authenticated user
+   const char     * realm;     // SASL realm used for authentication
+   BerValue         cred;      // the credentials of "user" (i.e. password)
 };
 typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 

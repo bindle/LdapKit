@@ -32,7 +32,24 @@
  *  @BINDLE_BINARIES_BSD_LICENSE_END@
  */
 /**
- *  LdapKit/LKMessage.h returns results from LDAP operations.
+ *  LKMessage executes LDAP requests and returns the results.
+ *
+ *  KVO-Compliant Properties
+ *  ------------------------
+ *
+ *  The LKMessage class is key-value coding (KVC) and key-value observing (KVO)
+ *  compliant for several of its properties in addition to the key-value coding
+ *  (KVC) and key-value observing (KVO) compliant properties of the
+ *  `NSOperation` class. As needed, you can observe these properties to control
+ *  other parts of your application. The properties you can observe include the
+ *  following:
+ *
+ *  * `entries` - read-only property
+ *  * `referrals` - read-only property
+ *  * `matchedDNs` - read-only property
+ *
+ *  Read the documentation for the `NSOperation` class for information on
+ *  implementing observers in multi-threaded applications.
  */
 
 #import <Foundation/Foundation.h>
@@ -100,17 +117,43 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
    id                       object;
 }
 
-/// @name state information
+#pragma mark - Message information
+/// @name Message information
+
+/// The current error state of the message.
 @property (nonatomic, readonly) LKError                * error;
+
+/// The type of request the message was initialized to process.
+///
+/// Values include:
+///
+/// * `LKLdapMessageTypeBind` indicates message was initialized to process a bind request.
+/// * `LKLdapMessageTypeRebind` indicates message was initialized to process a rebind request.
+/// * `LKLdapMessageTypeSearch` indicates message was initialized to process a search request.
+/// * `LKLdapMessageTypeUnbind` indicates message was initialized to process an unbind request.
 @property (nonatomic, readonly) LKLdapMessageType        messageType;
 
-/// @name results
+
+#pragma mark - Results
+/// @name Results
+
+/// An array of entries returned by a search request.
 @property (nonatomic, readonly) NSArray                * entries;
+
+/// An array of LDAP referrals returned by an LDAP request.
 @property (nonatomic, readonly) NSArray                * referrals;
+
 @property (nonatomic, readonly) NSArray                * matchedDNs;
 
-/// @name client information
+
+#pragma mark - Identifying the LKMessage
+/// @name Identifying the LKMessage
+
+/// An integer that you can use to identify messages in your application.
 @property (nonatomic, assign)   NSInteger                tag;
+
+/// An object reference you can use to associate data with messages in your
+/// application.
 @property (nonatomic, retain)   id                       object;
 
 @end
