@@ -33,15 +33,15 @@ Disclaimer
 Software Requirements
 ---------------------
 
-   Mac OS X
-   --------
+   Mac OS X Library
+   ----------------
    * Git 1.7
    * Mac OS X 10.7
    * Xcode 4.3
    * Xcode Command Line Tools
 
-   iOS
-   ---
+   iOS Library
+   -----------
    * Git 1.7
    * Mac OS X 10.7
    * Xcode 4.3
@@ -49,6 +49,14 @@ Software Requirements
    * iOS SDK 5.1
    * iOS Ports 0.6 (https://github.com/bindle/iOSPorts)
    * Internet Access (for downloading packages)
+
+   Documentation
+   -------------
+   * Git 1.7
+   * Mac OS X 10.7
+   * Xcode 4.3
+   * Xcode Command Line Tools
+   * Appledoc 2.0.5 (https://github.com/tomaz/appledoc)
 
 
 Source Code
