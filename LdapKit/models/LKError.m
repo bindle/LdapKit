@@ -213,7 +213,6 @@
 
 #pragma mark - Getter/Setter methods
 
-/// Diagnostic information regarding the error available from the LDAP library.
 - (NSString *) diagnosticMessage
 {
    @synchronized(self)
@@ -234,8 +233,6 @@
 }
 
 
-/// The numeric identifier of the error.
-/// @return Returns either an LDAP error code from the LDAP library.
 - (NSInteger) errorCode
 {
    @synchronized(self)
@@ -263,7 +260,6 @@
 }
 
 
-/// A human readable error message.
 - (NSString *) errorMessage
 {
    @synchronized(self)
@@ -284,7 +280,6 @@
 }
 
 
-/// An optional title to be used when displaying the error to a user.
 - (NSString *) errorTitle
 {
    @synchronized(self)
@@ -322,7 +317,6 @@
 }
 
 
-/// Determines if the error code indicates whether the task was successful.
 - (BOOL) isSuccessful
 {
    switch(_errorType)

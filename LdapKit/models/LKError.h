@@ -68,17 +68,31 @@ typedef enum ldap_kit_ldap_error_code LKErrorCode;
    NSString         * _diagnosticMessage;
 };
 
-/// @name error information
+
+#pragma mark - Error information
+/// @name Error information
+
 @property (atomic, readonly)    LKLdapErrorType    errorType;
+
+/// The numeric value of the error.
 @property (atomic, readonly)    NSInteger          errorCode;
+
+/// An optional title of the error for use when reporting error to users.
 @property (nonatomic, readonly) NSString         * errorTitle;
+
+/// A human readable error message.
 @property (nonatomic, readonly) NSString         * errorMessage;
+
+/// Additional diagnostic information if available.
 @property (nonatomic, readonly) NSString         * diagnosticMessage;
 
-/// @name derived results
+/// Determines if the error code indicates whether the task succeeded or failed.
 @property (nonatomic, readonly) BOOL               isSuccessful;
 
+
+#pragma mark - Error strings
 /// @name Error strings
+
 - (NSString *) messageForCode:(NSInteger)errorCode;
 + (NSString *) messageForCode:(NSInteger)errorCode;
 
