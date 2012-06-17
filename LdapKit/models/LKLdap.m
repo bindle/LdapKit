@@ -495,6 +495,18 @@
 }
 
 
+- (LKMessage *) rebind
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initRebindWithSession:self];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
 - (LKMessage *) unbind
 {
    LKMessage * message;

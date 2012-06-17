@@ -46,6 +46,7 @@
 - (id) initSearchWithSession:(LKLdap *)session baseDnList:(NSArray *)dnList
        scope:(LKLdapSearchScope)scope filter:(NSString *)filter
        attributes:(NSArray *)attributes attributesOnly:(BOOL)attributesOnly;
+- (id) initRebindWithSession:(LKLdap *)session;
 - (id) initUnbindWithSession:(LKLdap *)session;
 
 @end

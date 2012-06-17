@@ -73,6 +73,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (BOOL) bind;
 - (BOOL) search;
 - (BOOL) testConnection;
+- (BOOL) rebind;
 - (BOOL) unbind;
 
 /// @name LDAP subtasks
@@ -205,6 +206,21 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    searchAttributes     = [[NSArray alloc]  initWithArray:attributes copyItems:YES];
    searchAttributesOnly = attributesOnly;
    searchScope          = scope;
+
+   return(self);
+}
+
+
+- (id) initRebindWithSession:(LKLdap *)data
+{
+   // initialize super
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // state information
+   session     = [data retain];
+   error       = [[LKError alloc] init];
+   messageType = LKLdapMessageTypeRebind;
 
    return(self);
 }
@@ -347,6 +363,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       case LKLdapMessageTypeSearch:
       [self search];
       self.error.errorTitle = @"LDAP Search";
+      break;
+
+      case LKLdapMessageTypeRebind:
+      [self unbind];
       break;
 
       case LKLdapMessageTypeUnbind:
@@ -572,6 +592,22 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       self.error = [LKError errorWithTitle: @"Test LDAP Connection" code:LKErrorCodeNotConnected];
       return(self.error.isSuccessful);
    };
+
+   return(self.error.isSuccessful);
+}
+
+
+- (BOOL) rebind
+{
+   // reset errors
+   [error resetError];
+   error.errorTitle = @"LDAP Rebind";
+
+   // clears LDAP information
+   [self unbind];
+
+   // initiates LDAP connection
+   [self bind];
 
    return(self.error.isSuccessful);
 }

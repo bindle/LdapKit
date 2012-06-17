@@ -111,6 +111,7 @@
 - (LKMessage *) searchBaseDNList:(NSArray *)dnList scope:(LKLdapSearchScope)scope
                 filter:(NSString *)filter attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly;
+- (LKMessage *) rebind;
 - (LKMessage *) unbind;
 
 @end
