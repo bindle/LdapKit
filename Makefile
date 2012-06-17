@@ -44,6 +44,7 @@ run_appledoc =	appledoc \
 	--create-html \
 	--verbose 2 \
 	--keep-intermediate-files \
+	--no-repeat-first-par \
 	--docset-platform-family iphoneos \
 	--include ./docs/appledoc/tmp/project/ \
 	LdapKit
