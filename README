@@ -11,7 +11,8 @@ Contents
 
    1. Disclaimer
    2. Software Requirements
-   3. Source Code
+   3. Maintainers
+   4. Source Code
 
 
 Disclaimer
@@ -57,6 +58,14 @@ Software Requirements
    * Xcode 4.3
    * Xcode Command Line Tools
    * Appledoc 2.0.5 (https://github.com/tomaz/appledoc)
+
+
+Maintainers
+-----------
+
+   David M. Syzdek,
+   Bindle Binaries,
+   syzdek@bindlebinaries.com
 
 
 Source Code
