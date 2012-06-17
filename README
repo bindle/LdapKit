@@ -53,12 +53,14 @@ Software Requirements
 ---------------------
 
    Mac OS X
+   --------
    * Git 1.7
    * Mac OS X 10.7
    * Xcode 4.3
    * Xcode Command Line Tools
 
    iOS
+   ---
    * Git 1.7
    * Mac OS X 10.7
    * Xcode 4.3
