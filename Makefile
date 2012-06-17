@@ -55,12 +55,12 @@ all:
 	   echo "$${MSG} be installed before the LdapKit docset can be built."; \
 	   exit 1; \
 	}
-	@rm -f ./docs/appledoc/tmp/project/*
+	@rm -Rf ./docs/appledoc/tmp/*
 	@mkdir -p ./docs/appledoc/tmp/project/
-	@for FILE in README LICENSE;do \
-	   test -f ./docs/appledoc/tmp/project/$${FILE}-template.txt || \
-	      ln ./$${FILE} ./docs/appledoc/tmp/project/$${FILE}-template.txt; \
-	done
+	grep -v '@\([[:alnum:]]\{1,\}_[[:alnum:]]\{1,\}\)\{1,\}@' LICENSE \
+	    > "./docs/appledoc/tmp/project/LDAP Kit License-template.txt"
+	cp README \
+	    "./docs/appledoc/tmp/project/LDAP Kit Project Information-template.txt"
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
 
 clean:
