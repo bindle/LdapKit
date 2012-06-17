@@ -41,7 +41,7 @@ run_appledoc =	appledoc \
 	--project-company "Bindle Binaries" \
 	--company-id com.bindlebinaries \
 	--create-html \
-	--verbose 6 \
+	--verbose 2 \
 	--keep-intermediate-files \
 	--docset-platform-family iphoneos \
 	LdapKit
