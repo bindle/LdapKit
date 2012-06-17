@@ -36,6 +36,7 @@
 
 run_appledoc =	appledoc \
 	--output docs/appledoc/ \
+	--index-desc docs/appledoc.txt \
 	--project-name "LDAP Kit" \
 	--project-version "`git describe  --abbrev=7 |sed -e 's/v//g' -e 's/-/./g'`" \
 	--project-company "Bindle Binaries" \

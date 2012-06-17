@@ -1,0 +1,3 @@
+
+LDAP Kit is a framework for iOS and OS X which uses NSOperation and
+NSOperationQueue to manage LDAP tasks.

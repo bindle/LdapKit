@@ -144,6 +144,7 @@
 		A050B56C158A1379004C32EE /* LKEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEntry.h; sourceTree = "<group>"; };
 		A050B56D158A137A004C32EE /* LKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEntry.m; sourceTree = "<group>"; };
 		A0680FA3158D95C200527DDC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A0680FA4158D9C2300527DDC /* appledoc.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = appledoc.txt; sourceTree = "<group>"; };
 		A086FA66158B2C9100EA0E6B /* LKErrorCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKErrorCategory.h; sourceTree = "<group>"; };
 		A086FA69158B307500EA0E6B /* LKLdapCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLdapCategory.h; sourceTree = "<group>"; };
 		A086FA6C158B338400EA0E6B /* LKMessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMessageCategory.h; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 		A0680FA0158D4AF500527DDC /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				A0680FA4158D9C2300527DDC /* appledoc.txt */,
 			);
 			name = Documentation;
 			path = docs;
