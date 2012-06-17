@@ -62,8 +62,8 @@
 @synthesize ldapEncryptionScheme;
 
 // timeout & limit information
-@synthesize ldapSizeLimit;
-@synthesize ldapSearchTimeout;
+@synthesize ldapSearchSizeLimit;
+@synthesize ldapSearchTimeLimit;
 @synthesize ldapNetworkTimeout;
 
 // authentication information

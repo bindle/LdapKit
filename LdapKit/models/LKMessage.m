@@ -322,9 +322,9 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    ldapCACertificateFile = [session.ldapCACertificateFile retain];
 
    // timeout information
-   ldapSizeLimit      = session.ldapSizeLimit;
-   ldapSearchTimeout  = session.ldapSearchTimeout;
-   ldapNetworkTimeout = session.ldapNetworkTimeout;
+   ldapSearchSizeLimit = session.ldapSearchSizeLimit;
+   ldapSearchTimeLimit = session.ldapSearchTimeLimit;
+   ldapNetworkTimeout  = session.ldapNetworkTimeout;
 
    // authentication information
    [ldapBindWho           release];
@@ -547,7 +547,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       {
          // calculates search timeout
          memset(&timeout, 0, sizeof(struct timeval));
-         timeout.tv_sec  = ldapSearchTimeout;
+         timeout.tv_sec  = ldapSearchTimeLimit;
          timeoutp        = &timeout;
          if (!(timeout.tv_sec))
             timeoutp = NULL;
@@ -801,9 +801,9 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    // set LDAP search timout
-   if ((ldapSearchTimeout))
+   if ((ldapSearchTimeLimit))
    {
-      opt = ldapSearchTimeout;
+      opt = ldapSearchTimeLimit;
       err = ldap_set_option(ld, LDAP_OPT_TIMELIMIT, &opt);
       if (err != LDAP_SUCCESS)
       {
@@ -814,9 +814,9 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    // set LDAP search size limit
-   if ((ldapSizeLimit))
+   if ((ldapSearchSizeLimit))
    {
-      opt = ldapSizeLimit;
+      opt = ldapSearchSizeLimit;
       err = ldap_set_option(ld, LDAP_OPT_SIZELIMIT, &opt);
       if (err != LDAP_SUCCESS)
       {
@@ -1091,10 +1091,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    int                  msgid;
 
    // sets limits
-   ldapSizeLimit   = session.ldapSizeLimit;
-   timeout.tv_sec  = session.ldapSearchTimeout;
-   timeout.tv_usec = 0;
-   timeoutp        = &timeout;
+   ldapSearchSizeLimit = session.ldapSearchSizeLimit;
+   timeout.tv_sec      = session.ldapSearchTimeLimit;
+   timeout.tv_usec     = 0;
+   timeoutp            = &timeout;
    if (!(timeout.tv_sec))
       timeoutp = NULL;
 
@@ -1118,7 +1118,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
          NULL,                            // LDAPControl    ** serverctrls
          NULL,                            // LDAPControl    ** clientctrls
          timeoutp,                        // struct timeval  * timeout
-         ldapSizeLimit,                   // int               sizelimit
+         ldapSearchSizeLimit,             // int               sizelimit
          &msgid                           // int             * msgidp
       );
    };

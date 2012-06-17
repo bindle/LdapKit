@@ -88,8 +88,8 @@
 @property (nonatomic, copy)     NSString               * ldapCACertificateFile;
 
 /// @name timeout & limit information
-@property (nonatomic, assign)   NSInteger                ldapSizeLimit;
-@property (nonatomic, assign)   NSInteger                ldapSearchTimeout;
+@property (nonatomic, assign)   NSInteger                ldapSearchSizeLimit;
+@property (nonatomic, assign)   NSInteger                ldapSearchTimeLimit;
 @property (nonatomic, assign)   NSInteger                ldapNetworkTimeout;
 
 /// @name authentication information

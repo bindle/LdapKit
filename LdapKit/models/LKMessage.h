@@ -72,8 +72,8 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
    NSString               * ldapCACertificateFile;
 
    // timeout information
-   NSInteger                ldapSizeLimit;
-   NSInteger                ldapSearchTimeout;
+   NSInteger                ldapSearchSizeLimit;
+   NSInteger                ldapSearchTimeLimit;
    NSInteger                ldapNetworkTimeout;
 
    // authentication information
