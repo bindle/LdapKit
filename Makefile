@@ -44,6 +44,7 @@ run_appledoc =	appledoc \
 	--verbose 2 \
 	--keep-intermediate-files \
 	--docset-platform-family iphoneos \
+	--include ./docs/appledoc/tmp/project/ \
 	LdapKit
 
 all:
@@ -53,6 +54,12 @@ all:
 	   echo "$${MSG} be installed before the LdapKit docset can be built."; \
 	   exit 1; \
 	}
+	@rm -f ./docs/appledoc/tmp/project/*
+	@mkdir -p ./docs/appledoc/tmp/project/
+	@for FILE in README TODO ChangeLog;do \
+	   test -f ./docs/appledoc/tmp/project/$${FILE}-template.txt || \
+	      ln ./$${FILE} ./docs/appledoc/tmp/project/$${FILE}-template.txt; \
+	done
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
 
 clean:
