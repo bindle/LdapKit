@@ -46,7 +46,8 @@ run_appledoc =	appledoc \
 	--keep-intermediate-files \
 	--no-repeat-first-par \
 	--docset-platform-family iphoneos \
-	--include ./docs/appledoc/tmp/project/ \
+	--include "./docs/appledoc/tmp/LDAP Kit License-template.txt" \
+	--include "./docs/appledoc/tmp/LDAP Kit Project Information-template.txt" \
 	LdapKit
 
 all:
@@ -59,9 +60,9 @@ all:
 	@rm -Rf ./docs/appledoc/tmp/*
 	@mkdir -p ./docs/appledoc/tmp/project/
 	grep -v '@\([[:alnum:]]\{1,\}_[[:alnum:]]\{1,\}\)\{1,\}@' LICENSE \
-	    > "./docs/appledoc/tmp/project/LDAP Kit License-template.txt"
+	    > "./docs/appledoc/tmp/LDAP Kit License-template.txt"
 	cp README \
-	    "./docs/appledoc/tmp/project/LDAP Kit Project Information-template.txt"
+	    "./docs/appledoc/tmp/LDAP Kit Project Information-template.txt"
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
 
 clean:
