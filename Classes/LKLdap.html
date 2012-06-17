@@ -1,0 +1,1734 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>LKLdap Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">LDAP Kit </a></h1>
+				<a id="developerHome" href="../index.html">Bindle Binaries</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">LKLdap Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/isConnected">&nbsp;&nbsp;&nbsp;&nbsp;isConnected</option>
+	
+	<option value="//api/name/ldapBindCredentials">&nbsp;&nbsp;&nbsp;&nbsp;ldapBindCredentials</option>
+	
+	<option value="//api/name/ldapBindCredentialsString">&nbsp;&nbsp;&nbsp;&nbsp;ldapBindCredentialsString</option>
+	
+	<option value="//api/name/ldapBindMethod">&nbsp;&nbsp;&nbsp;&nbsp;ldapBindMethod</option>
+	
+	<option value="//api/name/ldapBindSaslMechanism">&nbsp;&nbsp;&nbsp;&nbsp;ldapBindSaslMechanism</option>
+	
+	<option value="//api/name/ldapBindSaslRealm">&nbsp;&nbsp;&nbsp;&nbsp;ldapBindSaslRealm</option>
+	
+	<option value="//api/name/ldapBindWho">&nbsp;&nbsp;&nbsp;&nbsp;ldapBindWho</option>
+	
+	<option value="//api/name/ldapCACertificateFile">&nbsp;&nbsp;&nbsp;&nbsp;ldapCACertificateFile</option>
+	
+	<option value="//api/name/ldapEncryptionScheme">&nbsp;&nbsp;&nbsp;&nbsp;ldapEncryptionScheme</option>
+	
+	<option value="//api/name/ldapHost">&nbsp;&nbsp;&nbsp;&nbsp;ldapHost</option>
+	
+	<option value="//api/name/ldapNetworkTimeout">&nbsp;&nbsp;&nbsp;&nbsp;ldapNetworkTimeout</option>
+	
+	<option value="//api/name/ldapPort">&nbsp;&nbsp;&nbsp;&nbsp;ldapPort</option>
+	
+	<option value="//api/name/ldapProtocolVersion">&nbsp;&nbsp;&nbsp;&nbsp;ldapProtocolVersion</option>
+	
+	<option value="//api/name/ldapScheme">&nbsp;&nbsp;&nbsp;&nbsp;ldapScheme</option>
+	
+	<option value="//api/name/ldapSearchSizeLimit">&nbsp;&nbsp;&nbsp;&nbsp;ldapSearchSizeLimit</option>
+	
+	<option value="//api/name/ldapSearchTimeLimit">&nbsp;&nbsp;&nbsp;&nbsp;ldapSearchTimeLimit</option>
+	
+	<option value="//api/name/ldapURI">&nbsp;&nbsp;&nbsp;&nbsp;ldapURI</option>
+	
+	<option value="//api/name/queue">&nbsp;&nbsp;&nbsp;&nbsp;queue</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/bind">&nbsp;&nbsp;&nbsp;&nbsp;- bind</option>
+	
+	<option value="//api/name/init">&nbsp;&nbsp;&nbsp;&nbsp;- init</option>
+	
+	<option value="//api/name/initWithQueue:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithQueue:</option>
+	
+	<option value="//api/name/rebind">&nbsp;&nbsp;&nbsp;&nbsp;- rebind</option>
+	
+	<option value="//api/name/searchBaseDN:scope:filter:attributes:attributesOnly:">&nbsp;&nbsp;&nbsp;&nbsp;- searchBaseDN:scope:filter:attributes:attributesOnly:</option>
+	
+	<option value="//api/name/searchBaseDNList:scope:filter:attributes:attributesOnly:">&nbsp;&nbsp;&nbsp;&nbsp;- searchBaseDNList:scope:filter:attributes:attributesOnly:</option>
+	
+	<option value="//api/name/unbind">&nbsp;&nbsp;&nbsp;&nbsp;- unbind</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Object Management Methods">Object Management Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Server state">Server state</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Server information">Server information</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Encryption information">Encryption information</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Timeout &amp; limit information">Timeout &amp; limit information</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_authentication information">authentication information</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_LDAP operations">LDAP operations</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isConnected">isConnected</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapBindCredentials">ldapBindCredentials</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapBindCredentialsString">ldapBindCredentialsString</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapBindMethod">ldapBindMethod</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapBindSaslMechanism">ldapBindSaslMechanism</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapBindSaslRealm">ldapBindSaslRealm</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapBindWho">ldapBindWho</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapCACertificateFile">ldapCACertificateFile</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapEncryptionScheme">ldapEncryptionScheme</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapHost">ldapHost</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapNetworkTimeout">ldapNetworkTimeout</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapPort">ldapPort</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapProtocolVersion">ldapProtocolVersion</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapScheme">ldapScheme</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapSearchSizeLimit">ldapSearchSizeLimit</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapSearchTimeLimit">ldapSearchTimeLimit</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapURI">ldapURI</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/queue">queue</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bind">bind</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/init">init</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithQueue:">initWithQueue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rebind">rebind</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchBaseDN:scope:filter:attributes:attributesOnly:">searchBaseDN:scope:filter:attributes:attributesOnly:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchBaseDNList:scope:filter:attributes:attributesOnly:">searchBaseDNList:scope:filter:attributes:attributesOnly:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unbind">unbind</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="LKLdap Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">LKLdap Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">LKLdap.h<br />LKLdap.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>LKLdap manges connections to remote directory servers and initiates
+LDAP requests.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Object Management Methods" name="task_Object Management Methods"></a>
+						<h3 class="subsubtitle task-title">Object Management Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+		<span class="tooltip"><p>Initialize a new object with default values and a private operation <a href="#//api/name/queue">queue</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithQueue:">&ndash;&nbsp;initWithQueue:</a></code>
+		<span class="tooltip"><p>Initialize a new object with default values and a shared operation <a href="#//api/name/queue">queue</a>.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Server state" name="task_Server state"></a>
+						<h3 class="subsubtitle task-title">Server state</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/queue">&nbsp;&nbsp;queue</a></code>
+		<span class="tooltip"><p>Returns the NSOperationQueue used to execute LDAP tasks.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isConnected">&nbsp;&nbsp;isConnected</a></code>
+		<span class="tooltip"><p>Returns a Boolean value indicating whether the object is connected
+to an LDAP server.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Server information" name="task_Server information"></a>
+						<h3 class="subsubtitle task-title">Server information</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapURI">&nbsp;&nbsp;ldapURI</a></code>
+		<span class="tooltip"><p>The URL string used to initialize an LDAP connection.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapScheme">&nbsp;&nbsp;ldapScheme</a></code>
+		<span class="tooltip"><p>The protocol scheme used to initialize an LDAP connection.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapHost">&nbsp;&nbsp;ldapHost</a></code>
+		<span class="tooltip"><p>The host name used to initialize an LDAP connection.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapPort">&nbsp;&nbsp;ldapPort</a></code>
+		<span class="tooltip"><p>The port number used to initialize an LDAP connection.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapProtocolVersion">&nbsp;&nbsp;ldapProtocolVersion</a></code>
+		<span class="tooltip"><p>The protocol version used to initiate an LDAP connection.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Encryption information" name="task_Encryption information"></a>
+						<h3 class="subsubtitle task-title">Encryption information</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapEncryptionScheme">&nbsp;&nbsp;ldapEncryptionScheme</a></code>
+		<span class="tooltip"><p>The encryption method used to communicate with the LDAP server.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapCACertificateFile">&nbsp;&nbsp;ldapCACertificateFile</a></code>
+		<span class="tooltip"><p>The file name containing certificates of authorized certificate authorities.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Timeout &amp; limit information" name="task_Timeout &amp; limit information"></a>
+						<h3 class="subsubtitle task-title">Timeout &amp; limit information</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapSearchSizeLimit">&nbsp;&nbsp;ldapSearchSizeLimit</a></code>
+		<span class="tooltip"><p>The maximum number of entries to be returned by a search operation.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapSearchTimeLimit">&nbsp;&nbsp;ldapSearchTimeLimit</a></code>
+		<span class="tooltip"><p>The time limit (in seconds) after which a search operation shou<a href="#//api/name/ld">ld</a> be
+terminated by the server.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapNetworkTimeout">&nbsp;&nbsp;ldapNetworkTimeout</a></code>
+		<span class="tooltip"><p>The network timeout value after which a connection fails due to no activity.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="authentication information" name="task_authentication information"></a>
+						<h3 class="subsubtitle task-title">authentication information</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapBindMethod">&nbsp;&nbsp;ldapBindMethod</a></code>
+		<span class="tooltip"><p>The method used to <a href="#//api/name/bind">bind</a> to a directory server.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapBindWho">&nbsp;&nbsp;ldapBindWho</a></code>
+		<span class="tooltip"><p>The SASL user or distinguished name used when performing an authenticated <a href="#//api/name/bind">bind</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapBindCredentials">&nbsp;&nbsp;ldapBindCredentials</a></code>
+		<span class="tooltip"><p>The binary credentials used when performing an authenticated <a href="#//api/name/bind">bind</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapBindCredentialsString">&nbsp;&nbsp;ldapBindCredentialsString</a></code>
+		<span class="tooltip"><p>The credentials used when performing an authenticated <a href="#//api/name/bind">bind</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapBindSaslMechanism">&nbsp;&nbsp;ldapBindSaslMechanism</a></code>
+		<span class="tooltip"><p>The SASL mechanism used when performing a SASL <a href="#//api/name/bind">bind</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapBindSaslRealm">&nbsp;&nbsp;ldapBindSaslRealm</a></code>
+		<span class="tooltip"><p>The SASL realm used when performing a SASL <a href="#//api/name/bind">bind</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="LDAP operations" name="task_LDAP operations"></a>
+						<h3 class="subsubtitle task-title">LDAP operations</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bind">&ndash;&nbsp;bind</a></code>
+		<span class="tooltip"><p>Initiates a bind request to the remote server.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchBaseDN:scope:filter:attributes:attributesOnly:">&ndash;&nbsp;searchBaseDN:scope:filter:attributes:attributesOnly:</a></code>
+		<span class="tooltip"><p>Performs an LDAP search operation on a single base DN.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchBaseDNList:scope:filter:attributes:attributesOnly:">&ndash;&nbsp;searchBaseDNList:scope:filter:attributes:attributesOnly:</a></code>
+		<span class="tooltip"><p>Performs LDAP search operations on multiple base DNs.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rebind">&ndash;&nbsp;rebind</a></code>
+		<span class="tooltip"><p>Initiates a re<a href="#//api/name/bind">bind</a> request to the remote server.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unbind">&ndash;&nbsp;unbind</a></code>
+		<span class="tooltip"><p>Initiates an u<a href="#//api/name/bind">bind</a> request to the remote server.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/isConnected" title="isConnected"></a>
+	<h3 class="subsubtitle method-title">isConnected</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a Boolean value indicating whether the object is connected
+to an LDAP server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isConnected</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapBindCredentials" title="ldapBindCredentials"></a>
+	<h3 class="subsubtitle method-title">ldapBindCredentials</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The binary credentials used when performing an authenticated <a href="#//api/name/bind">bind</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSData *ldapBindCredentials</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapBindCredentialsString" title="ldapBindCredentialsString"></a>
+	<h3 class="subsubtitle method-title">ldapBindCredentialsString</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The credentials used when performing an authenticated <a href="#//api/name/bind">bind</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindCredentialsString</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapBindMethod" title="ldapBindMethod"></a>
+	<h3 class="subsubtitle method-title">ldapBindMethod</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The method used to <a href="#//api/name/bind">bind</a> to a directory server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapBindMethod ldapBindMethod</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Valid values are:</p>
+
+<ul>
+<li><code>LKLdapBindMethodAnonymous</code> performs an anonymous <a href="#//api/name/bind">bind</a>.</li>
+<li><code>LKLdapBindMethodSimple</code> performs a simple <a href="#//api/name/bind">bind</a>.</li>
+<li><code>LKLdapBindMethodSASL</code> performs a SASL <a href="#//api/name/bind">bind</a>.</li>
+</ul>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapBindSaslMechanism" title="ldapBindSaslMechanism"></a>
+	<h3 class="subsubtitle method-title">ldapBindSaslMechanism</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The SASL mechanism used when performing a SASL <a href="#//api/name/bind">bind</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindSaslMechanism</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> Currently the only supported mechanisms on iOS are DIGEST-MD5 and
+CRAM-MD5.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapBindSaslRealm" title="ldapBindSaslRealm"></a>
+	<h3 class="subsubtitle method-title">ldapBindSaslRealm</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The SASL realm used when performing a SASL <a href="#//api/name/bind">bind</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindSaslRealm</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapBindWho" title="ldapBindWho"></a>
+	<h3 class="subsubtitle method-title">ldapBindWho</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The SASL user or distinguished name used when performing an authenticated <a href="#//api/name/bind">bind</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindWho</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapCACertificateFile" title="ldapCACertificateFile"></a>
+	<h3 class="subsubtitle method-title">ldapCACertificateFile</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The file name containing certificates of authorized certificate authorities.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapCACertificateFile</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The data contained within this file must be in PEM format. This value is only
+used when establishing a new TLS or SSL connection. The default for Mac OS X
+is to use the system&rsquo;s list of authorized certificate authorities.</p><div class="warning"><p><strong>Warning:</strong> iOS does not have a default value for ldapCACertificateFile. In order
+to use TLS or SSL on iOS, this property must be set to a file name which
+contains valid certificates.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapEncryptionScheme" title="ldapEncryptionScheme"></a>
+	<h3 class="subsubtitle method-title">ldapEncryptionScheme</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The encryption method used to communicate with the LDAP server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapEncryptionScheme ldapEncryptionScheme</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>LKLdap supports TLS and SSL connections. Valid values are:</p>
+
+<ul>
+<li><code>LKLdapEncryptionSchemeNone</code> do not use encryption.</li>
+<li><code>LKLdapEncryptionSchemeAttemptTLS</code> attempt to use TLS, but allow
+ unencrypted connections if TLS is unavailable.</li>
+<li><code>LKLdapEncryptionSchemeTLS</code> use TLS when establishing a connection.</li>
+<li><code>LKLdapEncryptionSchemeSSL</code> use SSL when establishing a connection.</li>
+</ul>
+
+
+<p>The default value is <code>LKLdapEncryptionSchemeAttemptTLS</code>.</p>
+
+<p>Changes to this property do not affect active LDAP connections. In order for
+changes to take affect, the method <a href="#//api/name/rebind"><code>rebind</code></a> must be called.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapHost" title="ldapHost"></a>
+	<h3 class="subsubtitle method-title">ldapHost</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The host name used to initialize an LDAP connection.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapHost</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The default value is <code>@"localhost"</code>.</p>
+
+<p>Changes to this property do not affect active LDAP connections. In order for
+changes to take affect, the method <a href="#//api/name/rebind"><code>rebind</code></a> must be called.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapNetworkTimeout" title="ldapNetworkTimeout"></a>
+	<h3 class="subsubtitle method-title">ldapNetworkTimeout</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The network timeout value after which a connection fails due to no activity.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapNetworkTimeout</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Setting the value to -1 results in an infinite timeout, which is the default.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapPort" title="ldapPort"></a>
+	<h3 class="subsubtitle method-title">ldapPort</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The port number used to initialize an LDAP connection.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapPort</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The default value is 389.</p>
+
+<p>Changes to this property do not affect active LDAP connections. In order for
+changes to take affect, the method <a href="#//api/name/rebind"><code>rebind</code></a> must be called.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapProtocolVersion" title="ldapProtocolVersion"></a>
+	<h3 class="subsubtitle method-title">ldapProtocolVersion</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The protocol version used to initiate an LDAP connection.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapProtocolVersion ldapProtocolVersion</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>LKLdap supports LDAP version 2 and LDAP version 3. Valid values are
+<code>LKLdapProtocolVersion2</code> and <code>LKLdapProtocolVersion3</code>. The default value
+is <code>LKLdapProtocolVersion3</code>.</p>
+
+<p>Changes to this property do not affect active LDAP connections. In order for
+changes to take affect, the method <a href="#//api/name/rebind"><code>rebind</code></a> must be called.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapScheme" title="ldapScheme"></a>
+	<h3 class="subsubtitle method-title">ldapScheme</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The protocol scheme used to initialize an LDAP connection.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapProtocolScheme ldapScheme</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>LKLdap can be used to initate connections using LDAP, LDAPS, and LDAPI.
+Valid values for ldapScheme are <code>LKLdapProtocolSchemeLDAP</code>,
+<code>LKLdapProtocolSchemeLDAPS</code>, and <code>LKLdapProtocolSchemeLDAPI</code>. The
+default value is <code>LKLdapProtocolSchemeLDAP</code>.</p>
+
+<p>Changes to this property do not affect active LDAP connections. In order for
+changes to take affect, the method <a href="#//api/name/rebind"><code>rebind</code></a> must be called.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapSearchSizeLimit" title="ldapSearchSizeLimit"></a>
+	<h3 class="subsubtitle method-title">ldapSearchSizeLimit</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The maximum number of entries to be returned by a search operation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapSearchSizeLimit</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapSearchTimeLimit" title="ldapSearchTimeLimit"></a>
+	<h3 class="subsubtitle method-title">ldapSearchTimeLimit</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The time limit (in seconds) after which a search operation shou<a href="#//api/name/ld">ld</a> be
+terminated by the server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapSearchTimeLimit</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapURI" title="ldapURI"></a>
+	<h3 class="subsubtitle method-title">ldapURI</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The URL string used to initialize an LDAP connection.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapURI</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The default value is <code>@"ldap://localhost/"</code>.</p>
+
+<p>Changes to this property do not affect active LDAP connections. In order for
+changes to take affect, the method <a href="#//api/name/rebind"><code>rebind</code></a> must be called.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/queue" title="queue"></a>
+	<h3 class="subsubtitle method-title">queue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the NSOperationQueue used to execute LDAP tasks.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSOperationQueue *queue</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/bind" title="bind"></a>
+	<h3 class="subsubtitle method-title">bind</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiates a bind request to the remote server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)bind</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the bind request.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If not already connected to the remote server, this will cause a connection
+to be established prior to submitting the bind request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="subsubtitle method-title">init</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new object with default values and a private operation <a href="#//api/name/queue">queue</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)init</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithQueue:" title="initWithQueue:"></a>
+	<h3 class="subsubtitle method-title">initWithQueue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new object with default values and a shared operation <a href="#//api/name/queue">queue</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initWithQueue:(NSOperationQueue *)<em>queue</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>queue</em></dt>
+			<dd><p>The <a href="#//api/name/queue">queue</a> to use when executing LDAP tasks.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rebind" title="rebind"></a>
+	<h3 class="subsubtitle method-title">rebind</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiates a re<a href="#//api/name/bind">bind</a> request to the remote server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)rebind</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the re<a href="#//api/name/bind">bind</a> request.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This will cause the current connection (if one exists) to be terminated
+and a new connection to be established.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchBaseDN:scope:filter:attributes:attributesOnly:" title="searchBaseDN:scope:filter:attributes:attributesOnly:"></a>
+	<h3 class="subsubtitle method-title">searchBaseDN:scope:filter:attributes:attributesOnly:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Performs an LDAP search operation on a single base DN.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)searchBaseDN:(NSString *)<em>base</em> scope:(LKLdapSearchScope)<em>scope</em> filter:(NSString *)<em>filter</em> attributes:(NSArray *)<em>attributes</em> attributesOnly:(BOOL)<em>attributesOnly</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>base</em></dt>
+			<dd><p>The DN of the entry at which to start the search.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>scope</em></dt>
+			<dd><p>The scope of the search and shou<a href="#//api/name/ld">ld</a> be one of
+<code>LKLdapSearchScopeBase</code>, <code>LKLdapSearchScopeOneLevel</code>,
+<code>LKLdapSearchScopeSubTree</code>, or <code>LKLdapSearchScopeChildren</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>filter</em></dt>
+			<dd><p>The string representation of the filter to apply in the search.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>attributes</em></dt>
+			<dd><p>An array of attribute descriptions to return from matching
+entries.  The default is to return all attribute descriptions.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>attributesOnly</em></dt>
+			<dd><p>The attrsonly parameter shou<a href="#//api/name/ld">ld</a> be set to <code>YES</code> value
+if  only  attribute  descriptions  are  wanted. It shou<a href="#//api/name/ld">ld</a> be set to <code>NO</code>
+if both attributes descriptions and attribute values are wanted.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the search request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchBaseDNList:scope:filter:attributes:attributesOnly:" title="searchBaseDNList:scope:filter:attributes:attributesOnly:"></a>
+	<h3 class="subsubtitle method-title">searchBaseDNList:scope:filter:attributes:attributesOnly:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Performs LDAP search operations on multiple base DNs.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)searchBaseDNList:(NSArray *)<em>bases</em> scope:(LKLdapSearchScope)<em>scope</em> filter:(NSString *)<em>filter</em> attributes:(NSArray *)<em>attributes</em> attributesOnly:(BOOL)<em>attributesOnly</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>bases</em></dt>
+			<dd><p>An array of DNs of the entries at which to start the search.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>scope</em></dt>
+			<dd><p>The scope of the search and shou<a href="#//api/name/ld">ld</a> be one of
+<code>LKLdapSearchScopeBase</code>, <code>LKLdapSearchScopeOneLevel</code>,
+<code>LKLdapSearchScopeSubTree</code>, or <code>LKLdapSearchScopeChildren</code>.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>filter</em></dt>
+			<dd><p>The string representation of the filter to apply in the search.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>attributes</em></dt>
+			<dd><p>An array of attribute descriptions to return from matching
+entries.  The default is to return all attribute descriptions.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>attributesOnly</em></dt>
+			<dd><p>The attrsonly parameter shou<a href="#//api/name/ld">ld</a> be set to <code>YES</code> value
+if  only  attribute  descriptions  are  wanted. It shou<a href="#//api/name/ld">ld</a> be set to <code>NO</code>
+if both attributes descriptions and attribute values are wanted.</p>
+
+<p>If any one of the search operations generates an error, an error is reported
+for the entire request.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the search request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unbind" title="unbind"></a>
+	<h3 class="subsubtitle method-title">unbind</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiates an u<a href="#//api/name/bind">bind</a> request to the remote server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)unbind</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the <a href="#//api/name/rebind">rebind</a> request.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This will cause the current connection (if one exists).</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-17)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

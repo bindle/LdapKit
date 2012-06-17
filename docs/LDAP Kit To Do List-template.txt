@@ -1,0 +1,26 @@
+
+LDAP Kit To-Do List
+===================
+
+   General
+   -------
+   * IPv6 Support: LKLdap and LKMessage needs to be updated to properly
+     process IPv6 addresses if an IPv6 address is specified as the host or
+     in the LDAP URL.
+   * Remove custom error codes from LKError and replace with equivalent internal
+     LDAP error codes.
+
+   LDAP Opeartions
+   ---------------
+   * Add LDAP delete methods to LKLdap and LKMessage.
+   * Add LDAP modify methods to LKLdap and LKMessage.
+   * Add LDAP rename methods to LKLdap and LKMessage.
+   * Add LDAP URL parse methods to LKLdap.
+   * Add LDAP whoami  methods to LKLdap and LKMessage.
+
+   Documentation
+   -------------
+   * Finish README.
+   * Finish documenting source code with appledoc tags.
+   * Publish LDAP Kit docsets to github webpage.
+
