@@ -39,19 +39,9 @@
 #import <LdapKit/LKEnumerations.h>
 
 
-#pragma mark LDAP error type
-enum ldap_kit_ldap_error_type
-{
-   LKLdapErrorTypeInternal           = 0x01,
-   LKLdapErrorTypeLDAP               = 0x02
-};
-typedef enum ldap_kit_ldap_error_type LKLdapErrorType;
-
-
 @interface LKError : NSObject
 {
    // error information
-   LKLdapErrorType    _errorType;
    NSInteger          _errorCode;
    NSString         * _errorTitle;
    NSString         * _errorMessage;
@@ -61,8 +51,6 @@ typedef enum ldap_kit_ldap_error_type LKLdapErrorType;
 
 #pragma mark - Error information
 /// @name Error information
-
-@property (atomic, readonly)    LKLdapErrorType    errorType;
 
 /// The numeric value of the error.
 @property (atomic, readonly)    NSInteger          errorCode;

@@ -55,7 +55,6 @@
 - (void) resetErrorWithTitle:(NSString *)errorTitle;
 
 /// @name error information
-- (void) setErrorType:(LKLdapErrorType)errorType;
 - (void) setErrorCode:(NSInteger)code;
 - (void) setErrorTitle:(NSString *)title;
 - (void) setErrorMessage:(NSString *)message;

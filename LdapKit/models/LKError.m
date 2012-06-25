@@ -247,11 +247,6 @@
    @synchronized(self)
    {
       _errorCode = errorCode;
-
-      _errorType = LKLdapErrorTypeInternal;
-      if (_errorCode > 0)
-         _errorType = LKLdapErrorTypeLDAP;
-
       [_errorMessage release];
       _errorMessage = [[self messageForCode:errorCode] retain];
    };
@@ -300,37 +295,9 @@
 }
 
 
-- (LKLdapErrorType) errorType
-{
-   @synchronized(self)
-   {
-      return(_errorType);
-   };
-}
-- (void) setErrorType:(LKLdapErrorType)errorType
-{
-   @synchronized(self)
-   {
-      _errorType = errorType;
-   };
-   return;
-}
-
-
 - (BOOL) isSuccessful
 {
-   switch(_errorType)
-   {
-      case LKLdapErrorTypeInternal:
-      return(_errorCode == LDAP_SUCCESS);
-
-      case LKLdapErrorTypeLDAP:
-      return(_errorCode == LDAP_SUCCESS);
-
-      default:
-      break;
-   };
-   return(NO);
+   return(_errorCode == LDAP_SUCCESS);
 }
 
 
