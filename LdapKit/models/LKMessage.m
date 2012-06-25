@@ -236,6 +236,9 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // resets error
    [self resetError];
 
+   // copies session data to local ivars
+   [self copySessionInformation];
+
    return(self);
 }
 
