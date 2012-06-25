@@ -64,8 +64,8 @@
    pool = [[NSAutoreleasePool alloc] init];
 
    self.errorTitle        = errorTitle;
-   self.errorCode         = LKErrorCodeSuccess;
-   self.errorMessage      = [LKError messageForCode:LKErrorCodeSuccess];
+   self.errorCode         = LDAP_SUCCESS;
+   self.errorMessage      = [LKError messageForCode:LDAP_SUCCESS];
    self.diagnosticMessage = nil;
 
    [pool release];
@@ -322,7 +322,7 @@
    switch(_errorType)
    {
       case LKLdapErrorTypeInternal:
-      return(_errorCode == LKErrorCodeSuccess);
+      return(_errorCode == LDAP_SUCCESS);
 
       case LKLdapErrorTypeLDAP:
       return(_errorCode == LDAP_SUCCESS);
@@ -344,27 +344,7 @@
 
 + (NSString *) messageForCode:(NSInteger)errorCode
 {
-   if (errorCode >= 0)
-      return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
-   switch (errorCode)
-   {
-      case LKErrorCodeSuccess:
-      return(@"success");
-
-      case LKErrorCodeCancelled:
-      return(@"operation was canceled");
-
-      case LKErrorCodeNotConnected:
-      return(@"not connected to server");
-
-      case LKErrorCodeMemory:
-      return(@"out of virtual memory");
-
-      case LKErrorCodeUnknown:
-      default:
-      break;
-   };
-   return(@"unknown internal error");
+   return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
 }
 
 

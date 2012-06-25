@@ -400,7 +400,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       return(error.isSuccessful);
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LKErrorCodeCancelled];
+      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
       return(error.isSuccessful);
    };
 
@@ -452,7 +452,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       return(error.isSuccessful);
    if ((self.isCancelled))
    {
-      error.errorCode = LKErrorCodeCancelled;
+      error.errorCode = LDAP_USER_CANCELLED;
       return(error.isSuccessful);
    };
 
@@ -479,7 +479,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
             if ((session.ld))
                ldap_abandon_ext(session.ld, msgid, NULL, NULL);
          };
-         error.errorCode = LKErrorCodeCancelled;
+         error.errorCode = LDAP_USER_CANCELLED;
          [self freeAttributeList:(&attrs)];
          return(error.isSuccessful);
       };
@@ -589,7 +589,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    if (!(isConnected))
    {
       [self unbind];
-      self.error = [LKError errorWithTitle: @"Test LDAP Connection" code:LKErrorCodeNotConnected];
+      self.error = [LKError errorWithTitle: @"Test LDAP Connection" code:LDAP_UNAVAILABLE];
       return(self.error.isSuccessful);
    };
 
@@ -717,7 +717,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // check for cancelled operation
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LKErrorCodeCancelled];
+      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -749,7 +749,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    err = setsockopt(s, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof(opt));
    if (err == -1)
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:LKErrorCodeUnknown];
+      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:LDAP_OTHER];
       error.errorMessage = [NSString stringWithUTF8String:strerror(errno)];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
@@ -842,7 +842,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // check for cancelled operation
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LKErrorCodeCancelled];
+      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -899,7 +899,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // check for cancelled operation
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LKErrorCodeCancelled];
+      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -1008,7 +1008,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
             if ((session.ld))
                ldap_abandon_ext(session.ld, msgid, NULL, NULL);
          };
-         error.errorCode = LKErrorCodeCancelled;
+         error.errorCode = LDAP_USER_CANCELLED;
          return(NULL);
       };
 
@@ -1103,7 +1103,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       // checks session
       if (!(session.ld))
       {
-         error.errorCode = LKErrorCodeNotConnected;
+         error.errorCode = LDAP_UNAVAILABLE;
          return(-1);
       };
 

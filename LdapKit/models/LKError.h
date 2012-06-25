@@ -47,16 +47,6 @@ enum ldap_kit_ldap_error_type
 };
 typedef enum ldap_kit_ldap_error_type LKLdapErrorType;
 
-enum ldap_kit_ldap_error_code
-{
-   LKErrorCodeSuccess        =   0,   // operation was successful
-   LKErrorCodeUnknown        =  -1,   // unknown error code
-   LKErrorCodeCancelled      =  -2,   // operation was cancelled
-   LKErrorCodeNotConnected   =  -3,   // not connected to server
-   LKErrorCodeMemory         =  -4,   // out of memory
-};
-typedef enum ldap_kit_ldap_error_code LKErrorCode;
-
 
 @interface LKError : NSObject
 {
