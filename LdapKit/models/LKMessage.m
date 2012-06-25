@@ -1329,28 +1329,34 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       switch(interact->id)
       {
          case SASL_CB_GETREALM:
-            interact->result = ldap_inst->realm ? ldap_inst->realm : "";
-            interact->len    = (unsigned)strlen( interact->result );
-            break;
+         interact->result = ldap_inst->realm ? ldap_inst->realm : "";
+         interact->len    = (unsigned)strlen( interact->result );
+         break;
+
          case SASL_CB_AUTHNAME:
-            interact->result = ldap_inst->authuser ? ldap_inst->authuser : "";
-            interact->len    = (unsigned)strlen( interact->result );
-            break;
+         interact->result = ldap_inst->authuser ? ldap_inst->authuser : "";
+         interact->len    = (unsigned)strlen( interact->result );
+         break;
+
          case SASL_CB_PASS:
-            interact->result = ldap_inst->cred.bv_val ? ldap_inst->cred.bv_val : "";
-            interact->len    = (unsigned)ldap_inst->cred.bv_len;
-            break;
+         interact->result = ldap_inst->cred.bv_val ? ldap_inst->cred.bv_val : "";
+         interact->len    = (unsigned)ldap_inst->cred.bv_len;
+         break;
+
          case SASL_CB_USER:
-            interact->result = ldap_inst->user ? ldap_inst->user : "";
-            interact->len    = (unsigned)strlen( interact->result );
-            break;
+         interact->result = ldap_inst->user ? ldap_inst->user : "";
+         interact->len    = (unsigned)strlen( interact->result );
+         break;
+
          case SASL_CB_NOECHOPROMPT:
-            break;
+         break;
+
          case SASL_CB_ECHOPROMPT:
-            break;
+         break;
+
          default:
-            // I don't know how to process this.
-            break;
+         // I don't know how to process this.
+         break;
       };
    };
 
