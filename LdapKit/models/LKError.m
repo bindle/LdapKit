@@ -65,7 +65,7 @@
 
    self.errorTitle        = errorTitle;
    self.errorCode         = LDAP_SUCCESS;
-   self.errorMessage      = [LKError messageForCode:LDAP_SUCCESS];
+   self.errorMessage      = [[NSString stringWithUTF8String:ldap_err2string(LDAP_SUCCESS)] retain];
    self.diagnosticMessage = nil;
 
    [pool release];
@@ -85,7 +85,7 @@
 
    self.errorTitle   = errorTitle;
    self.errorCode    = errorCode;
-   self.errorMessage = [LKError messageForCode:errorCode];
+   self.errorMessage = [[NSString stringWithUTF8String:ldap_err2string(errorCode)] retain];
    self.diagnosticMessage = nil;
 
    [pool release];
@@ -106,7 +106,7 @@
 
    self.errorTitle        = errorTitle;
    self.errorCode         = errorCode;
-   self.errorMessage      = [LKError messageForCode:errorCode];
+   self.errorMessage      = [[NSString stringWithUTF8String:ldap_err2string(errorCode)] retain];
    self.diagnosticMessage = diagnosticMessage;
 
    [pool release];
@@ -132,7 +132,7 @@
 
    self.errorTitle        = errorTitle;
    self.errorCode         = errorCode;
-   self.errorMessage      = [LKError messageForCode:errorCode];
+   self.errorMessage      = [[NSString stringWithUTF8String:ldap_err2string(errorCode)] retain];
 
    // diagnostic message
    rc = ldap_get_option(ld, LDAP_OPT_DIAGNOSTIC_MESSAGE, &sval);
@@ -173,7 +173,7 @@
 
    self.errorTitle        = errorTitle;
    self.errorCode         = ival;
-   self.errorMessage      = [LKError messageForCode:ival];
+   self.errorMessage      = [[NSString stringWithUTF8String:ldap_err2string(ival)] retain];
 
    [pool release];
 
@@ -248,7 +248,7 @@
    {
       _errorCode = errorCode;
       [_errorMessage release];
-      _errorMessage = [[self messageForCode:errorCode] retain];
+      _errorMessage = [[NSString stringWithUTF8String:ldap_err2string(errorCode)] retain];
    };
    [pool release];
    return;
@@ -298,20 +298,6 @@
 - (BOOL) isSuccessful
 {
    return(_errorCode == LDAP_SUCCESS);
-}
-
-
-#pragma mark - Error strings
-
-- (NSString *) messageForCode:(NSInteger)errorCode
-{
-   return([LKError messageForCode:errorCode]);
-}
-
-
-+ (NSString *) messageForCode:(NSInteger)errorCode
-{
-   return([NSString stringWithUTF8String:ldap_err2string(errorCode)]);
 }
 
 

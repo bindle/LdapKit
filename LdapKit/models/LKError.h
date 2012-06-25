@@ -67,11 +67,4 @@
 /// Determines if the error code indicates whether the task succeeded or failed.
 @property (nonatomic, readonly) BOOL               isSuccessful;
 
-
-#pragma mark - Error strings
-/// @name Error strings
-
-- (NSString *) messageForCode:(NSInteger)errorCode;
-+ (NSString *) messageForCode:(NSInteger)errorCode;
-
 @end
