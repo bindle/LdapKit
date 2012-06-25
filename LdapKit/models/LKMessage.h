@@ -68,7 +68,6 @@ enum ldap_kit_ldap_message_type
 typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 
 
-@class LKError;
 @class LKLdap;
 
 
@@ -76,8 +75,13 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 {
    // state information
    LKLdap                 * session;
-   LKError                * error;
    LKLdapMessageType        messageType;
+
+   // error information
+   NSInteger                errorCode;
+   NSString               * errorTitle;
+   NSString               * errorMessage;
+   NSString               * diagnosticMessage;
 
    // server information
    NSString               * ldapURI;
@@ -120,9 +124,6 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 #pragma mark - Message information
 /// @name Message information
 
-/// The current error state of the message.
-@property (nonatomic, readonly) LKError                * error;
-
 /// The type of request the message was initialized to process.
 ///
 /// Values include:
@@ -132,6 +133,25 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 /// * `LKLdapMessageTypeSearch` indicates message was initialized to process a search request.
 /// * `LKLdapMessageTypeUnbind` indicates message was initialized to process an unbind request.
 @property (nonatomic, readonly) LKLdapMessageType        messageType;
+
+
+#pragma mark - Errors
+/// @name Errors
+
+/// The numeric value of the error.
+@property (atomic, readonly)    NSInteger          errorCode;
+
+/// An optional title of the error for use when reporting error to users.
+@property (nonatomic, readonly) NSString         * errorTitle;
+
+/// A human readable error message.
+@property (nonatomic, readonly) NSString         * errorMessage;
+
+/// Additional diagnostic information if available.
+@property (nonatomic, readonly) NSString         * diagnosticMessage;
+
+/// Determines if the error code indicates whether the task succeeded or failed.
+@property (nonatomic, readonly) BOOL               isSuccessful;
 
 
 #pragma mark - Results

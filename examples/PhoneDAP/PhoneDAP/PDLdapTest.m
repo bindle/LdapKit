@@ -143,10 +143,10 @@
       return;
    };
 
-   if (!(ldapOperation.error.isSuccessful))
+   if (!(ldapOperation.isSuccessful))
    {
       pool = [[NSAutoreleasePool alloc] init];
-      NSLog(@"%@ (%i): %@", ldapOperation.error.errorMessage, ldapOperation.error.errorCode, ldapOperation.error.errorMessage);
+      NSLog(@"%@ (%i): %@", ldapOperation.errorMessage, ldapOperation.errorCode, ldapOperation.errorMessage);
       [pool release];
       return;
    };

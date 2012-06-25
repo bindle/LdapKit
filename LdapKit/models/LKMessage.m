@@ -43,8 +43,6 @@
 
 #import "LKEntry.h"
 #import "LKEntryCategory.h"
-#import "LKError.h"
-#import "LKErrorCategory.h"
 #import "LKLdap.h"
 #import "LKLdapCategory.h"
 
@@ -63,8 +61,14 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 @interface LKMessage ()
 
-// Getter/Setter methods
-- (void) setError:(LKError *)anError;
+// error information
+- (void) resetError;
+- (void) resetErrorWithTitle:(NSString *)title;
+- (void) resetErrorWithTitle:(NSString *)title andCode:(NSInteger)code;
+- (void) setErrorCode:(NSInteger)code;
+- (void) setErrorTitle:(NSString *)title;
+- (void) setErrorMessage:(NSString *)message;
+- (void) setDiagnosticMessage:(NSString *)message;
 
 /// @name copies LDAP information
 - (void) copySessionInformation;
@@ -101,8 +105,13 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 @implementation LKMessage
 
 // state information
-@synthesize error;
 @synthesize messageType;
+
+// error information
+@synthesize errorCode;
+@synthesize errorTitle;
+@synthesize errorMessage;
+@synthesize diagnosticMessage;
 
 // client information
 @synthesize tag;
@@ -115,7 +124,6 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 {
    // server state
    [session release];
-   [error   release];
 
    // server information
    [ldapURI release];
@@ -165,8 +173,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // state information
    session     = [data retain];
-   error       = [[LKError alloc] init];
    messageType = LKLdapMessageTypeBind;
+
+   // resets error
+   [self resetError];
 
    // copies session data to local ivars
    [self copySessionInformation];
@@ -197,8 +207,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // state information
    session     = [data retain];
-   error       = [[LKError alloc] init];
    messageType = LKLdapMessageTypeSearch;
+
+   // resets error
+   [self resetError];
 
    // search information
    searchDnList         = [[NSArray alloc]  initWithArray:dnList copyItems:YES];
@@ -219,8 +231,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // state information
    session     = [data retain];
-   error       = [[LKError alloc] init];
    messageType = LKLdapMessageTypeRebind;
+
+   // resets error
+   [self resetError];
 
    return(self);
 }
@@ -234,14 +248,36 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // state information
    session     = [data retain];
-   error       = [[LKError alloc] init];
    messageType = LKLdapMessageTypeUnbind;
+
+   // resets error
+   [self resetError];
 
    return(self);
 }
 
 
 #pragma mark - Getter/Setter methods
+
+- (NSString *) diagnosticMessage
+{
+   @synchronized(self)
+   {
+      return([[diagnosticMessage retain] autorelease]);
+   };
+}
+- (void) setDiagnosticMessage:(NSString *)message
+{
+   @synchronized(self)
+   {
+      [diagnosticMessage release];
+      diagnosticMessage = nil;
+      if ((message))
+         diagnosticMessage = [[NSString alloc] initWithString:message];
+   };
+   return;
+}
+
 
 - (NSArray *) entries
 {
@@ -256,23 +292,70 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 }
 
 
-- (LKError *) error
+- (NSInteger) errorCode
 {
    @synchronized(self)
    {
-      return([[error retain] autorelease]);
+      return(errorCode);
    };
+}
+- (void) setErrorCode:(NSInteger)code
+{
+   NSAutoreleasePool * pool;
+   pool = [[NSAutoreleasePool alloc] init];
+   @synchronized(self)
+   {
+      errorCode = code;
+      errorMessage = [[NSString stringWithUTF8String:ldap_err2string(code)] retain];
+   };
+   [pool release];
+   return;
 }
 
 
-- (void) setError:(LKError *)anError
+- (NSString *) errorMessage
 {
    @synchronized(self)
    {
-      [error release];
-      error = [anError retain];
+      return([[errorMessage retain] autorelease]);
+   };
+}
+- (void) setErrorMessage:(NSString *)message
+{
+   @synchronized(self)
+   {
+      [errorMessage release];
+      errorMessage = nil;
+      if ((message))
+         errorMessage = [[NSString alloc] initWithString:message];
    };
    return;
+}
+
+
+- (NSString *) errorTitle
+{
+   @synchronized(self)
+   {
+      return([[errorTitle retain] autorelease]);
+   };
+}
+- (void) setErrorTitle:(NSString *)title
+{
+   @synchronized(self)
+   {
+      [errorTitle release];
+      errorTitle = nil;
+      if ((title))
+         errorTitle = [[NSString alloc] initWithString:title];
+   };
+   return;
+}
+
+
+- (BOOL) isSuccessful
+{
+   return(errorCode == LDAP_SUCCESS);
 }
 
 
@@ -299,6 +382,43 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
          return([[referrals retain] autorelease]);
       return([NSArray arrayWithArray:referrals]);
    };
+}
+
+
+#pragma mark - error information
+
+- (void) resetError
+{
+   @synchronized(self)
+   {
+      self.diagnosticMessage = nil;
+      self.errorCode         = LDAP_SUCCESS;
+   };
+   return;
+}
+
+
+- (void) resetErrorWithTitle:(NSString *)title
+{
+   @synchronized(self)
+   {
+      self.diagnosticMessage = nil;
+      self.errorCode         = LDAP_SUCCESS;
+      self.errorTitle        = title;
+   };
+   return;
+}
+
+
+- (void) resetErrorWithTitle:(NSString *)title andCode:(NSInteger)code
+{
+   @synchronized(self)
+   {
+      self.diagnosticMessage = nil;
+      self.errorCode         = code;
+      self.errorTitle        = title;
+   };
+   return;
 }
 
 
@@ -362,7 +482,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
       case LKLdapMessageTypeSearch:
       [self search];
-      self.error.errorTitle = @"LDAP Search";
+      self.errorTitle = @"LDAP Search";
       break;
 
       case LKLdapMessageTypeRebind:
@@ -371,7 +491,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
       case LKLdapMessageTypeUnbind:
       [self unbind];
-      self.error.errorTitle = @"LDAP unbind";
+      self.errorTitle = @"LDAP unbind";
       break;
 
       default:
@@ -392,16 +512,16 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    LDAP              * ld;
 
    // reset errors
-   [error resetErrorWithTitle:@"LDAP initialize"];
+   [self resetErrorWithTitle:@"LDAP initialize"];
 
    // checks for existing connection
    isConnected = [self testConnection];
    if ((isConnected))
-      return(error.isSuccessful);
+      return(self.isSuccessful);
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
-      return(error.isSuccessful);
+      [self resetErrorWithTitle:@"LDAP Error" andCode:LDAP_USER_CANCELLED];
+      return(self.isSuccessful);
    };
 
    // copies data required to BIND to LDAP
@@ -412,26 +532,26 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    {
       // initialize LDAP handle
       if ((ld = [self bindInitialize]) == NULL)
-         return(error.isSuccessful);
+         return(self.isSuccessful);
 
       // starts TLS session
       if ((ld = [self bindStartTLS:ld]) == NULL)
-         return(error.isSuccessful);
+         return(self.isSuccessful);
 
       // binds to LDAP
       if ((ld = [self bindAuthenticate:ld]) == NULL)
-         return(error.isSuccessful);
+         return(self.isSuccessful);
 
       // finish configuring connection
       if ((ld = [self bindFinish:ld]) == NULL)
-         return(error.isSuccessful);
+         return(self.isSuccessful);
 
       // saves LDAP handle
       session.ld          = ld;
       session.isConnected = YES;
    };
 
-   return(error.isSuccessful);
+   return(self.isSuccessful);
 }
 
 
@@ -444,16 +564,16 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    LDAPMessage     * res;
 
    // reset errors
-   [error resetErrorWithTitle:@"LDAP Search"];
+   [self resetErrorWithTitle:@"LDAP Search"];
 
    // verifies session is connected to LDAP
    isConnected = [self bind];
    if (!(isConnected))
-      return(error.isSuccessful);
+      return(self.isSuccessful);
    if ((self.isCancelled))
    {
-      error.errorCode = LDAP_USER_CANCELLED;
-      return(error.isSuccessful);
+      self.errorCode = LDAP_USER_CANCELLED;
+      return(self.isSuccessful);
    };
 
    // allocates an array to copy UTF8 strings from searchAttributes
@@ -465,10 +585,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       // initiates search
       msgid = [self searchBaseDN:baseDN scope:searchScope filter:searchFilter
                      attributes:attrs attributesOnly:searchAttributesOnly];
-      if (!(error.isSuccessful))
+      if (!(self.isSuccessful))
       {
          [self freeAttributeList:(&attrs)];
-         return(error.isSuccessful);
+         return(self.isSuccessful);
       };
 
       // verifies operation has not been cancelled
@@ -479,30 +599,30 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
             if ((session.ld))
                ldap_abandon_ext(session.ld, msgid, NULL, NULL);
          };
-         error.errorCode = LDAP_USER_CANCELLED;
+         self.errorCode = LDAP_USER_CANCELLED;
          [self freeAttributeList:(&attrs)];
-         return(error.isSuccessful);
+         return(self.isSuccessful);
       };
 
       // waits for result
       if ((res = [self resultWithMessageID:msgid resultEntries:nil]) == NULL)
       {
          [self freeAttributeList:(&attrs)];
-         return(error.isSuccessful);
+         return(self.isSuccessful);
       };
 
       // parses result
       if (!([self parseResult:res referrals:nil]))
       {
          [self freeAttributeList:(&attrs)];
-         return(error.isSuccessful);
+         return(self.isSuccessful);
       };
    };
 
    // frees memory
    [self freeAttributeList:(&attrs)];
 
-   return(error.isSuccessful);
+   return(self.isSuccessful);
 }
 
 
@@ -521,7 +641,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    // reset errors
-   [error resetErrorWithTitle:@"Test LDAP Connection"];
+   [self resetErrorWithTitle:@"Test LDAP Connection"];
 
    // start off assuming session is connected
    isConnected = YES;
@@ -589,19 +709,18 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    if (!(isConnected))
    {
       [self unbind];
-      self.error = [LKError errorWithTitle: @"Test LDAP Connection" code:LDAP_UNAVAILABLE];
-      return(self.error.isSuccessful);
+      [self resetErrorWithTitle:@"Test LDAP Connection" andCode:LDAP_UNAVAILABLE];
+      return(self.isSuccessful);
    };
 
-   return(self.error.isSuccessful);
+   return(self.isSuccessful);
 }
 
 
 - (BOOL) rebind
 {
    // reset errors
-   [error resetError];
-   error.errorTitle = @"LDAP Rebind";
+   [self resetErrorWithTitle:@"LDAP Rebind"];
 
    // clears LDAP information
    [self unbind];
@@ -609,15 +728,14 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // initiates LDAP connection
    [self bind];
 
-   return(self.error.isSuccessful);
+   return(self.isSuccessful);
 }
 
 
 - (BOOL) unbind
 {
    // reset errors
-   [error resetError];
-   error.errorTitle = @"LDAP Unbind";
+   [self resetErrorWithTitle:@"LDAP Unbind"];
 
    // clears LDAP information
    @synchronized(session)
@@ -628,7 +746,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       session.isConnected = NO;
    };
 
-   return(self.error.isSuccessful);
+   return(self.isSuccessful);
 }
 
 
@@ -642,7 +760,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    struct berval     * servercredp;
 
    // reset errors
-   [error resetErrorWithTitle:@"LDAP Bind"];
+   [self resetErrorWithTitle:@"LDAP Bind"];
 
    // prepares auth data
    memset(&auth, 0, sizeof(LKLdapAuthData));
@@ -709,7 +827,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // checks for error
    if (err != LDAP_SUCCESS)
    {
-      self.error = [LKError errorWithTitle:@"Authentication Error" code:err];
+      [self resetErrorWithTitle:@"Authentication Error" andCode:err];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -717,7 +835,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // check for cancelled operation
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
+      [self resetErrorWithTitle:@"LDAP Error" andCode:LDAP_USER_CANCELLED];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -733,13 +851,13 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    int s;
 
    // reset errors
-   [error resetErrorWithTitle:@"LDAP Connect"];
+   [self resetErrorWithTitle:@"LDAP Connect"];
 
    // retrieves LDAP socket
    err = ldap_get_option(ld, LDAP_OPT_DESC, &s);
    if (err != LDAP_SUCCESS)
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+      [self resetErrorWithTitle:@"Internal LDAP Error" andCode:err];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -749,8 +867,8 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    err = setsockopt(s, SOL_SOCKET, SO_NOSIGPIPE, &opt, sizeof(opt));
    if (err == -1)
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:LDAP_OTHER];
-      error.errorMessage = [NSString stringWithUTF8String:strerror(errno)];
+      [self resetErrorWithTitle:@"Internal LDAP Error" andCode:LDAP_OTHER];
+      self.errorMessage = [NSString stringWithUTF8String:strerror(errno)];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -768,7 +886,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    struct timeval      timeout;
 
    // reset errors
-   [error resetErrorWithTitle:@"LDAP initialize"];
+   [self resetErrorWithTitle:@"LDAP initialize"];
 
    // initialize LDAP handle
    err = ldap_initialize(&ld, [ldapURI UTF8String]);
@@ -779,7 +897,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    err = ldap_set_option(ld, LDAP_OPT_PROTOCOL_VERSION, &opt);
    if (err != LDAP_SUCCESS)
    {
-      self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+      [self resetErrorWithTitle:@"Internal LDAP Error" andCode:err];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -794,7 +912,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       err = ldap_set_option(ld, LDAP_OPT_NETWORK_TIMEOUT, &timeout);
       if (err != LDAP_SUCCESS)
       {
-         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         [self resetErrorWithTitle:@"Internal LDAP Error" andCode:err];
          ldap_unbind_ext_s(ld, NULL, NULL);
          return(NULL);
       };
@@ -807,7 +925,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       err = ldap_set_option(ld, LDAP_OPT_TIMELIMIT, &opt);
       if (err != LDAP_SUCCESS)
       {
-         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         [self resetErrorWithTitle:@"Internal LDAP Error" andCode:err];
          ldap_unbind_ext_s(ld, NULL, NULL);
          return(NULL);
       };
@@ -820,7 +938,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       err = ldap_set_option(ld, LDAP_OPT_SIZELIMIT, &opt);
       if (err != LDAP_SUCCESS)
       {
-         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         [self resetErrorWithTitle:@"Internal LDAP Error" andCode:err];
          ldap_unbind_ext_s(ld, NULL, NULL);
          return(NULL);
       };
@@ -833,7 +951,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       err = ldap_set_option(NULL, LDAP_OPT_X_TLS_CACERTFILE, (void *)str);
       if (err != LDAP_SUCCESS)
       {
-         self.error = [LKError errorWithTitle:@"Internal LDAP Error" code:err];
+         [self resetErrorWithTitle:@"Internal LDAP Error" andCode:err];
          ldap_unbind_ext_s(ld, NULL, NULL);
          return(NULL);
       };
@@ -842,7 +960,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // check for cancelled operation
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
+      [self resetErrorWithTitle:@"LDAP Error" andCode:LDAP_USER_CANCELLED];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -858,7 +976,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    char * errmsg;
 
    // reset errors
-   [error resetErrorWithTitle:@"LDAP Start TLS"];
+   [self resetErrorWithTitle:@"LDAP Start TLS"];
 
    // checks scheme
    if (ldapScheme == LKLdapProtocolSchemeLDAPS)
@@ -875,7 +993,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
          err = ldap_set_option(ld, LDAP_OPT_X_TLS, &opt);
          if (err != LDAP_SUCCESS)
          {
-            self.error = [LKError errorWithTitle:@"LDAP SSL" code:err];
+            [self resetErrorWithTitle:@"LDAP SSL" andCode:err];
             ldap_unbind_ext_s(ld, NULL, NULL);
             return(NULL);
          };
@@ -886,8 +1004,9 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
          err = ldap_start_tls_s(ld, NULL, NULL);
          if ((err != LDAP_SUCCESS) && (ldapEncryptionScheme != LKLdapEncryptionSchemeAttemptTLS))
          {
+            [self resetErrorWithTitle:@"LDAP TLS" andCode:err];
             ldap_get_option(ld, LDAP_OPT_DIAGNOSTIC_MESSAGE, (void*)&errmsg);
-            self.error = [LKError errorWithTitle:@"LDAP TLS" code:err diagnostics:[NSString stringWithUTF8String:errmsg]];
+            self.diagnosticMessage = [NSString stringWithUTF8String:errmsg];
             ldap_unbind_ext_s(ld, NULL, NULL);
             return(NULL);
          };
@@ -899,7 +1018,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // check for cancelled operation
    if ((self.isCancelled))
    {
-      self.error = [LKError errorWithTitle:@"LDAP Error" code:LDAP_USER_CANCELLED];
+      [self resetErrorWithTitle:@"LDAP Error" andCode:LDAP_USER_CANCELLED];
       ldap_unbind_ext_s(ld, NULL, NULL);
       return(NULL);
    };
@@ -960,14 +1079,14 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // processes error
    if (err != LDAP_SUCCESS)
    {
-      error.errorTitle       = @"LDAP Result";
-      error.errorCode        = err;
+      self.errorTitle       = @"LDAP Result";
+      self.errorCode        = err;
       if ((errmsg))
-         error.errorMessage = [NSString stringWithUTF8String:errmsg];
+         self.errorMessage = [NSString stringWithUTF8String:errmsg];
    };
    ldap_memfree(errmsg);
 
-   return(error.isSuccessful);
+   return(self.isSuccessful);
 }
 
 
@@ -1008,7 +1127,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
             if ((session.ld))
                ldap_abandon_ext(session.ld, msgid, NULL, NULL);
          };
-         error.errorCode = LDAP_USER_CANCELLED;
+         self.errorCode = LDAP_USER_CANCELLED;
          return(NULL);
       };
 
@@ -1021,8 +1140,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
             // encountered an error
             case -1:
             ldap_get_option(session.ld, LDAP_OPT_RESULT_CODE, &err);
-            error.errorTitle = @"LDAP Result";
-            error.errorCode  = err;
+            [self resetErrorWithTitle:@"LDAP Result" andCode:err];
             return(NULL);
 
             // timeout was exceeded
@@ -1103,12 +1221,12 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       // checks session
       if (!(session.ld))
       {
-         error.errorCode = LDAP_UNAVAILABLE;
+         self.errorCode = LDAP_UNAVAILABLE;
          return(-1);
       };
 
       // initiates search
-      error.errorCode = ldap_search_ext(
+      self.errorCode = ldap_search_ext(
          session.ld,                      // LDAP            * ld
          [dn UTF8String],                 // char            * base
          scope,                           // int               scope
