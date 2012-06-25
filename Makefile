@@ -34,11 +34,13 @@
 #   Makefile - Generates Xcode Documentation Sets from comments in source code
 #
 
+GITURL ?= syzdek@scm.office.bindlebinaries.com:/pub/scm/com.bindlebinaries/LdapKit.git
+
 run_appledoc =	appledoc \
 	--output docs/appledoc/ \
 	--index-desc docs/appledoc.txt \
 	--project-name "LDAP Kit" \
-	--project-version "`git describe  --abbrev=7 |sed -e 's/v//g' -e 's/-/./g'`" \
+	--project-version "`git describe  --long --abbrev=7 |sed -e 's/v//g' -e 's/-/./g'`" \
 	--project-company "Bindle Binaries" \
 	--company-id com.bindlebinaries \
 	--create-html \
@@ -51,7 +53,11 @@ run_appledoc =	appledoc \
 	--include "./docs/appledoc/tmp/LDAP Kit To Do List-template.txt" \
 	LdapKit
 
-all:
+all: docset
+
+.PHONY: docset gh-pages
+
+docset:
 	@PATH=${PATH}:/usr/local/bin which appledoc > /dev/null 2>&1 || \
 	{ \
 	   MSG="Appledoc (https://github.com/tomaz/appledoc) must"; \
@@ -67,6 +73,14 @@ all:
 	cp TODO \
 	    "./docs/appledoc/tmp/LDAP Kit To Do List-template.txt"
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
+
+gh-pages: docset
+	test -d ./docs/github/ || git clone -b gh-pages $(GITURL) ./docs/github
+	cd ./docs/github && git fetch origin
+	cd ./docs/github && git reset --hard origin/gh-pages
+	rsync -rav --delete --exclude=.git/ ./docs/appledoc/html/ ./docs/github
+	VER=`git describe --long --abbrev=7 |sed -e 's/-/./g'`; \
+	   cd ./docs/github && git commit -m "Generating documentation from $$VER" .
 
 clean:
 	rm -Rf ./docs/appledoc/*
