@@ -93,7 +93,6 @@ repository.
       git://github.com/bindle/LdapKit.git
 
    Downloading Source:
-
       $ git clone git://github.com/bindle/iOSPorts.git
       $ git clone git://github.com/bindle/LdapKit.git
 
