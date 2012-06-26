@@ -5,15 +5,21 @@ LDAP Kit
    LDAP framework for iOS and OS X using NSOperation and NSOperationQueue to
    manage LDAP tasks.
 
+      Note: Although this file uses some _markdown_ syntax, I chose to favor
+            plain text readability over _markdown_ when formatting the text.
+            The "Quick Start for Xcode 4" instructions were most affected
+            by this consideration.
+
 
 Contents
 --------
 
    1. Disclaimer
    2. Software Requirements
-   3. Maintainers
-   4. Community
-   5. Source Code
+   3. Quick Start for Xcode 4
+   4. Maintainers
+   5. Community
+   6. Source Code
 
 
 Disclaimer
@@ -59,6 +65,112 @@ Software Requirements
    * Xcode 4.3
    * Xcode Command Line Tools
    * Appledoc 2.0.5 (https://github.com/tomaz/appledoc)
+
+
+Quick Start for Xcode 4
+-----------------------
+
+   Prerequisite Reading
+   --------------------
+   * Xcode 4 User Guide: Introduction
+   * Xcode 4 User Guide: Orientation to Xcode
+
+
+   Example Information
+   -------------------
+
+   For the sake of clarity, this tutorial uses the following information. Be
+   sure to substitute information appropiate for your project and setup:
+
+   Information                | 
+   ---------------------------|----------------------------------------------
+   Project Name               | Zebra
+   App Name                   | Zebra.app
+   Project File               | Zebra.xcodeproj
+   Project Location           | /Users/zookeeper/Documents/Zebra/
+   LDAP Kit Project File      | LdapKit.xcodeproj
+   LDAP Kit Location          | /Users/zookeeper/Documents/LdapKit/
+   iOS Ports Location (iOS)   | /Users/zookeeper/Documents/iOSPorts/
+   iOS Ports Includes (iOS)   | /Users/zookeeper/Documents/iOSPorts/include
+   Include Paths (iOS)        | ../LdapKit ../iOSPorts/include
+   Include Paths (Mac OS X)   | ../LdapKit
+
+   ** LDAP Kit expects the iOS Ports project directory to be in the same root **
+   ** directory as the LDAP Kit project directory (for example                **
+   ** `/Users/zookeeper/Documents/`).                                         **
+
+
+   Add LDAP Kit Xcode project file
+   -------------------------------
+
+      1. Open Zebra.xcodeproj in Xcode.
+      2. On the menubar, select "File" -> "Add Files to 'Zebra'..."
+         A new dialog should appear.
+      4. In the dialog, locate the LDAP Kit Xcode project (LdapKit.xcodeproj).
+      5. Click the "Add" button. The Xcode project `LdapKit.xcodeproj` should
+         appear in the "Project Navigator".
+
+
+   Update Build Phases
+   -------------------
+
+      Open the Project Editor
+      1. Display the "Project Navigator" in the "Navigator Area" of Xcode's
+         main window (see "Xcode 4 User Guide").
+      2. Click on the project icon in the project navigator (the project name
+         is visible next to the project icon).  The project's build settings
+         should appear in the "Edit Area" of Xcode's window.
+      3. In "TARGETS" section, select the target which will use the LDAP Kit
+         library.
+
+      Update "Target Dependencies"
+      1. Select the "Build Phases" tab from the project editor.
+      2. Expand the "Target Dependencies" section.
+      3. Click the "+" button under "Target Dependencies". A list of targets
+         should appear.
+      4. Locate the LDAP Kit target. The target should have an icon of a stone
+         building. For a Mac OS X application, you would select `LdapKit`. For
+         an iOS application, you would select `iLdapKit`.
+      5. Click the "Add" button.
+
+      Update "Link Binary With Libraries"
+      1. Select the "Build Phases" tab from the project editor.
+      2. Expand the "Link Binary With Libraries" section.
+      3. Click the "+" button under "Link Binary With Libraries". A list of
+         libraries should appear.
+      4. Locate the LDAP Kit library. The target should have an icon of a stone
+         building. For a Mac OS X application, you would select `libLdapKit.a`.
+         For an iOS application, you would select `libiLdapKit.a`.
+      5. Click the "Add" button.
+      6. Repeat steps 1-5 with the following libraries:
+         * libldap.a
+         * liblber.a
+         * libcrypto.a
+         * libssl.a
+         * libsasl2.a
+
+
+   Update Build Settings
+   ---------------------
+
+      1. Select the "Build Settings" tab from the project editor.
+      2. Search for the setting titled "Always Search User Paths". Change the
+         value to "Yes". If the editor is displaying setting names instead of
+         setting titles, search for "ALWAYS_SEARCH_USER_PATHS". If the editor
+         if displaying setting definitions instead of setting values, change
+         the definition to "YES".
+      2. Search for the setting titled "User Header Search Paths". Add the
+         relative include path to the LDAP Kit project directory. If building
+         an iOS application, add the relative include path to the iOS Ports
+         include directory. In this example, the relative include path is
+         `../LdapKit` since both Zebra and iOS Ports are in the same parent
+         directory. If the editor is displaying setting names instead of setting
+         titles, search for "USER_HEADER_SEARCH_PATHS".
+
+
+   The project Zebra should now be ready to compile the required static
+   libraries and link to them.  The source for the iOS Ports packages will
+   be downloaded the first time the packages are compiled.
 
 
 Maintainers
