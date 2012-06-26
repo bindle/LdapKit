@@ -34,7 +34,7 @@
 #   Makefile - Generates Xcode Documentation Sets from comments in source code
 #
 
-GITURL ?= syzdek@scm.office.bindlebinaries.com:/pub/scm/com.bindlebinaries/LdapKit.git
+GITURL ?= git@github.com:bindle/LdapKit.git
 
 run_appledoc =	appledoc \
 	--output docs/appledoc/ \
