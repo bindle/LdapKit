@@ -64,14 +64,13 @@ docset:
 	   echo "$${MSG} be installed before the LdapKit docset can be built."; \
 	   exit 1; \
 	}
-	@rm -Rf ./docs/appledoc/tmp/*
 	@mkdir -p ./docs/appledoc/tmp/project/
 	grep -v '@\([[:alnum:]]\{1,\}_[[:alnum:]]\{1,\}\)\{1,\}@' LICENSE \
 	    > "./docs/appledoc/tmp/LDAP Kit License-template.txt"
-	cp README \
-	    "./docs/appledoc/tmp/LDAP Kit Project Information-template.txt"
-	cp TODO \
-	    "./docs/appledoc/tmp/LDAP Kit To Do List-template.txt"
+	grep -v '@\([[:alnum:]]\{1,\}_[[:alnum:]]\{1,\}\)\{1,\}@' README \
+	    > "./docs/appledoc/tmp/LDAP Kit Project Information-template.txt"
+	grep -v '@\([[:alnum:]]\{1,\}_[[:alnum:]]\{1,\}\)\{1,\}@' TODO \
+	    > "./docs/appledoc/tmp/LDAP Kit To Do List-template.txt"
 	PATH=${PATH}:/usr/local/bin ${run_appledoc}
 
 gh-pages: docset
