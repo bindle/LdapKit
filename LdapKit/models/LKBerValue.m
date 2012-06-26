@@ -98,7 +98,8 @@
 /// C pointer to the memory allocation of object's value.
 - (const char *) bv_val
 {
-   return([[NSData dataWithData:berData] bytes]);
+   [[berData retain] autorelease];
+   return([berData bytes]);
 }
 
 
