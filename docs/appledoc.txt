@@ -1,3 +1,7 @@
 
 LDAP Kit is a framework for iOS and OS X which uses NSOperation and
 NSOperationQueue to manage LDAP tasks.
+
+The LDAP Kit [Project Information](docs/LDAP%20Kit%20Project%20Information.html)
+page contains basic instructions for integrating LDAP Kit into iOS and Mac OS X
+applications.
