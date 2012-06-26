@@ -7,8 +7,6 @@ LDAP Kit To-Do List
    * IPv6 Support: LKLdap and LKMessage needs to be updated to properly
      process IPv6 addresses if an IPv6 address is specified as the host or
      in the LDAP URL.
-   * Remove custom error codes from LKError and replace with equivalent internal
-     LDAP error codes.
 
    LDAP Opeartions
    ---------------
@@ -22,5 +20,4 @@ LDAP Kit To-Do List
    -------------
    * Finish README.
    * Finish documenting source code with appledoc tags.
-   * Publish LDAP Kit docsets to github webpage.
 
