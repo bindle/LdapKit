@@ -369,6 +369,7 @@
    LDAPURLDesc            * ludp;
    NSString               * newHost;
    LKLdapProtocolScheme     newProtocol;
+   LKLdapEncryptionScheme   newEncryption;
 
    pool = [[NSAutoreleasePool alloc] init];
 
@@ -386,11 +387,20 @@
 
    // determines new scheme
    if (!(strcasecmp(ludp->lud_scheme, "ldapi")))
+   {
       newProtocol   = LKLdapProtocolSchemeLDAPI;
+      newEncryption = LKLdapEncryptionSchemeNone;
+   }
    else if (!(strcasecmp(ludp->lud_scheme, "ldaps")))
+   {
       newProtocol   = LKLdapProtocolSchemeLDAPS;
+      newEncryption = LKLdapEncryptionSchemeSSL;
+   }
    else
+   {
       newProtocol   = LKLdapProtocolSchemeLDAP;
+      newEncryption = LKLdapEncryptionSchemeAttemptTLS;
+   };
 
    // generates new host
    newHost = [NSString stringWithUTF8String:ludp->lud_host];
@@ -399,6 +409,7 @@
    {
       // sets LDAP scheme
       ldapProtocolScheme   = newProtocol;
+      ldapEncryptionScheme = newEncryption;
 
       // sets LDAP hostname
       [ldapHost release];
