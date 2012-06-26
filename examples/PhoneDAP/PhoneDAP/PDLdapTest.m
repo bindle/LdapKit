@@ -108,7 +108,12 @@
       {
          for(berValue in [entry valuesForAttribute:attribute])
          {
-            NSLog(@"%@: %@", attribute, [berValue berString]);
+            if ((berValue.isBerString))
+               NSLog(@"%@: %@", attribute, berValue.berString);
+            else if ((berValue.isBerImage))
+               NSLog(@"%@: <IMAGE>", attribute);
+            else
+               NSLog(@"%@: %@", attribute, berValue.berStringBase64);
          };
       };
       NSLog(@" ");
