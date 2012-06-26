@@ -336,20 +336,20 @@
 }
 
 
-- (LKLdapProtocolScheme) ldapScheme
+- (LKLdapProtocolScheme) ldapProtocolScheme
 {
    @synchronized(self)
    {
-      return(ldapScheme);
+      return(ldapProtocolScheme);
    }
 }
-- (void) setLdapScheme:(LKLdapProtocolScheme)scheme
+- (void) setLdapProtocolScheme:(LKLdapProtocolScheme)scheme
 {
    @synchronized(self)
    {
-      if (ldapScheme == scheme)
+      if (ldapProtocolScheme == scheme)
          return;
-      ldapScheme = scheme;
+      ldapProtocolScheme = scheme;
       [self calculateLdapURL];
    }
    return;
@@ -368,7 +368,7 @@
    NSAutoreleasePool    * pool;
    LDAPURLDesc          * ludp;
    NSString             * newHost;
-   LKLdapProtocolScheme   newScheme;
+   LKLdapProtocolScheme   newProtocol;
 
    pool = [[NSAutoreleasePool alloc] init];
 
@@ -386,11 +386,11 @@
 
    // determines new scheme
    if (!(strcasecmp(ludp->lud_scheme, "ldapi")))
-      newScheme = LKLdapProtocolSchemeLDAPI;
+      newProtocol = LKLdapProtocolSchemeLDAPI;
    else if (!(strcasecmp(ludp->lud_scheme, "ldaps")))
-      newScheme = LKLdapProtocolSchemeLDAPS;
+      newProtocol = LKLdapProtocolSchemeLDAPS;
    else
-      newScheme = LKLdapProtocolSchemeLDAP;
+      newProtocol = LKLdapProtocolSchemeLDAP;
 
    // generates new host
    newHost = [NSString stringWithUTF8String:ludp->lud_host];
@@ -398,7 +398,7 @@
    @synchronized(self)
    {
       // sets LDAP scheme
-      ldapScheme = newScheme;
+      ldapProtocolScheme = newProtocol;
 
       // sets LDAP hostname
       [ldapHost release];
@@ -426,7 +426,7 @@
    NSString * scheme;
 
    // determines string representation of scheme
-   switch(ldapScheme)
+   switch(ldapProtocolScheme)
    {
       case LKLdapProtocolSchemeLDAPI:
       scheme = @"ldapi";

@@ -85,7 +85,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 
    // server information
    NSString               * ldapURI;
-   LKLdapProtocolScheme     ldapScheme;
+   LKLdapProtocolScheme     ldapProtocolScheme;
    LKLdapProtocolVersion    ldapProtocolVersion;
 
    // encryption information

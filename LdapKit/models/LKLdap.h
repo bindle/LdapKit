@@ -50,7 +50,7 @@
 
    // server information
    NSString               * ldapURI;
-   LKLdapProtocolScheme     ldapScheme;
+   LKLdapProtocolScheme     ldapProtocolScheme;
    NSString               * ldapHost;
    NSInteger                ldapPort;
    LKLdapProtocolVersion    ldapProtocolVersion;
@@ -116,7 +116,7 @@
 ///
 /// Changes to this property do not affect active LDAP connections. In order for
 /// changes to take affect, the method `-rebind` must be called.
-@property (nonatomic, assign)   LKLdapProtocolScheme     ldapScheme;
+@property (nonatomic, assign)   LKLdapProtocolScheme     ldapProtocolScheme;
 
 /// The host name used to initialize an LDAP connection.
 ///

@@ -436,7 +436,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // server information
    [ldapURI release];
    ldapURI             = [session.ldapURI retain];
-   ldapScheme          = session.ldapScheme;
+   ldapProtocolScheme  = session.ldapProtocolScheme;
    ldapProtocolVersion = session.ldapProtocolVersion;
 
    // encryption information
@@ -982,7 +982,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    [self resetErrorWithTitle:@"LDAP Start TLS"];
 
    // checks scheme
-   if (ldapScheme == LKLdapProtocolSchemeLDAPS)
+   if (ldapProtocolScheme == LKLdapProtocolSchemeLDAPS)
       return(ld);
 
    if ( (ldapEncryptionScheme != LKLdapEncryptionSchemeAttemptTLS ) &&
