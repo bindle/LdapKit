@@ -40,9 +40,17 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/diagnosticMessage">&nbsp;&nbsp;&nbsp;&nbsp;diagnosticMessage</option>
+	
 	<option value="//api/name/entries">&nbsp;&nbsp;&nbsp;&nbsp;entries</option>
 	
-	<option value="//api/name/error">&nbsp;&nbsp;&nbsp;&nbsp;error</option>
+	<option value="//api/name/errorCode">&nbsp;&nbsp;&nbsp;&nbsp;errorCode</option>
+	
+	<option value="//api/name/errorMessage">&nbsp;&nbsp;&nbsp;&nbsp;errorMessage</option>
+	
+	<option value="//api/name/errorTitle">&nbsp;&nbsp;&nbsp;&nbsp;errorTitle</option>
+	
+	<option value="//api/name/isSuccessful">&nbsp;&nbsp;&nbsp;&nbsp;isSuccessful</option>
 	
 	<option value="//api/name/messageType">&nbsp;&nbsp;&nbsp;&nbsp;messageType</option>
 	
@@ -74,6 +82,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Message information">Message information</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Errors">Errors</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Results">Results</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Identifying the LKMessage">Identifying the LKMessage</a></span></li>
@@ -86,9 +96,17 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/diagnosticMessage">diagnosticMessage</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/entries">entries</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/error">error</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorCode">errorCode</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorMessage">errorMessage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/errorTitle">errorTitle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isSuccessful">isSuccessful</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/messageType">messageType</a></span></li>
 	
@@ -176,15 +194,51 @@ implementing observers in multi-threaded applications.</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/error">&nbsp;&nbsp;error</a></code>
-		<span class="tooltip"><p>The current error state of the message.</p></span>
+		<code><a href="#//api/name/messageType">&nbsp;&nbsp;messageType</a></code>
+		<span class="tooltip"><p>The type of request the message was initialized to process.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Errors" name="task_Errors"></a>
+						<h3 class="subsubtitle task-title">Errors</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/errorCode">&nbsp;&nbsp;errorCode</a></code>
+		<span class="tooltip"><p>The numeric value of the error.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/messageType">&nbsp;&nbsp;messageType</a></code>
-		<span class="tooltip"><p>The type of request the message was initialized to process.</p></span>
+		<code><a href="#//api/name/errorTitle">&nbsp;&nbsp;errorTitle</a></code>
+		<span class="tooltip"><p>An optional title of the error for use when reporting error to users.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/errorMessage">&nbsp;&nbsp;errorMessage</a></code>
+		<span class="tooltip"><p>A human readable error message.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/diagnosticMessage">&nbsp;&nbsp;diagnosticMessage</a></code>
+		<span class="tooltip"><p>Additional diagnostic information if available.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isSuccessful">&nbsp;&nbsp;isSuccessful</a></code>
+		<span class="tooltip"><p>Determines if the error code indicates whether the task succeeded or failed.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -247,6 +301,42 @@ application.</p></span>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/diagnosticMessage" title="diagnosticMessage"></a>
+	<h3 class="subsubtitle method-title">diagnosticMessage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Additional diagnostic information if available.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *diagnosticMessage</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKMessage.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/entries" title="entries"></a>
 	<h3 class="subsubtitle method-title">entries</h3>
 	
@@ -283,18 +373,126 @@ application.</p></span>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/error" title="error"></a>
-	<h3 class="subsubtitle method-title">error</h3>
+	<a name="//api/name/errorCode" title="errorCode"></a>
+	<h3 class="subsubtitle method-title">errorCode</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The current error state of the message.</p>
+		<p>The numeric value of the error.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) LKError *error</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, readonly) NSInteger errorCode</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKMessage.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/errorMessage" title="errorMessage"></a>
+	<h3 class="subsubtitle method-title">errorMessage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A human readable error message.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *errorMessage</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKMessage.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/errorTitle" title="errorTitle"></a>
+	<h3 class="subsubtitle method-title">errorTitle</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>An optional title of the error for use when reporting error to users.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *errorTitle</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKMessage.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isSuccessful" title="isSuccessful"></a>
+	<h3 class="subsubtitle method-title">isSuccessful</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Determines if the error code indicates whether the task succeeded or failed.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isSuccessful</code></div>
 
     
 	
@@ -493,7 +691,7 @@ application.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-26)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
