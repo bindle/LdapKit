@@ -59,6 +59,7 @@
    [berImage        release];
    [berString       release];
    [berStringBase64 release];
+   [berValue        release];
 
    [super dealloc];
 
@@ -73,7 +74,7 @@
       return(self);
 
    // BerVal data
-   berData = [[NSData alloc] initWithBytes:value->bv_val length:value->bv_len];
+   berData = [[NSMutableData alloc] initWithBytes:value->bv_val length:value->bv_len];
 
    return(self);
 }
@@ -164,10 +165,20 @@
 - (BerValue *) berValue
 {
    BerValue      * bv;
-   bv = [[NSMutableData dataWithCapacity:sizeof(BerValue)] mutableBytes];
-   bv->bv_len = [berData length];
-   bv->bv_val = [[NSMutableData dataWithData:berData] mutableBytes];
-   return(bv);
+   @synchronized(self)
+   {
+      if (!(attemptedValue))
+      {
+         berValue       = [[NSMutableData alloc] initWithCapacity:sizeof(BerValue)];
+         attemptedValue = YES;
+      };
+      bv             = [berValue mutableBytes];
+      bv->bv_len     = [berData length];
+      bv->bv_val     = [berData mutableBytes];
+      [[berData  retain] autorelease];
+      [[berValue retain] autorelease];
+   };
+   return([berValue mutableBytes]);
 }
 
 

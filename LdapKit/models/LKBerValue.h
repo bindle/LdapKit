@@ -48,14 +48,16 @@
 @interface LKBerValue : NSObject
 {
    // BerValue data
-   NSData        * berData;
+   NSMutableData * berData;
 
    // derived data
    id <NSObject>   berImage;
    NSString      * berString;
    NSString      * berStringBase64;
+   NSMutableData * berValue;
 
    // data attempts
+   BOOL            attemptedValue;
    BOOL            attemptedImage;
    BOOL            attemptedString;
    BOOL            attemptedStringBase64;
