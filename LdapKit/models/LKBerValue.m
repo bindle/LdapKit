@@ -182,6 +182,62 @@
 }
 
 
+/// Indicates the data is valid an NSData object.
+/// @return This property always returns `YES`.
+- (BOOL) isBerData
+{
+   return(YES);
+}
+
+
+/// Indicates the data is a valid image.
+- (BOOL) isBerImage
+{
+   NSAutoreleasePool * pool;
+   @synchronized(self)
+   {
+      if ((attemptedImage))
+         return(berImage != nil);
+      pool = [[NSAutoreleasePool alloc] init];
+      [self berImage];
+      [pool release];
+      return(berImage != nil);
+   };
+}
+
+
+/// Indicates that the data is a valid string.
+- (BOOL) isBerString
+{
+   NSAutoreleasePool * pool;
+   @synchronized(self)
+   {
+      if ((attemptedString))
+         return(berString != nil);
+      pool = [[NSAutoreleasePool alloc] init];
+      [self berString];
+      [pool release];
+      return(berString != nil);
+   };
+}
+
+
+/// Indicates the data can be base64 encoded.
+/// @return This property always returns `YES`.
+- (BOOL) isBerStringBase64
+{
+   return(YES);
+}
+
+
+/// Indicates the data can be encoded as a BerValue data type.
+/// @return This property always returns `YES`.
+- (BOOL) isBerValue
+{
+   return(YES);
+}
+
+
 #pragma mark - calculations
 
 - (NSString *) convertToBase64:(NSData *)value

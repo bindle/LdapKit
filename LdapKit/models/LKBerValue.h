@@ -78,4 +78,11 @@
 @property (nonatomic, readonly) NSString   * berStringBase64;
 @property (nonatomic, readonly) BerValue   * berValue;
 
+/// @name Type of data
+@property (nonatomic, readonly) BOOL         isBerData;
+@property (nonatomic, readonly) BOOL         isBerImage;
+@property (nonatomic, readonly) BOOL         isBerString;
+@property (nonatomic, readonly) BOOL         isBerStringBase64;
+@property (nonatomic, readonly) BOOL         isBerValue;
+
 @end
