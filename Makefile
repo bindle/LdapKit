@@ -38,7 +38,7 @@ GITURL ?= git@github.com:bindle/LdapKit.git
 
 run_appledoc =	appledoc \
 	--output docs/appledoc/ \
-	--index-desc docs/appledoc.txt \
+	--index-desc docs/appledoc/tmp/appledoc.txt \
 	--project-name "LDAP Kit" \
 	--project-version "`git describe  --long --abbrev=7 |sed -e 's/v//g' -e 's/-/./g'`" \
 	--project-company "Bindle Binaries" \
@@ -66,6 +66,9 @@ docset:
 	   exit 1; \
 	}
 	@mkdir -p ./docs/appledoc/tmp/project/
+	VER=`git describe  --long --abbrev=7 |sed -e 's/v//g' -e 's/-/./g'`; \
+	    sed -e "s/[@]VERSION[@]/$$VER/g" docs/appledoc.txt \
+	    > docs/appledoc/tmp/appledoc.txt
 	grep -v '@\([[:alnum:]]\{1,\}_[[:alnum:]]\{1,\}\)\{1,\}@' ChangeLog \
 	    > "./docs/appledoc/tmp/LDAP Kit Change Log-template.txt"
 	grep -v '@\([[:alnum:]]\{1,\}_[[:alnum:]]\{1,\}\)\{1,\}@' LICENSE \
