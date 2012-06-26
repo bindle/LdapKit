@@ -50,7 +50,7 @@
    // BerValue data
    NSMutableData * berData;
 
-   // derived data
+   // Derived data
    id <NSObject>   berImage;
    NSString      * berString;
    NSString      * berStringBase64;
@@ -63,12 +63,12 @@
    BOOL            attemptedStringBase64;
 }
 
-/// @name BerValue data
+/// @name BerValue Data
 @property (nonatomic, readonly) NSData     * berData;
 @property (nonatomic, readonly) ber_len_t    bv_len;
 @property (nonatomic, readonly) const char * bv_val;
 
-/// @name derived data
+/// @name Derived Data
 #if TARGET_OS_IPHONE
 @property (nonatomic, readonly) UIImage    * berImage;
 #else
