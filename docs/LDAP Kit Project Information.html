@@ -30,12 +30,20 @@
 <p>   LDAP framework for iOS and OS X using NSOperation and NSOperationQueue to
    manage LDAP tasks.</p>
 
+<pre><code>  Note: Although this file uses some _markdown_ syntax, I chose to favor
+        plain text readability over _markdown_ when formatting the text.
+        The "Quick Start for Xcode 4" instructions were most affected
+        by this consideration.
+</code></pre>
+
 <h2>Contents</h2>
 
 <ol>
 <li>. Disclaimer</li>
 <li>. Software Requirements</li>
+<li>. Quick Start for Xcode 4</li>
 <li>. Maintainers</li>
+<li>. Community</li>
 <li>. Source Code</li>
 </ol>
 
@@ -96,11 +104,176 @@
 </ul>
 
 
+<h2>Quick Start for Xcode 4</h2>
+
+<p>   Prerequisite Reading</p>
+
+<hr />
+
+<ul>
+<li> Xcode 4 User Guide: Introduction</li>
+<li> Xcode 4 User Guide: Orientation to Xcode</li>
+</ul>
+
+
+<p>   Example Information</p>
+
+<hr />
+
+<p>   For the sake of clarity, this tutorial uses the following information. Be
+   sure to substitute information appropiate for your project and setup:</p>
+
+<table>
+<thead>
+<tr>
+<th>   Information                </th>
+<th> </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>   Project Name               </td>
+<td> Zebra</td>
+</tr>
+<tr>
+<td>   App Name                   </td>
+<td> Zebra.app</td>
+</tr>
+<tr>
+<td>   Project File               </td>
+<td> Zebra.xcodeproj</td>
+</tr>
+<tr>
+<td>   Project Location           </td>
+<td> /Users/zookeeper/Documents/Zebra/</td>
+</tr>
+<tr>
+<td>   LDAP Kit Project File      </td>
+<td> LdapKit.xcodeproj</td>
+</tr>
+<tr>
+<td>   LDAP Kit Location          </td>
+<td> /Users/zookeeper/Documents/LdapKit/</td>
+</tr>
+<tr>
+<td>   iOS Ports Location (iOS)   </td>
+<td> /Users/zookeeper/Documents/iOSPorts/</td>
+</tr>
+<tr>
+<td>   iOS Ports Includes (iOS)   </td>
+<td> /Users/zookeeper/Documents/iOSPorts/include</td>
+</tr>
+<tr>
+<td>   Include Paths (iOS)        </td>
+<td> ../LdapKit ../iOSPorts/include</td>
+</tr>
+<tr>
+<td>   Include Paths (Mac OS X)   </td>
+<td> ../LdapKit</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<p>   <strong> LDAP Kit expects the iOS Ports project directory to be in the same root </strong>
+   <strong> directory as the LDAP Kit project directory (for example                </strong>
+   <strong> <code>/Users/zookeeper/Documents/</code>).                                         </strong></p>
+
+<p>   Add LDAP Kit Xcode project file</p>
+
+<hr />
+
+<pre><code>  1. Open Zebra.xcodeproj in Xcode.
+  2. On the menubar, select "File" -&gt; "Add Files to 'Zebra'..."
+     A new dialog should appear.
+  4. In the dialog, locate the LDAP Kit Xcode project (LdapKit.xcodeproj).
+  5. Click the "Add" button. The Xcode project `LdapKit.xcodeproj` should
+     appear in the "Project Navigator".
+</code></pre>
+
+<p>   Update Build Phases</p>
+
+<hr />
+
+<pre><code>  Open the Project Editor
+  1. Display the "Project Navigator" in the "Navigator Area" of Xcode's
+     main window (see "Xcode 4 User Guide").
+  2. Click on the project icon in the project navigator (the project name
+     is visible next to the project icon).  The project's build settings
+     should appear in the "Edit Area" of Xcode's window.
+  3. In "TARGETS" section, select the target which will use the LDAP Kit
+     library.
+
+  Update "Target Dependencies"
+  1. Select the "Build Phases" tab from the project editor.
+  2. Expand the "Target Dependencies" section.
+  3. Click the "+" button under "Target Dependencies". A list of targets
+     should appear.
+  4. Locate the LDAP Kit target. The target should have an icon of a stone
+     building. For a Mac OS X application, you would select `LdapKit`. For
+     an iOS application, you would select `iLdapKit`.
+  5. Click the "Add" button.
+
+  Update "Link Binary With Libraries"
+  1. Select the "Build Phases" tab from the project editor.
+  2. Expand the "Link Binary With Libraries" section.
+  3. Click the "+" button under "Link Binary With Libraries". A list of
+     libraries should appear.
+  4. Locate the LDAP Kit library. The target should have an icon of a stone
+     building. For a Mac OS X application, you would select `libLdapKit.a`.
+     For an iOS application, you would select `libiLdapKit.a`.
+  5. Click the "Add" button.
+  6. Repeat steps 1-5 with the following libraries:
+     * libldap.a
+     * liblber.a
+     * libcrypto.a
+     * libssl.a
+     * libsasl2.a
+</code></pre>
+
+<p>   Update Build Settings</p>
+
+<hr />
+
+<pre><code>  1. Select the "Build Settings" tab from the project editor.
+  2. Search for the setting titled "Always Search User Paths". Change the
+     value to "Yes". If the editor is displaying setting names instead of
+     setting titles, search for "ALWAYS_SEARCH_USER_PATHS". If the editor
+     if displaying setting definitions instead of setting values, change
+     the definition to "YES".
+  2. Search for the setting titled "User Header Search Paths". Add the
+     relative include path to the LDAP Kit project directory. If building
+     an iOS application, add the relative include path to the iOS Ports
+     include directory. In this example, the relative include path is
+     `../LdapKit` since both Zebra and iOS Ports are in the same parent
+     directory. If the editor is displaying setting names instead of setting
+     titles, search for "USER_HEADER_SEARCH_PATHS".
+</code></pre>
+
+<p>   The project Zebra should now be ready to compile the required static
+   libraries and link to them.  The source for the iOS Ports packages will
+   be downloaded the first time the packages are compiled.</p>
+
 <h2>Maintainers</h2>
 
-<p>   David M. Syzdek,
-   Bindle Binaries,
+<p>   David M. Syzdek,<br/>
+   Bindle Binaries,<br/>
    syzdek@bindlebinaries.com</p>
+
+<h2>Community</h2>
+
+<p>   Documentation:<br/>
+   <a href="http://bindle.github.com/LdapKit/">http://bindle.github.com/LdapKit/</a></p>
+
+<p>   Wiki:<br/>
+   <a href="https://github.com/bindle/iOSPorts/wiki">https://github.com/bindle/iOSPorts/wiki</a></p>
+
+<p>   Issue Tracking:<br/>
+   <a href="https://github.com/bindle/iOSPorts/issues">https://github.com/bindle/iOSPorts/issues</a></p>
 
 <h2>Source Code</h2>
 
