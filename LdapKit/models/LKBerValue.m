@@ -148,13 +148,14 @@
 - (NSString *) berStringBase64
 {
    NSAutoreleasePool * pool;
-   pool = [[NSAutoreleasePool alloc] init];
    @synchronized(self)
    {
-      if (!(berStringBase64))
-         berStringBase64 = [[self convertToBase64:berData] retain];
+      if ((attemptedStringBase64))
+         return([[berStringBase64 retain] autorelease]);
+      pool = [[NSAutoreleasePool alloc] init];
+      berStringBase64 = [[self convertToBase64:berData] retain];
+      [pool release];
    };
-   [pool release];
    return([[berStringBase64 retain] autorelease]);
 }
 

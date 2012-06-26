@@ -58,6 +58,7 @@
    // data attempts
    BOOL            attemptedImage;
    BOOL            attemptedString;
+   BOOL            attemptedStringBase64;
 }
 
 /// @name BerValue data
