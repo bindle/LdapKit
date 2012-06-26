@@ -365,10 +365,10 @@
 }
 - (void) setLdapURI:(NSString *)uri
 {
-   NSAutoreleasePool    * pool;
-   LDAPURLDesc          * ludp;
-   NSString             * newHost;
-   LKLdapProtocolScheme   newProtocol;
+   NSAutoreleasePool      * pool;
+   LDAPURLDesc            * ludp;
+   NSString               * newHost;
+   LKLdapProtocolScheme     newProtocol;
 
    pool = [[NSAutoreleasePool alloc] init];
 
@@ -386,11 +386,11 @@
 
    // determines new scheme
    if (!(strcasecmp(ludp->lud_scheme, "ldapi")))
-      newProtocol = LKLdapProtocolSchemeLDAPI;
+      newProtocol   = LKLdapProtocolSchemeLDAPI;
    else if (!(strcasecmp(ludp->lud_scheme, "ldaps")))
-      newProtocol = LKLdapProtocolSchemeLDAPS;
+      newProtocol   = LKLdapProtocolSchemeLDAPS;
    else
-      newProtocol = LKLdapProtocolSchemeLDAP;
+      newProtocol   = LKLdapProtocolSchemeLDAP;
 
    // generates new host
    newHost = [NSString stringWithUTF8String:ludp->lud_host];
@@ -398,7 +398,7 @@
    @synchronized(self)
    {
       // sets LDAP scheme
-      ldapProtocolScheme = newProtocol;
+      ldapProtocolScheme   = newProtocol;
 
       // sets LDAP hostname
       [ldapHost release];
