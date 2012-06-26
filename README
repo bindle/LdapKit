@@ -12,7 +12,8 @@ Contents
    1. Disclaimer
    2. Software Requirements
    3. Maintainers
-   4. Source Code
+   4. Community
+   5. Source Code
 
 
 Disclaimer
@@ -66,6 +67,19 @@ Maintainers
    David M. Syzdek,
    Bindle Binaries,
    syzdek@bindlebinaries.com
+
+
+Community
+---------
+
+   Documentation:  
+   http://bindle.github.com/LdapKit/
+
+   Wiki:  
+   https://github.com/bindle/iOSPorts/wiki
+
+   Issue Tracking:  
+   https://github.com/bindle/iOSPorts/issues
 
 
 Source Code
