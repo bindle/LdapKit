@@ -84,6 +84,7 @@ gh-pages: docset
 	cd ./docs/github && git fetch origin
 	cd ./docs/github && git reset --hard origin/gh-pages
 	rsync -rav --delete --exclude=.git/ ./docs/appledoc/html/ ./docs/github
+	cd ./docs/github && git add .
 	VER=`git describe --long --abbrev=7 |sed -e 's/-/./g'`; \
 	   cd ./docs/github && git commit -m "Generating documentation from $$VER" .
 
