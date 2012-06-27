@@ -489,7 +489,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       break;
 
       case LKLdapMessageTypeRebind:
-      [self unbind];
+      [self rebind];
       break;
 
       case LKLdapMessageTypeUnbind:
