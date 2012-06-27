@@ -74,11 +74,11 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (void) copySessionInformation;
 
 /// @name LDAP tasks
-- (BOOL) bind;
-- (BOOL) search;
-- (BOOL) testConnection;
-- (BOOL) rebind;
-- (BOOL) unbind;
+- (BOOL) ldapBind;
+- (BOOL) ldapSearch;
+- (BOOL) ldapTestConnection;
+- (BOOL) ldapRebind;
+- (BOOL) ldapUnbind;
 
 /// @name LDAP subtasks
 - (LDAP *) bindAuthenticate:(LDAP *)ld;
@@ -480,20 +480,20 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    switch(messageType)
    {
       case LKLdapMessageTypeBind:
-      [self bind];
+      [self ldapBind];
       break;
 
       case LKLdapMessageTypeSearch:
-      [self search];
+      [self ldapSearch];
       self.errorTitle = @"LDAP Search";
       break;
 
       case LKLdapMessageTypeRebind:
-      [self rebind];
+      [self ldapRebind];
       break;
 
       case LKLdapMessageTypeUnbind:
-      [self unbind];
+      [self ldapUnbind];
       self.errorTitle = @"LDAP unbind";
       break;
 
@@ -509,7 +509,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
 #pragma mark - LDAP tasks
 
-- (BOOL) bind
+- (BOOL) ldapBind
 {
    BOOL                isConnected;
    LDAP              * ld;
@@ -518,7 +518,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    [self resetErrorWithTitle:@"LDAP initialize"];
 
    // checks for existing connection
-   isConnected = [self testConnection];
+   isConnected = [self ldapTestConnection];
    if ((isConnected))
       return(self.isSuccessful);
    if ((self.isCancelled))
@@ -558,7 +558,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 }
 
 
-- (BOOL) search
+- (BOOL) ldapSearch
 {
    NSString        * baseDN;
    char           ** attrs;
@@ -570,7 +570,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    [self resetErrorWithTitle:@"LDAP Search"];
 
    // verifies session is connected to LDAP
-   isConnected = [self bind];
+   isConnected = [self ldapBind];
    if (!(isConnected))
       return(self.isSuccessful);
    if ((self.isCancelled))
@@ -629,7 +629,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 }
 
 
-- (BOOL) testConnection
+- (BOOL) ldapTestConnection
 {
    BOOL             isConnected;
    int              err;
@@ -711,7 +711,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    if (!(isConnected))
    {
-      [self unbind];
+      [self ldapUnbind];
       [self resetErrorWithTitle:@"Test LDAP Connection" andCode:LDAP_UNAVAILABLE];
       return(self.isSuccessful);
    };
@@ -720,22 +720,22 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 }
 
 
-- (BOOL) rebind
+- (BOOL) ldapRebind
 {
    // reset errors
    [self resetErrorWithTitle:@"LDAP Rebind"];
 
    // clears LDAP information
-   [self unbind];
+   [self ldapUnbind];
 
    // initiates LDAP connection
-   [self bind];
+   [self ldapBind];
 
    return(self.isSuccessful);
 }
 
 
-- (BOOL) unbind
+- (BOOL) ldapUnbind
 {
    // reset errors
    [self resetErrorWithTitle:@"LDAP Unbind"];
