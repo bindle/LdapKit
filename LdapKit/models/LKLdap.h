@@ -332,7 +332,7 @@
                 attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly;
 
-/// Performs an LDAP search operation using parameters from an LDAP URL.
+/// Performs an LDAP search operation using parameters from an LKUrl object.
 /// @param url  The URL used to specify the search parameters.
 /// @param attributesOnly  The attrsonly parameter should be set to `YES` value
 /// if  only  attribute  descriptions  are  wanted. It should be set to `NO`
