@@ -140,9 +140,13 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 /// LKLdapMessageType         | Description
 /// --------------------------|-------------------------
 /// `LKLdapMessageTypeBind`   | LDAP bind request
+/// `LKLdapMessageTypeDelete` | LDAP delete request
+/// `LKLdapMessageTypeModify` | LDAP modify request
+/// `LKLdapMessageTypeModRDN` | LDAP modrdn request
 /// `LKLdapMessageTypeRebind` | LDAP unbind and bind request
 /// `LKLdapMessageTypeSearch` | LDAP search request
 /// `LKLdapMessageTypeUnbind` | LDAP unbind request
+/// `LKLdapMessageTypeWhoAmI` | LDAP whoami request
 @property (nonatomic, readonly) LKLdapMessageType        messageType;
 
 
