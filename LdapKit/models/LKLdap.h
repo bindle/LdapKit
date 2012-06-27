@@ -89,7 +89,7 @@
 /// @name Server state
 
 /// Returns the NSOperationQueue used to execute LDAP tasks.
-@property (nonatomic, readonly) NSOperationQueue       * queue;
+@property (nonatomic, readonly) NSOperationQueue       * operationQueue;
 
 /// Returns a Boolean value indicating whether the object is connected
 /// to an LDAP server.

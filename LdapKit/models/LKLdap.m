@@ -53,7 +53,7 @@
 // server state
 @synthesize ld;
 @synthesize isConnected;
-@synthesize queue;
+@synthesize operationQueue = queue;
 
 // server information
 @synthesize ldapProtocolVersion;
