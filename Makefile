@@ -52,7 +52,7 @@ run_appledoc =	appledoc \
 	--include "./docs/appledoc/tmp/LDAP Kit License-template.txt" \
 	--include "./docs/appledoc/tmp/LDAP Kit Project Information-template.txt" \
 	--include "./docs/appledoc/tmp/LDAP Kit To Do List-template.txt" \
-	LdapKit
+	LdapKit/models
 
 all: docset
 
