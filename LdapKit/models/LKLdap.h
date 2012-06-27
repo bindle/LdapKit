@@ -43,28 +43,28 @@
 
 @interface LKLdap : NSObject
 {
-   // server state
+   // Server State
    LDAP                   * ld;
    NSOperationQueue       * queue;
    BOOL                     isConnected;
 
-   // server information
+   // Server Information
    NSString               * ldapURI;
    LKLdapProtocolScheme     ldapProtocolScheme;
    NSString               * ldapHost;
    NSInteger                ldapPort;
    LKLdapProtocolVersion    ldapProtocolVersion;
 
-   // encryption information
+   // Encryption Settings
    LKLdapEncryptionScheme   ldapEncryptionScheme;
    NSString               * ldapCACertificateFile;
 
-   // timeout & limit information
+   // Timeouts & Limits
    NSInteger                ldapSizeLimit;
    NSInteger                ldapSearchTimeout;
    NSInteger                ldapNetworkTimeout;
 
-   // authentication information
+   // Authentication Credentials
    LKLdapBindMethod         ldapBindMethod;
    NSString               * ldapBindWho;
    NSData                 * ldapBindCredentials;
@@ -85,8 +85,8 @@
 - (id) initWithQueue:(NSOperationQueue *)queue;
 
 
-#pragma mark - Server state
-/// @name Server state
+#pragma mark - Server State
+/// @name Server State
 
 /// Returns the NSOperationQueue used to execute LDAP tasks.
 @property (nonatomic, readonly) NSOperationQueue       * operationQueue;
@@ -96,8 +96,8 @@
 @property (nonatomic, readonly) BOOL                     isConnected;
 
 
-#pragma mark - Server information
-/// @name Server information
+#pragma mark - Server Information
+/// @name Server Information
 
 /// The URL string used to initialize an LDAP connection.
 ///
@@ -166,8 +166,8 @@
 @property (nonatomic, assign)   LKLdapProtocolVersion    ldapProtocolVersion;
 
 
-#pragma mark - Encryption information
-/// @name Encryption information
+#pragma mark - Encryption Settings
+/// @name Encryption Settings
 
 /// The encryption method used to communicate with the LDAP server.
 ///
@@ -196,8 +196,8 @@
 /// contains valid certificates.
 @property (nonatomic, copy)     NSString               * ldapCACertificateFile;
 
-#pragma mark - timeout & limit information
-/// @name Timeout & limit information
+#pragma mark - Timeouts & Limits
+/// @name Timeouts & Limits
 
 /// The maximum number of entries to be returned by a search operation.
 @property (nonatomic, assign)   NSInteger                ldapSearchSizeLimit;
@@ -212,8 +212,8 @@
 @property (nonatomic, assign)   NSInteger                ldapNetworkTimeout;
 
 
-#pragma mark - Authentication information
-/// @name authentication information
+#pragma mark - Authentication Credentials
+/// @name Authentication Credentials
 
 /// The method used to bind to a directory server.  The default value is
 /// `LKLdapBindMethodAnonymous`.
@@ -242,8 +242,8 @@
 @property (nonatomic, copy)     NSString               * ldapBindSaslRealm;
 
 
-#pragma mark - LDAP Opeartions
-/// @name LDAP operations
+#pragma mark - LDAP Tasks
+/// @name LDAP Tasks
 
 /// Initiates a bind request to the remote server.
 ///
