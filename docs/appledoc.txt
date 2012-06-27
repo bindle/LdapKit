@@ -1,12 +1,15 @@
 
-LDAP Kit is a framework for iOS and OS X which uses NSOperation and
-NSOperationQueue to manage LDAP tasks.
+LDAP Kit is a framework which provides an Objective-C interface for the
+[OpenLDAP](http://www.openldap.org/) client libraries on Max OS X and iOS. LDAP
+Kit manages the conversion between C data types and Objective-C classes, manages
+background threads for executing LDAP tasks, and manages memory allocated by
+OpenLDAP via NSAutoreleasePool objects.
 
 The LDAP Kit [Project Information](docs/LDAP%20Kit%20Project%20Information.html)
 page contains basic instructions for integrating LDAP Kit into iOS and Mac OS X
 applications.  The source code for [LDAP Kit](https://github.com/bindle/LdapKit/) and this
 [documentation](http://bindle.github.com/LdapKit/) are available for download
-from Github.
+from [Github](https://github.com/).
 
 @note This documentation was generated from
 [LDAP Kit](https://github.com/bindle/LdapKit/) *@VERSION@*.
