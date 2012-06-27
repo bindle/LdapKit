@@ -103,45 +103,66 @@
 ///
 /// The default value is `@"ldap://localhost/"`.
 ///
-/// Changes to this property do not affect active LDAP connections. In order for
-/// changes to take affect, the method `-rebind` must be called.
+/// @note Updating ldapURI will update the values of `ldapProtocolScheme`,
+/// `ldapHost`, `ldapPort`, and `ldapEncryptionScheme`.
+///
+/// The following table shows the values which will be assigned to
+/// `ldapProtocolScheme` and `ldapEncryptionScheme` for a given URI scheme.
+///
+/// URI Scheme | Protocol Scheme                                 | Encryption Scheme
+/// -----------|-------------------------------------------------|---------------------------------------------------------
+/// _ldap://_   | `[LKLdapProtocolSchemeLDAP](ldapProtocolScheme)`  | `[LKLdapEncryptionSchemeAttemptTLS](ldapEncryptionScheme)`
+/// _ldaps://_  | `[LKLdapProtocolSchemeLDAPS](ldapProtocolScheme)` | `[LKLdapEncryptionSchemeSSL](ldapEncryptionScheme)`
+/// _ldapi://_  | `[LKLdapProtocolSchemeLDAPI](ldapProtocolScheme)` | `[LKLdapEncryptionSchemeNone](ldapEncryptionScheme)`
+///
+/// @warning Changes to this property do not affect active LDAP connections. The
+/// `-rebind` method must be called before changes will take affect.
 @property (nonatomic, copy)     NSString               * ldapURI;
 
 /// The protocol scheme used to initialize an LDAP connection.
 ///
-/// LKLdap can be used to initate connections using LDAP, LDAPS, and LDAPI.
-/// Valid values for ldapScheme are `LKLdapProtocolSchemeLDAP`,
-/// `LKLdapProtocolSchemeLDAPS`, and `LKLdapProtocolSchemeLDAPI`. The
+/// LKLdap can be used to initate connections using LDAP, LDAPS, and LDAPI. The
 /// default value is `LKLdapProtocolSchemeLDAP`.
 ///
-/// Changes to this property do not affect active LDAP connections. In order for
-/// changes to take affect, the method `-rebind` must be called.
+///
+/// LKLdapProtocolScheme       | Description
+/// ---------------------------|---------------------------------------
+/// `LKLdapProtocolSchemeLDAP`   | Use either no validation or TLS when connecting to the directory server.
+/// `LKLdapProtocolSchemeLDAPS`  | Use SSL when connecting to the directory server.
+/// `LKLdapProtocolSchemeLDAPI`  | Use a UNIX domain socket when connecting to the directory server.
+///
+/// @warning Changes to this property do not affect active LDAP connections. The
+/// `-rebind` method must be called before changes will take affect.
 @property (nonatomic, assign)   LKLdapProtocolScheme     ldapProtocolScheme;
 
 /// The host name used to initialize an LDAP connection.
 ///
 /// The default value is `@"localhost"`.
 ///
-/// Changes to this property do not affect active LDAP connections. In order for
-/// changes to take affect, the method `-rebind` must be called.
+/// @warning Changes to this property do not affect active LDAP connections. The
+/// `-rebind` method must be called before changes will take affect.
 @property (nonatomic, copy)     NSString               * ldapHost;
 
 /// The port number used to initialize an LDAP connection.
 ///
 /// The default value is 389.
 ///
-/// Changes to this property do not affect active LDAP connections. In order for
-/// changes to take affect, the method `-rebind` must be called.
+/// @warning Changes to this property do not affect active LDAP connections. The
+/// `-rebind` method must be called before changes will take affect.
 @property (nonatomic, assign)   NSInteger                ldapPort;
 
 /// The protocol version used to initiate an LDAP connection.
 ///
-/// LKLdap supports LDAP version 2 and LDAP version 3. Valid values are
-/// `LKLdapProtocolVersion2` and `LKLdapProtocolVersion3`. The default value
-/// is `LKLdapProtocolVersion3`.
+/// LKLdap supports LDAPv2 and LDAPv3. The default value is
+/// `LKLdapProtocolVersion3`.
 ///
-/// Changes to this property do not affect active LDAP connections. In order for
-/// changes to take affect, the method `-rebind` must be called.
+/// LKLdapProtocolVersion  | Description
+/// -----------------------|---------------------------------------
+/// LKLdapProtocolVersion2 | Use LDAPv2 (RFC 1777).
+/// LKLdapProtocolVersion3 | Use LDAPv3 (RFC 4510).
+///
+/// @warning Changes to this property do not affect active LDAP connections. The
+/// `-rebind` method must be called before changes will take affect.
 @property (nonatomic, assign)   LKLdapProtocolVersion    ldapProtocolVersion;
 
 
@@ -150,18 +171,19 @@
 
 /// The encryption method used to communicate with the LDAP server.
 ///
-/// LKLdap supports TLS and SSL connections. Valid values are:
+/// LKLdap supports TLS and SSL connections. The default value is
+/// `LKLdapEncryptionSchemeAttemptTLS`. The following table describes the
+/// valid values for ldapEncryptionScheme:
 ///
-/// * `LKLdapEncryptionSchemeNone` do not use encryption.
-/// * `LKLdapEncryptionSchemeAttemptTLS` attempt to use TLS, but allow
-///   unencrypted connections if TLS is unavailable.
-/// * `LKLdapEncryptionSchemeTLS` use TLS when establishing a connection.
-/// * `LKLdapEncryptionSchemeSSL` use SSL when establishing a connection.
+/// LKLdapEncryptionScheme           | Description
+/// ---------------------------------|---------------------------------------
+/// LKLdapEncryptionSchemeNone       | Do not use encryption.
+/// LKLdapEncryptionSchemeAttemptTLS | Attempt to use TLS, but allow unencrypted connections if TLS is unavailable.
+/// LKLdapEncryptionSchemeTLS        | Require TLS when establishing a connection.
+/// LKLdapEncryptionSchemeSSL        | Require SSL when establishing a connection.
 ///
-/// The default value is `LKLdapEncryptionSchemeAttemptTLS`.
-///
-/// Changes to this property do not affect active LDAP connections. In order for
-/// changes to take affect, the method `-rebind` must be called.
+/// @warning Changes to this property do not affect active LDAP connections. The
+/// `-rebind` method must be called before changes will take affect.
 @property (nonatomic, assign)   LKLdapEncryptionScheme   ldapEncryptionScheme;
 
 /// The file name containing certificates of authorized certificate authorities.
@@ -193,13 +215,14 @@
 #pragma mark - Authentication information
 /// @name authentication information
 
-/// The method used to bind to a directory server.
+/// The method used to bind to a directory server.  The default value is
+/// `LKLdapBindMethodAnonymous`.
 ///
-/// Valid values are:
-///
-/// * `LKLdapBindMethodAnonymous` performs an anonymous bind.
-/// * `LKLdapBindMethodSimple` performs a simple bind.
-/// * `LKLdapBindMethodSASL` performs a SASL bind.
+/// LKLdapBindMethod            | Description
+/// ----------------------------|----------------------------
+/// `LKLdapBindMethodAnonymous` | Perform an anonymous bind.
+/// `LKLdapBindMethodSimple`    | Perform a simple bind.
+/// `LKLdapBindMethodSASL`      | Perform a SASL bind.
 @property (nonatomic, assign)   LKLdapBindMethod         ldapBindMethod;
 
 /// The SASL user or distinguished name used when performing an authenticated bind.
@@ -212,8 +235,7 @@
 @property (nonatomic, copy)     NSString               * ldapBindCredentialsString;
 
 /// The SASL mechanism used when performing a SASL bind.
-/// @warning Currently the only supported mechanisms on iOS are DIGEST-MD5 and
-/// CRAM-MD5.
+/// @warning Currently only `DIGEST-MD5` and `CRAM-MD5` are supported on iOS.
 @property (nonatomic, copy)     NSString               * ldapBindSaslMechanism;
 
 /// The SASL realm used when performing a SASL bind.
@@ -272,10 +294,10 @@
 /// @return Returns the LKMessage object executing the rebind request.
 - (LKMessage *) rebind;
 
-/// Initiates an ubind request to the remote server.
+/// Initiates an unbind request to the remote server.
 ///
-/// This will cause the current connection (if one exists).
-/// @return Returns the LKMessage object executing the rebind request.
+/// This will terminate the current connection (if one exists).
+/// @return Returns the LKMessage object executing the unbind request.
 - (LKMessage *) unbind;
 
 @end
