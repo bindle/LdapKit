@@ -87,13 +87,23 @@
 	
 	<option value="//api/name/initWithQueue:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithQueue:</option>
 	
+	<option value="//api/name/initWithQueue:andURL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithQueue:andURL:</option>
+	
+	<option value="//api/name/initWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:</option>
+	
 	<option value="//api/name/ldapBind">&nbsp;&nbsp;&nbsp;&nbsp;- ldapBind</option>
+	
+	<option value="//api/name/ldapDeleteDN:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapDeleteDN:</option>
+	
+	<option value="//api/name/ldapDeleteEntry:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapDeleteEntry:</option>
 	
 	<option value="//api/name/ldapRebind">&nbsp;&nbsp;&nbsp;&nbsp;- ldapRebind</option>
 	
 	<option value="//api/name/ldapSearchBaseDN:scope:filter:attributes:attributesOnly:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapSearchBaseDN:scope:filter:attributes:attributesOnly:</option>
 	
 	<option value="//api/name/ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:</option>
+	
+	<option value="//api/name/ldapSearchUrl:attributesOnly:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapSearchUrl:attributesOnly:</option>
 	
 	<option value="//api/name/ldapUnbind">&nbsp;&nbsp;&nbsp;&nbsp;- ldapUnbind</option>
 	
@@ -183,13 +193,23 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithQueue:">initWithQueue:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithQueue:andURL:">initWithQueue:andURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:">initWithURL:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapBind">ldapBind</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapDeleteDN:">ldapDeleteDN:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapDeleteEntry:">ldapDeleteEntry:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapRebind">ldapRebind</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapSearchBaseDN:scope:filter:attributes:attributesOnly:">ldapSearchBaseDN:scope:filter:attributes:attributesOnly:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:">ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapSearchUrl:attributesOnly:">ldapSearchUrl:attributesOnly:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapUnbind">ldapUnbind</a></span></li>
 	
@@ -258,6 +278,20 @@ LDAP requests.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithQueue:">&ndash;&nbsp;initWithQueue:</a></code>
 		<span class="tooltip"><p>Initialize a new object with default values and a shared operation queue.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithQueue:andURL:">&ndash;&nbsp;initWithQueue:andURL:</a></code>
+		<span class="tooltip"><p>Initialize a new object with values from a <a href="../Classes/LKUrl.html">LKUrl</a> object and a shared operation queue.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithURL:">&ndash;&nbsp;initWithURL:</a></code>
+		<span class="tooltip"><p>Initialize a new object with values from a <a href="../Classes/LKUrl.html">LKUrl</a> object.</p></span>
 	</span>
 	
 	
@@ -446,6 +480,20 @@ terminated by the server.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/ldapDeleteDN:">&ndash;&nbsp;ldapDeleteDN:</a></code>
+		<span class="tooltip"><p>Initiates a delete request for an LDAP DN.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapDeleteEntry:">&ndash;&nbsp;ldapDeleteEntry:</a></code>
+		<span class="tooltip"><p>Initiates a delete request for an LDAP entry.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/ldapSearchBaseDN:scope:filter:attributes:attributesOnly:">&ndash;&nbsp;ldapSearchBaseDN:scope:filter:attributes:attributesOnly:</a></code>
 		<span class="tooltip"><p>Performs an LDAP search operation on a single base DN.</p></span>
 	</span>
@@ -455,6 +503,13 @@ terminated by the server.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:">&ndash;&nbsp;ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:</a></code>
 		<span class="tooltip"><p>Performs LDAP search operations on multiple base DNs.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapSearchUrl:attributesOnly:">&ndash;&nbsp;ldapSearchUrl:attributesOnly:</a></code>
+		<span class="tooltip"><p>Performs an LDAP search operation using parameters from an LDAP URL.</p></span>
 	</span>
 	
 	
@@ -1479,6 +1534,103 @@ terminated by the server.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/initWithQueue:andURL:" title="initWithQueue:andURL:"></a>
+	<h3 class="subsubtitle method-title">initWithQueue:andURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new object with values from a <a href="../Classes/LKUrl.html">LKUrl</a> object and a shared operation queue.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initWithQueue:(NSOperationQueue *)<em>queue</em> andURL:(LKUrl *)<em>url</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>queue</em></dt>
+			<dd><p>The queue to use when executing LDAP tasks.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The <a href="../Classes/LKUrl.html">LKUrl</a> object used to initialize the new LKLdap object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithURL:" title="initWithURL:"></a>
+	<h3 class="subsubtitle method-title">initWithURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new object with values from a <a href="../Classes/LKUrl.html">LKUrl</a> object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initWithURL:(LKUrl *)<em>url</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The <a href="../Classes/LKUrl.html">LKUrl</a> object used to initialize the new LKLdap object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/ldapBind" title="ldapBind"></a>
 	<h3 class="subsubtitle method-title">ldapBind</h3>
 	
@@ -1510,6 +1662,108 @@ terminated by the server.</p>
 		<p>If not already connected to the remote server, this will cause a connection
 to be established prior to submitting the bind request.</p>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapDeleteDN:" title="ldapDeleteDN:"></a>
+	<h3 class="subsubtitle method-title">ldapDeleteDN:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiates a delete request for an LDAP DN.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)ldapDeleteDN:(NSString *)<em>dn</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dn</em></dt>
+			<dd><p>The DN to be deleted.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the delete request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapDeleteEntry:" title="ldapDeleteEntry:"></a>
+	<h3 class="subsubtitle method-title">ldapDeleteEntry:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiates a delete request for an LDAP entry.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)ldapDeleteEntry:(LKEntry *)<em>entry</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>entry</em></dt>
+			<dd><p>An <a href="../Classes/LKEntry.html">LKEntry</a> object of the DN to be deleted.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the delete request.</p>
+	</div>
+	
+	
+	
+	
 	
 	
 	
@@ -1728,6 +1982,64 @@ for the entire request.</p></dd>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/ldapSearchUrl:attributesOnly:" title="ldapSearchUrl:attributesOnly:"></a>
+	<h3 class="subsubtitle method-title">ldapSearchUrl:attributesOnly:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Performs an LDAP search operation using parameters from an LDAP URL.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)ldapSearchUrl:(LKUrl *)<em>url</em> attributesOnly:(BOOL)<em>attributesOnly</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>url</em></dt>
+			<dd><p>The URL used to specify the search parameters.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>attributesOnly</em></dt>
+			<dd><p>The attrsonly parameter should be set to <code>YES</code> value
+if  only  attribute  descriptions  are  wanted. It should be set to <code>NO</code>
+if both attributes descriptions and attribute values are wanted.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the search request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/ldapUnbind" title="ldapUnbind"></a>
 	<h3 class="subsubtitle method-title">ldapUnbind</h3>
 	
@@ -1786,7 +2098,7 @@ for the entire request.</p></dd>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-26)</span><br />
+						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-27)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

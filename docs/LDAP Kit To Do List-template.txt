@@ -10,14 +10,10 @@ LDAP Kit To-Do List
 
    LDAP Opeartions
    ---------------
-   * Add LDAP delete methods to LKLdap and LKMessage.
    * Add LDAP modify methods to LKLdap and LKMessage.
    * Add LDAP rename methods to LKLdap and LKMessage.
-   * Add LDAP URL parse methods to LKLdap.
    * Add LDAP whoami  methods to LKLdap and LKMessage.
 
    Documentation
    -------------
    * Finish README.
-   * Finish documenting source code with appledoc tags.
-

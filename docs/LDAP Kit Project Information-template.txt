@@ -184,6 +184,9 @@ Maintainers
 Community
 ---------
 
+   Source Code Repository:  
+   https://github.com/bindle/LdapKit/
+
    Documentation:  
    http://bindle.github.com/LdapKit/
 
