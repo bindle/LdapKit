@@ -68,8 +68,9 @@
    session.ldapEncryptionScheme = LKLdapEncryptionSchemeNone;
 
    // start search
-   currentOperation = [[session searchBaseDN:@"o=test" scope:LKLdapSearchScopeSubTree
-                      filter:@"(objectclass=*)" attributes:nil attributesOnly:0] retain];
+   currentOperation = [[session ldapSearchBaseDN:@"o=test"
+                      scope:LKLdapSearchScopeSubTree filter:@"(objectclass=*)"
+                      attributes:nil attributesOnly:0] retain];
    [currentOperation addObserver:self forKeyPath:@"isFinished"
       options:NSKeyValueObservingOptionNew context:nil];
    [currentOperation addObserver:self forKeyPath:@"entries"

@@ -461,7 +461,7 @@
 
 #pragma mark - LDAP operations
 
-- (LKMessage *) bind
+- (LKMessage *) ldapBind
 {
    LKMessage * message;
    @synchronized(self)
@@ -474,7 +474,7 @@
 }
 
 
-- (LKMessage *) searchBaseDN:(NSString *)dn scope:(LKLdapSearchScope)scope
+- (LKMessage *) ldapSearchBaseDN:(NSString *)dn scope:(LKLdapSearchScope)scope
                 filter:(NSString *)filter attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly
 {
@@ -490,8 +490,9 @@
 }
 
 
-- (LKMessage *) searchBaseDNList:(NSArray *)dnList scope:(LKLdapSearchScope)scope
-                filter:(NSString *)filter attributes:(NSArray *)attributes
+- (LKMessage *) ldapSearchBaseDNList:(NSArray *)dnList
+                scope:(LKLdapSearchScope)scope filter:(NSString *)filter
+                attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly
 {
    LKMessage * message;
@@ -506,7 +507,7 @@
 }
 
 
-- (LKMessage *) rebind
+- (LKMessage *) ldapRebind
 {
    LKMessage * message;
    @synchronized(self)
@@ -518,7 +519,7 @@
 }
 
 
-- (LKMessage *) unbind
+- (LKMessage *) ldapUnbind
 {
    LKMessage * message;
    @synchronized(self)

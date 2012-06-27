@@ -250,7 +250,7 @@
 /// If not already connected to the remote server, this will cause a connection
 /// to be established prior to submitting the bind request.
 /// @return Returns the LKMessage object executing the bind request.
-- (LKMessage *) bind;
+- (LKMessage *) ldapBind;
 
 /// Performs an LDAP search operation on a single base DN.
 /// @param base The DN of the entry at which to start the search.
@@ -264,7 +264,7 @@
 /// if  only  attribute  descriptions  are  wanted. It should be set to `NO`
 /// if both attributes descriptions and attribute values are wanted.
 /// @return Returns the LKMessage object executing the search request.
-- (LKMessage *) searchBaseDN:(NSString *)base scope:(LKLdapSearchScope)scope
+- (LKMessage *) ldapSearchBaseDN:(NSString *)base scope:(LKLdapSearchScope)scope
                 filter:(NSString *)filter attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly;
 
@@ -283,8 +283,9 @@
 /// If any one of the search operations generates an error, an error is reported
 /// for the entire request.
 /// @return Returns the LKMessage object executing the search request.
-- (LKMessage *) searchBaseDNList:(NSArray *)bases scope:(LKLdapSearchScope)scope
-                filter:(NSString *)filter attributes:(NSArray *)attributes
+- (LKMessage *) ldapSearchBaseDNList:(NSArray *)bases
+                scope:(LKLdapSearchScope)scope filter:(NSString *)filter
+                attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly;
 
 /// Initiates a rebind request to the remote server.
@@ -292,12 +293,12 @@
 /// This will cause the current connection (if one exists) to be terminated
 /// and a new connection to be established.
 /// @return Returns the LKMessage object executing the rebind request.
-- (LKMessage *) rebind;
+- (LKMessage *) ldapRebind;
 
 /// Initiates an unbind request to the remote server.
 ///
 /// This will terminate the current connection (if one exists).
 /// @return Returns the LKMessage object executing the unbind request.
-- (LKMessage *) unbind;
+- (LKMessage *) ldapUnbind;
 
 @end
