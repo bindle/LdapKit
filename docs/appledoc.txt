@@ -4,6 +4,9 @@ NSOperationQueue to manage LDAP tasks.
 
 The LDAP Kit [Project Information](docs/LDAP%20Kit%20Project%20Information.html)
 page contains basic instructions for integrating LDAP Kit into iOS and Mac OS X
-applications.
+applications.  The source code for [LDAP Kit](https://github.com/bindle/LdapKit/) and this
+[documentation](http://bindle.github.com/LdapKit/) are available for download
+from Github.
 
-@note This documentation was generated from LDAP Kit *@VERSION@*.
+@note This documentation was generated from
+[LDAP Kit](https://github.com/bindle/LdapKit/) *@VERSION@*.
