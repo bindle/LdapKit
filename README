@@ -2,8 +2,11 @@
 LDAP Kit
 ========
 
-   LDAP framework for iOS and OS X using NSOperation and NSOperationQueue to
-   manage LDAP tasks.
+   LDAP Kit is a framework which provides an Objective-C interface for the
+   OpenLDAP client libraries on Max OS X and iOS. LDAP Kit manages the
+   conversion between C data types and Objective-C classes, manages background
+   threads for executing LDAP tasks, and manages memory allocated by OpenLDAP
+   via NSAutoreleasePool objects.
 
       Note: Although this file uses some _markdown_ syntax, I chose to favor
             plain text readability over _markdown_ when formatting the text.
