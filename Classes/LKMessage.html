@@ -253,7 +253,7 @@ implementing observers in multi-threaded applications.</p>
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/entries">&nbsp;&nbsp;entries</a></code>
-		<span class="tooltip"><p>An array of entries returned by a <a href="#//api/name/search">search</a> request.</p></span>
+		<span class="tooltip"><p>An array of <a href="../Classes/LKEntry.html">LKEntry</a> objects returned by a search request.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -343,7 +343,7 @@ application.</p></span>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>An array of entries returned by a <a href="#//api/name/search">search</a> request.</p>
+		<p>An array of <a href="../Classes/LKEntry.html">LKEntry</a> objects returned by a search request.</p>
 	</div>		
 	
     
@@ -393,6 +393,12 @@ application.</p></span>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>See the man page for ldap_error(3) for descriptions of valid error
+codes.</p>
+	</div>
 	
 	
 	
@@ -540,14 +546,34 @@ application.</p></span>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Values include:</p>
+		<p>Valid values:</p>
 
-<ul>
-<li><code>LKLdapMessageTypeBind</code> indicates message was initialized to process a <a href="#//api/name/bind">bind</a> request.</li>
-<li><code>LKLdapMessageTypeRe</code>bind<code></code> indicates message was initialized to process a <a href="#//api/name/rebind">rebind</a> request.</li>
-<li><code>LKLdapMessageTypeSearch</code> indicates message was initialized to process a <a href="#//api/name/search">search</a> request.</li>
-<li><code>LKLdapMessageTypeUn</code>bind<code></code> indicates message was initialized to process an <a href="#//api/name/unbind">unbind</a> request.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>LKLdapMessageType         </th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LKLdapMessageTypeBind</code>   </td>
+<td> LDAP bind request</td>
+</tr>
+<tr>
+<td><code>LKLdapMessageTypeRebind</code> </td>
+<td> LDAP unbind and bind request</td>
+</tr>
+<tr>
+<td><code>LKLdapMessageTypeSearch</code> </td>
+<td> LDAP search request</td>
+</tr>
+<tr>
+<td><code>LKLdapMessageTypeUnbind</code> </td>
+<td> LDAP unbind request</td>
+</tr>
+</tbody>
+</table>
 
 	</div>
 	

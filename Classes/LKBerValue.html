@@ -54,6 +54,16 @@
 	
 	<option value="//api/name/bv_val">&nbsp;&nbsp;&nbsp;&nbsp;bv_val</option>
 	
+	<option value="//api/name/isBerData">&nbsp;&nbsp;&nbsp;&nbsp;isBerData</option>
+	
+	<option value="//api/name/isBerImage">&nbsp;&nbsp;&nbsp;&nbsp;isBerImage</option>
+	
+	<option value="//api/name/isBerString">&nbsp;&nbsp;&nbsp;&nbsp;isBerString</option>
+	
+	<option value="//api/name/isBerStringBase64">&nbsp;&nbsp;&nbsp;&nbsp;isBerStringBase64</option>
+	
+	<option value="//api/name/isBerValue">&nbsp;&nbsp;&nbsp;&nbsp;isBerValue</option>
+	
 	
 	
 	
@@ -74,9 +84,11 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_BerValue data">BerValue data</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_BerValue Data">BerValue Data</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_derived data">derived data</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Derived Data">Derived Data</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Type of data">Type of data</a></span></li>
 	
 </ul></li>
 
@@ -99,6 +111,16 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bv_len">bv_len</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bv_val">bv_val</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBerData">isBerData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBerImage">isBerImage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBerString">isBerString</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBerStringBase64">isBerStringBase64</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBerValue">isBerValue</a></span></li>
 	
 </ul></li>
 
@@ -155,8 +177,8 @@ accessed as a string, an image, or binary data.</p>
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						<a title="BerValue data" name="task_BerValue data"></a>
-						<h3 class="subsubtitle task-title">BerValue data</h3>
+						<a title="BerValue Data" name="task_BerValue Data"></a>
+						<h3 class="subsubtitle task-title">BerValue Data</h3>
 
 						<ul class="task-list">
 							<li>
@@ -184,8 +206,8 @@ accessed as a string, an image, or binary data.</p>
 						</ul>
 						
 						
-						<a title="derived data" name="task_derived data"></a>
-						<h3 class="subsubtitle task-title">derived data</h3>
+						<a title="Derived Data" name="task_Derived Data"></a>
+						<h3 class="subsubtitle task-title">Derived Data</h3>
 
 						<ul class="task-list">
 							<li>
@@ -213,6 +235,49 @@ accessed as a string, an image, or binary data.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/berValue">&nbsp;&nbsp;berValue</a></code>
 		<span class="tooltip"><p>Returns a C pointer to a BerValue struct populated with the object&rsquo;s value.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Type of data" name="task_Type of data"></a>
+						<h3 class="subsubtitle task-title">Type of data</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBerData">&nbsp;&nbsp;isBerData</a></code>
+		<span class="tooltip"><p>Indicates the data is valid an NSData object.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBerImage">&nbsp;&nbsp;isBerImage</a></code>
+		<span class="tooltip"><p>Indicates the data is a valid image.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBerString">&nbsp;&nbsp;isBerString</a></code>
+		<span class="tooltip"><p>Indicates that the data is a valid string.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBerStringBase64">&nbsp;&nbsp;isBerStringBase64</a></code>
+		<span class="tooltip"><p>Indicates the data can be base64 encoded.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBerValue">&nbsp;&nbsp;isBerValue</a></code>
+		<span class="tooltip"><p>Indicates the data can be encoded as a BerValue data type.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -474,6 +539,201 @@ an NSString.  Otherwise nil is returned.</p>
     
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isBerData" title="isBerData"></a>
+	<h3 class="subsubtitle method-title">isBerData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates the data is valid an NSData object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isBerData</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>This property always returns <code>YES</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isBerImage" title="isBerImage"></a>
+	<h3 class="subsubtitle method-title">isBerImage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates the data is a valid image.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isBerImage</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isBerString" title="isBerString"></a>
+	<h3 class="subsubtitle method-title">isBerString</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates that the data is a valid string.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isBerString</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isBerStringBase64" title="isBerStringBase64"></a>
+	<h3 class="subsubtitle method-title">isBerStringBase64</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates the data can be base64 encoded.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isBerStringBase64</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>This property always returns <code>YES</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isBerValue" title="isBerValue"></a>
+	<h3 class="subsubtitle method-title">isBerValue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicates the data can be encoded as a BerValue data type.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isBerValue</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>This property always returns <code>YES</code>.</p>
+	</div>
 	
 	
 	

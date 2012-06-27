@@ -5,6 +5,11 @@ LDAP Kit Change Log
 #### 0.2
 * Merging the LKError class into the LKMessage class. (syzdek)
 * Updating documentation. (syzdek)
+* Updating LKBerValue to cached derived data for more efficient subsequent
+  access to properties. (syzdek)
+* Modifying LKLdap so that the value of [LKLdap ldapBindMethod] is recalculated
+  when the values of [LKLdap ldapBindWho], [LKLdap ldapBindSaslMechanism], and
+  [LKLdap ldapBindSaslRealm] are updated. (syzdek)
 
 #### 0.1   (2012-06-17)
 * Creating project. (syzdek)
