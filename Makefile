@@ -88,6 +88,11 @@ gh-pages: docset
 	VER=`git describe --long --abbrev=7 |sed -e 's/-/./g'`; \
 	   cd ./docs/github && git commit -m "Generating documentation from $$VER" .
 
+update-git: gh-pages
+	git push origin --tags pu:pu next:next master:master
+	git push github --tags pu:pu next:next master:master
+	cd ./docs/github && git push
+
 clean:
 	rm -Rf ./docs/appledoc/*
 
