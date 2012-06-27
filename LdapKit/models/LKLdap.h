@@ -116,7 +116,7 @@
 /// _ldapi://_  | `[LKLdapProtocolSchemeLDAPI](ldapProtocolScheme)` | `[LKLdapEncryptionSchemeNone](ldapEncryptionScheme)`
 ///
 /// @warning Changes to this property do not affect active LDAP connections. The
-/// `-rebind` method must be called before changes will take affect.
+/// `-ldapRebind` method must be called before changes will take affect.
 @property (nonatomic, copy)     NSString               * ldapURI;
 
 /// The protocol scheme used to initialize an LDAP connection.
