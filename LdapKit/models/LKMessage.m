@@ -75,6 +75,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 /// @name LDAP tasks
 - (BOOL) ldapBind;
+- (BOOL) ldapDelete;
 - (BOOL) ldapSearch;
 - (BOOL) ldapTestConnection;
 - (BOOL) ldapRebind;
@@ -85,6 +86,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (LDAP *) bindFinish:(LDAP *)ld;
 - (LDAP *) bindInitialize;
 - (LDAP *) bindStartTLS:(LDAP *)ld;
+- (int) deleteDN:(NSString *)dn;
 - (BOOL)   parseResult:(LDAPMessage *)res referrals:(NSMutableArray *)referrals;
 - (LDAPMessage *) resultWithMessageID:(int)msgid
                   resultEntries:(NSMutableArray *)resultEntries;
@@ -142,6 +144,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    [searchFilter     release];
    [searchAttributes release];
 
+   // modify information
+   [modifyDn  release];
+   [modifyRdn release];
+
    // results
    [referrals release];
 
@@ -180,6 +186,23 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // copies session data to local ivars
    [self copySessionInformation];
+
+   return(self);
+}
+
+
+- (id) initDeleteWithSession:(LKLdap *)data dn:(NSString *)dn
+{
+   // initialize super
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // state information
+   session     = [data retain];
+   messageType = LKLdapMessageTypeDelete;
+
+   // modify information
+   modifyDn = [[NSString alloc] initWithString:dn];
 
    return(self);
 }
@@ -483,6 +506,11 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       [self ldapBind];
       break;
 
+      case LKLdapMessageTypeDelete:
+      [self ldapDelete];
+      self.errorTitle = @"LDAP Delete";
+      break;
+
       case LKLdapMessageTypeSearch:
       [self ldapSearch];
       self.errorTitle = @"LDAP Search";
@@ -553,6 +581,54 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       session.ld          = ld;
       session.isConnected = YES;
    };
+
+   return(self.isSuccessful);
+}
+
+
+- (BOOL) ldapDelete
+{
+   int               msgid;
+   BOOL              isConnected;
+   LDAPMessage     * res;
+
+   // reset errors
+   [self resetErrorWithTitle:@"LDAP Delete"];
+
+   // verifies session is connected to LDAP
+   isConnected = [self ldapBind];
+   if (!(isConnected))
+      return(self.isSuccessful);
+   if ((self.isCancelled))
+   {
+      self.errorCode = LDAP_USER_CANCELLED;
+      return(self.isSuccessful);
+   };
+
+   // initiates search
+   msgid = [self deleteDN:modifyDn];
+   if (!(self.isSuccessful))
+      return(self.isSuccessful);
+
+   // verifies operation has not been cancelled
+   if ((self.isCancelled))
+   {
+      @synchronized(session)
+      {
+         if ((session.ld))
+            ldap_abandon_ext(session.ld, msgid, NULL, NULL);
+      };
+      self.errorCode = LDAP_USER_CANCELLED;
+      return(self.isSuccessful);
+   };
+
+   // waits for result
+   if ((res = [self resultWithMessageID:msgid resultEntries:nil]) == NULL)
+      return(self.isSuccessful);
+
+   // parses result
+   if (!([self parseResult:res referrals:nil]))
+      return(self.isSuccessful);
 
    return(self.isSuccessful);
 }
@@ -1027,6 +1103,33 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    return(ld);
+}
+
+
+- (int) deleteDN:(NSString *)dn
+{
+   int               msgid;
+
+   @synchronized(session)
+   {
+      // checks session
+      if (!(session.ld))
+      {
+         self.errorCode = LDAP_UNAVAILABLE;
+         return(-1);
+      };
+
+      // initiates search
+      self.errorCode = ldap_delete_ext(
+         session.ld,                      // LDAP            * ld
+         [dn UTF8String],                 // char            * dn
+         NULL,                            // LDAPControl    ** serverctrls
+         NULL,                            // LDAPControl    ** clientctrls
+         &msgid                           // int             * msgidp
+      );
+   };
+
+   return(msgid);
 }
 
 

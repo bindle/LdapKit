@@ -11,6 +11,7 @@ LDAP Kit Change Log
   when the values of [LKLdap ldapBindWho], [LKLdap ldapBindSaslMechanism], and
   [LKLdap ldapBindSaslRealm] are updated. (syzdek)
 * Adding class LKUrl for parsing LDAP URLs. (syzdek)
+* Adding ability to delete DNs. (syzdek)
 
 #### 0.1   (2012-06-17)
 * Creating project. (syzdek)

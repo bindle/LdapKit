@@ -39,6 +39,7 @@
 #import <Foundation/Foundation.h>
 #import <LdapKit/LKEnumerations.h>
 
+@class LKEntry;
 @class LKMessage;
 @class LKUrl;
 
@@ -284,6 +285,16 @@
 /// to be established prior to submitting the bind request.
 /// @return Returns the LKMessage object executing the bind request.
 - (LKMessage *) ldapBind;
+
+/// Initiates a delete request for an LDAP DN.
+/// @param dn The DN to be deleted.
+/// @return Returns the LKMessage object executing the delete request.
+- (LKMessage *) ldapDeleteDN:(NSString *)dn;
+
+/// Initiates a delete request for an LDAP entry.
+/// @param entry An LKEntry object of the DN to be deleted.
+/// @return Returns the LKMessage object executing the delete request.
+- (LKMessage *) ldapDeleteEntry:(LKEntry *)entry;
 
 /// Performs an LDAP search operation on a single base DN.
 /// @param base The DN of the entry at which to start the search.

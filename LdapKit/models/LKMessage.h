@@ -63,6 +63,7 @@ enum ldap_kit_ldap_message_type
    LKLdapMessageTypeUnbind            = 0x02,
    LKLdapMessageTypeSearch            = 0x03,
    LKLdapMessageTypeRebind            = 0x04,
+   LKLdapMessageTypeDelete            = 0x05,
    LKLdapMessageTypeUnknown           = 0x00
 };
 typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
@@ -110,6 +111,11 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
    NSArray                * searchAttributes;
    BOOL                     searchAttributesOnly;
    LKLdapSearchScope        searchScope;
+
+   // modify information
+   NSString               * modifyDn;
+   NSString               * modifyRdn;
+   BOOL                     deleteOldRdn;
 
    // results
    NSMutableArray         * referrals;

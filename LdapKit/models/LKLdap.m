@@ -37,6 +37,7 @@
 #import "LKLdap.h"
 #import "LKLdapCategory.h"
 
+#import "LKEntry.h"
 #import "LKMessage.h"
 #import "LKMessageCategory.h"
 #import "LKUrl.h"
@@ -536,6 +537,30 @@
    {
       message = [[LKMessage alloc] initBindWithSession:self];
       message.queuePriority = NSOperationQueuePriorityHigh;
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
+- (LKMessage *) ldapDeleteDN:(NSString *)dn
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initDeleteWithSession:self dn:dn];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
+- (LKMessage *) ldapDeleteEntry:(LKEntry *)entry
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initDeleteWithSession:self dn:entry.dn];
       [queue addOperation:message];
       return([message autorelease]);
    };
