@@ -64,6 +64,9 @@ enum ldap_kit_ldap_message_type
    LKLdapMessageTypeSearch            = 0x03,
    LKLdapMessageTypeRebind            = 0x04,
    LKLdapMessageTypeDelete            = 0x05,
+   LKLdapMessageTypeModRDN            = 0x06,
+   LKLdapMessageTypeModify            = 0x07,
+   LKLdapMessageTypeWhoAmI            = 0x08,
    LKLdapMessageTypeUnknown           = 0x00
 };
 typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
