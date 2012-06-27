@@ -43,6 +43,7 @@
 @interface LKLdap ()
 
 /// @name Manages internal state
+- (void) calculateBindMethod;
 - (void) calculateLdapURL;
 
 @end
@@ -174,6 +175,7 @@
       ldapBindWho = nil;
       if ((aString))
          ldapBindWho = [[NSString alloc] initWithString:aString];
+      [self calculateBindMethod];
    }
    return;
 }
@@ -268,6 +270,7 @@
       ldapBindSaslMechanism = nil;
       if ((aString))
          ldapBindSaslMechanism= [[NSString alloc] initWithString:aString];
+      [self calculateBindMethod];
    }
    return;
 }
@@ -288,6 +291,7 @@
       ldapBindSaslRealm = nil;
       if ((aString))
          ldapBindSaslRealm = [[NSString alloc] initWithString:aString];
+      [self calculateBindMethod];
    }
    return;
 }
@@ -431,6 +435,29 @@
 
 
 #pragma mark - Manages internal state
+
+- (void) calculateBindMethod
+{
+   // verifies credentials are available
+   if (!(ldapBindWho))
+   {
+      ldapBindMethod = LKLdapBindMethodAnonymous;
+      return;
+   };
+
+   // verifies SASL information is available
+   if ( ((ldapBindSaslMechanism)) || ((ldapBindSaslRealm)) )
+   {
+      ldapBindMethod = LKLdapBindMethodSASL;
+      return;
+   };
+
+   // assume simple bind
+   ldapBindMethod = LKLdapBindMethodSimple;
+
+   return;
+}
+
 
 - (void) calculateLdapURL
 {

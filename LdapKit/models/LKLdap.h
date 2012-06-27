@@ -215,17 +215,35 @@
 #pragma mark - Authentication Credentials
 /// @name Authentication Credentials
 
-/// The method used to bind to a directory server.  The default value is
-/// `LKLdapBindMethodAnonymous`.
+/// The method used to bind to a directory server.
+///
+/// The default value is `LKLdapBindMethodAnonymous`. The following table
+/// describes the valid values for ldapBindMethod:
 ///
 /// LKLdapBindMethod            | Description
 /// ----------------------------|----------------------------
 /// `LKLdapBindMethodAnonymous` | Perform an anonymous bind.
 /// `LKLdapBindMethodSimple`    | Perform a simple bind.
 /// `LKLdapBindMethodSASL`      | Perform a SASL bind.
+///
+/// @note The value of ldapBindMethod is recalculated when the value of
+/// `ldapBindWho`,  `ldapBindSaslMechanism`, or `ldapBindSaslRealm` is changed.
+/// The following is the matrix used to determine the calculated value of
+/// `ldapBindMethod` based upon the values of `ldapBindWho`,
+/// `ldapBindSaslMechanism`, and `ldapBindSaslRealm`.
+///
+/// LKLdapBindMethod            | ldapBindWho    | ldapBindSaslMechanism | ldapBindSaslRealm
+/// ----------------------------|----------------|-----------------------|---------------------------------------
+/// `LKLdapBindMethodAnonymous` | `nil`          | `nil`              | `nil`
+/// `LKLdapBindMethodSimple`    | not `nil`      | `nil`              | `nil`
+/// `LKLdapBindMethodSASL`      | not `nil`      | not `nil`          | `nil` or not `nil`
+/// `LKLdapBindMethodSASL`      | not `nil`      | `nil` or not `nil` | not `nil`
 @property (nonatomic, assign)   LKLdapBindMethod         ldapBindMethod;
 
 /// The SASL user or distinguished name used when performing an authenticated bind.
+/// @note Changing the value of ldapBindWho will cause the value of
+/// `ldapBindMethod` to be updated. The logic used to calculate the new value is
+/// documented with `ldapBindMethod`.
 @property (nonatomic, copy)     NSString               * ldapBindWho;
 
 /// The binary credentials used when performing an authenticated bind.
@@ -235,10 +253,16 @@
 @property (nonatomic, copy)     NSString               * ldapBindCredentialsString;
 
 /// The SASL mechanism used when performing a SASL bind.
+/// @note Changing the value of ldapBindWho will cause the value of
+/// `ldapBindMethod` to be updated. The logic used to calculate the new value is
+/// documented with `ldapBindMethod`.
 /// @warning Currently only `DIGEST-MD5` and `CRAM-MD5` are supported on iOS.
 @property (nonatomic, copy)     NSString               * ldapBindSaslMechanism;
 
 /// The SASL realm used when performing a SASL bind.
+/// @note Changing the value of ldapBindWho will cause the value of
+/// `ldapBindMethod` to be updated. The logic used to calculate the new value is
+/// documented with `ldapBindMethod`.
 @property (nonatomic, copy)     NSString               * ldapBindSaslRealm;
 
 
