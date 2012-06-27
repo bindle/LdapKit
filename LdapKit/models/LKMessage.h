@@ -126,12 +126,14 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 
 /// The type of request the message was initialized to process.
 ///
-/// Values include:
+/// Valid values:
 ///
-/// * `LKLdapMessageTypeBind` indicates message was initialized to process a bind request.
-/// * `LKLdapMessageTypeRebind` indicates message was initialized to process a rebind request.
-/// * `LKLdapMessageTypeSearch` indicates message was initialized to process a search request.
-/// * `LKLdapMessageTypeUnbind` indicates message was initialized to process an unbind request.
+/// LKLdapMessageType         | Description
+/// --------------------------|-------------------------
+/// `LKLdapMessageTypeBind`   | LDAP bind request
+/// `LKLdapMessageTypeRebind` | LDAP unbind and bind request
+/// `LKLdapMessageTypeSearch` | LDAP search request
+/// `LKLdapMessageTypeUnbind` | LDAP unbind request
 @property (nonatomic, readonly) LKLdapMessageType        messageType;
 
 
@@ -139,6 +141,9 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 /// @name Errors
 
 /// The numeric value of the error.
+///
+/// See the man page for ldap_error(3) for descriptions of valid error
+/// codes.
 @property (atomic, readonly)    NSInteger          errorCode;
 
 /// An optional title of the error for use when reporting error to users.
@@ -157,7 +162,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 #pragma mark - Results
 /// @name Results
 
-/// An array of entries returned by a search request.
+/// An array of LKEntry objects returned by a search request.
 @property (nonatomic, readonly) NSArray                * entries;
 
 /// An array of LDAP referrals returned by an LDAP request.
