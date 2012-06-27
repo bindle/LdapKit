@@ -55,22 +55,26 @@
 - (id) init
 {
    NSAutoreleasePool * pool;
-
+   LKUrl             * url;
    if ((self = [super init]) == nil)
       return(self);
 
    pool = [[NSAutoreleasePool alloc] init];
 
+   // creates URL object
+   url = [LKUrl urlWithURI:@"ldap://ldaptest.bindlebinaries.com/o=test??sub?(objectclass=*)"];
+   NSAssert(url != nil, @"problem with LDAP URL");
+
    // session information
-   session = [[LKLdap alloc] init];
-   session.ldapURI              = @"ldap://ldaptest.bindlebinaries.com/";
+   session = [[LKLdap alloc] initWithURL:url];
    session.ldapBindMethod       = LKLdapBindMethodAnonymous;
    session.ldapEncryptionScheme = LKLdapEncryptionSchemeNone;
 
    // start search
-   currentOperation = [[session ldapSearchBaseDN:@"o=test"
-                      scope:LKLdapSearchScopeSubTree filter:@"(objectclass=*)"
-                      attributes:nil attributesOnly:0] retain];
+   currentOperation = [[session ldapSearchUrl:url attributesOnly:NO] retain];
+   //currentOperation = [[session ldapSearchBaseDN:@"o=test"
+   //                   scope:LKLdapSearchScopeSubTree filter:@"(objectclass=*)"
+   //                   attributes:nil attributesOnly:0] retain];
    [currentOperation addObserver:self forKeyPath:@"isFinished"
       options:NSKeyValueObservingOptionNew context:nil];
    [currentOperation addObserver:self forKeyPath:@"entries"

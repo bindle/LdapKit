@@ -40,6 +40,7 @@
 #import <LdapKit/LKEnumerations.h>
 
 @class LKMessage;
+@class LKUrl;
 
 @interface LKLdap : NSObject
 {
@@ -84,6 +85,14 @@
 /// @param queue  The queue to use when executing LDAP tasks.
 - (id) initWithQueue:(NSOperationQueue *)queue;
 
+/// Initialize a new object with values from a LKUrl object and a shared operation queue.
+/// @param queue  The queue to use when executing LDAP tasks.
+/// @param url    The LKUrl object used to initialize the new LKLdap object.
+- (id) initWithQueue:(NSOperationQueue *)queue andURL:(LKUrl *)url;
+
+/// Initialize a new object with values from a LKUrl object.
+/// @param url  The LKUrl object used to initialize the new LKLdap object.
+- (id) initWithURL:(LKUrl *)url;
 
 #pragma mark - Server State
 /// @name Server State
@@ -311,6 +320,14 @@
                 scope:(LKLdapSearchScope)scope filter:(NSString *)filter
                 attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly;
+
+/// Performs an LDAP search operation using parameters from an LDAP URL.
+/// @param url  The URL used to specify the search parameters.
+/// @param attributesOnly  The attrsonly parameter should be set to `YES` value
+/// if  only  attribute  descriptions  are  wanted. It should be set to `NO`
+/// if both attributes descriptions and attribute values are wanted.
+/// @return Returns the LKMessage object executing the search request.
+- (LKMessage *) ldapSearchUrl:(LKUrl *)url attributesOnly:(BOOL)attributesOnly;
 
 /// Initiates a rebind request to the remote server.
 ///

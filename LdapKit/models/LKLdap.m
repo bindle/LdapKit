@@ -39,6 +39,7 @@
 
 #import "LKMessage.h"
 #import "LKMessageCategory.h"
+#import "LKUrl.h"
 
 @interface LKLdap ()
 
@@ -135,6 +136,46 @@
    // retains queue
    [queue release];
    queue = [newQueue retain];
+
+   return(self);
+}
+
+
+- (id) initWithQueue:(NSOperationQueue *)newQueue andURL:(LKUrl *)url
+{
+   NSAutoreleasePool * pool;
+
+   if ((self = [self init]) == nil)
+      return(self);
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   // retains queue
+   [queue release];
+   queue = [newQueue retain];
+
+   // configures server information from LKUrl
+   self.ldapURI = url.ldapConnectionUrl;
+
+   [pool release];
+
+   return(self);
+}
+
+
+- (id) initWithURL:(LKUrl *)url
+{
+   NSAutoreleasePool * pool;
+
+   if ((self = [self init]) == nil)
+      return(self);
+
+   pool = [[NSAutoreleasePool alloc] init];
+
+   // configures server information from LKUrl
+   self.ldapURI = url.ldapConnectionUrl;
+
+   [pool release];
 
    return(self);
 }
@@ -527,6 +568,20 @@
    {
       message = [[LKMessage alloc] initSearchWithSession:self baseDnList:dnList
                   scope:scope filter:filter attributes:attributes
+                  attributesOnly:attributesOnly];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
+- (LKMessage *) ldapSearchUrl:(LKUrl *)url attributesOnly:(BOOL)attributesOnly
+{
+   LKMessage * message;
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initSearchWithSession:self baseDN:url.ldapDn
+                  scope:url.ldapScope filter:url.ldapFilter attributes:url.ldapAttributes
                   attributesOnly:attributesOnly];
       [queue addOperation:message];
       return([message autorelease]);

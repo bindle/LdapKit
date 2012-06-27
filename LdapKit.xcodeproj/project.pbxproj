@@ -34,6 +34,10 @@
 		A011F65D1587ED76003BFEC5 /* LKBerValue.h in Headers */ = {isa = PBXBuildFile; fileRef = A011F65A1587ED76003BFEC5 /* LKBerValue.h */; };
 		A011F65E1587ED76003BFEC5 /* LKBerValue.m in Sources */ = {isa = PBXBuildFile; fileRef = A011F65B1587ED76003BFEC5 /* LKBerValue.m */; };
 		A011F65F1587ED76003BFEC5 /* LKBerValue.m in Sources */ = {isa = PBXBuildFile; fileRef = A011F65B1587ED76003BFEC5 /* LKBerValue.m */; };
+		A030044B159AECCF00693F37 /* LKUrl.h in Headers */ = {isa = PBXBuildFile; fileRef = A0300449159AECCF00693F37 /* LKUrl.h */; };
+		A030044C159AECCF00693F37 /* LKUrl.h in Headers */ = {isa = PBXBuildFile; fileRef = A0300449159AECCF00693F37 /* LKUrl.h */; };
+		A030044D159AECCF00693F37 /* LKUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = A030044A159AECCF00693F37 /* LKUrl.m */; };
+		A030044E159AECCF00693F37 /* LKUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = A030044A159AECCF00693F37 /* LKUrl.m */; };
 		A050B56E158A137A004C32EE /* LKEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = A050B56C158A1379004C32EE /* LKEntry.h */; };
 		A050B56F158A137A004C32EE /* LKEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = A050B56C158A1379004C32EE /* LKEntry.h */; };
 		A050B570158A137A004C32EE /* LKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A050B56D158A137A004C32EE /* LKEntry.m */; };
@@ -106,6 +110,8 @@
 		A011F65B1587ED76003BFEC5 /* LKBerValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKBerValue.m; sourceTree = "<group>"; };
 		A011F69515881428003BFEC5 /* ChangeLog */ = {isa = PBXFileReference; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
 		A011F69615881428003BFEC5 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		A0300449159AECCF00693F37 /* LKUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKUrl.h; sourceTree = "<group>"; };
+		A030044A159AECCF00693F37 /* LKUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKUrl.m; sourceTree = "<group>"; };
 		A050B56C158A1379004C32EE /* LKEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEntry.h; sourceTree = "<group>"; };
 		A050B56D158A137A004C32EE /* LKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEntry.m; sourceTree = "<group>"; };
 		A0680FA3158D95C200527DDC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -159,6 +165,8 @@
 				A0103DC91587849500183DC9 /* LKLdap.m */,
 				A0103DC61587849500183DC9 /* LKMessage.h */,
 				A0103DC71587849500183DC9 /* LKMessage.m */,
+				A0300449159AECCF00693F37 /* LKUrl.h */,
+				A030044A159AECCF00693F37 /* LKUrl.m */,
 			);
 			name = Models;
 			path = models;
@@ -280,6 +288,7 @@
 				A086FA6E158B338400EA0E6B /* LKMessageCategory.h in Headers */,
 				A086FA71158B356300EA0E6B /* LKEntryCategory.h in Headers */,
 				A086FA74158B36D600EA0E6B /* LKBerValueCategory.h in Headers */,
+				A030044C159AECCF00693F37 /* LKUrl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +306,7 @@
 				A086FA6D158B338400EA0E6B /* LKMessageCategory.h in Headers */,
 				A086FA70158B356300EA0E6B /* LKEntryCategory.h in Headers */,
 				A086FA73158B36D600EA0E6B /* LKBerValueCategory.h in Headers */,
+				A030044B159AECCF00693F37 /* LKUrl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +443,7 @@
 				A0103E251587878900183DC9 /* LKLdap.m in Sources */,
 				A011F65F1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 				A050B571158A137A004C32EE /* LKEntry.m in Sources */,
+				A030044E159AECCF00693F37 /* LKUrl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +455,7 @@
 				A0103DCF1587849500183DC9 /* LKLdap.m in Sources */,
 				A011F65E1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 				A050B570158A137A004C32EE /* LKEntry.m in Sources */,
+				A030044D159AECCF00693F37 /* LKUrl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
