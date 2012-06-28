@@ -63,26 +63,62 @@
    BOOL            attemptedStringBase64;
 }
 
+#pragma mark - BerValue Data
 /// @name BerValue Data
+
+/// The NSData object which contains the object's value.
 @property (nonatomic, readonly) NSData     * berData;
+
+/// The number of bytes required to store the object's value.
 @property (nonatomic, readonly) ber_len_t    bv_len;
+
+/// C pointer to the memory allocation of object's value.
 @property (nonatomic, readonly) const char * bv_val;
 
+
+#pragma mark - Derived Data
 /// @name Derived Data
+
+/// Attempts to interpret the object's value as an image.
+/// @return This property returns an UIImage on iOS and NSImage on OS X. If
+/// the data is not a valid image, nil is returned.
 #if TARGET_OS_IPHONE
 @property (nonatomic, readonly) UIImage    * berImage;
 #else
 @property (nonatomic, readonly) NSImage    * berImage;
 #endif
+
+/// Attempts to interpret the object's value as an UTF8 string.
+/// @return If the Ber value is a valid UTF8 string, this property returns
+/// an NSString.  Otherwise nil is returned.
 @property (nonatomic, readonly) NSString   * berString;
+
+/// Returns the object's value as a base64 encoded string.
 @property (nonatomic, readonly) NSString   * berStringBase64;
+
+/// Returns a C pointer to a BerValue struct populated with the object's value.
 @property (nonatomic, readonly) BerValue   * berValue;
 
+
+#pragma mark - Type of data
 /// @name Type of data
+
+/// Indicates the data is valid an NSData object.
+/// @return This property always returns `YES`.
 @property (nonatomic, readonly) BOOL         isBerData;
+
+/// Indicates the data is a valid image.
 @property (nonatomic, readonly) BOOL         isBerImage;
+
+/// Indicates that the data is a valid string.
 @property (nonatomic, readonly) BOOL         isBerString;
+
+/// Indicates the data can be base64 encoded.
+/// @return This property always returns `YES`.
 @property (nonatomic, readonly) BOOL         isBerStringBase64;
+
+/// Indicates the data can be encoded as a BerValue data type.
+/// @return This property always returns `YES`.
 @property (nonatomic, readonly) BOOL         isBerValue;
 
 @end
