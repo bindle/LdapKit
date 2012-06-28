@@ -63,6 +63,17 @@
    BOOL            attemptedStringBase64;
 }
 
+#pragma mark - Object Management Methods
+/// @name Object Management Methods
+
+/// Initialize a new object with data from a BerValue struct.
+/// @param value A BerValue referenced used to populate the object.
+- (id) initWithBerValue:(BerValue *)value;
+
+/// Creates a new object with data from a BerValue struct.
+/// @param value A BerValue referenced used to populate the object.
++ (id) valueWithBerValue:(BerValue *)value;
+
 #pragma mark - BerValue Data
 /// @name BerValue Data
 

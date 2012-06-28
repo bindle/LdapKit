@@ -35,7 +35,6 @@
  *  LdapKit/LKBerValue.m convenience class for BerValue.
  */
 #import "LKBerValue.h"
-#import "LKBerValueCategory.h"
 
 
 @interface LKBerValue ()
