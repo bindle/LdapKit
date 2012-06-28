@@ -79,9 +79,28 @@
 }
 
 
+- (id) initWithData:(NSData *)value
+{
+   NSAssert((value != NULL), @"NSData must not be nil");
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // BerVal data
+   berData = [[NSMutableData alloc] initWithData:value];
+
+   return(self);
+}
+
+
 + (id) valueWithBerValue:(BerValue *)value
 {
    return([[[LKBerValue alloc] initWithBerValue:value] autorelease]);
+}
+
+
++ (id) valueWithData:(NSData *)value
+{
+   return([[[LKBerValue alloc] initWithData:value] autorelease]);
 }
 
 

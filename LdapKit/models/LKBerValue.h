@@ -70,9 +70,18 @@
 /// @param value A BerValue referenced used to populate the object.
 - (id) initWithBerValue:(BerValue *)value;
 
+/// Initialize a new object with data from an NSData object.
+/// @param value An NSData object used to populate the object.
+- (id) initWithData:(NSData *)value;
+
 /// Creates a new object with data from a BerValue struct.
 /// @param value A BerValue referenced used to populate the object.
 + (id) valueWithBerValue:(BerValue *)value;
+
+/// Creates a new object with data from an NSData object.
+/// @param value An NSData object used to populate the object.
++ (id) valueWithData:(NSData *)value;
+
 
 #pragma mark - BerValue Data
 /// @name BerValue Data
