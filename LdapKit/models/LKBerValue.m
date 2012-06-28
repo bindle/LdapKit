@@ -92,6 +92,25 @@
 }
 
 
+- (id) initWithString:(NSString *)value
+{
+   NSAutoreleasePool * pool;
+   NSData            * tmpData;
+
+   NSAssert((value != NULL), @"NSString must not be nil");
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // BerVal data
+   pool    = [[NSAutoreleasePool alloc] init];
+   tmpData = [value dataUsingEncoding:NSUTF8StringEncoding];
+   berData = [[NSMutableData alloc] initWithData:tmpData];
+   [pool release];
+
+   return(self);
+}
+
+
 + (id) valueWithBerValue:(BerValue *)value
 {
    return([[[LKBerValue alloc] initWithBerValue:value] autorelease]);
@@ -101,6 +120,12 @@
 + (id) valueWithData:(NSData *)value
 {
    return([[[LKBerValue alloc] initWithData:value] autorelease]);
+}
+
+
++ (id) valueWithString:(NSString *)value
+{
+   return([[[LKBerValue alloc] initWithString:value] autorelease]);
 }
 
 
