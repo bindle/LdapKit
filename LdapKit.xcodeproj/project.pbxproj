@@ -42,14 +42,16 @@
 		A050B56F158A137A004C32EE /* LKEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = A050B56C158A1379004C32EE /* LKEntry.h */; };
 		A050B570158A137A004C32EE /* LKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A050B56D158A137A004C32EE /* LKEntry.m */; };
 		A050B571158A137A004C32EE /* LKEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A050B56D158A137A004C32EE /* LKEntry.m */; };
+		A072445F159C672B001CDFC6 /* LKMod.h in Headers */ = {isa = PBXBuildFile; fileRef = A072445D159C672B001CDFC6 /* LKMod.h */; };
+		A0724460159C672B001CDFC6 /* LKMod.h in Headers */ = {isa = PBXBuildFile; fileRef = A072445D159C672B001CDFC6 /* LKMod.h */; };
+		A0724461159C672B001CDFC6 /* LKMod.m in Sources */ = {isa = PBXBuildFile; fileRef = A072445E159C672B001CDFC6 /* LKMod.m */; };
+		A0724462159C672B001CDFC6 /* LKMod.m in Sources */ = {isa = PBXBuildFile; fileRef = A072445E159C672B001CDFC6 /* LKMod.m */; };
 		A086FA6A158B307500EA0E6B /* LKLdapCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA69158B307500EA0E6B /* LKLdapCategory.h */; };
 		A086FA6B158B307500EA0E6B /* LKLdapCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA69158B307500EA0E6B /* LKLdapCategory.h */; };
 		A086FA6D158B338400EA0E6B /* LKMessageCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6C158B338400EA0E6B /* LKMessageCategory.h */; };
 		A086FA6E158B338400EA0E6B /* LKMessageCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6C158B338400EA0E6B /* LKMessageCategory.h */; };
 		A086FA70158B356300EA0E6B /* LKEntryCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6F158B356300EA0E6B /* LKEntryCategory.h */; };
 		A086FA71158B356300EA0E6B /* LKEntryCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA6F158B356300EA0E6B /* LKEntryCategory.h */; };
-		A086FA73158B36D600EA0E6B /* LKBerValueCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA72158B36D600EA0E6B /* LKBerValueCategory.h */; };
-		A086FA74158B36D600EA0E6B /* LKBerValueCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = A086FA72158B36D600EA0E6B /* LKBerValueCategory.h */; };
 		A0CFA8121587829400EBEB32 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0CFA8111587829400EBEB32 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -116,10 +118,11 @@
 		A050B56D158A137A004C32EE /* LKEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKEntry.m; sourceTree = "<group>"; };
 		A0680FA3158D95C200527DDC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		A0680FA4158D9C2300527DDC /* appledoc.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = appledoc.txt; sourceTree = "<group>"; };
+		A072445D159C672B001CDFC6 /* LKMod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMod.h; sourceTree = "<group>"; };
+		A072445E159C672B001CDFC6 /* LKMod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKMod.m; sourceTree = "<group>"; };
 		A086FA69158B307500EA0E6B /* LKLdapCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLdapCategory.h; sourceTree = "<group>"; };
 		A086FA6C158B338400EA0E6B /* LKMessageCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMessageCategory.h; sourceTree = "<group>"; };
 		A086FA6F158B356300EA0E6B /* LKEntryCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKEntryCategory.h; sourceTree = "<group>"; };
-		A086FA72158B36D600EA0E6B /* LKBerValueCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKBerValueCategory.h; sourceTree = "<group>"; };
 		A0CFA80E1587829400EBEB32 /* libiLdapKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiLdapKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0CFA8111587829400EBEB32 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0CFA8151587829500EBEB32 /* LdapKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LdapKit-Prefix.pch"; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 				A0103DC91587849500183DC9 /* LKLdap.m */,
 				A0103DC61587849500183DC9 /* LKMessage.h */,
 				A0103DC71587849500183DC9 /* LKMessage.m */,
+				A072445D159C672B001CDFC6 /* LKMod.h */,
+				A072445E159C672B001CDFC6 /* LKMod.m */,
 				A0300449159AECCF00693F37 /* LKUrl.h */,
 				A030044A159AECCF00693F37 /* LKUrl.m */,
 			);
@@ -211,7 +216,6 @@
 		A086FA65158B29BF00EA0E6B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				A086FA72158B36D600EA0E6B /* LKBerValueCategory.h */,
 				A086FA6F158B356300EA0E6B /* LKEntryCategory.h */,
 				A086FA69158B307500EA0E6B /* LKLdapCategory.h */,
 				A086FA6C158B338400EA0E6B /* LKMessageCategory.h */,
@@ -287,8 +291,8 @@
 				A086FA6B158B307500EA0E6B /* LKLdapCategory.h in Headers */,
 				A086FA6E158B338400EA0E6B /* LKMessageCategory.h in Headers */,
 				A086FA71158B356300EA0E6B /* LKEntryCategory.h in Headers */,
-				A086FA74158B36D600EA0E6B /* LKBerValueCategory.h in Headers */,
 				A030044C159AECCF00693F37 /* LKUrl.h in Headers */,
+				A0724460159C672B001CDFC6 /* LKMod.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,8 +309,8 @@
 				A086FA6A158B307500EA0E6B /* LKLdapCategory.h in Headers */,
 				A086FA6D158B338400EA0E6B /* LKMessageCategory.h in Headers */,
 				A086FA70158B356300EA0E6B /* LKEntryCategory.h in Headers */,
-				A086FA73158B36D600EA0E6B /* LKBerValueCategory.h in Headers */,
 				A030044B159AECCF00693F37 /* LKUrl.h in Headers */,
+				A072445F159C672B001CDFC6 /* LKMod.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +448,7 @@
 				A011F65F1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 				A050B571158A137A004C32EE /* LKEntry.m in Sources */,
 				A030044E159AECCF00693F37 /* LKUrl.m in Sources */,
+				A0724462159C672B001CDFC6 /* LKMod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +461,7 @@
 				A011F65E1587ED76003BFEC5 /* LKBerValue.m in Sources */,
 				A050B570158A137A004C32EE /* LKEntry.m in Sources */,
 				A030044D159AECCF00693F37 /* LKUrl.m in Sources */,
+				A0724461159C672B001CDFC6 /* LKMod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

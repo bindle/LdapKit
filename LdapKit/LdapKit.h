@@ -42,6 +42,7 @@
 #import <LdapKit/models/LKEntry.h>
 #import <LdapKit/models/LKLdap.h>
 #import <LdapKit/models/LKMessage.h>
+#import <LdapKit/models/LKMod.h>
 #import <LdapKit/models/LKUrl.h>
 
 #if TARGET_OS_IPHONE

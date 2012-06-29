@@ -12,6 +12,7 @@ LDAP Kit Change Log
   [LKLdap ldapBindSaslRealm] are updated. (syzdek)
 * Adding class LKUrl for parsing LDAP URLs. (syzdek)
 * Adding ability to delete DNs. (syzdek)
+* Adding LKMod class. (syzdek)
 
 #### 0.1   (2012-06-17)
 * Creating project. (syzdek)
