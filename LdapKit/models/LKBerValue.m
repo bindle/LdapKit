@@ -64,7 +64,6 @@
    [berImage        release];
    [berString       release];
    [berStringBase64 release];
-   [berValue        release];
 
    [super dealloc];
 
@@ -114,6 +113,32 @@
    [pool release];
 
    return(self);
+}
+
+
+- (BerValue *) newBerValue
+{
+   @synchronized(self)
+   {
+      return([LKBerValue newBerValueWithData:berData]);
+   };
+}
+
+
++ (BerValue *) newBerValueWithData:(NSData *)data
+{
+   BerValue * bv;
+   NSAssert((data != nil), @"data must not be nil");
+   if ((bv = malloc(sizeof(BerValue))) == NULL)
+      return(NULL);
+   bv->bv_len = [data length];
+   if ((bv->bv_val = malloc(bv->bv_len)) == NULL)
+   {
+      free(bv);
+      return(NULL);
+   };
+   memcpy(bv->bv_val, [data bytes], bv->bv_len);
+   return(bv);
 }
 
 
@@ -201,26 +226,6 @@
 }
 
 
-- (BerValue *) berValue
-{
-   BerValue      * bv;
-   @synchronized(self)
-   {
-      if (!(attemptedValue))
-      {
-         berValue       = [[NSMutableData alloc] initWithCapacity:sizeof(BerValue)];
-         attemptedValue = YES;
-      };
-      bv             = [berValue mutableBytes];
-      bv->bv_len     = [berData length];
-      bv->bv_val     = [berData mutableBytes];
-      [[berData  retain] autorelease];
-      [[berValue retain] autorelease];
-   };
-   return([berValue mutableBytes]);
-}
-
-
 - (BOOL) isBerData
 {
    return(YES);
@@ -258,12 +263,6 @@
 
 
 - (BOOL) isBerStringBase64
-{
-   return(YES);
-}
-
-
-- (BOOL) isBerValue
 {
    return(YES);
 }

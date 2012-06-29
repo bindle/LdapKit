@@ -54,10 +54,8 @@
    id <NSObject>   berImage;
    NSString      * berString;
    NSString      * berStringBase64;
-   NSMutableData * berValue;
 
    // data attempts
-   BOOL            attemptedValue;
    BOOL            attemptedImage;
    BOOL            attemptedString;
    BOOL            attemptedStringBase64;
@@ -77,6 +75,17 @@
 /// Initialize a new object with data from an NSString object.
 /// @param value An NSString object used to populate the object.
 - (id) initWithString:(NSString *)value;
+
+/// Allocate a new struct berval.
+/// @return This method returns a pointer to a `struct berval`. The
+/// `struct berval` must be freed using `ber_bvfree()`.
+- (BerValue *) newBerValue;
+
+/// Allocate a new struct berval from an NSData object
+/// @param data The NSData object used to populate an allocated BerValue
+/// @return This method returns a pointer to a `struct berval`. The
+/// `struct berval` must be freed using `ber_bvfree()`.
++ (BerValue *) newBerValueWithData:(NSData *)data;
 
 /// Creates a new object with data from a BerValue struct.
 /// @param value A BerValue referenced used to populate the object.
@@ -124,9 +133,6 @@
 /// Returns the object's value as a base64 encoded string.
 @property (nonatomic, readonly) NSString   * berStringBase64;
 
-/// Returns a C pointer to a BerValue struct populated with the object's value.
-@property (nonatomic, readonly) BerValue   * berValue;
-
 
 #pragma mark - Type of data
 /// @name Type of data
@@ -145,8 +151,5 @@
 /// @return This property always returns `YES`.
 @property (nonatomic, readonly) BOOL         isBerStringBase64;
 
-/// Indicates the data can be encoded as a BerValue data type.
-/// @return This property always returns `YES`.
-@property (nonatomic, readonly) BOOL         isBerValue;
 
 @end
