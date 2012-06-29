@@ -40,6 +40,12 @@
 
 #pragma mark - Object Management Methods
 
+- (id) copyWithZone:(NSZone *)zone
+{
+   return([[LKUrl allocWithZone:zone] initWithURI:ludUrl]);
+}
+
+
 - (void) dealloc
 {
    // URL

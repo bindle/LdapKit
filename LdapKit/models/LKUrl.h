@@ -59,7 +59,7 @@
 #import <ldap.h>
 #import <LdapKit/LKEnumerations.h>
 
-@interface LKUrl : NSObject
+@interface LKUrl : NSObject <NSCopying>
 {
    // URL
    NSString             * ludUrl;
