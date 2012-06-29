@@ -67,6 +67,24 @@
 	
 	
 	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/valueWithBerValue:">&nbsp;&nbsp;&nbsp;&nbsp;+ valueWithBerValue:</option>
+	
+	<option value="//api/name/valueWithData:">&nbsp;&nbsp;&nbsp;&nbsp;+ valueWithData:</option>
+	
+	<option value="//api/name/valueWithString:">&nbsp;&nbsp;&nbsp;&nbsp;+ valueWithString:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/initWithBerValue:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithBerValue:</option>
+	
+	<option value="//api/name/initWithData:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithData:</option>
+	
+	<option value="//api/name/initWithString:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithString:</option>
 	
 	
 	
@@ -83,6 +101,8 @@
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Object Management Methods">Object Management Methods</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_BerValue Data">BerValue Data</a></span></li>
 	
@@ -126,7 +146,27 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valueWithBerValue:">valueWithBerValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valueWithData:">valueWithData:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valueWithString:">valueWithString:</a></span></li>
+	
+</ul></li>
 
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithBerValue:">initWithBerValue:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithData:">initWithData:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithString:">initWithString:</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
@@ -152,6 +192,9 @@
 	<td class="specification-title">Inherits from</td>
 	<td class="specification-value">NSObject</td>
 </tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCopying</td>
+</tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">LKBerValue.h<br />LKBerValue.m</td>
 </tr>
@@ -175,6 +218,56 @@ accessed as a string, an image, or binary data.</p>
 					<div class="section section-tasks">
 						<a title="Tasks" name="tasks"></a>
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Object Management Methods" name="task_Object Management Methods"></a>
+						<h3 class="subsubtitle task-title">Object Management Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithBerValue:">&ndash;&nbsp;initWithBerValue:</a></code>
+		<span class="tooltip"><p>Initialize a new object with data from a BerValue struct.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithData:">&ndash;&nbsp;initWithData:</a></code>
+		<span class="tooltip"><p>Initialize a new object with data from an NSData object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithString:">&ndash;&nbsp;initWithString:</a></code>
+		<span class="tooltip"><p>Initialize a new object with data from an NSString object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valueWithBerValue:">+&nbsp;valueWithBerValue:</a></code>
+		<span class="tooltip"><p>Creates a new object with data from a BerValue struct.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valueWithData:">+&nbsp;valueWithData:</a></code>
+		<span class="tooltip"><p>Creates a new object with data from an NSData object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valueWithString:">+&nbsp;valueWithString:</a></code>
+		<span class="tooltip"><p>Creates a new object with data from an NSString object.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
 						
 						
 						<a title="BerValue Data" name="task_BerValue Data"></a>
@@ -324,7 +417,7 @@ accessed as a string, an image, or binary data.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -366,7 +459,7 @@ the data is not a valid image, nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -408,7 +501,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -444,7 +537,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -480,7 +573,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -516,7 +609,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -552,7 +645,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -593,7 +686,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -629,7 +722,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -665,7 +758,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -706,7 +799,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -747,7 +840,7 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.m</code><br />
+		<code class="declared-in-ref">LKBerValue.h</code><br />
 	</div>				
 	
 	
@@ -757,7 +850,295 @@ an NSString.  Otherwise nil is returned.</p>
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/valueWithBerValue:" title="valueWithBerValue:"></a>
+	<h3 class="subsubtitle method-title">valueWithBerValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a new object with data from a BerValue struct.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (id)valueWithBerValue:(BerValue *)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>A BerValue referenced used to populate the object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/valueWithData:" title="valueWithData:"></a>
+	<h3 class="subsubtitle method-title">valueWithData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a new object with data from an NSData object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (id)valueWithData:(NSData *)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>An NSData object used to populate the object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/valueWithString:" title="valueWithString:"></a>
+	<h3 class="subsubtitle method-title">valueWithString:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a new object with data from an NSString object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (id)valueWithString:(NSString *)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>An NSString object used to populate the object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithBerValue:" title="initWithBerValue:"></a>
+	<h3 class="subsubtitle method-title">initWithBerValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new object with data from a BerValue struct.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initWithBerValue:(BerValue *)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>A BerValue referenced used to populate the object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithData:" title="initWithData:"></a>
+	<h3 class="subsubtitle method-title">initWithData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new object with data from an NSData object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initWithData:(NSData *)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>An NSData object used to populate the object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithString:" title="initWithString:"></a>
+	<h3 class="subsubtitle method-title">initWithString:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize a new object with data from an NSString object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)initWithString:(NSString *)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>An NSString object used to populate the object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>
@@ -770,7 +1151,7 @@ an NSString.  Otherwise nil is returned.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-29)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
