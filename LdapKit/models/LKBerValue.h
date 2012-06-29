@@ -45,7 +45,7 @@
 #import <Foundation/Foundation.h>
 #import <ldap.h>
 
-@interface LKBerValue : NSObject
+@interface LKBerValue : NSObject <NSCopying>
 {
    // BerValue data
    NSMutableData * berData;

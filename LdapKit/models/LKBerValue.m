@@ -49,6 +49,12 @@
 
 #pragma mark - Object Management Methods
 
+- (id) copyWithZone:(NSZone *)zone
+{
+   return([self retain]);
+}
+
+
 - (void) dealloc
 {
    // BerVal data
