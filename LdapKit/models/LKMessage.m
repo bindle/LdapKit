@@ -95,8 +95,8 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
          attributesOnly:(BOOL)attributesOnly;
 
 /// @name memory methods
-- (char **) createAttributeList:(NSArray *)attributes;
-- (void) freeAttributeList:(char ***)attributesp;
+- (char **) newAttributeArray:(NSArray *)attributes;
+- (void) freeAttributeArray:(char ***)attributesp;
 
 /// @name C functions
 int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * sin);
@@ -656,7 +656,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    // allocates an array to copy UTF8 strings from searchAttributes
-   attrs = [self createAttributeList:searchAttributes];
+   attrs = [self newAttributeArray:searchAttributes];
 
    // loops through DN list
    for(baseDN in searchDnList)
@@ -666,7 +666,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
                      attributes:attrs attributesOnly:searchAttributesOnly];
       if (!(self.isSuccessful))
       {
-         [self freeAttributeList:(&attrs)];
+         [self freeAttributeArray:(&attrs)];
          return(self.isSuccessful);
       };
 
@@ -679,27 +679,27 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
                ldap_abandon_ext(session.ld, msgid, NULL, NULL);
          };
          self.errorCode = LDAP_USER_CANCELLED;
-         [self freeAttributeList:(&attrs)];
+         [self freeAttributeArray:(&attrs)];
          return(self.isSuccessful);
       };
 
       // waits for result
       if ((res = [self resultWithMessageID:msgid resultEntries:nil]) == NULL)
       {
-         [self freeAttributeList:(&attrs)];
+         [self freeAttributeArray:(&attrs)];
          return(self.isSuccessful);
       };
 
       // parses result
       if (!([self parseResult:res referrals:nil]))
       {
-         [self freeAttributeList:(&attrs)];
+         [self freeAttributeArray:(&attrs)];
          return(self.isSuccessful);
       };
    };
 
    // frees memory
-   [self freeAttributeList:(&attrs)];
+   [self freeAttributeArray:(&attrs)];
 
    return(self.isSuccessful);
 }
@@ -1353,7 +1353,20 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
 #pragma mark - memory methods
 
-- (char **) createAttributeList:(NSArray *)attributes
+- (void) freeAttributeArray:(char ***)attributesp
+{
+   size_t x;
+   if (!(*attributesp))
+      return;
+   for(x = 0; (*attributesp)[x]; x++)
+      free((*attributesp)[x]);
+   free(*attributesp);
+   *attributesp = NULL;
+   return;
+}
+
+
+- (char **) newAttributeArray:(NSArray *)attributes
 {
    NSString           * attribute;
    size_t               len;
@@ -1382,19 +1395,6 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    return(attrs);
-}
-
-
-- (void) freeAttributeList:(char ***)attributesp
-{
-   size_t x;
-   if (!(*attributesp))
-      return;
-   for(x = 0; (*attributesp)[x]; x++)
-      free((*attributesp)[x]);
-   free(*attributesp);
-   *attributesp = NULL;
-   return;
 }
 
 
