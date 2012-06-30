@@ -7,8 +7,6 @@ LDAP Kit To-Do List
    * IPv6 Support: LKLdap and LKMessage needs to be updated to properly
      process IPv6 addresses if an IPv6 address is specified as the host or
      in the LDAP URL.
-   * Add NSAssert() statements to test input data on the following classes:
-     - LKBerValue
 
    LDAP Opeartions
    ---------------

@@ -144,18 +144,21 @@
 
 + (id) valueWithBerValue:(BerValue *)value
 {
+   NSAssert((value != NULL), @"BerValue must not be NULL");
    return([[[LKBerValue alloc] initWithBerValue:value] autorelease]);
 }
 
 
 + (id) valueWithData:(NSData *)value
 {
+   NSAssert((value != NULL), @"NSData must not be nil");
    return([[[LKBerValue alloc] initWithData:value] autorelease]);
 }
 
 
 + (id) valueWithString:(NSString *)value
 {
+   NSAssert((value != NULL), @"NSString must not be nil");
    return([[[LKBerValue alloc] initWithString:value] autorelease]);
 }
 
