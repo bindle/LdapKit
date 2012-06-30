@@ -201,8 +201,8 @@
 }
 - (void) setLdapDn:(NSString *)ldapDn
 {
-   if ( (!(ldapDn)) && (!(ludDn)) )
-      return;
+   if (!(ldapDn))
+      ldapDn = @"";
    if ( ((ldapDn)) && ((ludDn)) )
       if ([ldapDn localizedCaseInsensitiveCompare:ludDn] == NSOrderedSame)
          return;
@@ -255,8 +255,8 @@
 }
 - (void) setLdapFilter:(NSString *)ldapFilter
 {
-   if ( (!(ldapFilter)) && (!(ludFilter)) )
-      return;
+   if (!(ldapFilter))
+      ldapFilter = @"(objectclass=*)";
    if ( ((ldapFilter)) && ((ludFilter)) )
       if ([ldapFilter localizedCaseInsensitiveCompare:ludFilter] == NSOrderedSame)
          return;
@@ -306,6 +306,11 @@
 }
 - (void) setLdapPort:(NSInteger)ldapPort
 {
+   if ((!(ldapPort)) && (ludScheme == LKLdapProtocolSchemeLDAPS))
+      ldapPort = 636;
+   else if (!(ldapPort))
+      ldapPort = 389;
+
    if (ldapPort == ludPort)
       return;
 
