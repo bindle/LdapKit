@@ -119,6 +119,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
    NSString               * modifyDn;
    NSString               * modifyRdn;
    BOOL                     deleteOldRdn;
+   NSArray                * modifyList;
 
    // results
    NSMutableArray         * referrals;

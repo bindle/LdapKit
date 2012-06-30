@@ -13,6 +13,7 @@ LDAP Kit Change Log
 * Adding class LKUrl for parsing LDAP URLs. (syzdek)
 * Adding ability to delete DNs. (syzdek)
 * Adding LKMod class. (syzdek)
+* Adding ability to modify an LDAP entry. (syzdek)
 
 #### 0.1   (2012-06-17)
 * Creating project. (syzdek)

@@ -41,6 +41,8 @@
 /// @name Object Management Methods
 - (id) initBindWithSession:(LKLdap *)session;
 - (id) initDeleteWithSession:(LKLdap *)session dn:(NSString *)dn;
+- (id) initModifyWithSession:(LKLdap *)session dn:(NSString *)dn
+       mods:(NSArray *)mods;
 - (id) initSearchWithSession:(LKLdap *)session baseDN:(NSString *)dn
        scope:(LKLdapSearchScope)scope filter:(NSString *)filter
        attributes:(NSArray *)attributes attributesOnly:(BOOL)attributesOnly;

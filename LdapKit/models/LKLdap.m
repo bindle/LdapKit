@@ -40,6 +40,7 @@
 #import "LKEntry.h"
 #import "LKMessage.h"
 #import "LKMessageCategory.h"
+#import "LKMod.h"
 #import "LKUrl.h"
 
 @interface LKLdap ()
@@ -561,6 +562,43 @@
    @synchronized(self)
    {
       message = [[LKMessage alloc] initDeleteWithSession:self dn:entry.dn];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
+- (LKMessage *) ldapModifyDN:(NSString *)dn modification:(LKMod *)mod
+{
+   LKMessage * message;
+   NSArray   * mods;
+   NSAssert((dn != nil), @"dn must not be nil");
+   NSAssert((mod != nil), @"mod must not be nil");
+   @synchronized(self)
+   {
+      mods = [[NSArray alloc] initWithObjects:mod, nil];
+      message = [[LKMessage alloc] initModifyWithSession:self dn:dn mods:mods];
+      [mods release];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
+- (LKMessage *) ldapModifyDN:(NSString *)dn modifications:(NSArray *)mods
+{
+   LKMessage  * message;
+   NSUInteger   pos;
+   NSAssert((dn != nil), @"dn must not be nil");
+   NSAssert((mods != nil), @"mods must not be nil");
+   for(pos = 0; pos < [mods count]; pos++)
+      NSAssert( ( (([[mods objectAtIndex:pos] isKindOfClass:[LKMod class]])) ||
+                  (([[mods objectAtIndex:pos] isKindOfClass:[NSString class]])) ||
+                  (([[mods objectAtIndex:pos] isKindOfClass:[NSData class]])) ),
+         @"mods array must contain only NSData, NSString, or LKMod objects");
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initModifyWithSession:self dn:dn mods:mods];
       [queue addOperation:message];
       return([message autorelease]);
    };

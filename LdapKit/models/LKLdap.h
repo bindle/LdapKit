@@ -41,6 +41,7 @@
 
 @class LKEntry;
 @class LKMessage;
+@class LKMod;
 @class LKUrl;
 
 @interface LKLdap : NSObject
@@ -295,6 +296,18 @@
 /// @param entry An LKEntry object of the DN to be deleted.
 /// @return Returns the LKMessage object executing the delete request.
 - (LKMessage *) ldapDeleteEntry:(LKEntry *)entry;
+
+/// Initiats a modify request for an LDAP entry
+/// @param dn The DN to be modified.
+/// @param mods An array of LKMod objects
+/// @return Returns the LKMessage object executing the modify request.
+- (LKMessage *) ldapModifyDN:(NSString *)dn modification:(LKMod *)mod;
+
+/// Initiats a modify request for an LDAP entry
+/// @param dn The DN to be modified.
+/// @param mods An array of LKMod objects
+/// @return Returns the LKMessage object executing the modify request.
+- (LKMessage *) ldapModifyDN:(NSString *)dn modifications:(NSArray *)mods;
 
 /// Performs an LDAP search operation on a single base DN.
 /// @param base The DN of the entry at which to start the search.

@@ -45,6 +45,7 @@
 #import "LKEntryCategory.h"
 #import "LKLdap.h"
 #import "LKLdapCategory.h"
+#import "LKMod.h"
 
 
 #pragma mark - Data Types
@@ -76,6 +77,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 /// @name LDAP tasks
 - (BOOL) ldapBind;
 - (BOOL) ldapDelete;
+- (BOOL) ldapModify;
 - (BOOL) ldapSearch;
 - (BOOL) ldapTestConnection;
 - (BOOL) ldapRebind;
@@ -87,6 +89,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (LDAP *) bindInitialize;
 - (LDAP *) bindStartTLS:(LDAP *)ld;
 - (int) deleteDN:(NSString *)dn;
+- (int) modifyDN:(NSString *)dn mods:(NSArray *)mods;
 - (BOOL)   parseResult:(LDAPMessage *)res referrals:(NSMutableArray *)referrals;
 - (LDAPMessage *) resultWithMessageID:(int)msgid
                   resultEntries:(NSMutableArray *)resultEntries;
@@ -96,7 +99,9 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 
 /// @name memory methods
 - (char **) newAttributeArray:(NSArray *)attributes;
+- (LDAPMod **) newLDAPModArray:(NSArray *)modifications;
 - (void) freeAttributeArray:(char ***)attributesp;
+- (void) freeModsArray:(LDAPMod ***)modsp;
 
 /// @name C functions
 int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * sin);
@@ -147,6 +152,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // modify information
    [modifyDn   release];
    [modifyRdn  release];
+   [modifyList release];
 
    // results
    [referrals release];
@@ -203,6 +209,25 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // modify information
    modifyDn = [[NSString alloc] initWithString:dn];
+
+   return(self);
+}
+
+
+- (id) initModifyWithSession:(LKLdap *)data dn:(NSString *)dn
+       mods:(NSArray *)mods
+{
+   // initialize super
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // state information
+   session     = [data retain];
+   messageType = LKLdapMessageTypeModify;
+
+   // modify information
+   modifyDn   = [[NSString alloc] initWithString:dn];
+   modifyList = [[NSArray alloc] initWithArray:mods copyItems:YES];
 
    return(self);
 }
@@ -511,6 +536,11 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       self.errorTitle = @"LDAP Delete";
       break;
 
+      case LKLdapMessageTypeModify:
+      [self ldapModify];
+      self.errorTitle = @"LDAP Modify";
+      break;
+
       case LKLdapMessageTypeSearch:
       [self ldapSearch];
       self.errorTitle = @"LDAP Search";
@@ -621,6 +651,42 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       self.errorCode = LDAP_USER_CANCELLED;
       return(self.isSuccessful);
    };
+
+   // waits for result
+   if ((res = [self resultWithMessageID:msgid resultEntries:nil]) == NULL)
+      return(self.isSuccessful);
+
+   // parses result
+   if (!([self parseResult:res referrals:nil]))
+      return(self.isSuccessful);
+
+   return(self.isSuccessful);
+}
+
+
+- (BOOL) ldapModify
+{
+   int               msgid;
+   BOOL              isConnected;
+   LDAPMessage     * res;
+
+   // reset errors
+   [self resetErrorWithTitle:@"LDAP Modify"];
+
+   // verifies session is connected to LDAP
+   isConnected = [self ldapBind];
+   if (!(isConnected))
+      return(self.isSuccessful);
+   if ((self.isCancelled))
+   {
+      self.errorCode = LDAP_USER_CANCELLED;
+      return(self.isSuccessful);
+   };
+
+   // initiates search
+   msgid = [self modifyDN:modifyDn mods:(NSArray *)modifyList];
+   if (!(self.isSuccessful))
+      return(self.isSuccessful);
 
    // waits for result
    if ((res = [self resultWithMessageID:msgid resultEntries:nil]) == NULL)
@@ -1133,6 +1199,39 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 }
 
 
+- (int) modifyDN:(NSString *)dn mods:(NSArray *)modObjects
+{
+   int         msgid;
+   LDAPMod  ** mods;
+
+   mods = [self newLDAPModArray:modObjects];
+
+   @synchronized(session)
+   {
+      // checks session
+      if (!(session.ld))
+      {
+         self.errorCode = LDAP_UNAVAILABLE;
+         return(-1);
+      };
+
+      // initiates modify
+      self.errorCode = ldap_modify_ext(
+         session.ld,                      // LDAP            * ld
+         [dn UTF8String],                 // char            * dn
+         mods,                            // LDAPMod         * mods[]
+         NULL,                            // LDAPControl    ** serverctrls
+         NULL,                            // LDAPControl    ** clientctrls
+         &msgid                           // int             * msgidp
+      );
+   };
+
+   [self freeModsArray:&mods];
+
+   return(msgid);
+}
+
+
 - (BOOL) parseResult:(LDAPMessage *)res referrals:(NSMutableArray *)localReferrals
 {
    int    err;
@@ -1366,6 +1465,21 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 }
 
 
+- (void) freeModsArray:(LDAPMod ***)modsp
+{
+   size_t pos;
+   if (!(modsp))
+      return;
+   if (!(*modsp))
+      return;
+   for(pos = 0; (*modsp)[pos]; pos++)
+      [LKMod freeLDAPMod:(*modsp)[pos]];
+   free(*modsp);
+   *modsp = NULL;
+   return;
+}
+
+
 - (char **) newAttributeArray:(NSArray *)attributes
 {
    NSString           * attribute;
@@ -1395,6 +1509,31 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    return(attrs);
+}
+
+
+- (LDAPMod **) newLDAPModArray:(NSArray *)list
+{
+   LDAPMod ** mods;
+   size_t     len;
+   size_t     pos;
+
+   len = [list count] + 1;
+   if ((mods = malloc(sizeof(LDAPMod *) * len)) == NULL)
+      return(mods);
+
+   for(pos = 0; pos < (len - 1); pos++)
+   {
+      mods[pos] = [(LKMod *)[list objectAtIndex:pos] newLDAPMod];
+      if (!(mods[pos]))
+      {
+         [self freeModsArray:&mods];
+         return(NULL);
+      };
+   };
+   mods[pos] = NULL;
+
+   return(mods);
 }
 
 
