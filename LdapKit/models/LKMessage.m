@@ -145,8 +145,8 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    [searchAttributes release];
 
    // modify information
-   [modifyDn  release];
-   [modifyRdn release];
+   [modifyDn   release];
+   [modifyRdn  release];
 
    // results
    [referrals release];
