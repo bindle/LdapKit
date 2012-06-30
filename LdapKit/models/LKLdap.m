@@ -547,6 +547,7 @@
 - (LKMessage *) ldapDeleteDN:(NSString *)dn
 {
    LKMessage * message;
+   NSAssert((dn != nil), @"dn must not be nil");
    @synchronized(self)
    {
       message = [[LKMessage alloc] initDeleteWithSession:self dn:dn];
@@ -559,6 +560,7 @@
 - (LKMessage *) ldapDeleteEntry:(LKEntry *)entry
 {
    LKMessage * message;
+   NSAssert((entry != nil), @"entry must not be nil");
    @synchronized(self)
    {
       message = [[LKMessage alloc] initDeleteWithSession:self dn:entry.dn];
@@ -609,7 +611,16 @@
                 filter:(NSString *)filter attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly
 {
-   LKMessage * message;
+   LKMessage  * message;
+   NSUInteger   pos;
+   NSAssert((dn != nil),         @"dn must not be nil");
+   NSAssert((filter != nil),     @"filter must not be nil");
+   if ((attributes))
+   {
+      for(pos = 0; pos < [attributes count]; pos++)
+         NSAssert([[attributes objectAtIndex:pos] isKindOfClass:[NSString class]],
+            @"attributes must only contain NSString objects");
+   };
    @synchronized(self)
    {
       message = [[LKMessage alloc] initSearchWithSession:self baseDN:dn
@@ -626,7 +637,19 @@
                 attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly
 {
-   LKMessage * message;
+   LKMessage  * message;
+   NSUInteger   pos;
+   NSAssert((dnList != nil), @"dnList must not be nil");
+   NSAssert((filter != nil), @"filter must not be nil");
+   for(pos = 0; pos < [dnList count]; pos++)
+      NSAssert([[dnList objectAtIndex:pos] isKindOfClass:[NSString class]],
+         @"attributes must only contain NSString objects");
+   if ((attributes))
+   {
+      for(pos = 0; pos < [attributes count]; pos++)
+         NSAssert([[attributes objectAtIndex:pos] isKindOfClass:[NSString class]],
+            @"attributes must only contain NSString objects");
+   };
    @synchronized(self)
    {
       message = [[LKMessage alloc] initSearchWithSession:self baseDnList:dnList
@@ -641,6 +664,7 @@
 - (LKMessage *) ldapSearchUrl:(LKUrl *)url attributesOnly:(BOOL)attributesOnly
 {
    LKMessage * message;
+   NSAssert((url != nil), @"url must not be nil");
    @synchronized(self)
    {
       message = [[LKMessage alloc] initSearchWithSession:self baseDN:url.ldapDn

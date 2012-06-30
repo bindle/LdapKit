@@ -14,6 +14,7 @@ LDAP Kit Change Log
 * Adding ability to delete DNs. (syzdek)
 * Adding LKMod class. (syzdek)
 * Adding ability to modify an LDAP entry. (syzdek)
+* Adding NSAssert() statements to LKLdap to validate user data. (syzdek)
 
 #### 0.1   (2012-06-17)
 * Creating project. (syzdek)
