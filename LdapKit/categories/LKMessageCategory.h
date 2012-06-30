@@ -43,6 +43,9 @@
 - (id) initDeleteWithSession:(LKLdap *)session dn:(NSString *)dn;
 - (id) initModifyWithSession:(LKLdap *)session dn:(NSString *)dn
        mods:(NSArray *)mods;
+- (id) initRenameWithSession:(LKLdap *)session dn:(NSString *)dn
+       newRDN:(NSString *)newrdn newSuperior:(NSString *)newsuperior
+       deleteOldRDN:(int)deleteoldrdn;
 - (id) initSearchWithSession:(LKLdap *)session baseDN:(NSString *)dn
        scope:(LKLdapSearchScope)scope filter:(NSString *)filter
        attributes:(NSArray *)attributes attributesOnly:(BOOL)attributesOnly;

@@ -78,6 +78,7 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (BOOL) ldapBind;
 - (BOOL) ldapDelete;
 - (BOOL) ldapModify;
+- (BOOL) ldapRename;
 - (BOOL) ldapSearch;
 - (BOOL) ldapTestConnection;
 - (BOOL) ldapRebind;
@@ -90,6 +91,9 @@ typedef struct ldap_kit_ldap_auth_data LKLdapAuthData;
 - (LDAP *) bindStartTLS:(LDAP *)ld;
 - (int) deleteDN:(NSString *)dn;
 - (int) modifyDN:(NSString *)dn mods:(NSArray *)mods;
+- (int) renameDN:(NSString *)dn newRDN:(NSString *)rdn
+        newSuperior:(NSString *)newSuperior
+        deleteOldRDN:(NSInteger)deleteOldRDN;
 - (BOOL)   parseResult:(LDAPMessage *)res referrals:(NSMutableArray *)referrals;
 - (LDAPMessage *) resultWithMessageID:(int)msgid
                   resultEntries:(NSMutableArray *)resultEntries;
@@ -150,9 +154,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    [searchAttributes release];
 
    // modify information
-   [modifyDn   release];
-   [modifyRdn  release];
-   [modifyList release];
+   [modifyDn          release];
+   [modifyNewRdn      release];
+   [modifyNewSuperior release];
+   [modifyList        release];
 
    // results
    [referrals release];
@@ -228,6 +233,28 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    // modify information
    modifyDn   = [[NSString alloc] initWithString:dn];
    modifyList = [[NSArray alloc] initWithArray:mods copyItems:YES];
+
+   return(self);
+}
+
+
+- (id) initRenameWithSession:(LKLdap *)data dn:(NSString *)dn
+       newRDN:(NSString *)newrdn newSuperior:(NSString *)newsuperior
+       deleteOldRDN:(int)deleteoldrdn
+{
+   // initialize super
+   if ((self = [super init]) == nil)
+      return(self);
+
+   // state information
+   session     = [data retain];
+   messageType = LKLdapMessageTypeRename;
+
+   // modify information
+   modifyDn           = [[NSString alloc] initWithString:dn];
+   modifyNewRdn       = [[NSString alloc] initWithString:newrdn];
+   modifyNewSuperior  = [[NSString alloc] initWithString:newsuperior];
+   modifyDeleteOldRdn = deleteoldrdn;
 
    return(self);
 }
@@ -541,6 +568,11 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       self.errorTitle = @"LDAP Modify";
       break;
 
+      case LKLdapMessageTypeRename:
+      [self ldapRename];
+      self.errorTitle = @"LDAP Modify RDN";
+      break;
+
       case LKLdapMessageTypeSearch:
       [self ldapSearch];
       self.errorTitle = @"LDAP Search";
@@ -685,6 +717,43 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // initiates search
    msgid = [self modifyDN:modifyDn mods:(NSArray *)modifyList];
+   if (!(self.isSuccessful))
+      return(self.isSuccessful);
+
+   // waits for result
+   if ((res = [self resultWithMessageID:msgid resultEntries:nil]) == NULL)
+      return(self.isSuccessful);
+
+   // parses result
+   if (!([self parseResult:res referrals:nil]))
+      return(self.isSuccessful);
+
+   return(self.isSuccessful);
+}
+
+
+- (BOOL) ldapRename
+{
+   int               msgid;
+   BOOL              isConnected;
+   LDAPMessage     * res;
+
+   // reset errors
+   [self resetErrorWithTitle:@"LDAP Rename"];
+
+   // verifies session is connected to LDAP
+   isConnected = [self ldapBind];
+   if (!(isConnected))
+      return(self.isSuccessful);
+   if ((self.isCancelled))
+   {
+      self.errorCode = LDAP_USER_CANCELLED;
+      return(self.isSuccessful);
+   };
+
+   // initiates search
+   msgid = [self renameDN:modifyDn newRDN:modifyNewRdn
+      newSuperior:modifyNewSuperior deleteOldRDN:modifyDeleteOldRdn];
    if (!(self.isSuccessful))
       return(self.isSuccessful);
 
@@ -1227,6 +1296,41 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
    };
 
    [self freeModsArray:&mods];
+
+   return(msgid);
+}
+
+
+- (int) renameDN:(NSString *)dn newRDN:(NSString *)newrdn
+        newSuperior:(NSString *)newSuperior
+        deleteOldRDN:(NSInteger)deleteOldRDN
+{
+   int  msgid;
+   const char * tmpSuperior;
+
+   tmpSuperior = ((newSuperior)) ? [newSuperior UTF8String] : NULL;
+
+   @synchronized(session)
+   {
+      // checks session
+      if (!(session.ld))
+      {
+         self.errorCode = LDAP_UNAVAILABLE;
+         return(-1);
+      };
+
+      // initiates modify
+      self.errorCode = ldap_rename(
+         session.ld,                 // LDAP         * ld
+         [dn UTF8String],            // const char   * dn
+         [newrdn UTF8String],        // const char   * newrd
+         tmpSuperior,                // const char   * newSuperior
+         deleteOldRDN,               // int            deleteoldrdn
+         NULL,                       // LDAPControl ** sctrls
+         NULL,                       // LDAPControl ** cctrls
+         &msgid                      // int          * msgidp
+      );
+   };
 
    return(msgid);
 }

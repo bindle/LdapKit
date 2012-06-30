@@ -17,6 +17,7 @@ LDAP Kit Change Log
 * Adding NSAssert() statements to LKLdap to validate user data. (syzdek)
 * Adding NSAssert() statements to LKUrl to validate user data. (syzdek)
 * Adding NSAssert() statements to LKBerValue to validate user data. (syzdek)
+* Adding ability to re-name an LDAP entry. (syzdek)
 
 #### 0.1   (2012-06-17)
 * Creating project. (syzdek)

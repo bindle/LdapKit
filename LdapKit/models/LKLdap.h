@@ -345,6 +345,19 @@
                 attributes:(NSArray *)attributes
                 attributesOnly:(BOOL)attributesOnly;
 
+/// Initiates a renaming of an LDAP DN
+/// @param dn The DN to be renamed.
+/// @param newrdn The new relative DN of the entry.
+/// @param newSuperior The new superior DN of the entry.  If this value is NULL,
+/// then only the relative DN is modified. The root DN is specified by passing
+/// a string with a length of zero `@""`
+/// @param deleteOldRDN If non-zero, delete the old relative DN attribute from
+/// the entry.
+/// @return Returns the LKMessage object executing the search request.
+- (LKMessage *) ldapRenameDN:(NSString *)dn newRDN:(NSString *)newrdn
+                newSuperior:(NSString *)newSuperior
+                deleteOldRDN:(NSInteger)deleteOldRDN;
+
 /// Performs an LDAP search operation using parameters from an LKUrl object.
 /// @param url  The URL used to specify the search parameters.
 /// @param attributesOnly  The attrsonly parameter should be set to `YES` value

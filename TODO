@@ -10,7 +10,6 @@ LDAP Kit To-Do List
 
    LDAP Opeartions
    ---------------
-   * Add LDAP rename methods to LKLdap and LKMessage.
    * Add LDAP whoami  methods to LKLdap and LKMessage.
 
    Documentation

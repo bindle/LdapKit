@@ -64,7 +64,7 @@ enum ldap_kit_ldap_message_type
    LKLdapMessageTypeSearch            = 0x03,
    LKLdapMessageTypeRebind            = 0x04,
    LKLdapMessageTypeDelete            = 0x05,
-   LKLdapMessageTypeModRDN            = 0x06,
+   LKLdapMessageTypeRename            = 0x06,
    LKLdapMessageTypeModify            = 0x07,
    LKLdapMessageTypeWhoAmI            = 0x08,
    LKLdapMessageTypeUnknown           = 0x00
@@ -117,8 +117,9 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 
    // modify information
    NSString               * modifyDn;
-   NSString               * modifyRdn;
-   BOOL                     deleteOldRdn;
+   NSString               * modifyNewRdn;
+   NSString               * modifyNewSuperior;
+   NSInteger                modifyDeleteOldRdn;
    NSArray                * modifyList;
 
    // results
@@ -143,7 +144,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 /// `LKLdapMessageTypeBind`   | LDAP bind request
 /// `LKLdapMessageTypeDelete` | LDAP delete request
 /// `LKLdapMessageTypeModify` | LDAP modify request
-/// `LKLdapMessageTypeModRDN` | LDAP modrdn request
+/// `LKLdapMessageTypeRename` | LDAP rename request
 /// `LKLdapMessageTypeRebind` | LDAP unbind and bind request
 /// `LKLdapMessageTypeSearch` | LDAP search request
 /// `LKLdapMessageTypeUnbind` | LDAP unbind request

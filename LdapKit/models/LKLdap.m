@@ -676,6 +676,23 @@
 }
 
 
+- (LKMessage *) ldapRenameDN:(NSString *)dn newRDN:(NSString *)newrdn
+        newSuperior:(NSString *)newSuperior
+        deleteOldRDN:(NSInteger)deleteOldRDN
+{
+   LKMessage * message;
+   NSAssert((dn != nil), @"dn must not be nil");
+   NSAssert((newrdn != nil), @"newrdn must not be nil");
+   @synchronized(self)
+   {
+      message = [[LKMessage alloc] initRenameWithSession:self dn:dn
+         newRDN:newrdn newSuperior:newSuperior deleteOldRDN:deleteOldRDN];
+      [queue addOperation:message];
+      return([message autorelease]);
+   };
+}
+
+
 - (LKMessage *) ldapRebind
 {
    LKMessage * message;
