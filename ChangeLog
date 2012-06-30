@@ -20,4 +20,8 @@ LDAP Kit Change Log
 * Adding ability to re-name an LDAP entry. (syzdek)
 
 #### 0.1   (2012-06-17)
+* First release of LDAP Kit. (syzdek)
+
+#### 0.0   (2012-06-11)
 * Creating project. (syzdek)
+
