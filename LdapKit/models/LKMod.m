@@ -240,4 +240,87 @@
    return;
 }
 
+
+#pragma mark - Manager LDAPMod References
+
+- (LDAPMod *) newLDAPMod
+{
+   LDAPMod            * mod;
+   size_t               len;
+   size_t               pos;
+   id                   value;
+   BerValue           * bval;
+   BerValue          ** bvals;
+   NSAutoreleasePool  * pool;
+
+   @synchronized(self)
+   {
+      // allocates memory for LDAPMod
+      if ((mod = malloc(sizeof(LDAPMod))) == NULL)
+         return(mod);
+
+      pool = [[NSAutoreleasePool alloc] init];
+
+      // generates list of mod values
+      bvals = NULL;
+      if ((_modValues))
+      {
+         len   = [_modValues count];
+
+         if ((bvals = malloc(sizeof(BerValue *))) == NULL)
+         {
+            [LKMod freeLDAPMod:mod];
+            [pool release];
+            return(NULL);
+         };
+         bvals[0] = NULL;
+
+         for(pos = 0; ((pos < len) && ((bvals))); pos++)
+         {
+            bval  = NULL;
+            value = [_modValues objectAtIndex:pos];
+            if (([value isKindOfClass:[LKBerValue class]]))
+               bval = [(LKBerValue *)value newBerValue];
+            else if (([value isKindOfClass:[NSData class]]))
+               bval = [LKBerValue newBerValueWithData:value];
+            else
+               bval = ber_bvstrdup([(NSString *)value UTF8String]);
+            if (!(bval))
+            {
+               [LKMod freeLDAPMod:mod];
+               [pool release];
+               return(NULL);
+            };
+            ber_bvecadd(&bvals, bval);
+         };
+      };
+
+      mod->mod_op              = _modOp;
+      mod->mod_type            = strdup([_modType UTF8String]);
+      mod->mod_vals.modv_bvals = bvals;
+
+      [pool release];
+   };
+
+   if (!(mod->mod_type))
+   {
+      [LKMod freeLDAPMod:mod];
+      return(NULL);
+   };
+
+   return(mod);
+}
+
+
++ (void) freeLDAPMod:(LDAPMod *)mod
+{
+   NSAssert((mod != NULL), @"mod must not be NULL");
+   if ((mod->mod_type))
+      free(mod->mod_type);
+   if ((mod->mod_vals.modv_bvals))
+      ber_bvecfree(mod->mod_vals.modv_bvals);
+   free(mod);
+   return;
+}
+
 @end

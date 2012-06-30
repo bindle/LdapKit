@@ -127,4 +127,17 @@ typedef enum ldap_kit_ldap_mod_operation LKLdapModOperation;
 /// @param modValue Value to append to modification values.
 - (void) addValue:(id <NSObject, NSCopying>)modValue;
 
+
+#pragma mark - Manager LDAPMod References
+/// @name Manager LDAPMod References
+
+/// Allocate a new LDAPMod reference.
+/// @return This method returns a pointer to a `LDAPMod` reference. The
+/// `LDAPMod` reference must be freed using `+freeLDAPMod:`.
+- (LDAPMod *) newLDAPMod;
+
+/// Frees a LDAPMod reference.
+/// @param mod The LDAPMod reference to be freed.
++ (void) freeLDAPMod:(LDAPMod *)mod;
+
 @end
