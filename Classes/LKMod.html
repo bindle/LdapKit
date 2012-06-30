@@ -51,6 +51,8 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/freeLDAPMod:">&nbsp;&nbsp;&nbsp;&nbsp;+ freeLDAPMod:</option>
+	
 	<option value="//api/name/modWithOperation:type:">&nbsp;&nbsp;&nbsp;&nbsp;+ modWithOperation:type:</option>
 	
 	<option value="//api/name/modWithOperation:type:value:">&nbsp;&nbsp;&nbsp;&nbsp;+ modWithOperation:type:value:</option>
@@ -69,6 +71,8 @@
 	<option value="//api/name/initWithOperation:type:value:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithOperation:type:value:</option>
 	
 	<option value="//api/name/initWithOperation:type:values:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithOperation:type:values:</option>
+	
+	<option value="//api/name/newLDAPMod">&nbsp;&nbsp;&nbsp;&nbsp;- newLDAPMod</option>
 	
 	
 	
@@ -90,6 +94,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Modifications">Modifications</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Manager LDAPMod References">Manager LDAPMod References</a></span></li>
+	
 </ul></li>
 
 
@@ -110,6 +116,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/freeLDAPMod:">freeLDAPMod:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modWithOperation:type:">modWithOperation:type:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modWithOperation:type:value:">modWithOperation:type:value:</a></span></li>
@@ -129,6 +137,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithOperation:type:value:">initWithOperation:type:value:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithOperation:type:values:">initWithOperation:type:values:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/newLDAPMod">newLDAPMod</a></span></li>
 	
 </ul></li>
 
@@ -261,6 +271,28 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/addValue:">&ndash;&nbsp;addValue:</a></code>
 		<span class="tooltip"><p>Add value to list of modifications.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Manager LDAPMod References" name="task_Manager LDAPMod References"></a>
+						<h3 class="subsubtitle task-title">Manager LDAPMod References</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/newLDAPMod">&ndash;&nbsp;newLDAPMod</a></code>
+		<span class="tooltip"><p>Allocate a new LDAPMod reference.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/freeLDAPMod:">+&nbsp;freeLDAPMod:</a></code>
+		<span class="tooltip"><p>Frees a LDAPMod reference.</p></span>
 	</span>
 	
 	
@@ -419,6 +451,52 @@
 					<div class="section section-methods">
 						<a title="Class Methods" name="class_methods"></a>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/freeLDAPMod:" title="freeLDAPMod:"></a>
+	<h3 class="subsubtitle method-title">freeLDAPMod:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Frees a LDAPMod reference.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)freeLDAPMod:(LDAPMod *)<em>mod</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mod</em></dt>
+			<dd><p>The LDAPMod reference to be freed.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKMod.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/modWithOperation:type:" title="modWithOperation:type:"></a>
@@ -787,6 +865,48 @@
 	</div>
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKMod.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/newLDAPMod" title="newLDAPMod"></a>
+	<h3 class="subsubtitle method-title">newLDAPMod</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Allocate a new LDAPMod reference.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LDAPMod *)newLDAPMod</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>This method returns a pointer to a <code>LDAPMod</code> reference. The
+<code>LDAPMod</code> reference must be freed using <a href="#//api/name/freeLDAPMod:"><code>freeLDAPMod:</code></a>.</p>
+	</div>
 	
 	
 	

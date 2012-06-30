@@ -48,8 +48,6 @@
 	
 	<option value="//api/name/berStringBase64">&nbsp;&nbsp;&nbsp;&nbsp;berStringBase64</option>
 	
-	<option value="//api/name/berValue">&nbsp;&nbsp;&nbsp;&nbsp;berValue</option>
-	
 	<option value="//api/name/bv_len">&nbsp;&nbsp;&nbsp;&nbsp;bv_len</option>
 	
 	<option value="//api/name/bv_val">&nbsp;&nbsp;&nbsp;&nbsp;bv_val</option>
@@ -62,12 +60,12 @@
 	
 	<option value="//api/name/isBerStringBase64">&nbsp;&nbsp;&nbsp;&nbsp;isBerStringBase64</option>
 	
-	<option value="//api/name/isBerValue">&nbsp;&nbsp;&nbsp;&nbsp;isBerValue</option>
-	
 	
 	
 	
 	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/newBerValueWithData:">&nbsp;&nbsp;&nbsp;&nbsp;+ newBerValueWithData:</option>
 	
 	<option value="//api/name/valueWithBerValue:">&nbsp;&nbsp;&nbsp;&nbsp;+ valueWithBerValue:</option>
 	
@@ -85,6 +83,8 @@
 	<option value="//api/name/initWithData:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithData:</option>
 	
 	<option value="//api/name/initWithString:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithString:</option>
+	
+	<option value="//api/name/newBerValue">&nbsp;&nbsp;&nbsp;&nbsp;- newBerValue</option>
 	
 	
 	
@@ -126,8 +126,6 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/berStringBase64">berStringBase64</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/berValue">berValue</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bv_len">bv_len</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bv_val">bv_val</a></span></li>
@@ -140,13 +138,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBerStringBase64">isBerStringBase64</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBerValue">isBerValue</a></span></li>
-	
 </ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/newBerValueWithData:">newBerValueWithData:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valueWithBerValue:">valueWithBerValue:</a></span></li>
 	
@@ -165,6 +163,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithData:">initWithData:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithString:">initWithString:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/newBerValue">newBerValue</a></span></li>
 	
 </ul></li>
 
@@ -247,6 +247,20 @@ accessed as a string, an image, or binary data.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/newBerValue">&ndash;&nbsp;newBerValue</a></code>
+		<span class="tooltip"><p>Allocate a new struct berval.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/newBerValueWithData:">+&nbsp;newBerValueWithData:</a></code>
+		<span class="tooltip"><p>Allocate a new struct berval from an NSData object</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/valueWithBerValue:">+&nbsp;valueWithBerValue:</a></code>
 		<span class="tooltip"><p>Creates a new object with data from a BerValue struct.</p></span>
 	</span>
@@ -324,13 +338,6 @@ accessed as a string, an image, or binary data.</p>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/berValue">&nbsp;&nbsp;berValue</a></code>
-		<span class="tooltip"><p>Returns a C pointer to a BerValue struct populated with the object&rsquo;s value.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
 </li>
 						</ul>
 						
@@ -364,13 +371,6 @@ accessed as a string, an image, or binary data.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/isBerStringBase64">&nbsp;&nbsp;isBerStringBase64</a></code>
 		<span class="tooltip"><p>Indicates the data can be base64 encoded.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/isBerValue">&nbsp;&nbsp;isBerValue</a></code>
-		<span class="tooltip"><p>Indicates the data can be encoded as a BerValue data type.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -520,42 +520,6 @@ an NSString.  Otherwise nil is returned.</p>
     
 
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSString *berStringBase64</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">LKBerValue.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/berValue" title="berValue"></a>
-	<h3 class="subsubtitle method-title">berValue</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Returns a C pointer to a BerValue struct populated with the object&rsquo;s value.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BerValue *berValue</code></div>
 
     
 	
@@ -805,27 +769,46 @@ an NSString.  Otherwise nil is returned.</p>
 	
 </div>
 						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
 						<div class="section-method">
-	<a name="//api/name/isBerValue" title="isBerValue"></a>
-	<h3 class="subsubtitle method-title">isBerValue</h3>
+	<a name="//api/name/newBerValueWithData:" title="newBerValueWithData:"></a>
+	<h3 class="subsubtitle method-title">newBerValueWithData:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Indicates the data can be encoded as a BerValue data type.</p>
+		<p>Allocate a new struct berval from an NSData object</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isBerValue</code></div>
+	<div class="method-subsection method-declaration"><code>+ (BerValue *)newBerValueWithData:(NSData *)<em>data</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>The NSData object used to populate an allocated BerValue</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
 	<div class="method-subsection return">
 		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>This property always returns <code>YES</code>.</p>
+		<p>This method returns a pointer to a <code>struct berval</code>. The
+<code>struct berval</code> must be freed using <code>ber_bvfree()</code>.</p>
 	</div>
 	
 	
@@ -845,14 +828,6 @@ an NSString.  Otherwise nil is returned.</p>
 	
 	
 </div>
-						
-					</div>
-					
-					
-					
-					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
 	<a name="//api/name/valueWithBerValue:" title="valueWithBerValue:"></a>
@@ -1119,6 +1094,48 @@ an NSString.  Otherwise nil is returned.</p>
 	</div>
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKBerValue.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/newBerValue" title="newBerValue"></a>
+	<h3 class="subsubtitle method-title">newBerValue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Allocate a new struct berval.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BerValue *)newBerValue</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>This method returns a pointer to a <code>struct berval</code>. The
+<code>struct berval</code> must be freed using <code>ber_bvfree()</code>.</p>
+	</div>
 	
 	
 	

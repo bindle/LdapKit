@@ -97,7 +97,13 @@
 	
 	<option value="//api/name/ldapDeleteEntry:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapDeleteEntry:</option>
 	
+	<option value="//api/name/ldapModifyDN:modification:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapModifyDN:modification:</option>
+	
+	<option value="//api/name/ldapModifyDN:modifications:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapModifyDN:modifications:</option>
+	
 	<option value="//api/name/ldapRebind">&nbsp;&nbsp;&nbsp;&nbsp;- ldapRebind</option>
+	
+	<option value="//api/name/ldapRenameDN:newRDN:newSuperior:deleteOldRDN:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapRenameDN:newRDN:newSuperior:deleteOldRDN:</option>
 	
 	<option value="//api/name/ldapSearchBaseDN:scope:filter:attributes:attributesOnly:">&nbsp;&nbsp;&nbsp;&nbsp;- ldapSearchBaseDN:scope:filter:attributes:attributesOnly:</option>
 	
@@ -203,7 +209,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapDeleteEntry:">ldapDeleteEntry:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapModifyDN:modification:">ldapModifyDN:modification:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapModifyDN:modifications:">ldapModifyDN:modifications:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapRebind">ldapRebind</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapRenameDN:newRDN:newSuperior:deleteOldRDN:">ldapRenameDN:newRDN:newSuperior:deleteOldRDN:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapSearchBaseDN:scope:filter:attributes:attributesOnly:">ldapSearchBaseDN:scope:filter:attributes:attributesOnly:</a></span></li>
 	
@@ -494,6 +506,20 @@ terminated by the server.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/ldapModifyDN:modification:">&ndash;&nbsp;ldapModifyDN:modification:</a></code>
+		<span class="tooltip"><p>Initiats a modify request for an LDAP entry</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapModifyDN:modifications:">&ndash;&nbsp;ldapModifyDN:modifications:</a></code>
+		<span class="tooltip"><p>Initiats a modify request for an LDAP entry</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/ldapSearchBaseDN:scope:filter:attributes:attributesOnly:">&ndash;&nbsp;ldapSearchBaseDN:scope:filter:attributes:attributesOnly:</a></code>
 		<span class="tooltip"><p>Performs an LDAP search operation on a single base DN.</p></span>
 	</span>
@@ -503,6 +529,13 @@ terminated by the server.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:">&ndash;&nbsp;ldapSearchBaseDNList:scope:filter:attributes:attributesOnly:</a></code>
 		<span class="tooltip"><p>Performs LDAP search operations on multiple base DNs.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/ldapRenameDN:newRDN:newSuperior:deleteOldRDN:">&ndash;&nbsp;ldapRenameDN:newRDN:newSuperior:deleteOldRDN:</a></code>
+		<span class="tooltip"><p>Initiates a renaming of an LDAP DN</p></span>
 	</span>
 	
 	
@@ -1780,6 +1813,118 @@ to be established prior to submitting the bind request.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/ldapModifyDN:modification:" title="ldapModifyDN:modification:"></a>
+	<h3 class="subsubtitle method-title">ldapModifyDN:modification:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiats a modify request for an LDAP entry</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)ldapModifyDN:(NSString *)<em>dn</em> modification:(LKMod *)<em>mod</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dn</em></dt>
+			<dd><p>The DN to be modified.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mod</em></dt>
+			<dd><p>An array of <a href="../Classes/LKMod.html">LKMod</a> objects</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the modify request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapModifyDN:modifications:" title="ldapModifyDN:modifications:"></a>
+	<h3 class="subsubtitle method-title">ldapModifyDN:modifications:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiats a modify request for an LDAP entry</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)ldapModifyDN:(NSString *)<em>dn</em> modifications:(NSArray *)<em>mods</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dn</em></dt>
+			<dd><p>The DN to be modified.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>mods</em></dt>
+			<dd><p>An array of <a href="../Classes/LKMod.html">LKMod</a> objects</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the modify request.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/ldapRebind" title="ldapRebind"></a>
 	<h3 class="subsubtitle method-title">ldapRebind</h3>
 	
@@ -1811,6 +1956,75 @@ to be established prior to submitting the bind request.</p>
 		<p>This will cause the current connection (if one exists) to be terminated
 and a new connection to be established.</p>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKLdap.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapRenameDN:newRDN:newSuperior:deleteOldRDN:" title="ldapRenameDN:newRDN:newSuperior:deleteOldRDN:"></a>
+	<h3 class="subsubtitle method-title">ldapRenameDN:newRDN:newSuperior:deleteOldRDN:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initiates a renaming of an LDAP DN</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (LKMessage *)ldapRenameDN:(NSString *)<em>dn</em> newRDN:(NSString *)<em>newrdn</em> newSuperior:(NSString *)<em>newSuperior</em> deleteOldRDN:(NSInteger)<em>deleteOldRDN</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dn</em></dt>
+			<dd><p>The DN to be renamed.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>newrdn</em></dt>
+			<dd><p>The new relative DN of the entry.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>newSuperior</em></dt>
+			<dd><p>The new superior DN of the entry.  If this value is NULL,
+then only the relative DN is modified. The root DN is specified by passing
+a string with a length of zero <code>@""</code></p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>deleteOldRDN</em></dt>
+			<dd><p>If non-zero, delete the old relative DN attribute from
+the entry.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Returns the <a href="../Classes/LKMessage.html">LKMessage</a> object executing the search request.</p>
+	</div>
+	
+	
+	
+	
 	
 	
 	
