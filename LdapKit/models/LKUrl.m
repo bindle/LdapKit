@@ -126,6 +126,11 @@
 }
 - (void) setLdapAttributes:(NSArray *)ldapAttributes
 {
+   NSUInteger pos;
+   if ((ldapAttributes))
+      for(pos = 0; pos < [ldapAttributes count]; pos++)
+         NSAssert([[ldapAttributes objectAtIndex:pos] isKindOfClass:[NSString class]],
+            @"ldapAttributes must only contain NSString objects.");
    @synchronized(self)
    {
       [ludUrl   release];
@@ -223,6 +228,11 @@
 }
 - (void) setLdapExtensions:(NSArray *)ldapExtensions
 {
+   NSUInteger pos;
+   if ((ldapExtensions))
+      for(pos = 0; pos < [ldapExtensions count]; pos++)
+         NSAssert([[ldapExtensions objectAtIndex:pos] isKindOfClass:[NSString class]],
+            @"ldapExtensions must only contain NSString objects.");
    @synchronized(self)
    {
       [ludUrl  release];

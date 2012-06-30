@@ -9,7 +9,6 @@ LDAP Kit To-Do List
      in the LDAP URL.
    * Add NSAssert() statements to test input data on the following classes:
      - LKBerValue
-     - LKUrl
 
    LDAP Opeartions
    ---------------
