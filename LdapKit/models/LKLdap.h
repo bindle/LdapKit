@@ -299,7 +299,7 @@
 
 /// Initiats a modify request for an LDAP entry
 /// @param dn The DN to be modified.
-/// @param mods An array of LKMod objects
+/// @param mod An array of LKMod objects
 /// @return Returns the LKMessage object executing the modify request.
 - (LKMessage *) ldapModifyDN:(NSString *)dn modification:(LKMod *)mod;
 
