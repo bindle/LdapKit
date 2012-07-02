@@ -103,6 +103,8 @@
 
 /// The LDAP URL that has been parsed into component pieces.
 @property (nonatomic, copy) NSString * ldapUrl;
+
+/// The LDAP URL used calls to ldap_initialize().
 @property (nonatomic, readonly) NSString * ldapConnectionUrl;
 
 
