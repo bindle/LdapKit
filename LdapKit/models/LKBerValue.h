@@ -109,8 +109,11 @@
 /// The number of bytes required to store the object's value.
 @property (nonatomic, readonly) ber_len_t    bv_len;
 
-/// C pointer to the memory allocation of object's value.
 @property (nonatomic, readonly) const char * bv_val;
+/// Returns a pointer to the receiver’s contents.
+///
+/// If the length of the receiver is 0, this method returns `NULL`.
+/// @return A read-only pointer to the receiver’s contents.
 
 
 #pragma mark - Derived Data
