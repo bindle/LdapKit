@@ -102,38 +102,38 @@
 /// @name URL Componets
 
 /// The LDAP URL that has been parsed into component pieces.
-@property (nonatomic, copy)     NSString             * ldapUrl;
-@property (nonatomic, readonly) NSString             * ldapConnectionUrl;
+@property (nonatomic, copy) NSString * ldapUrl;
+@property (nonatomic, readonly) NSString * ldapConnectionUrl;
 
 
 #pragma mark - URL Componets
 /// @name URL Componets
 
 /// The LDAP scheme used in the URL.
-@property (nonatomic, assign)   LKLdapProtocolScheme   ldapScheme;
+@property (nonatomic, assign) LKLdapProtocolScheme ldapScheme;
 
 /// The hostname contained within the URL.
-@property (nonatomic, copy)     NSString             * ldapHost;
+@property (nonatomic, copy) NSString * ldapHost;
 
 /// The port number contained within the URL.
-@property (nonatomic, assign)   NSInteger              ldapPort;
+@property (nonatomic, assign) NSInteger ldapPort;
 
 /// The search base DN.
-@property (nonatomic, copy)     NSString             * ldapDn;
+@property (nonatomic, copy) NSString * ldapDn;
 
 /// A list of attributes to request.
-@property (nonatomic, copy)     NSArray              * ldapAttributes;
+@property (nonatomic, copy) NSArray * ldapAttributes;
 
 /// A scope of the search request.
-@property (nonatomic, assign)   LKLdapSearchScope      ldapScope;
+@property (nonatomic, assign) LKLdapSearchScope ldapScope;
 
 /// The LDAP filter.
-@property (nonatomic, copy)     NSString             * ldapFilter;
+@property (nonatomic, copy) NSString * ldapFilter;
 
 /// Recognized set of LDAP and/or API extensions.
-@property (nonatomic, copy)     NSArray              * ldapExtensions;
+@property (nonatomic, copy) NSArray * ldapExtensions;
 
 /// True if any extension is critical.
-@property (nonatomic, assign)   BOOL                   ldapCriticalExtensions;
+@property (nonatomic, assign) BOOL ldapCriticalExtensions;
 
 @end
