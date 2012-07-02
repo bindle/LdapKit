@@ -149,7 +149,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 /// `LKLdapMessageTypeSearch` | LDAP search request
 /// `LKLdapMessageTypeUnbind` | LDAP unbind request
 /// `LKLdapMessageTypeWhoAmI` | LDAP whoami request
-@property (nonatomic, readonly) LKLdapMessageType        messageType;
+@property (nonatomic, readonly) LKLdapMessageType messageType;
 
 
 #pragma mark - Errors
@@ -159,41 +159,41 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 ///
 /// See the man page for ldap_error(3) for descriptions of valid error
 /// codes.
-@property (atomic, readonly)    NSInteger          errorCode;
+@property (atomic, readonly) NSInteger errorCode;
 
 /// An optional title of the error for use when reporting error to users.
-@property (nonatomic, readonly) NSString         * errorTitle;
+@property (nonatomic, readonly) NSString * errorTitle;
 
 /// A human readable error message.
-@property (nonatomic, readonly) NSString         * errorMessage;
+@property (nonatomic, readonly) NSString * errorMessage;
 
 /// Additional diagnostic information if available.
-@property (nonatomic, readonly) NSString         * diagnosticMessage;
+@property (nonatomic, readonly) NSString * diagnosticMessage;
 
 /// Determines if the error code indicates whether the task succeeded or failed.
-@property (nonatomic, readonly) BOOL               isSuccessful;
+@property (nonatomic, readonly) BOOL isSuccessful;
 
 
 #pragma mark - Results
 /// @name Results
 
 /// An array of LKEntry objects returned by a search request.
-@property (nonatomic, readonly) NSArray                * entries;
+@property (nonatomic, readonly) NSArray * entries;
 
 /// An array of LDAP referrals returned by an LDAP request.
-@property (nonatomic, readonly) NSArray                * referrals;
+@property (nonatomic, readonly) NSArray * referrals;
 
-@property (nonatomic, readonly) NSArray                * matchedDNs;
+@property (nonatomic, readonly) NSArray * matchedDNs;
 
 
 #pragma mark - Identifying the LKMessage
 /// @name Identifying the LKMessage
 
 /// An integer that you can use to identify messages in your application.
-@property (nonatomic, assign)   NSInteger                tag;
+@property (nonatomic, assign) NSInteger tag;
 
 /// An object reference you can use to associate data with messages in your
 /// application.
-@property (nonatomic, retain)   id                       object;
+@property (nonatomic, retain) id object;
 
 @end
