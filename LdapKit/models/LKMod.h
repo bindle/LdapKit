@@ -115,13 +115,13 @@ typedef enum ldap_kit_ldap_mod_operation LKLdapModOperation;
 /// LKLdapModOperationAdd     | Add attribute values.
 /// LKLdapModOperationDelete  | Delete attribute values.
 /// LKLdapModOperationReplace | Replace attribute values.
-@property (nonatomic, readonly) LKLdapModOperation   modOp;
+@property (nonatomic, readonly) LKLdapModOperation modOp;
 
 /// The attribute to be modified.
-@property (nonatomic, readonly) NSString           * modType;
+@property (nonatomic, readonly) NSString * modType;
 
 /// The values to add, replace, or delete from an attribute.
-@property (nonatomic, readonly) NSArray            * modValues;
+@property (nonatomic, readonly) NSArray * modValues;
 
 /// Add value to list of modifications.
 /// @param modValue Value to append to modification values.
