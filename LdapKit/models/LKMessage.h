@@ -129,7 +129,7 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 
    // client information
    NSInteger                tag;
-   id                       object;
+   id <NSObject>            object;
 }
 
 #pragma mark - Message information
@@ -194,6 +194,6 @@ typedef enum ldap_kit_ldap_message_type LKLdapMessageType;
 
 /// An object reference you can use to associate data with messages in your
 /// application.
-@property (nonatomic, retain) id object;
+@property (nonatomic, retain) id <NSObject> object;
 
 @end
