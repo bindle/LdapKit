@@ -128,7 +128,7 @@
 ///
 /// @warning Changes to this property do not affect active LDAP connections. The
 /// `-ldapRebind` method must be called before changes will take affect.
-@property (nonatomic, copy)     NSString               * ldapURI;
+@property (nonatomic, copy) NSString * ldapURI;
 
 /// The protocol scheme used to initialize an LDAP connection.
 ///
@@ -144,7 +144,7 @@
 ///
 /// @warning Changes to this property do not affect active LDAP connections. The
 /// `-rebind` method must be called before changes will take affect.
-@property (nonatomic, assign)   LKLdapProtocolScheme     ldapProtocolScheme;
+@property (nonatomic, assign) LKLdapProtocolScheme ldapProtocolScheme;
 
 /// The host name used to initialize an LDAP connection.
 ///
@@ -152,7 +152,7 @@
 ///
 /// @warning Changes to this property do not affect active LDAP connections. The
 /// `-rebind` method must be called before changes will take affect.
-@property (nonatomic, copy)     NSString               * ldapHost;
+@property (nonatomic, copy) NSString * ldapHost;
 
 /// The port number used to initialize an LDAP connection.
 ///
@@ -160,7 +160,7 @@
 ///
 /// @warning Changes to this property do not affect active LDAP connections. The
 /// `-rebind` method must be called before changes will take affect.
-@property (nonatomic, assign)   NSInteger                ldapPort;
+@property (nonatomic, assign) NSInteger ldapPort;
 
 /// The protocol version used to initiate an LDAP connection.
 ///
@@ -174,7 +174,7 @@
 ///
 /// @warning Changes to this property do not affect active LDAP connections. The
 /// `-rebind` method must be called before changes will take affect.
-@property (nonatomic, assign)   LKLdapProtocolVersion    ldapProtocolVersion;
+@property (nonatomic, assign) LKLdapProtocolVersion ldapProtocolVersion;
 
 
 #pragma mark - Encryption Settings
@@ -195,7 +195,7 @@
 ///
 /// @warning Changes to this property do not affect active LDAP connections. The
 /// `-rebind` method must be called before changes will take affect.
-@property (nonatomic, assign)   LKLdapEncryptionScheme   ldapEncryptionScheme;
+@property (nonatomic, assign) LKLdapEncryptionScheme ldapEncryptionScheme;
 
 /// The file name containing certificates of authorized certificate authorities.
 ///
@@ -205,22 +205,22 @@
 /// @warning iOS does not have a default value for ldapCACertificateFile. In order
 /// to use TLS or SSL on iOS, this property must be set to a file name which
 /// contains valid certificates.
-@property (nonatomic, copy)     NSString               * ldapCACertificateFile;
+@property (nonatomic, copy) NSString * ldapCACertificateFile;
 
 #pragma mark - Timeouts & Limits
 /// @name Timeouts & Limits
 
 /// The maximum number of entries to be returned by a search operation.
-@property (nonatomic, assign)   NSInteger                ldapSearchSizeLimit;
+@property (nonatomic, assign) NSInteger ldapSearchSizeLimit;
 
 /// The time limit (in seconds) after which a search operation should be
 /// terminated by the server.
-@property (nonatomic, assign)   NSInteger                ldapSearchTimeLimit;
+@property (nonatomic, assign) NSInteger ldapSearchTimeLimit;
 
 /// The network timeout value after which a connection fails due to no activity.
 ///
 /// Setting the value to -1 results in an infinite timeout, which is the default.
-@property (nonatomic, assign)   NSInteger                ldapNetworkTimeout;
+@property (nonatomic, assign) NSInteger ldapNetworkTimeout;
 
 
 #pragma mark - Authentication Credentials
@@ -249,32 +249,32 @@
 /// `LKLdapBindMethodSimple`    | not `nil`      | `nil`              | `nil`
 /// `LKLdapBindMethodSASL`      | not `nil`      | not `nil`          | `nil` or not `nil`
 /// `LKLdapBindMethodSASL`      | not `nil`      | `nil` or not `nil` | not `nil`
-@property (nonatomic, assign)   LKLdapBindMethod         ldapBindMethod;
+@property (nonatomic, assign) LKLdapBindMethod ldapBindMethod;
 
 /// The SASL user or distinguished name used when performing an authenticated bind.
 /// @note Changing the value of ldapBindWho will cause the value of
 /// `ldapBindMethod` to be updated. The logic used to calculate the new value is
 /// documented with `ldapBindMethod`.
-@property (nonatomic, copy)     NSString               * ldapBindWho;
+@property (nonatomic, copy) NSString * ldapBindWho;
 
 /// The binary credentials used when performing an authenticated bind.
-@property (nonatomic, copy)     NSData                 * ldapBindCredentials;
+@property (nonatomic, copy) NSData * ldapBindCredentials;
 
 /// The credentials used when performing an authenticated bind.
-@property (nonatomic, copy)     NSString               * ldapBindCredentialsString;
+@property (nonatomic, copy) NSString * ldapBindCredentialsString;
 
 /// The SASL mechanism used when performing a SASL bind.
 /// @note Changing the value of ldapBindWho will cause the value of
 /// `ldapBindMethod` to be updated. The logic used to calculate the new value is
 /// documented with `ldapBindMethod`.
 /// @warning Currently only `DIGEST-MD5` and `CRAM-MD5` are supported on iOS.
-@property (nonatomic, copy)     NSString               * ldapBindSaslMechanism;
+@property (nonatomic, copy) NSString * ldapBindSaslMechanism;
 
 /// The SASL realm used when performing a SASL bind.
 /// @note Changing the value of ldapBindWho will cause the value of
 /// `ldapBindMethod` to be updated. The logic used to calculate the new value is
 /// documented with `ldapBindMethod`.
-@property (nonatomic, copy)     NSString               * ldapBindSaslRealm;
+@property (nonatomic, copy) NSString * ldapBindSaslRealm;
 
 
 #pragma mark - LDAP Tasks
