@@ -53,10 +53,10 @@
 /// @name entry information
 
 /// The distinguished name of the LDAP entry.
-@property (nonatomic, readonly) NSString * dn;
+@property (atomic, copy, readonly) NSString * dn;
 
 /// An array containing names of the LDAP entry's attributes.
-@property (nonatomic, readonly) NSArray  * attributes;
+@property (atomic, copy, readonly) NSArray  * attributes;
 
 /// Retrieves the values of an attribute.
 /// @param attribute  The name of the requested attribute.
