@@ -48,7 +48,7 @@
 @interface LKBerValue : NSObject <NSCopying>
 {
    // BerValue data
-   NSMutableData * berData;
+   NSData        * berData;
 
    // Derived data
    id <NSObject>   berImage;
