@@ -2,6 +2,12 @@
 LDAP Kit Change Log
 ===================
 
+### Development Version
+   - Updating appledoc documentation. (syzdek)
+   - Updating class properties to accurately reflect they are atomic. (syzdek)
+   - Updating class properties to accuragely reflect the returned objects
+     are copies. (syzdek)
+
 #### 0.2   (2012-06-29)
 * Merging the LKError class into the LKMessage class. (syzdek)
 * Updating documentation. (syzdek)
