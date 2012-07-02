@@ -173,7 +173,6 @@
 
 - (const char *) bv_val
 {
-   [[berData retain] autorelease];
    return([berData bytes]);
 }
 
