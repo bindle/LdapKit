@@ -104,16 +104,16 @@
 /// @name BerValue Data
 
 /// The NSData object which contains the object's value.
-@property (nonatomic, readonly) NSData     * berData;
+@property (atomic, copy, readonly) NSData * berData;
 
 /// The number of bytes required to store the object's value.
-@property (nonatomic, readonly) ber_len_t    bv_len;
+@property (atomic, readonly) ber_len_t bv_len;
 
-@property (nonatomic, readonly) const char * bv_val;
 /// Returns a pointer to the receiver’s contents.
 ///
 /// If the length of the receiver is 0, this method returns `NULL`.
 /// @return A read-only pointer to the receiver’s contents.
+@property (atomic, readonly) const char * bv_val;
 
 
 #pragma mark - Derived Data
@@ -123,18 +123,18 @@
 /// @return This property returns an UIImage on iOS and NSImage on OS X. If
 /// the data is not a valid image, nil is returned.
 #if TARGET_OS_IPHONE
-@property (nonatomic, readonly) UIImage    * berImage;
+@property (atomic, copy, readonly) UIImage * berImage;
 #else
-@property (nonatomic, readonly) NSImage    * berImage;
+@property (atomic, copy, readonly) NSImage * berImage;
 #endif
 
 /// Attempts to interpret the object's value as an UTF8 string.
 /// @return If the Ber value is a valid UTF8 string, this property returns
 /// an NSString.  Otherwise nil is returned.
-@property (nonatomic, readonly) NSString   * berString;
+@property (atomic, copy, readonly) NSString * berString;
 
 /// Returns the object's value as a base64 encoded string.
-@property (nonatomic, readonly) NSString   * berStringBase64;
+@property (atomic, copy, readonly) NSString * berStringBase64;
 
 
 #pragma mark - Type of data
@@ -142,17 +142,17 @@
 
 /// Indicates the data is valid an NSData object.
 /// @return This property always returns `YES`.
-@property (nonatomic, readonly) BOOL         isBerData;
+@property (atomic, readonly) BOOL isBerData;
 
 /// Indicates the data is a valid image.
-@property (nonatomic, readonly) BOOL         isBerImage;
+@property (atomic, readonly) BOOL isBerImage;
 
 /// Indicates that the data is a valid string.
-@property (nonatomic, readonly) BOOL         isBerString;
+@property (atomic, readonly) BOOL isBerString;
 
 /// Indicates the data can be base64 encoded.
 /// @return This property always returns `YES`.
-@property (nonatomic, readonly) BOOL         isBerStringBase64;
+@property (atomic, readonly) BOOL isBerStringBase64;
 
 
 @end
