@@ -34,6 +34,11 @@
 /**
  *  LKLdap manges connections to remote directory servers and initiates
  *  LDAP requests.
+ *
+ *  @warning The methods -ldapDeleteDN:, -ldapDeleteEntry:,
+ *  -ldapModifyDN:modification:, -ldapModifyDN:modifications:, and
+ *  -ldapRenameDN:newRDN:newSuperior:deleteOldRDN: are presumed to be functional,
+ *  but have not yet been tested.
  */
 
 #import <Foundation/Foundation.h>
@@ -290,23 +295,27 @@
 /// Initiates a delete request for an LDAP DN.
 /// @param dn The DN to be deleted.
 /// @return Returns the LKMessage object executing the delete request.
+/// @warning This method has not been verified to function properly.
 - (LKMessage *) ldapDeleteDN:(NSString *)dn;
 
 /// Initiates a delete request for an LDAP entry.
 /// @param entry An LKEntry object of the DN to be deleted.
 /// @return Returns the LKMessage object executing the delete request.
+/// @warning This method has not been verified to function properly.
 - (LKMessage *) ldapDeleteEntry:(LKEntry *)entry;
 
 /// Initiats a modify request for an LDAP entry
 /// @param dn The DN to be modified.
 /// @param mod An array of LKMod objects
 /// @return Returns the LKMessage object executing the modify request.
+/// @warning This method has not been verified to function properly.
 - (LKMessage *) ldapModifyDN:(NSString *)dn modification:(LKMod *)mod;
 
 /// Initiats a modify request for an LDAP entry
 /// @param dn The DN to be modified.
 /// @param mods An array of LKMod objects
 /// @return Returns the LKMessage object executing the modify request.
+/// @warning This method has not been verified to function properly.
 - (LKMessage *) ldapModifyDN:(NSString *)dn modifications:(NSArray *)mods;
 
 /// Performs an LDAP search operation on a single base DN.
@@ -354,6 +363,7 @@
 /// @param deleteOldRDN If non-zero, delete the old relative DN attribute from
 /// the entry.
 /// @return Returns the LKMessage object executing the search request.
+/// @warning This method has not been verified to function properly.
 - (LKMessage *) ldapRenameDN:(NSString *)dn newRDN:(NSString *)newrdn
                 newSuperior:(NSString *)newSuperior
                 deleteOldRDN:(NSInteger)deleteOldRDN;

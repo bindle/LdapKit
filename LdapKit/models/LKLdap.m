@@ -544,6 +544,7 @@
 }
 
 
+#warning "-ldapDeleteDN: has not been properly tested."
 - (LKMessage *) ldapDeleteDN:(NSString *)dn
 {
    LKMessage * message;
@@ -557,6 +558,7 @@
 }
 
 
+#warning "-ldapDeleteEntry: has not been properly tested."
 - (LKMessage *) ldapDeleteEntry:(LKEntry *)entry
 {
    LKMessage * message;
@@ -570,6 +572,7 @@
 }
 
 
+#warning "-ldapModifyDN:modification: has not been properly tested."
 - (LKMessage *) ldapModifyDN:(NSString *)dn modification:(LKMod *)mod
 {
    LKMessage * message;
@@ -676,6 +679,7 @@
 }
 
 
+#warning "-ldapRenameDN:newRDN:newSuperior:deleteOldRDN: has not been properly tested."
 - (LKMessage *) ldapRenameDN:(NSString *)dn newRDN:(NSString *)newrdn
         newSuperior:(NSString *)newSuperior
         deleteOldRDN:(NSInteger)deleteOldRDN
