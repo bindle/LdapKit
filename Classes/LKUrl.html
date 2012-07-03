@@ -42,6 +42,8 @@
 	
 	<option value="//api/name/ldapAttributes">&nbsp;&nbsp;&nbsp;&nbsp;ldapAttributes</option>
 	
+	<option value="//api/name/ldapConnectionUrl">&nbsp;&nbsp;&nbsp;&nbsp;ldapConnectionUrl</option>
+	
 	<option value="//api/name/ldapCriticalExtensions">&nbsp;&nbsp;&nbsp;&nbsp;ldapCriticalExtensions</option>
 	
 	<option value="//api/name/ldapDn">&nbsp;&nbsp;&nbsp;&nbsp;ldapDn</option>
@@ -107,6 +109,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapAttributes">ldapAttributes</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapConnectionUrl">ldapConnectionUrl</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ldapCriticalExtensions">ldapCriticalExtensions</a></span></li>
 	
@@ -271,6 +275,13 @@ page for more information.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/ldapConnectionUrl">&nbsp;&nbsp;ldapConnectionUrl</a></code>
+		<span class="tooltip"><p>The LDAP URL used calls to ldap_initialize().</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/ldapScheme">&nbsp;&nbsp;ldapScheme</a></code>
 		<span class="tooltip"><p>The LDAP scheme used in the URL.</p></span>
 	</span>
@@ -357,7 +368,43 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *ldapAttributes</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSArray *ldapAttributes</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">LKUrl.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/ldapConnectionUrl" title="ldapConnectionUrl"></a>
+	<h3 class="subsubtitle method-title">ldapConnectionUrl</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The LDAP URL used calls to ldap_initialize().</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy, readonly) NSString *ldapConnectionUrl</code></div>
 
     
 	
@@ -393,7 +440,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL ldapCriticalExtensions</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) BOOL ldapCriticalExtensions</code></div>
 
     
 	
@@ -429,7 +476,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapDn</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapDn</code></div>
 
     
 	
@@ -465,7 +512,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *ldapExtensions</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSArray *ldapExtensions</code></div>
 
     
 	
@@ -501,7 +548,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapFilter</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapFilter</code></div>
 
     
 	
@@ -537,7 +584,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapHost</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapHost</code></div>
 
     
 	
@@ -573,7 +620,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapPort</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) NSInteger ldapPort</code></div>
 
     
 	
@@ -609,7 +656,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapProtocolScheme ldapScheme</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) LKLdapProtocolScheme ldapScheme</code></div>
 
     
 	
@@ -645,7 +692,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapSearchScope ldapScope</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) LKLdapSearchScope ldapScope</code></div>
 
     
 	
@@ -681,7 +728,7 @@ page for more information.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapUrl</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapUrl</code></div>
 
     
 	
@@ -914,7 +961,7 @@ URL is not a valid LDAP URL.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-07-03)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

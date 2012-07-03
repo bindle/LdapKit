@@ -263,7 +263,10 @@
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
 						<p>LKLdap manges connections to remote directory servers and initiates
-LDAP requests.</p>
+LDAP requests.</p><div class="warning"><p><strong>Warning:</strong> The methods <a href="#//api/name/ldapDeleteDN:">ldapDeleteDN:</a>, <a href="#//api/name/ldapDeleteEntry:">ldapDeleteEntry:</a>,
+<a href="#//api/name/ldapModifyDN:modification:">ldapModifyDN:modification:</a>, <a href="#//api/name/ldapModifyDN:modifications:">ldapModifyDN:modifications:</a>, and
+<a href="#//api/name/ldapRenameDN:newRDN:newSuperior:deleteOldRDN:">ldapRenameDN:newRDN:newSuperior:deleteOldRDN:</a> are presumed to be functional,
+but have not yet been tested.</p></div>
 					</div>
 					
 					
@@ -622,7 +625,7 @@ to an LDAP server.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSData *ldapBindCredentials</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSData *ldapBindCredentials</code></div>
 
     
 	
@@ -658,7 +661,7 @@ to an LDAP server.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindCredentialsString</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapBindCredentialsString</code></div>
 
     
 	
@@ -694,7 +697,7 @@ to an LDAP server.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapBindMethod ldapBindMethod</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) LKLdapBindMethod ldapBindMethod</code></div>
 
     
 	
@@ -802,7 +805,7 @@ The following is the matrix used to determine the calculated value of
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindSaslMechanism</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapBindSaslMechanism</code></div>
 
     
 	
@@ -845,7 +848,7 @@ documented with <a href="#//api/name/ldapBindMethod"><code>ldapBindMethod</code>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindSaslRealm</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapBindSaslRealm</code></div>
 
     
 	
@@ -888,7 +891,7 @@ documented with <a href="#//api/name/ldapBindMethod"><code>ldapBindMethod</code>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapBindWho</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapBindWho</code></div>
 
     
 	
@@ -931,7 +934,7 @@ documented with <a href="#//api/name/ldapBindMethod"><code>ldapBindMethod</code>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapCACertificateFile</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapCACertificateFile</code></div>
 
     
 	
@@ -976,7 +979,7 @@ contains valid certificates.</p></div>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapEncryptionScheme ldapEncryptionScheme</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) LKLdapEncryptionScheme ldapEncryptionScheme</code></div>
 
     
 	
@@ -1048,7 +1051,7 @@ valid values for ldapEncryptionScheme:</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapHost</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapHost</code></div>
 
     
 	
@@ -1090,7 +1093,7 @@ valid values for ldapEncryptionScheme:</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapNetworkTimeout</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) NSInteger ldapNetworkTimeout</code></div>
 
     
 	
@@ -1131,7 +1134,7 @@ valid values for ldapEncryptionScheme:</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapPort</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) NSInteger ldapPort</code></div>
 
     
 	
@@ -1173,7 +1176,7 @@ valid values for ldapEncryptionScheme:</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapProtocolScheme ldapProtocolScheme</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) LKLdapProtocolScheme ldapProtocolScheme</code></div>
 
     
 	
@@ -1240,7 +1243,7 @@ default value is <code>LKLdapProtocolSchemeLDAP</code>.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) LKLdapProtocolVersion ldapProtocolVersion</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) LKLdapProtocolVersion ldapProtocolVersion</code></div>
 
     
 	
@@ -1303,7 +1306,7 @@ default value is <code>LKLdapProtocolSchemeLDAP</code>.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapSearchSizeLimit</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) NSInteger ldapSearchSizeLimit</code></div>
 
     
 	
@@ -1340,7 +1343,7 @@ terminated by the server.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger ldapSearchTimeLimit</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign) NSInteger ldapSearchTimeLimit</code></div>
 
     
 	
@@ -1376,7 +1379,7 @@ terminated by the server.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *ldapURI</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSString *ldapURI</code></div>
 
     
 	
@@ -1747,6 +1750,11 @@ to be established prior to submitting the bind request.</p>
 	
 	
 	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This method has not been verified to function properly.</p></div>
+	</div>
+	
 	
 	
 	
@@ -1797,6 +1805,11 @@ to be established prior to submitting the bind request.</p>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This method has not been verified to function properly.</p></div>
+	</div>
 	
 	
 	
@@ -1854,6 +1867,11 @@ to be established prior to submitting the bind request.</p>
 	
 	
 	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This method has not been verified to function properly.</p></div>
+	</div>
+	
 	
 	
 	
@@ -1909,6 +1927,11 @@ to be established prior to submitting the bind request.</p>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This method has not been verified to function properly.</p></div>
+	</div>
 	
 	
 	
@@ -2025,6 +2048,11 @@ the entry.</p></dd>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This method has not been verified to function properly.</p></div>
+	</div>
 	
 	
 	
@@ -2312,7 +2340,7 @@ if both attributes descriptions and attribute values are wanted.</p></dd>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-06-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Bindle Binaries. All rights reserved. (Last updated: 2012-07-03)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

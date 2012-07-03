@@ -2,26 +2,33 @@
 LDAP Kit Change Log
 ===================
 
+#### 0.2.20
+   - Updating appledoc documentation. (syzdek)
+   - Updating class properties to accurately reflect they are atomic. (syzdek)
+   - Updating class properties to accuragely reflect the returned objects
+     are copies. (syzdek)
+
 #### 0.2   (2012-06-29)
-* Merging the LKError class into the LKMessage class. (syzdek)
-* Updating documentation. (syzdek)
-* Updating LKBerValue to cached derived data for more efficient subsequent
-  access to properties. (syzdek)
-* Modifying LKLdap so that the value of [LKLdap ldapBindMethod] is recalculated
-  when the values of [LKLdap ldapBindWho], [LKLdap ldapBindSaslMechanism], and
-  [LKLdap ldapBindSaslRealm] are updated. (syzdek)
-* Adding class LKUrl for parsing LDAP URLs. (syzdek)
-* Adding ability to delete DNs. (syzdek)
-* Adding LKMod class. (syzdek)
-* Adding ability to modify an LDAP entry. (syzdek)
-* Adding NSAssert() statements to LKLdap to validate user data. (syzdek)
-* Adding NSAssert() statements to LKUrl to validate user data. (syzdek)
-* Adding NSAssert() statements to LKBerValue to validate user data. (syzdek)
-* Adding ability to re-name an LDAP entry. (syzdek)
+   - Merging the LKError class into the LKMessage class. (syzdek)
+   - Updating documentation. (syzdek)
+   - Updating LKBerValue to cached derived data for more efficient subsequent
+     access to properties. (syzdek)
+   - Modifying LKLdap so that the value of [LKLdap ldapBindMethod] is
+     recalculated when the values of [LKLdap ldapBindWho],
+     [LKLdap ldapBindSaslMechanism], and [LKLdap ldapBindSaslRealm] are
+     updated. (syzdek)
+   - Adding class LKUrl for parsing LDAP URLs. (syzdek)
+   - Adding ability to delete DNs. (syzdek)
+   - Adding LKMod class. (syzdek)
+   - Adding ability to modify an LDAP entry. (syzdek)
+   - Adding NSAssert() statements to LKLdap to validate user data. (syzdek)
+   - Adding NSAssert() statements to LKUrl to validate user data. (syzdek)
+   - Adding NSAssert() statements to LKBerValue to validate user data. (syzdek)
+   - Adding ability to re-name an LDAP entry. (syzdek)
 
 #### 0.1   (2012-06-17)
-* First release of LDAP Kit. (syzdek)
+   - First release of LDAP Kit. (syzdek)
 
 #### 0.0   (2012-06-11)
-* Creating project. (syzdek)
+   - Creating project. (syzdek)
 
