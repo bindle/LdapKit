@@ -2,7 +2,7 @@
 LDAP Kit Change Log
 ===================
 
-#### 0.2.20
+#### 0.2.21
    - Updating appledoc documentation. (syzdek)
    - Updating class properties to accurately reflect they are atomic. (syzdek)
    - Updating class properties to accuragely reflect the returned objects
