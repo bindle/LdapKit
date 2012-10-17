@@ -97,7 +97,9 @@ gh-pages: docset
 	VER=`git describe --long --abbrev=7 |sed -e 's/-/./g'`; \
 	   cd ./docs/github && git commit -m "Generating documentation from $$VER" .
 
-update-git: gh-pages
+update-gh-pages:
+	@$(MAKE) -f Makefile clean
+	@$(MAKE) -f Makefile gh-pages
 	cd ./docs/github && git push
 
 
