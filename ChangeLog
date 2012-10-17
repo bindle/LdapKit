@@ -5,7 +5,7 @@ LDAP Kit Change Log
 #### Development Version
    - Updating appledoc documentation. (syzdek)
    - Updating class properties to accurately reflect they are atomic. (syzdek)
-   - Updating class properties to accuragely reflect the returned objects
+   - Updating class properties to accurately reflect that returned objects
      are copies. (syzdek)
    - Adding shared Xcode schemes for targets. (syzdek)
 
