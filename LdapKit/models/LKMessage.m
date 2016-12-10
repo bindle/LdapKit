@@ -161,7 +161,9 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
 
    // results
    [referrals release];
-
+    [entries release];
+    [matchedDNs release];
+    
    // client information
    [object release];
 
@@ -1481,8 +1483,10 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
             vals = ldap_get_values_len(session.ld, res, attribute);
             [entry setBerValues:vals forAttribute:attribute];
             ldap_value_free_len(vals);
+             ldap_memfree( attribute);
             attribute = ldap_next_attribute(session.ld, res, ber);
          };
+          ldap_memfree( attribute);
          ber_free(ber, 0);
 
          // stores entry for later use
@@ -1502,7 +1506,7 @@ int branches_sasl_interact(LDAP * ld, unsigned flags, void * defaults, void * si
       };
 
       // frees result
-      ldap_memfree(res);
+      ldap_msgfree(res);
    };
 
    return(res);
